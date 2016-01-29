@@ -4,8 +4,9 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Moma;
 
-namespace App1.iOS
+namespace Moma.iOS
 {
     // The UIApplicationDelegate for the application. This class is responsible for launching the 
     // User Interface of the application, as well as listening (and optionally responding) to 

@@ -99,6 +99,7 @@
     <AndroidResource Include="Resources\values\styles.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\values\string.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Moma\Moma.csproj">

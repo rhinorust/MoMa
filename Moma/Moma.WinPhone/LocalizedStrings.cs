@@ -1,6 +1,6 @@
-﻿using App1.WinPhone.Resources;
+﻿using Moma.WinPhone.Resources;
 
-namespace App1.WinPhone
+namespace Moma.WinPhone
 {
     /// <summary>
     /// Provides access to string resources.

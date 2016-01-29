@@ -6,9 +6,9 @@ using System.Windows.Markup;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using App1.WinPhone.Resources;
+using Moma.WinPhone.Resources;
 
-namespace App1.WinPhone
+namespace Moma.WinPhone
 {
     public partial class App : Application
     {

@@ -11,7 +11,7 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 
-namespace App1.Droid
+namespace Moma.Droid
 {
     [Activity(Theme = "@style/Splash", MainLauncher = true, NoHistory = true)]
     public class SplashActivity : Activity

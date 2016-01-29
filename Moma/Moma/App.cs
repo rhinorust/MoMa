@@ -5,7 +5,7 @@ using System.Text;
 
 using Xamarin.Forms;
 
-namespace App1
+namespace Moma
 {
     public class App : Application
     {

@@ -8,7 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-namespace App1.WinPhone
+namespace Moma.WinPhone
 {
     public partial class MainPage : global::Xamarin.Forms.Platform.WinPhone.FormsApplicationPage
     {
@@ -18,7 +18,7 @@ namespace App1.WinPhone
             SupportedOrientations = SupportedPageOrientation.PortraitOrLandscape;
 
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App1.App());
+            LoadApplication(new Moma.App());
         }
     }
 }

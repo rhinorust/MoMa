@@ -23,9 +23,9 @@
     <key>MinimumOSVersion</key>
     <string>6.0</string>
     <key>CFBundleDisplayName</key>
-    <string>App1</string>
+    <string>Moma</string>
     <key>CFBundleIdentifier</key>
-    <string>com.yourcompany.App1</string>
+    <string>com.yourcompany.Moma</string>
     <key>CFBundleVersion</key>
     <string>1.0</string>
     <key>CFBundleIconFiles</key>

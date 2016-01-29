@@ -91,11 +91,27 @@ namespace App1.Droid
 			}
 		}
 		
-		public partial class Style
+		public partial class String
 		{
 			
 			// aapt resource value: 0x7f040000
-			public const int Splash = 2130968576;
+			public const int application_name = 2130968576;
+			
+			static String()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private String()
+			{
+			}
+		}
+		
+		public partial class Style
+		{
+			
+			// aapt resource value: 0x7f050000
+			public const int Splash = 2131034112;
 			
 			static Style()
 			{
