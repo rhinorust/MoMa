@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
+using App1;
 
 namespace Moma
 {
@@ -12,7 +13,8 @@ namespace Moma
         public App()
         {
             // The root page of your application
-            MainPage = new ContentPage
+            MainPage = new HomePage();
+            /*MainPage = new ContentPage
             {
                 Content = new StackLayout
                 {
@@ -24,7 +26,7 @@ namespace Moma
 						}
 					}
                 }
-            };
+            };*/
         }
 
         protected override void OnStart()
