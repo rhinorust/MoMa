@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
-using App1;
 
 namespace Moma
 {
@@ -13,7 +12,7 @@ namespace Moma
         public App()
         {
             // The root page of your application
-            MainPage = new HomePage();
+            MainPage = new Moma.MainPage();
             /*MainPage = new ContentPage
             {
                 Content = new StackLayout

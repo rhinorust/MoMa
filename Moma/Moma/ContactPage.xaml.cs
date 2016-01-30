@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
-namespace App1
+namespace Moma
 {
-    public partial class HomePage : ContentPage
+    public partial class ContactPage : ContentPage
     {
-        public HomePage()
+        public ContactPage()
         {
             InitializeComponent();
         }

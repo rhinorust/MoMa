@@ -92,7 +92,9 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Properties\AndroidManifest.xml" />
+    <None Include="Properties\AndroidManifest.xml">
+      <SubType>Designer</SubType>
+    </None>
     <AndroidResource Include="Resources\drawable\RhinoRust.png" />
     <AndroidResource Include="Resources\drawable\RhinoRust_style.xml" />
     <AndroidResource Include="Resources\values\color.xml" />
@@ -100,6 +102,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\values\string.xml" />
+    <AndroidResource Include="Resources\drawable\menu_icon.png" />
+    <AndroidResource Include="Resources\drawable\contacts.png" />
+    <AndroidResource Include="Resources\drawable\todo.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Moma\Moma.csproj">
