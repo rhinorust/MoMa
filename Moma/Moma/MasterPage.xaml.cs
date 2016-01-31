@@ -19,16 +19,47 @@ namespace Moma
             var masterPageItems = new List<MasterPageItem>();
             masterPageItems.Add(new MasterPageItem
             {
+                Title = "Map",
+                IconSource = "map_icon.png",
+                TargetType = typeof(MapPage)
+            });
+            masterPageItems.Add(new MasterPageItem
+            {
+                Title = "Storyline",
+                IconSource = "storyline_icon.png",
+                TargetType = typeof(StorylinePage)
+            });
+            masterPageItems.Add(new MasterPageItem
+            {
+                Title = "Scavenger Hunt",
+                IconSource = "scavenger_icon.png",
+                TargetType = typeof(ScavengerPage)
+            });
+            masterPageItems.Add(new MasterPageItem
+            {
+                Title = "Museum  Directions",
+                IconSource = "directions_icon.png",
+                TargetType = typeof(DirectionsPage)
+            });
+            masterPageItems.Add(new MasterPageItem
+            {
                 Title = "Contact",
-                IconSource = "contacts.png",
+                IconSource = "contact_icon.png",
                 TargetType = typeof(ContactPage)
             });
             masterPageItems.Add(new MasterPageItem
             {
+                Title = "Help",
+                IconSource = "help_icon.png",
+                TargetType = typeof(HelpPage)
+            });
+            masterPageItems.Add(new MasterPageItem
+            {
                 Title = "Settings",
-                IconSource = "todo.png",
+                IconSource = "settings_icon.png",
                 TargetType = typeof(SettingsPage)
             });
+
 
             listView.ItemsSource = masterPageItems;
         }

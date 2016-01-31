@@ -13,7 +13,6 @@ namespace Moma
         public MainPage()
         {
             InitializeComponent();
-            //test
             masterPage.ListView.ItemSelected += OnItemSelected;
         } 
         
