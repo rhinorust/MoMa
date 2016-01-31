@@ -13,6 +13,7 @@ namespace Moma
         public MainPage()
         {
             InitializeComponent();
+            Detail = new NavigationPage(new MapPage()) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
             masterPage.ListView.ItemSelected += OnItemSelected;
         } 
         
@@ -20,7 +21,7 @@ namespace Moma
 		{
 			var item = e.SelectedItem as MasterPageItem;
 			if (item != null) {
-				Detail = new NavigationPage ((Page)Activator.CreateInstance (item.TargetType));
+                Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetType)) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
 				masterPage.ListView.SelectedItem = null;
 				IsPresented = false;
 			}

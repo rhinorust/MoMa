@@ -145,18 +145,6 @@
     <BundleResource Include="Resources\menu_icon%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\contacts.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\contacts%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\todo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\todo%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\scavenger_icon.png" />
   </ItemGroup>
   <ItemGroup>

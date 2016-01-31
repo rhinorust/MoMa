@@ -4,13 +4,14 @@
              x:Class="Moma.MasterPage"
              Padding="10,10,0,0"
 			       Icon="menu_icon.png"
-			       Title="Master">
+			       Title="Master"
+             BackgroundColor="#001533">
   <ContentPage.Content>
     <StackLayout VerticalOptions="FillAndExpand">
       <ListView x:Name="listView" VerticalOptions="FillAndExpand">
-        <ListView.ItemTemplate>
-          <DataTemplate>
-            <ImageCell Text="{Binding Title}" ImageSource="{Binding IconSource}"  />
+        <ListView.ItemTemplate >
+          <DataTemplate >
+            <ImageCell Text="{Binding Title}" ImageSource="{Binding IconSource}" TextColor="White"/>
           </DataTemplate>
         </ListView.ItemTemplate>
       </ListView>
