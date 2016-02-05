@@ -1,6 +1,0 @@
-﻿<resources>
-  <style name="Splash">
-    <item name="android:windowBackground">@drawable/RhinoRust_style</item>
-    <item name="android:windowNoTitle">true</item>
-  </style>
-</resources>
