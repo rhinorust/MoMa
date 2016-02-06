@@ -23,9 +23,9 @@
               };
               //floor1 markers (POIs)
               var floor1Marker1 = L.marker([0, 0]).bindPopup('0,0'),
-                  floor1Marker2 = L.marker([0, 3072]).bindPopup('0,3072'),
-                  floor1Marker3 = L.marker([6144, 0]).bindPopup('6144,0'),
-                  floor1Marker4 = L.marker([6144, 3072]).bindPopup('6144,3072');
+                  floor1Marker2 = L.marker([0, 200]).bindPopup('0,200'),
+                  floor1Marker3 = L.marker([-100, 0]).bindPopup('-100,0'),
+                  floor1Marker4 = L.marker([-100, 200]).bindPopup('-100,200');
               var floor1Overlay = L.layerGroup([floor1Marker1, floor1Marker2, floor1Marker3, floor1Marker4]);
               //floor overlay radio buttons
               var overlayMaps = {
@@ -35,11 +35,7 @@
               //zoom levels
               var mapMinZoom = 0;
               var mapMaxZoom = 5;
-              //map bounds
-              var mapBounds =
-                new L.LatLngBounds(
-                map.unproject([0, 3072], mapMaxZoom),
-                map.unproject([6144, 0], mapMaxZoom));
+              
               //create map
               var map = L.map('map', {
                   maxZoom: mapMaxZoom,
@@ -47,6 +43,10 @@
                   crs: L.CRS.Simple,
                   layers: [floor1Layer, floor1Overlay]
               }).setView([0, 0], mapMaxZoom);
+              //map bounds
+                  var mapBounds = new L.LatLngBounds(
+                    map.unproject([0, 3072], mapMaxZoom),
+                    map.unproject([6144, 0], mapMaxZoom));
               //add bounds to map
               map.fitBounds(mapBounds);
               //Add controls (radio buttons) to map in order to switch between floors
