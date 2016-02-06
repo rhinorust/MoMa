@@ -6,7 +6,17 @@
         <link rel="stylesheet" href="leaflet.css" />
         <script src="leaflet.js"></script>
         <script>
-          function init() {
+            function init() {
+                var markerIcon = L.icon({
+                    iconUrl: 'images/marker-icon.png',
+                    shadowUrl: '',
+
+                    iconSize: [25, 41], // size of the icon
+                    //shadowSize: [50, 64], // size of the shadow
+                    iconAnchor: [12, 40], // point of the icon which will correspond to marker's location
+                    //shadowAnchor: [4, 62],  // the same for the shadow
+                    popupAnchor: [1, 1] // point from which the popup should open relative to the iconAnchor
+                });
               //floor maps
               var floor1Layer = L.tileLayer('floor1/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }),
                   floor2Layer = L.tileLayer('floor2/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }),
@@ -22,10 +32,10 @@
                   "Floor 5": floor5Layer
               };
               //floor1 markers (POIs)
-              var floor1Marker1 = L.marker([0, 0]).bindPopup('0,0'),
-                  floor1Marker2 = L.marker([0, 200]).bindPopup('0,200'),
-                  floor1Marker3 = L.marker([-100, 0]).bindPopup('-100,0'),
-                  floor1Marker4 = L.marker([-100, 200]).bindPopup('-100,200');
+              var floor1Marker1 = L.marker([0, 0], { icon: markerIcon }).bindPopup('0,0'),
+                  floor1Marker2 = L.marker([0, 188], { icon: markerIcon }).bindPopup('0,188'),
+                  floor1Marker3 = L.marker([-93, 0], { icon: markerIcon }).bindPopup('-93,0'),
+                  floor1Marker4 = L.marker([-93, 188], { icon: markerIcon }).bindPopup('-93,188');
               var floor1Overlay = L.layerGroup([floor1Marker1, floor1Marker2, floor1Marker3, floor1Marker4]);
               //floor overlay radio buttons
               var overlayMaps = {
@@ -51,6 +61,11 @@
               map.fitBounds(mapBounds);
               //Add controls (radio buttons) to map in order to switch between floors
               L.control.layers(baseMaps, overlayMaps).addTo(map);
+              
+              
+
+              //L.rectangle(mapBounds, { color: "#ff7800", weight: 1 }).addTo(map);
+
           }
         </script>
         <style>
