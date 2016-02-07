@@ -102,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AndroidUserSettings.cs" />
+    <Compile Include="CultureHandler.cs" />
     <Compile Include="CustomNavigationRenderer.cs" />
     <Compile Include="HybridWebViewRenderer.cs" />
     <Compile Include="JSBridge.cs" />

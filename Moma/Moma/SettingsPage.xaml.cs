@@ -19,13 +19,14 @@ namespace Moma
         public SettingsPage()
         {
             InitializeComponent();
+            Title = AppLanguageResource.Settings;
             var grid = new Grid
             {
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 RowDefinitions =
                 {
-                    new RowDefinition { Height = GridLength.Auto },
+                    new RowDefinition { Height = new GridLength(40, GridUnitType.Absolute) },
                     new RowDefinition { Height = GridLength.Auto }
                 },
                 ColumnDefinitions =
@@ -39,11 +40,14 @@ namespace Moma
             {
                 Text = "Language",
                 TextColor = Color.Black,
+                VerticalOptions = LayoutOptions.Center
             },0,0);
 
             Picker picker = new Picker
             {
-                Title = "Color",
+                Title = AppLanguageResource.Language,
+                BackgroundColor = Color.Gray,
+                WidthRequest = 100,
                 VerticalOptions = LayoutOptions.CenterAndExpand
             };
 
@@ -55,9 +59,6 @@ namespace Moma
             }
 
             grid.Children.Add(picker,1,0);
-
-
-
             Content = grid;
         }
 
@@ -74,7 +75,43 @@ namespace Moma
                 string languageValue;
                 if (languageDict.TryGetValue(picker.Items[picker.SelectedIndex], out languageValue))
                 {
+                    var previousLanguage = settings.GetUserSetting("language");
                     settings.SetUserSetting("language", languageValue);
+                    string alertMsg;
+                    string alertTitle;
+                    switch (languageValue.ToLower())
+                    {
+                        case "english":
+                            alertMsg = AppLanguageResource.LanguageChangeEN;
+                            alertTitle = AppLanguageResource.LanguageChangeAlertEN;
+                            break;
+                        case "deutsche":
+                            alertMsg = AppLanguageResource.LanguageChangeDE;
+                            alertTitle = AppLanguageResource.LanguageChangeAlertDE;
+                            break;
+                        case "french":
+                            alertMsg = AppLanguageResource.LanguageChangeFR;
+                            alertTitle = AppLanguageResource.LanguageChangeAlertFR;
+                            break;
+                        default:
+                            if (previousLanguage.ToLower().Equals("french"))
+                            {
+                                alertMsg = AppLanguageResource.LanguageChangeFR;
+                                alertTitle = AppLanguageResource.LanguageChangeAlertFR;
+                            }
+                            else if (previousLanguage.ToLower().Equals("deutsche"))
+                            {
+                                alertMsg = AppLanguageResource.LanguageChangeDE;
+                                alertTitle = AppLanguageResource.LanguageChangeAlertDE;
+                            }
+                            else
+                            {
+                                alertMsg = AppLanguageResource.LanguageChangeEN;
+                                alertTitle = AppLanguageResource.LanguageChangeAlertEN;
+                            }
+                            break;
+                    }
+                    DisplayAlert(alertTitle, alertMsg, "OK");
                 }
             }
         }

@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
-
+using System.Threading;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -76,7 +77,10 @@ namespace App1.Droid
             builder.SetTitle("Lanuage selection");
             builder.SetMessage("Your default language is " + language+ ". You may change it at any time in the settings.");
             builder.SetCancelable(false);
-            builder.SetPositiveButton("OK", delegate { StartActivity(new Intent(Application.Context, typeof(MainActivity))); });
+            builder.SetPositiveButton("OK", delegate
+            {
+                StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+            });
             builder.Show();
         }
     }

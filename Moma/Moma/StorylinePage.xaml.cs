@@ -13,6 +13,7 @@ namespace Moma
         public StorylinePage()
         {
             InitializeComponent();
+            Title = AppLanguageResource.Storyline;
         }
     }
 }

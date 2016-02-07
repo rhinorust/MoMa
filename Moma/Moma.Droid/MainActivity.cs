@@ -1,11 +1,13 @@
 ﻿using System;
-
+using System.Globalization;
+using System.Threading;
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using App1.Droid;
 
 namespace Moma.Droid
 {
@@ -16,6 +18,10 @@ namespace Moma.Droid
         {
             base.OnCreate(bundle);
 
+            var setting = new AndroidUserSettings();
+            string language = setting.GetUserSetting("language");
+            var cultureHandler = new CultureHandler();
+            cultureHandler.SetCurrentCulture(language);
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
         }

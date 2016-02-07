@@ -13,6 +13,7 @@ namespace Moma
         public MapPage()
         {
             InitializeComponent();
+            Title = AppLanguageResource.Map;
         }
     }
 }
