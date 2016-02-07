@@ -190,7 +190,7 @@
 
 /* general typography */
 .leaflet-container {
-	font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+	font: 16px "sans-serif";
 	}
 
 
@@ -310,20 +310,39 @@
 .leaflet-control-layers-expanded .leaflet-control-layers-list {
 	display: block;
 	position: relative;
+    opacity: 0.6;
 	}
 .leaflet-control-layers-expanded {
 	padding: 6px 10px 6px 6px;
-	color: #333;
-	background: #fff;
+	background: #cccccc;
+    border-width:1.5px !important;
+    border-color:black !important;
+    margin-bottom: 150px !important;
 	}
 .leaflet-control-layers-selector {
-	margin-top: 2px;
 	position: relative;
 	top: 1px;
 	}
 .leaflet-control-layers label {
 	display: block;
-	}
+    color: black;
+    font: 35px "sans-serif";
+    border-bottom:solid;
+    border-bottom-width:1.5px !important;
+    border-bottom-color:black !important;
+    cursor:pointer;
+    padding: 8px 13px 8px 13px;
+}
+
+input[type="radio"]:checked + label  {
+    color:white;
+    font-weight:bold;
+}
+
+.leaflet-control-layers input[type="radio"] {
+    display: none;
+}
+
 .leaflet-control-layers-separator {
 	height: 0;
 	border-top: 1px solid #ddd;
