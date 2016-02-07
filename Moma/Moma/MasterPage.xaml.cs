@@ -20,43 +20,43 @@ namespace Moma
             masterPageItems.Add(new MasterPageItem
             {
                 Title = "Map",
-                IconSource = "map_icon.png",
+                IconSource = "ic_action_navigate.png",
                 TargetType = typeof(MapPage)
             });
             masterPageItems.Add(new MasterPageItem
             {
-                Title = "Storyline",
-                IconSource = "storyline_icon.png",
+                Title = "Storylines",
+                IconSource = "ic_action_map.png",
                 TargetType = typeof(StorylinePage)
             });
             masterPageItems.Add(new MasterPageItem
             {
                 Title = "Scavenger Hunt",
-                IconSource = "scavenger_icon.png",
+                IconSource = "ic_action_search.png",
                 TargetType = typeof(ScavengerPage)
             });
             masterPageItems.Add(new MasterPageItem
             {
                 Title = "Museum  Directions",
-                IconSource = "directions_icon.png",
+                IconSource = "ic_action_compass.png",
                 TargetType = typeof(DirectionsPage)
             });
             masterPageItems.Add(new MasterPageItem
             {
                 Title = "Contact",
-                IconSource = "contact_icon.png",
+                IconSource = "ic_action_phone.png",
                 TargetType = typeof(ContactPage)
             });
             masterPageItems.Add(new MasterPageItem
             {
                 Title = "Help",
-                IconSource = "help_icon.png",
+                IconSource = "ic_action_help.png",
                 TargetType = typeof(HelpPage)
             });
             masterPageItems.Add(new MasterPageItem
             {
                 Title = "Settings",
-                IconSource = "settings_icon.png",
+                IconSource = "ic_action_settings.png",
                 TargetType = typeof(SettingsPage)
             });
 

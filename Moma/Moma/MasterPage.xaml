@@ -11,10 +11,16 @@
       <ListView x:Name="listView" VerticalOptions="FillAndExpand">
         <ListView.ItemTemplate >
           <DataTemplate >
-            <ImageCell Text="{Binding Title}" ImageSource="{Binding IconSource}" TextColor="White"/>
+            <ViewCell>
+              <StackLayout Orientation="Horizontal" Spacing="25" HorizontalOptions="FillAndExpand">
+                <Image Source="{Binding IconSource}"  HeightRequest="100"/>
+                <Label Font = "22" Text="{Binding Title}" TextColor="White" VerticalTextAlignment="Center" />
+              </StackLayout>
+            </ViewCell>
           </DataTemplate>
         </ListView.ItemTemplate>
       </ListView>
     </StackLayout>
   </ContentPage.Content>
 </ContentPage>
+
