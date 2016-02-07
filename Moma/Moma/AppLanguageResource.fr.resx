@@ -120,6 +120,9 @@
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
   </data>
+  <data name="DefaultLanguage" xml:space="preserve">
+    <value>Le language par défaut est français. Il peut être changé à tout moment dans les paramètres.</value>
+  </data>
   <data name="Directions" xml:space="preserve">
     <value>Directions du musée</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="LanguageChangeFR" xml:space="preserve">
     <value>Le language sera modifié lors du prochain redémarrage de l'application.</value>
+  </data>
+  <data name="LanguageSelection" xml:space="preserve">
+    <value>Sélection de la langue</value>
   </data>
   <data name="Map" xml:space="preserve">
     <value>Carte</value>

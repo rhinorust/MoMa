@@ -120,6 +120,9 @@
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
   </data>
+  <data name="DefaultLanguage" xml:space="preserve">
+    <value>The default language is English. It may be changed at any time in the settings.</value>
+  </data>
   <data name="Directions" xml:space="preserve">
     <value>Museum Directions</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="LanguageChangeFR" xml:space="preserve">
     <value>Le language sera modifié lors du prochain redémarrage de l'application.</value>
+  </data>
+  <data name="LanguageSelection" xml:space="preserve">
+    <value>Selected language</value>
   </data>
   <data name="Map" xml:space="preserve">
     <value>Map</value>

@@ -1,18 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
-using Android.Runtime;
 using Android.Widget;
 using Moma.Droid;
-using Xamarin.Forms;
-using Android.Graphics;
+using Moma;
 using Application = Android.App.Application;
 using Button = Android.Widget.Button;
 using TextAlignment = Android.Views.TextAlignment;
@@ -72,10 +64,12 @@ namespace App1.Droid
             var userSettings = new AndroidUserSettings();
             userSettings.SetUserSetting("language", language);
 
-            language = language.Substring(0,1).ToUpper() + language.Substring(1);
+            //language = language.Substring(0,1).ToUpper() + language.Substring(1);
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.SetTitle("Lanuage selection");
-            builder.SetMessage("Your default language is " + language+ ". You may change it at any time in the settings.");
+            builder.SetTitle(TranslationManager.GetResourceValue("LanguageSelection"));
+
+            string defaultLang = TranslationManager.GetResourceValue("DefaultLanguage");
+            builder.SetMessage(defaultLang);
             builder.SetCancelable(false);
             builder.SetPositiveButton("OK", delegate
             {

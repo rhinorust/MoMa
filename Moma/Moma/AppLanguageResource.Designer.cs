@@ -71,6 +71,15 @@ namespace Moma {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The default language is English. It may be changed at any time in the settings..
+        /// </summary>
+        internal static string DefaultLanguage {
+            get {
+                return ResourceManager.GetString("DefaultLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Museum Directions.
         /// </summary>
         internal static string Directions {
@@ -148,6 +157,15 @@ namespace Moma {
         internal static string LanguageChangeFR {
             get {
                 return ResourceManager.GetString("LanguageChangeFR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected language.
+        /// </summary>
+        internal static string LanguageSelection {
+            get {
+                return ResourceManager.GetString("LanguageSelection", resourceCulture);
             }
         }
         

@@ -84,6 +84,7 @@
     <Compile Include="StorylinePage.xaml.cs">
       <DependentUpon>StorylinePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TranslationManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />
