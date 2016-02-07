@@ -38,7 +38,7 @@ namespace Moma
 
             grid.Children.Add(new Label
             {
-                Text = "Language",
+                Text = AppLanguageResource.Language,
                 TextColor = Color.Black,
                 VerticalOptions = LayoutOptions.Center
             },0,0);
