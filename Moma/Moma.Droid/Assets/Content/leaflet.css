@@ -312,12 +312,14 @@
 	position: relative;
     opacity: 0.6;
 	}
+/*Moma*/
 .leaflet-control-layers-expanded {
 	padding: 6px 10px 6px 6px;
 	background: #cccccc;
+    background: rgba(80,80,80,0.3);
     border-width:1.5px !important;
-    border-color:black !important;
-    margin-bottom: 150px !important;
+    border-color: !important;
+    margin-bottom: 100px !important;
 	}
 .leaflet-control-layers-selector {
 	position: relative;
@@ -327,15 +329,14 @@
 	display: block;
     color: black;
     font: 35px "sans-serif";
-    border-bottom:solid;
+    /*border-bottom:solid;
     border-bottom-width:1.5px !important;
-    border-bottom-color:black !important;
+    border-bottom-color:black !important;*/
     cursor:pointer;
     padding: 8px 13px 8px 13px;
 }
-
-input[type="radio"]:checked + label  {
-    color:white;
+input[type="radio"]:checked+span {
+    color:#0066ff;
     font-weight:bold;
 }
 
