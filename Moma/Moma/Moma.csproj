@@ -39,6 +39,7 @@
     <Compile Include="ContactPage.xaml.cs">
       <DependentUpon>ContactPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomPicker.cs" />
     <Compile Include="DirectionsPage.xaml.cs">
       <DependentUpon>DirectionsPage.xaml</DependentUpon>
     </Compile>
@@ -46,6 +47,7 @@
       <DependentUpon>HelpPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="HybridWebView.cs" />
+    <Compile Include="IUserSettings.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

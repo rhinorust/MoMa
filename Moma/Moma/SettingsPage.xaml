@@ -4,5 +4,4 @@
              x:Class="Moma.SettingsPage"
              Title="Settings"
              BackgroundColor="White">
-  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
 </ContentPage>

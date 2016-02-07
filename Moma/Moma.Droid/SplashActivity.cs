@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
@@ -10,6 +11,7 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using App1.Droid;
 
 namespace Moma.Droid
 {
@@ -31,14 +33,23 @@ namespace Moma.Droid
             Task startupWork = new Task(() =>
             {
                 Log.Debug(TAG, "Performing some startup work that takes a bit of time.");
-                Task.Delay(5000); // Simulate a bit of startup work.
+                Thread.Sleep(2000);
+                //Task.Delay(5000); // Simulate a bit of startup work.
                 Log.Debug(TAG, "Working in the background - important stuff.");
             });
 
             startupWork.ContinueWith(t =>
             {
                 Log.Debug(TAG, "Work is finished - start Activity1.");
-                StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+                var userSettings = new AndroidUserSettings();
+                if (string.IsNullOrEmpty(userSettings.GetUserSetting("language")))
+                {
+                    StartActivity(new Intent(Application.Context, typeof(LanguageInitializer)));
+                }
+                else
+                {
+                    StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+                }
             }, TaskScheduler.FromCurrentSynchronizationContext());
 
             startupWork.Start();
