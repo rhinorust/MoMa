@@ -310,11 +310,11 @@
 .leaflet-control-layers-expanded .leaflet-control-layers-list {
 	display: block;
 	position: relative;
-    opacity: 0.6;
+    opacity: 0.7;
+    padding: 0px;
 	}
 /*Moma*/
 .leaflet-control-layers-expanded {
-	padding: 6px 10px 6px 6px;
 	background: #cccccc;
     background: rgba(80,80,80,0.3);
     border-width:1.5px !important;
@@ -333,11 +333,21 @@
     border-bottom-width:1.5px !important;
     border-bottom-color:black !important;*/
     cursor:pointer;
-    padding: 8px 13px 8px 13px;
+    margin-bottom:13px;
+    margin-top:13px;
 }
+
+input[type="radio"] + span {
+    padding: 15px;
+}
+
 input[type="radio"]:checked+span {
-    color:#0066ff;
+    color:white;
     font-weight:bold;
+    background-color:#0066ff;
+    border: 2px solid white;
+    padding: 13px;
+     opacity:1 !important;
 }
 
 .leaflet-control-layers input[type="radio"] {
