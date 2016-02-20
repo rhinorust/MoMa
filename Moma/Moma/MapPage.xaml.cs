@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,13 @@ namespace Moma
         {
             InitializeComponent();
             Title = AppLanguageResource.Map;
+            ToolbarItems.Add(new ToolbarItem("Search", "mag.png", async () =>
+            {
+                var page = new ContentPage();
+                var result = await page.DisplayAlert("Title", "Message", "Accept", "Cancel");
+
+                Debug.WriteLine("success: {0}", result);
+            }));
         }
     }
 }

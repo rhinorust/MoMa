@@ -4,22 +4,22 @@
 		"imagePath": "floor1/floor1.png",
 		"imageWidth": "7995",
 		"imageHeight": "3945"
-		}, 
+		}, {
 		"floorID": "2",
 		"imagePath": "floor2/floor2.png",
 		"imageWidth": "7995",
 		"imageHeight": "3945"
-		},
+		},{
 		"floorID": "3",
 		"imagePath": "floor3/floor3.png",
 		"imageWidth": "7995",
 		"imageHeight": "3945"
-		},
+		},{
 		"floorID": "4",
 		"imagePath": "floor4/floor4.png",
 		"imageWidth": "7995",
 		"imageHeight": "3945"
-		},
+		},{
 		"floorID": "5",
 		"imagePath": "floor5/floor5.png",
 		"imageWidth": "7995",
@@ -46,7 +46,7 @@
 				{
           		"language": "French",
           		"description": "Premier artéfact du musée"
-        		},				
+        		}				
         	],
 			"x": "1245",
 			"y": "1024",
@@ -61,19 +61,19 @@
             		"path": "<URL>",
             		"language": "<language>",
             		"caption": "<caption>"
-          			}, ...
+          			}
           		],
           		"video": [{
             		"path": "<URL>",
             		"language": "<language>",
             		"caption": "<caption>"
-          			}, ...
+          			}
           		],
           		"audio": [{
            			"path": "<URL>",
             		"language": "<language>",
             		"caption": "<caption>"
-          			}, ...
+          			}
           		]
         	},
 			"storyPoint": [{
@@ -85,36 +85,36 @@
 					{
           			"language": "French",
           			"title": "Second storyline"
-        			},					
+        			}					
         		],
         		"description": [{
           			"language": "English",
           			"description": "First storyline of the museum"
-        			}, ...
+        			}
         		],
 				"media": {
 	          		"image": [{
 	            		"path": "<URL>",
 	            		"language": "<language>",
 	            		"caption": "<caption>"
-	          			}, ...
+	          			}
 	          		],
 	          		"video": [{
 	            		"path": "<URL>",
 	            		"language": "<language>",
 	            		"caption": "<caption>"
-	          			}, ...
+	          			}
 	          		],
 	          		"audio": [{
 	           			"path": "<URL>",
 	            		"language": "<language>",
 	            		"caption": "<caption>"
-	          			}, ...
+	          			}
 	          		]
 	        	}
-			}, ...
-			],
-		}, ...
+			}
+			]
+		}
 		],
 
 		"pot": [{
@@ -125,7 +125,7 @@
         	},
         	"x": "<coordinate x>",
         	"y": "<coordinate y>",
-        	"floorID": "<floor ID>",
+        	"floorID": "<floor ID>"
 		},{
 			"id": "<ID number>",
         	"label": {
@@ -134,7 +134,7 @@
         	},
         	"x": "<coordinate x>",
         	"y": "<coordinate y>",
-        	"floorID": "<floor ID>",
+        	"floorID": "<floor ID>"
 		}
 		]
 	}
@@ -145,7 +145,7 @@
       	"endNode": "<node>",
       	"floorNumber": "<floor ID>",
       	"distance": "<distance>"
-    }, ...
+    }
   	],
 
   	"storyline": [{
@@ -153,17 +153,17 @@
      	"title": [{
         	"language": "<language>",
         	"title": "<title>"
-      		}, ...
+      		}
       	],
       	"description": [{
         	"language": "<language>",
         	"description": "<description>"
-      		}, ...
+      		}
       	],
-      "path": ["<poiID or potID>", ..., "<poiID or potID>"],
+      "path": ["<poiID or potID>", "<poiID or potID>"],
       "thumbnail": "<path of thumbnail>",
       "walkingTimeInMinutes": "<minutes>",
       "floorsCovered": "<number of floors covered>"
-    }, ...
+    }
   	]
 }
