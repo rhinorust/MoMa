@@ -113,6 +113,7 @@
     <Compile Include="SplashActivity.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\Content\final_schema.json" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
