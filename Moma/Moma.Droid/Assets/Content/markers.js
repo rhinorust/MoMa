@@ -1,66 +1,65 @@
-﻿var markerIcon = L.icon({
-    iconUrl: 'images/marker-icon.png',
+﻿//Marker Icons
+var markerIconPOIBlue = L.icon({
+    iconUrl: 'images/marker-icon-blue.png',
     shadowUrl: '',
 
-    iconSize: [25, 41], // size of the icon
+    iconSize: [64, 64], // size of the icon
     //shadowSize: [50, 64], // size of the shadow
-    iconAnchor: [12, 40], // point of the icon which will correspond to marker's location
+    iconAnchor: [30, 64], // point of the icon which will correspond to marker's location
     //shadowAnchor: [4, 62],  // the same for the shadow
     popupAnchor: [1, 1] // point from which the popup should open relative to the iconAnchor
 });
+var markerIconPOIGreen = L.icon({
+    iconUrl: 'images/marker-icon-green.png',
+    shadowUrl: '',
+    iconSize: [64, 64], // size of the icon
+    iconAnchor: [30, 64], // point of the icon which will correspond to marker's location
+    popupAnchor: [1, 1] // point from which the popup should open relative to the iconAnchor
+});
+var markerIconPOIRed = L.icon({
+    iconUrl: 'images/marker-icon-red.png',
+    shadowUrl: '',
+    iconSize: [64, 64], // size of the icon
+    iconAnchor: [30, 64], // point of the icon which will correspond to marker's location
+    popupAnchor: [1, 1] // point from which the popup should open relative to the iconAnchor
+});
+var markerIconNode = L.icon({
+    iconUrl: 'images/none-marker-icon.png',
+    shadowUrl: '',
+});
+
 var floor1Array = [], floor2Array = [], floor3Array = [], floor4Array = [], floor5Array = [];
 
-//floor1 markers (POIs)
-/*
-var floor1Marker1 = L.marker([125, 45], { icon: markerIcon }).bindPopup('Artifact 1'),
-    floor1Marker2 = L.marker([0, 188], { icon: markerIcon }).bindPopup('Artifact 2'),
-    floor1Marker3 = L.marker([-93, 0], { icon: markerIcon }).bindPopup('Artifact 3'),
-    floor1Marker4 = L.marker([-93, 188], { icon: markerIcon }).bindPopup('Artifact 4');
-floor1Array = [floor1Marker1, floor1Marker2, floor1Marker3, floor1Marker4];
-*/
+//Floor 2 marker & node coordinates
+floor2Coordinates = [{ coord: [-42, 108], isPOI: 'true' }, { coord: [-58, 108], isPOI: 'false' }, { coord: [-62, 113], isPOI: 'false' }, { coord: [-71, 114], isPOI: 'true' }, { coord: [-71, 166], isPOI: 'true' },
+{ coord: [-30, 168], isPOI: 'true' }, { coord: [-24, 113], isPOI: 'false' }, { coord: [-17, 113], isPOI: 'true' }, { coord: [-17, 102], isPOI: 'false' }, { coord: [-20, 101], isPOI: 'false' },
+{ coord: [-18, 81], isPOI: 'false' }, { coord: [-20, 80], isPOI: 'true' }, { coord: [-17, 62], isPOI: 'false' }, { coord: [-15, 34], isPOI: 'false' }, { coord: [-8, 34], isPOI: 'false' }, { coord: [-7, 25], isPOI: 'true' }];
 
-//floor2 markers
-floor2Coordinates = [[-42, 108], [-58, 108], [-62, 113], [-71, 114], [-71, 166],
-                     [-30, 168], [-24, 113], [-17, 113], [-17, 102], [-20, 101],
-                     [-18, 81], [-20, 80], [-17, 62], [-15, 34], [-8, 34], [-7, 25]];
 
-var latlngs = Array();
-
-//Get latlng from first marker
-for (i = 0; i < floor2Array.length; i++) {
-    alert(floor2Array[i]);
-    latlngs.push(floor2Array[i].getLatLng());
-}
+//Floor 2 marker icons & popups
+var floor2latlngs = Array();
+var count = 0;
 
 for (i = 0; i < floor2Coordinates.length; i++) {
-    floor2Array.push(L.marker(floor2Coordinates[i], { icon: markerIcon }).bindPopup('Artifact ' + i + ''));
-    latlngs.push(floor2Coordinates[i]);
+    var markerIcon;
+    if (floor2Coordinates[i].isPOI == 'true') {
+        //POI marker icon
+        markerIcon = markerIconPOIBlue;
+        count++;
+        if (i == 0) {
+            //start marker icon
+            markerIcon = markerIconPOIGreen;
+        }
+        if (i == floor2Coordinates.length - 1) {
+            //end marker icon
+            markerIcon = markerIconPOIRed;
+        }
+    } else {
+        //invisible marker for nodes
+        markerIcon = markerIconNode;
+    }
+    floor2Array.push(L.marker(floor2Coordinates[i].coord, { icon: markerIcon, keepInView:true }).bindPopup('Artifact ' + count + '<br> <button>Learn more</button>'));
+    floor2latlngs.push(floor2Coordinates[i].coord);
 }
 
-
-
-//floor3 markers
-/*
-var floor3Marker1 = L.marker([-50, 30], { icon: markerIcon }).bindPopup('Artifact 7'),
-    floor3Marker2 = L.marker([-40, 170], { icon: markerIcon }).bindPopup('Artifact 8');
-floor3Array = [floor3Marker1, floor3Marker2];
-
-//floor4 markers
-var floor4Marker1 = L.marker([-80, 50], { icon: markerIcon }).bindPopup('Artifact 9'),
-    floor4Marker2 = L.marker([-30, 90], { icon: markerIcon }).bindPopup('Artifact 10');
-floor4Array = [floor4Marker1, floor4Marker2];
-
-//floor5 markers
-
-var floor5Marker1 = L.marker([-46, 94], { icon: markerIcon }).bindPopup('Artifact 11'),
-    floor5Marker2 = L.marker([-60, 10], { icon: markerIcon }).bindPopup('Artifact 12');
-floor5Array = [floor5Marker1, floor5Marker2];
-*/
-
-
-            //var floor1Overlay = L.layerGroup([floor1Marker1, floor1Marker2, floor1Marker3, floor1Marker4]);
-            //floor overlay radio buttons
-            var overlayMaps = {
-                //"Markers": floor1Overlay
-            };
             

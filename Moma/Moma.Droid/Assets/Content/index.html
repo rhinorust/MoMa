@@ -8,26 +8,35 @@
     <script src="markers.js"></script>
     <script>
         function init() {
+            //--TO DO
+            //GET & PARSE JSON (add to separate js file before the marker.js file)
+            //rearange the js and divide into separate files
+            //adapt code to deal between storyline and free map (POI icons, paths, back to storyline selection page button)
+
+            //--marker.js file contains coordinates that were parsed from json and the storyline trajectories
+
+            //--set variable storylineSelected to the storyline id/number selected from the storyline selection page
+            var storylineSelected = 1;
+
             //floor maps
-            var floor1Layer = L.tileLayer('floor1/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }),
-                floor2Layer = L.tileLayer('floor2/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }),
-                floor3Layer = L.tileLayer('floor3/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }),
-                floor4Layer = L.tileLayer('floor4/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }),
-                floor5Layer = L.tileLayer('floor5/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false });
+            floor1Array.push(L.tileLayer('floor1/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
+            floor2Array.push(L.tileLayer('floor2/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
+            floor3Array.push(L.tileLayer('floor3/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
+            floor4Array.push(L.tileLayer('floor4/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
+            floor5Array.push(L.tileLayer('floor5/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
 
-            floor1Array.push(floor1Layer);
-            floor2Array.push(floor2Layer);
-            floor3Array.push(floor3Layer);
-            floor4Array.push(floor4Layer);
-            floor5Array.push(floor5Layer);
+            //storyline polyline paths
+            if (storylineSelected == 1) {
+                floor2Array.push(L.polyline(floor2latlngs, { color: '#0066ff' }));
+            } else if (storylineSelected == 2) {
 
-            /*
-            var floor1LayerGroup = L.layerGroup([floor1Layer, floor1Marker1, floor1Marker2, floor1Marker3, floor1Marker4]),
-                floor2LayerGroup = L.layerGroup(floor2MarkerArray),
-                floor3LayerGroup = L.layerGroup([floor3Layer, floor3Marker1, floor3Marker2]),
-                floor4LayerGroup = L.layerGroup([floor4Layer, floor4Marker1, floor4Marker2]),
-                floor5LayerGroup = L.layerGroup([floor5Layer, floor5Marker1, floor5Marker2]);*/
+            } else if (storylineSelected == 3) {
 
+            } else {
+                //no storyline selected (free map)
+            }
+
+            //Floor layer groups
             var floor1LayerGroup = L.layerGroup(floor1Array),
                 floor2LayerGroup = L.layerGroup(floor2Array),
                 floor3LayerGroup = L.layerGroup(floor3Array),
@@ -42,7 +51,10 @@
                 "4": floor4LayerGroup,
                 "5": floor5LayerGroup
             };
-
+            //floor overlay radio buttons
+            var overlayMaps = {
+                //"Markers": floor1Overlay
+            };
 
             //zoom levels
             var mapMinZoom = 1;
@@ -66,11 +78,11 @@
 
             //L.rectangle(mapBounds, { color: "#ff7800", weight: 1 }).addTo(map);
 
+            //STORYLINE======================================================
             //line between markers
-            var polyline = L.polyline(latlngs, { color: 'red' }).addTo(map);
-
+            
             // zoom the map to the polyline
-            map.fitBounds(polyline.getBounds());
+            //map.fitBounds(polyline.getBounds());
             
         }
     </script>
