@@ -15,13 +15,20 @@ namespace Moma
         {
             InitializeComponent();
             Title = AppLanguageResource.Map;
-            ToolbarItems.Add(new ToolbarItem("Search", "mag.png", async () =>
-            {
-                var page = new ContentPage();
+
+        ToolbarItems.Add(new ToolbarItem("Search", "mag.png", AddSearchView
+            
+                /*var page = new ContentPage();
                 var result = await page.DisplayAlert("Title", "Message", "Accept", "Cancel");
 
-                Debug.WriteLine("success: {0}", result);
-            }));
+                Debug.WriteLine("success: {0}", result);*/
+            ));
+        }
+
+        private void AddSearchView()
+        {
+            BackBoxView.IsVisible = !BackBoxView.IsVisible;
+            SearchBarPOI.IsVisible = !SearchBarPOI.IsVisible;
         }
     }
 }

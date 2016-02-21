@@ -172,7 +172,7 @@
 /* visual tweaks */
 
 .leaflet-container {
-	background: #ddd;
+	background: white;
 	outline: 0;
 	}
 .leaflet-container a {
