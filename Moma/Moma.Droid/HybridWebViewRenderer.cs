@@ -16,11 +16,16 @@ namespace Moma.Droid
         public void CallJs(string jsFunction)
         {
             //No exception, but not performing the task..
-            webView?.EvaluateJavascript(jsFunction, null);
+            webView.Settings.JavaScriptEnabled = true;
+            webView.SetWebChromeClient(new WebChromeClient());
+            webView.LoadUrl(string.Format("javascript: {0}", jsFunction));
+
+            // webView.LoadUrl("http://www.google.com");
+            //webView.EvaluateJavascript(jsFunction, null);
             //Control?.LoadUrl(string.Format("javascript: {0}", jsFunction));
         }
 
-	    protected override void OnElementChanged (ElementChangedEventArgs<HybridWebView> e)
+        protected override void OnElementChanged (ElementChangedEventArgs<HybridWebView> e)
 		{
 			base.OnElementChanged (e);
 
