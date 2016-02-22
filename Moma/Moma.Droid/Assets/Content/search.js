@@ -1,13 +1,13 @@
 ﻿function showSearchBar() {
     var searchBarContainer = document.getElementById('searchBarDiv');
-    if (searchBarContainer.childNodes.length == 0) {
-        createSearchBar();
+    if (searchBarContainer.childNodes.length === 0) {
+        createSearchBar(searchBarContainer);
     }
     showHideSearch();
 }
 
-function createSearchBar() {
-    
+function createSearchBar(containerElement) {
+    var searchInput = document.createElement('input');
 }
 
 function showHideSearch() {
