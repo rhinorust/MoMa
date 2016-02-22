@@ -18,7 +18,7 @@
 
     //storyline polyline paths
     if (storylineSelected == 1) {
-        floor2Array.push(L.polyline(floor2latlngs, { color: '#0066ff' }));
+        floor2Array.push(L.polyline(floor2latlngs, { color: '#0066ff' , weight:10, opacity:0.7}));
     } else if (storylineSelected == 2) {
 
     } else if (storylineSelected == 3) {
