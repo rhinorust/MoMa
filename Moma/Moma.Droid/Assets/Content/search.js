@@ -1,3 +1,18 @@
-﻿$.getJSON("final_schema.json", function (json) {
-    console.log(json); // this will show the info it in firebug console 
-});
+﻿function showSearchBar() {
+    var searchBarContainer = document.getElementById('searchBarDiv');
+    if (searchBarContainer.childNodes.length == 0) {
+        createSearchBar();
+    }
+    showHideSearch();
+}
+
+function createSearchBar() {
+    
+}
+
+function showHideSearch() {
+    var searchBar = document.getElementById('searchBar');
+    if (searchBar != null) {
+        searchBar.style.display = searchBar.style.display === 'none' ? '' : 'none';
+    }
+}
