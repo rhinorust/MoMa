@@ -12,6 +12,9 @@ namespace Moma
     {
         public ListView ListView { get { return listView; } }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public MasterPage()
         {
             InitializeComponent();
@@ -29,12 +32,12 @@ namespace Moma
                 IconSource = "ic_action_map.png",
                 TargetType = typeof(StorylinePage)
             });
-            masterPageItems.Add(new MasterPageItem
-            {
-                Title = AppLanguageResource.Scavenger,
-                IconSource = "ic_action_search.png",
-                TargetType = typeof(ScavengerPage)
-            });
+           // masterPageItems.Add(new MasterPageItem
+            //{
+            //    Title = AppLanguageResource.Scavenger,
+            //    IconSource = "ic_action_search.png",
+             //   TargetType = typeof(ScavengerPage)
+            //});
             masterPageItems.Add(new MasterPageItem
             {
                 Title = AppLanguageResource.Directions,
@@ -42,7 +45,7 @@ namespace Moma
                 TargetType = typeof(DirectionsPage)
             });
             masterPageItems.Add(new MasterPageItem
-            {
+           {
                 Title = AppLanguageResource.Contact,
                 IconSource = "ic_action_phone.png",
                 TargetType = typeof(ContactPage)

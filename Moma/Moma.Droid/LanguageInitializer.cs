@@ -8,6 +8,9 @@ using Moma;
 using Application = Android.App.Application;
 using Button = Android.Widget.Button;
 using TextAlignment = Android.Views.TextAlignment;
+using GradientDrawable = Android.Graphics.Drawables.GradientDrawable;
+using Color = Android.Graphics.Color;
+using Android.Graphics;
 
 namespace App1.Droid
 {
@@ -20,31 +23,52 @@ namespace App1.Droid
 
             var layout = new LinearLayout(this);
             layout.Orientation = Orientation.Vertical;
-            //layout.SetBackgroundColor(Android.Graphics.Color.White);
+            layout.SetBackgroundColor(Android.Graphics.Color.White);
+
+            //add border for button
+            GradientDrawable drawable = new GradientDrawable();
+            drawable.SetShape(Android.Graphics.Drawables.ShapeType.Rectangle);
+            drawable.SetStroke(15, Color.White);
+            drawable.SetColor(Color.ParseColor("#001533"));
 
             var aLabel = new TextView(this);
-            aLabel.Text = "Select a language";
-            aLabel.TextSize = 15;
-            //aLabel.SetTextColor(Android.Graphics.Color.Black);
-            //aLabel.TextAlignment = TextAlignment.Center;
+            aLabel.Text = "Select A Language:";
+            aLabel.TextSize = 25;
+            aLabel.SetTextColor(Android.Graphics.Color.Black);
+            aLabel.TextAlignment = TextAlignment.Center;
+            aLabel.SetPadding(20, 45, 20, 45);
+            layout.SetBackgroundColor(Android.Graphics.Color.AliceBlue);
+
 
             var frenchButton = new Button(this);
             frenchButton.Text = "Français";
             frenchButton.TextAlignment = TextAlignment.Center;
+            frenchButton.SetTextColor(Android.Graphics.Color.Black);
+            frenchButton.SetBackgroundColor(Color.ParseColor("#001533"));
+            frenchButton.SetTextColor(Android.Graphics.Color.White);
+            frenchButton.TextSize = 22;
+            frenchButton.SetBackgroundDrawable(drawable);
+            frenchButton.SetPadding(55, 55, 55, 55);
 
-            //frenchButton.SetBackgroundColor(Android.Graphics.Color.AliceBlue);
-            //frenchButton.SetTextColor(Android.Graphics.Color.Black);
+
             var englishButton = new Button(this);
             englishButton.Text = "English";
             englishButton.TextAlignment = TextAlignment.Center;
-            //englishButton.SetBackgroundColor(Android.Graphics.Color.AliceBlue);
-            //englishButton.SetTextColor(Android.Graphics.Color.Black);
+            englishButton.SetBackgroundColor(Color.ParseColor("#001533"));
+            englishButton.SetTextColor(Android.Graphics.Color.White);
+            englishButton.TextSize = 20;
+            englishButton.SetBackgroundDrawable(drawable);
+            englishButton.SetPadding(55, 55, 55, 55);
+
 
             var deutscheButton = new Button(this);
-            deutscheButton.Text = "Deutsche";
+            deutscheButton.Text = "Deutch";
             deutscheButton.TextAlignment = TextAlignment.Center;
-            //deutscheButton.SetBackgroundColor(Android.Graphics.Color.AliceBlue);
-            //deutscheButton.SetTextColor(Android.Graphics.Color.Black);
+            deutscheButton.SetBackgroundColor(Color.ParseColor("#001533"));
+            deutscheButton.SetTextColor(Android.Graphics.Color.White);
+            deutscheButton.TextSize = 20;
+            deutscheButton.SetBackgroundDrawable(drawable);
+            deutscheButton.SetPadding(55, 55, 55, 55);
 
             frenchButton.Click += (sender, e) =>
             { SetLanguageSettings("french"); };

@@ -170,7 +170,7 @@ namespace Moma {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Map.
+        ///   Looks up a localized string similar to Free Tour.
         /// </summary>
         internal static string Map {
             get {
@@ -179,7 +179,7 @@ namespace Moma {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Scavenger Hunt.
+        ///   Looks up a localized string similar to Free Scan.
         /// </summary>
         internal static string Scavenger {
             get {
