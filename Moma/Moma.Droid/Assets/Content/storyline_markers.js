@@ -37,6 +37,7 @@ floor2Coordinates = [{ coord: [-42, 108], isPOI: 'true' }, { coord: [-58, 108], 
 
 
 //Floor 2 marker icons & popups
+var floor2latlngs = Array();
 var count = 0;
 
 for (i = 0; i < floor2Coordinates.length; i++) {
@@ -45,11 +46,20 @@ for (i = 0; i < floor2Coordinates.length; i++) {
         //POI marker icon
         markerIcon = markerIconPOIBlue;
         count++;
+        if (i == 0) {
+            //start marker icon
+            markerIcon = markerIconPOIGreen;
+        }
+        if (i == floor2Coordinates.length - 1) {
+            //end marker icon
+            markerIcon = markerIconPOIRed;
+        }
     } else {
         //invisible marker for nodes
         markerIcon = markerIconNode;
     }
     floor2Array.push(L.marker(floor2Coordinates[i].coord, { icon: markerIcon, keepInView:true }).bindPopup('Artifact ' + count + '<br> <button>Learn more</button>'));
+    floor2latlngs.push(floor2Coordinates[i].coord);
 }
 
             
