@@ -154,10 +154,10 @@
     <value>Selected language</value>
   </data>
   <data name="Map" xml:space="preserve">
-    <value>Map</value>
+    <value>Free Tour</value>
   </data>
   <data name="Scavenger" xml:space="preserve">
-    <value>Scavenger Hunt</value>
+    <value>Free Scan</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>

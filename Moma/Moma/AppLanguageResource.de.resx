@@ -121,7 +121,7 @@
     <value>Kontakt</value>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>Ihre Standardsprache  ist Deutsch . Sie können es in den Einstellungen jederzeit  ändern.</value>
+    <value>Ihre Standardsprache  ist Deutch. Sie können es in den Einstellungen jederzeit  ändern.</value>
   </data>
   <data name="Directions" xml:space="preserve">
     <value>Museum Richtungen</value>
@@ -154,7 +154,7 @@
     <value>Gewählte Sprache</value>
   </data>
   <data name="Map" xml:space="preserve">
-    <value>Karte</value>
+    <value>Kostenlosen Besuch</value>
   </data>
   <data name="Scavenger" xml:space="preserve">
     <value>Aasfresser Jagd</value>
