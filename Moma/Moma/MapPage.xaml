@@ -5,8 +5,11 @@
              xmlns:local="clr-namespace:Moma;assembly=Moma"
              BackgroundColor="White">
   <ContentPage.Content>
-
-    <AbsoluteLayout x:Name="MapLayout" VerticalOptions="FillAndExpand"
+      <local:HybridWebView x:Name="hybridWebView"
+                            AbsoluteLayout.LayoutBounds="1,1,1,1"
+                            AbsoluteLayout.LayoutFlags="All"
+                            Uri="index.html"/>
+    <!--<AbsoluteLayout x:Name="MapLayout" VerticalOptions="FillAndExpand"
                   HorizontalOptions="FillAndExpand">
       <local:HybridWebView x:Name="hybridWebView"
                             AbsoluteLayout.LayoutBounds="1,1,1,1"
@@ -21,9 +24,9 @@
           />
       <SearchBar x:Name="SearchBarPOI" Opacity=".6" BackgroundColor="Black" AbsoluteLayout.LayoutBounds="0, 0, 1.0, 0.1"
           AbsoluteLayout.LayoutFlags="All" IsVisible="False"></SearchBar>
-      <!--<ListView x:Name="ListViewPOI" Opacity="0.7" BackgroundColor="Teal" AbsoluteLayout.LayoutBounds="0, 0.20, 1.0, 0.5"
-          AbsoluteLayout.LayoutFlags="All" IsVisible="True"></ListView>-->
+      <ListView x:Name="ListViewPOI" Opacity="0.7" BackgroundColor="Teal" AbsoluteLayout.LayoutBounds="0, 0.20, 1.0, 0.5"
+          AbsoluteLayout.LayoutFlags="All" IsVisible="True"></ListView>
 
-    </AbsoluteLayout>
+    </AbsoluteLayout>-->
   </ContentPage.Content>
 </ContentPage>

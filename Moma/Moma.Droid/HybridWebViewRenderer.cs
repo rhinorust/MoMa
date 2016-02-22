@@ -4,26 +4,35 @@ using Moma.Droid;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
+[assembly: Dependency(typeof(HybridWebViewRenderer))]
 [assembly: ExportRenderer (typeof(HybridWebView), typeof(HybridWebViewRenderer))]
 namespace Moma.Droid
 {
-	public class HybridWebViewRenderer : ViewRenderer<HybridWebView, Android.Webkit.WebView>
+	public class HybridWebViewRenderer : ViewRenderer<HybridWebView, Android.Webkit.WebView>, IJavascriptInterface
 	{
 		const string JavaScriptFunction = "function invokeCSharpAction(data){jsBridge.invokeAction(data);}";
+        private static Android.Webkit.WebView webView;
+        private static HybridWebView hybridView;
+        public void CallJs(string jsFunction)
+        {
+            //No exception, but not performing the task..
+            webView?.EvaluateJavascript(jsFunction, null);
+            //Control?.LoadUrl(string.Format("javascript: {0}", jsFunction));
+        }
 
-		protected override void OnElementChanged (ElementChangedEventArgs<HybridWebView> e)
+	    protected override void OnElementChanged (ElementChangedEventArgs<HybridWebView> e)
 		{
 			base.OnElementChanged (e);
 
 			if (Control == null) {
-				var webView = new Android.Webkit.WebView (Forms.Context);
+				webView = new Android.Webkit.WebView (Forms.Context);
 				webView.Settings.JavaScriptEnabled = true;
 				SetNativeControl (webView);
 			}
 			if (e.OldElement != null) {
 				Control.RemoveJavascriptInterface ("jsBridge");
-				var hybridWebView = e.OldElement as HybridWebView;
-				hybridWebView.Cleanup ();
+                hybridView = e.OldElement as HybridWebView;
+                hybridView.Cleanup ();
 			}
 			if (e.NewElement != null) {
 				Control.AddJavascriptInterface (new JSBridge (this), "jsBridge");
