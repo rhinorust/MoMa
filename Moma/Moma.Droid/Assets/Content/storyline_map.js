@@ -7,20 +7,20 @@
     //--marker.js file contains coordinates that were parsed from json and the storyline trajectories
 
     //--set variable storylineSelected to the storyline id/number selected from the storyline selection page
-    var storylineSelected = 1;
-
+    
     //floor maps
-    floor1Array.push(L.tileLayer('floor1/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
-    floor2Array.push(L.tileLayer('floor2/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
-    floor3Array.push(L.tileLayer('floor3/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
-    floor4Array.push(L.tileLayer('floor4/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
-    floor5Array.push(L.tileLayer('floor5/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
+    floorArray[0].floor.push(L.tileLayer('floor1/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
+    floorArray[1].floor.push(L.tileLayer('floor2/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
+    floorArray[2].floor.push(L.tileLayer('floor3/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
+    floorArray[3].floor.push(L.tileLayer('floor4/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
+    floorArray[4].floor.push(L.tileLayer('floor5/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
 
     //storyline polyline paths
     if (storylineSelected == 1) {
-        floor2Array.push(L.polyline(floor2latlngs, { color: '#0066ff' , weight:10, opacity:0.7}));
+        floorArray[1].floor.push(L.polyline(floorlatlngs[1].floor, { color: '#0066ff', weight: 10, opacity: 0.7 }));
     } else if (storylineSelected == 2) {
-
+        floorArray[0].floor.push(L.polyline(floorlatlngs[0].floor, { color: '#0066ff', weight: 10, opacity: 0.7 }));
+        floorArray[1].floor.push(L.polyline(floorlatlngs[1].floor, { color: '#0066ff', weight: 10, opacity: 0.7 }));
     } else if (storylineSelected == 3) {
 
     } else {
@@ -28,11 +28,11 @@
     }
 
     //Floor layer groups
-    var floor1LayerGroup = L.layerGroup(floor1Array),
-        floor2LayerGroup = L.layerGroup(floor2Array),
-        floor3LayerGroup = L.layerGroup(floor3Array),
-        floor4LayerGroup = L.layerGroup(floor4Array),
-        floor5LayerGroup = L.layerGroup(floor5Array);
+    var floor1LayerGroup = L.layerGroup(floorArray[0].floor),
+        floor2LayerGroup = L.layerGroup(floorArray[1].floor),
+        floor3LayerGroup = L.layerGroup(floorArray[2].floor),
+        floor4LayerGroup = L.layerGroup(floorArray[3].floor),
+        floor5LayerGroup = L.layerGroup(floorArray[4].floor);
 
     //floor radio buttons
     var baseMaps = {
@@ -66,6 +66,18 @@
     map.fitBounds(mapBounds);
     //Add controls (radio buttons) to map in order to switch between floors
     L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map).setPosition('bottomright');
+
+
+    //Display start POI floor
+    if (storylineSelected == 1) {
+        floor2LayerGroup.addTo(map);
+    } else if (storylineSelected == 2) {
+
+    } else if (storylineSelected == 3) {
+
+    } else {
+        //no storyline selected (free map)
+    }
 
     //L.rectangle(mapBounds, { color: "#ff7800", weight: 1 }).addTo(map);
 
