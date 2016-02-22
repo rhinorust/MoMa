@@ -5,6 +5,6 @@
              xmlns:local="clr-namespace:Moma;assembly=Moma"
              BackgroundColor="White">
   <ContentPage.Content>
-    <local:HybridWebView x:Name="hybridWebView" Uri="storyline_index.html" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+    <local:HybridWebView x:Name="hybridWebView" Uri="storylines.html" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
   </ContentPage.Content>
 </ContentPage>
