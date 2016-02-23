@@ -1,4 +1,5 @@
-﻿using Android.Webkit;
+﻿using System;
+using Android.Webkit;
 using Moma;
 using Moma.Droid;
 using Xamarin.Forms;
@@ -13,12 +14,6 @@ namespace Moma.Droid
 		const string JavaScriptFunction = "function invokeCSharpAction(data){jsBridge.invokeAction(data);}";
         private static Android.Webkit.WebView webView;
         private static HybridWebView hybridView;
-        public void CallJs(string jsFunction)
-        {
-            webView.Settings.JavaScriptEnabled = true;
-            webView.SetWebChromeClient(new WebChromeClient());
-            webView.LoadUrl(string.Format("javascript: {0}", jsFunction));
-        }
 
         protected override void OnElementChanged (ElementChangedEventArgs<HybridWebView> e)
 		{
@@ -47,5 +42,27 @@ namespace Moma.Droid
 				Control.LoadUrl (string.Format ("javascript: {0}", script));
 			}
 		}
-	}
+
+	    private void EnableJS()
+	    {
+            webView.Settings.JavaScriptEnabled = true;
+            webView.SetWebChromeClient(new WebChromeClient());
+        }
+
+        public void CallJs(string jsFunction)
+        {
+            EnableJS();
+            webView.LoadUrl(string.Format("javascript: {0}", jsFunction));
+        }
+
+        public void ShowHideSearchBar()
+        {
+            const string showHideSearch = "var searchBarContainer = document.getElementById('SearchBarDiv');" +
+                                          "if (searchBarContainer != null)" +
+                                          "searchBarContainer.style.display = searchBarContainer.style.display === 'none' ? '' : 'none';";
+            EnableJS();
+            webView.LoadUrl(string.Format("javascript: {0}", showHideSearch));
+        }
+
+    }
 }

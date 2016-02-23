@@ -9,5 +9,7 @@ namespace Moma
     public interface IJavascriptInterface
     {
         void CallJs(string jsFunction);
+
+        void ShowHideSearchBar();
     }
 }

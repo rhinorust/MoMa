@@ -2,63 +2,90 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="leaflet.css" />
     <script src="leaflet.js"></script>
+    <script src="final_schema.js"></script>
+    <script src="markers.js"></script>
+    <script src="map.js"></script>
     <link rel="stylesheet" href="jquery.mobile-1.4.5.min.css" />
     <script src="jquery-1.12.0.min.js"></script>
     <script>
-        $(document).bind('mobileinit',function(){
+        $(document).bind('mobileinit', function () {
             $.mobile.changePage.defaults.changeHash = false;
             $.mobile.hashListeningEnabled = false;
             $.mobile.pushStateEnabled = false;
             $.mobile.loading().hide();
+            //init();
         });
     </script>
     <script src="jquery.mobile-1.4.5.min.js"></script>
-    <script src="search.js"></script>
-    <script src="final_schema.js"></script>
-    <script src="markers.js"></script>
-    <script src="map.js"></script>
+    <script>
+        function showSearchBar() {
+            alert("OK");
+            var searchBarContainer = document.getElementById('SearchBarDiv');
+            if (searchBarContainer != null) {
+                searchBarContainer.style.display = searchBarContainer.style.display === 'none' ? '' : 'none';
+            }
+        }
+    </script>
     <style>
-        html, body, #map {
+        #map {
             width: 100%;
             height: 100%;
             margin: 0;
             padding: 0;
         }
+
+        .ui-content {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 0 !important;
+        }
+
+        .leaflet-control-layers-base > label {
+            margin-bottom: 13px;
+            margin-top: 13px;
+        }
     </style>
 </head>
 <body onload="init()">
-    <div id="SearchBarDiv" style="display:none">
-        <form class="ui-filterable">
-            <input id="autocomplete-input" data-type="search" placeholder="Search POI...">
-        </form>
-        <ul data-role="listview" data-filter="true" data-filter-reveal="true" data-input="#autocomplete-input">
-            <li><a href="#">Acura</a></li>
-            <li><a href="#">Audi</a></li>
-            <li><a href="#">BMW</a></li>
-            <li><a href="#">Cadillac</a></li>
-            <li><a href="#">Chrysler</a></li>
-            <li><a href="#">Dodge</a></li>
-            <li><a href="#">Ferrari</a></li>
-            <li><a href="#">Ford</a></li>
-            <li><a href="#">GMC</a></li>
-            <li><a href="#">Honda</a></li>
-            <li><a href="#">Hyundai</a></li>
-            <li><a href="#">Infiniti</a></li>
-            <li><a href="#">Jeep</a></li>
-            <li><a href="#">Kia</a></li>
-            <li><a href="#">Lexus</a></li>
-            <li><a href="#">Mini</a></li>
-            <li><a href="#">Nissan</a></li>
-            <li><a href="#">Porsche</a></li>
-            <li><a href="#">Subaru</a></li>
-            <li><a href="#">Toyota</a></li>
-            <li><a href="#">Volkswagen</a></li>
-            <li><a href="#">Volvo</a></li>
-        </ul>
+    <div data-role="page" id="index">
+            <div id="SearchBarDiv" style="z-index: 2000; position: relative;">
+                <form class="ui-filterable">
+                    <input id="autocomplete-input" data-type="search" placeholder="Search POI...">
+                </form>
+                <ul data-role="listview" data-filter="true" data-filter-reveal="true" data-input="#autocomplete-input">
+                    <li><a href="#">Acura</a></li>
+                    <li><a href="#">Audi</a></li>
+                    <li><a href="#">BMW</a></li>
+                    <li><a href="#">Cadillac</a></li>
+                    <li><a href="#">Chrysler</a></li>
+                    <li><a href="#">Dodge</a></li>
+                    <li><a href="#">Ferrari</a></li>
+                    <li><a href="#">Ford</a></li>
+                    <li><a href="#">GMC</a></li>
+                    <li><a href="#">Honda</a></li>
+                    <li><a href="#">Hyundai</a></li>
+                    <li><a href="#">Infiniti</a></li>
+                    <li><a href="#">Jeep</a></li>
+                    <li><a href="#">Kia</a></li>
+                    <li><a href="#">Lexus</a></li>
+                    <li><a href="#">Mini</a></li>
+                    <li><a href="#">Nissan</a></li>
+                    <li><a href="#">Porsche</a></li>
+                    <li><a href="#">Subaru</a></li>
+                    <li><a href="#">Toyota</a></li>
+                    <li><a href="#">Volkswagen</a></li>
+                    <li><a href="#">Volvo</a></li>
+                </ul>
+            </div>
+        <div data-role="content">
+            <div id="map"></div>
+        </div>
     </div>
-    <div id="map"></div>
 </body>
 </html>

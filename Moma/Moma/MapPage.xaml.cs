@@ -20,7 +20,7 @@ namespace Moma
         public void CallJS()
         {
             var jsInterface = DependencyService.Get<IJavascriptInterface>();
-            jsInterface.CallJs("alert('Called webview');");
+            jsInterface.ShowHideSearchBar();
         }
     }
 }
