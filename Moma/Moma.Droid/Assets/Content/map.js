@@ -45,7 +45,7 @@
     map.fitBounds(mapBounds);
     //Add controls (radio buttons) to map in order to switch between floors
     L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map).setPosition('bottomright');
-
+    map.invalidateSize();
     //L.rectangle(mapBounds, { color: "#ff7800", weight: 1 }).addTo(map);
 
     //STORYLINE======================================================

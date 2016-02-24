@@ -14,6 +14,13 @@ namespace Moma
         {
             InitializeComponent();
             Title = AppLanguageResource.Map;
+            ToolbarItems.Add(new ToolbarItem("Search", "mag.png",CallJS));
+        }
+
+        public void CallJS()
+        {
+            var jsInterface = DependencyService.Get<IJavascriptInterface>();
+            jsInterface.ShowHideSearchBar();
         }
     }
 }
