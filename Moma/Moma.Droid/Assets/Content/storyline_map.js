@@ -1,4 +1,4 @@
-﻿function init() {
+﻿function displayStoryline() {
     //--TO DO
     //GET & PARSE JSON (add to separate js file before the marker.js file)
     //rearange the js and divide into separate files
