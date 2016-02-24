@@ -29,7 +29,7 @@ var markerIconNode = L.icon({
 });
 
 //Get storyline selected from storyline.html
-var storylineSelected = 1;
+var storylineSelected = localStorage.getItem("currentStoryline");
 
 var floorArray = [{ floor: [] }, { floor: [] }, { floor: [] }, { floor: [] }, { floor: [] }, ];
 

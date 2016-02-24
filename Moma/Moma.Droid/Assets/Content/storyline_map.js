@@ -88,3 +88,12 @@
     //map.fitBounds(polyline.getBounds());
 
 }
+
+function endPreview() {
+    localStorage.removeItem("currentStoryline");
+    window.location.replace("storylines.html");
+}
+
+function startStoryline() {
+    window.location.replace("index.html");
+}
