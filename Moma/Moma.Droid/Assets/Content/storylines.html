@@ -20,11 +20,17 @@
             console.log(DATA);
             console.log(DATA.storyline);
             console.log(DATA.storyline[0].title);
-            for (var i = 0, l = DATA.storyline.length; i < l; i++) {
-                var content = "<div data-role='collapsible' id='storyline" + i + "'><h3>" + DATA.storyline[i].title[0].title + "</h3><p>Description...</p><br><input type='submit' value='Preview' style='background-color:lightgrey; border-radius: 8px;'/></div>";
+            for (var i = 1, l = DATA.storyline.length; i <= l; i++) {
+                var content = "<div data-role='collapsible' id='storyline" + i + "'><h3>" + DATA.storyline[(i-1)].title[0].title + "</h3><p>Description...</p><br><input type='submit' value='Preview' onclick='previewStoryline("+ i +")' style='background-color:lightgrey; border-radius: 8px;'/></div>";
                 $("#storylines").append( content ).collapsibleset('refresh');
             }
         }
+
+        function previewStoryline(storylineID){
+            localStorage.setItem("currentStoryline", storylineID);
+            window.location.replace("storyline_index.html");
+        }
+
     </script>
     <style>
         html, body {
