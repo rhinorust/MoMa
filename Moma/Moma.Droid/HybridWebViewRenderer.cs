@@ -22,6 +22,7 @@ namespace Moma.Droid
 			if (Control == null) {
 				webView = new Android.Webkit.WebView (Forms.Context);
 				webView.Settings.JavaScriptEnabled = true;
+                webView.Settings.DomStorageEnabled = true;
 				SetNativeControl (webView);
 			}
 			if (e.OldElement != null) {
@@ -46,6 +47,7 @@ namespace Moma.Droid
 	    private void EnableJS()
 	    {
             webView.Settings.JavaScriptEnabled = true;
+            webView.Settings.DomStorageEnabled = true;
             webView.SetWebChromeClient(new WebChromeClient());
         }
 
