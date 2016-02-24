@@ -14,7 +14,7 @@ using Android.Graphics;
 
 namespace App1.Droid
 {
-    [Activity(Label = "MoMa", Icon = "@drawable/moma_appIcon", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "Select a language", Icon = "@drawable/moma_appIcon", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     class LanguageInitializer : Activity
     {
         protected override void OnCreate(Bundle bundle)
@@ -31,13 +31,13 @@ namespace App1.Droid
             drawable.SetStroke(15, Color.White);
             drawable.SetColor(Color.ParseColor("#001533"));
 
-            var aLabel = new TextView(this);
+            /*var aLabel = new TextView(this);
             aLabel.Text = "Select A Language:";
             aLabel.TextSize = 25;
             aLabel.SetTextColor(Android.Graphics.Color.Black);
             aLabel.TextAlignment = TextAlignment.Center;
             aLabel.SetPadding(20, 45, 20, 45);
-            layout.SetBackgroundColor(Android.Graphics.Color.AliceBlue);
+            layout.SetBackgroundColor(Android.Graphics.Color.AliceBlue);*/
 
 
             var frenchButton = new Button(this);
@@ -76,7 +76,7 @@ namespace App1.Droid
             { SetLanguageSettings("english"); };
             deutscheButton.Click += (sender, e) =>
             { SetLanguageSettings("deutsche"); };
-            layout.AddView(aLabel);
+            //layout.AddView(aLabel);
             layout.AddView(deutscheButton);
             layout.AddView(englishButton);
             layout.AddView(frenchButton);
