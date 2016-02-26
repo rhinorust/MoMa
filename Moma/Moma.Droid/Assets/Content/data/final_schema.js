@@ -1,4 +1,4 @@
-var DATA = {
+﻿var DATA = {
     "floorPlan": [{
         "floorID": "1",
         "imagePath": "floor1/floor1.png",
