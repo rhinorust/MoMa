@@ -12,6 +12,30 @@ QUnit.test("AllBaseMaps", function (assert) {
     assert.equal(floors.length, 5, "There are 5 layers in the layer control");
 });
 
+QUnit.test("ShowAllLayers", function (assert) {
+    init();
+    var floors = $('input[name=leaflet-base-layers]:radio');
+    var floorCount = 0;
+    jQuery.each(floors, function(index, radio) {
+        $(radio).prop("checked", true).trigger("click");
+        var floorNumber = $(radio).next()[0].innerHTML.trim();
+        var layersObj = map._layers;
+        var found = false;
+        for (var prop in layersObj) {
+            if (typeof layersObj[prop]._url != 'undefined' && layersObj[prop]._url != null) {
+                var url = layersObj[prop]._url;
+                assert.ok(url.toLowerCase().indexOf("floor" + floorNumber) > -1, "Able to switch to floor #" + floorNumber);
+                found = true;
+                break;
+            }
+        }
+        if (found) {
+            floorCount++;
+        }
+    });
+    assert.equal(floorCount, 5, "All 5 floors were verified");
+});
+
 QUnit.test("ValidateZoomLevels", function (assert) {
     init();
     assert.equal(map.getMaxZoom(), 5, "Max zoom is 5");

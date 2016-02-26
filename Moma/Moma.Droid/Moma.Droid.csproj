@@ -114,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\data\final_schema.json" />
+    <AndroidAsset Include="Assets\Content\styles\qunit-1.22.0.css" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
@@ -6088,9 +6089,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\QUnit_index.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidAsset Include="Assets\Content\styles\qunit-1.22.0.css" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\scripts\qunit-1.22.0.js" />

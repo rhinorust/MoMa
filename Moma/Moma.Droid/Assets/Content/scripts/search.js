@@ -81,4 +81,3 @@ function openMarkerPopup(markerId) {
         }
     });
 }
-
