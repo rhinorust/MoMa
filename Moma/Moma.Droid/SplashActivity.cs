@@ -33,7 +33,7 @@ namespace Moma.Droid
             Task startupWork = new Task(() =>
             {
                 Log.Debug(TAG, "Performing some startup work that takes a bit of time.");
-                Thread.Sleep(1000);
+                Thread.Sleep(500);
                 //Task.Delay(5000); // Simulate a bit of startup work.
                 Log.Debug(TAG, "Working in the background - important stuff.");
             });
