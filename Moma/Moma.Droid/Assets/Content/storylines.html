@@ -18,10 +18,12 @@
     </script> 
     <script src="jquery.mobile-1.4.5.min.js"></script>
     <script src="final_schema.js"></script>
+    <script src="storyline_markers.js"></script>
+    <script src="storyline_map.js"></script>
     <script>
         function init() {
             for (var i = 1, l = DATA.storyline.length; i <= l; i++) {
-                var content = "<div data-role='collapsible' id='storyline" + i + "'><h3>" + DATA.storyline[(i - 1)].title[0].title + "</h3><p>Description...</p><br><input type='submit' value='Start' onclick='previewStoryline(" + i + ")' style='background-color:rgba(61,139,255,1); color:white; border-radius:2px; border-color:rgba(61,139,255,1);'/>&nbsp;&nbsp;<input type='submit' value='Preview' onclick='previewStoryline(" + i + ")' style='background-color:rgba(61,139,255,1); color:white; border-radius:2px; border-color:rgba(61,139,255,1);'/></div>";
+                var content = "<div data-role='collapsible' id='storyline" + i + "'><h3>" + DATA.storyline[(i - 1)].title[0].title + "</h3><p>Description...</p><br><input type='submit' value='Start' onclick='startStoryline()' style='background-color:rgba(61,139,255,1); color:white; border-radius:2px; border-color:rgba(61,139,255,1);'/>&nbsp;&nbsp;<input type='submit' value='Preview' onclick='previewStoryline(" + i + ")' style='background-color:rgba(61,139,255,1); color:white; border-radius:2px; border-color:rgba(61,139,255,1);'/></div>";
                 $("#storylines").append( content ).collapsibleset('refresh');
             }
         }
