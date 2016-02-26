@@ -31,7 +31,7 @@
 
     "node": [{
         "poi": [{
-            "id": "P1",
+            "id": "1",
             "title": [{
                 "language": "English",
                 "title": "Artifact 1"
@@ -50,9 +50,9 @@
               "description": "Premier artéfact du musée"
           }
             ],
-            "x": "1245",
-            "y": "1024",
-            "floorID": "1",
+            "x": "-42",
+            "y": "108",
+            "floorID": "2",
             "iBeacon": {
                 "uuid": "<UUID>",
                 "major": "<major>",
@@ -117,7 +117,7 @@
             }
             ]
         }, {
-            "id": "P2",
+            "id": "2",
             "title": [{
                 "language": "English",
                 "title": "Artifact 2"
@@ -136,9 +136,9 @@
               "description": "Premier artéfact du musée"
           }
             ],
-            "x": "1245",
-            "y": "1024",
-            "floorID": "1",
+            "x": "-58",
+            "y": "108",
+            "floorID": "2",
             "iBeacon": {
                 "uuid": "<UUID>",
                 "major": "<major>",
@@ -204,10 +204,10 @@
             ]
         },
         {
-            "id": "P3",
+            "id": "5",
             "title": [{
                 "language": "English",
-                "title": "Artifact 3"
+                "title": "Artifact 5"
             },
                       {
                           "language": "French",
@@ -223,9 +223,9 @@
               "description": "Premier artéfact du musée"
           }
             ],
-            "x": "1245",
-            "y": "1024",
-            "floorID": "1",
+            "x": "-24",
+            "y": "113",
+            "floorID": "2",
             "iBeacon": {
                 "uuid": "<UUID>",
                 "major": "<major>",

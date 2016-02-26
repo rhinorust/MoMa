@@ -30,6 +30,11 @@ function getLanguage() {
     return "English";
 }
 
+//Hides the search list and autocomplete the search bar
+//Triggers the radio button event to switch to the right floor
+//Centers the map to the coordinate of the POI
+//Zooms the map to a specified level (here, 4)
+//Opens the popup of the marker
 function focusOnNode(node) {
     node.preventDefault();
     $('li').attr("class", "ui-screen-hidden");
@@ -37,11 +42,43 @@ function focusOnNode(node) {
     $('#autocomplete-input').val(node.target.innerHTML);
     var poi = DATA.node[0].poi;
     var coordinates = {};
+    var floorId;
+    var markerId;
     for (var i = 0; i < poi.length; i++) {
         if(poi[i].id == id) {
             coordinates.x = poi[i].x;
             coordinates.y = poi[i].y;
+            floorId = poi[i].floorID;
+            markerId = poi[i].id;
         }
     }
-    //map.panTo(new L.LatLngBounds(x,y));
+
+    if (typeof floorId != 'undefined' && floorId != null) {
+        var floors = $('input[name=leaflet-base-layers]:radio');
+        jQuery.each(floors, function(index, radio) {
+            if ($(radio).next()[0].innerHTML.trim() == floorId.trim()) {
+                if (radio.checked) {
+                    map.setView(new L.LatLng(coordinates.x, coordinates.y), 4, { animate: true });
+                } else {
+                    $(radio).prop("checked", true).trigger("click");
+                    map.panTo(new L.LatLng(coordinates.x, coordinates.y));
+                    map.setZoom(4);
+                }
+                //openMarkerPopup(markerId);
+                return;
+            }
+        });
+    }
 }
+
+//Open the marker popup based on its id. 
+//They should be assigned when creating the markers
+function openMarkerPopup(markerId) {
+    map.eachLayer(function(marker) {
+        if (marker._leaflet_id == markerId) {
+            marker.openPopup();
+            return;
+        }
+    });
+}
+

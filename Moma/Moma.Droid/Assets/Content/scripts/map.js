@@ -1,4 +1,6 @@
-﻿function init() {
+﻿var baseMaps;
+var map;
+function init() {
     //floor maps
     floor1Array.push(L.tileLayer('floor1/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
     floor2Array.push(L.tileLayer('floor2/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
@@ -14,7 +16,7 @@
         floor5LayerGroup = L.layerGroup(floor5Array);
 
     //floor radio buttons
-    var baseMaps = {
+    baseMaps = {
         "1": floor1LayerGroup,
         "2": floor2LayerGroup,
         "3": floor3LayerGroup,
@@ -31,7 +33,7 @@
     var mapMaxZoom = 5;
 
     //create map
-    var map = L.map('map', {
+    map = L.map('map', {
         maxZoom: mapMaxZoom,
         minZoom: mapMinZoom,
         crs: L.CRS.Simple,
