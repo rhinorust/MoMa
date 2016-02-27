@@ -25,13 +25,13 @@ var markerIconPOIRed = L.icon({
 });
 var markerIconNode = L.icon({
     iconUrl: 'images/none-marker-icon.png',
-    shadowUrl: '',
+    shadowUrl: ''
 });
 
 var floor1Array = [], floor2Array = [], floor3Array = [], floor4Array = [], floor5Array = [];
 
 //Floor 2 marker & node coordinates
-floor2Coordinates = [{ coord: [-42, 108], isPOI: 'true' }, { coord: [-58, 108], isPOI: 'false' }, { coord: [-62, 113], isPOI: 'false' }, { coord: [-71, 114], isPOI: 'true' }, { coord: [-71, 166], isPOI: 'true' },
+var floor2Coordinates = [{ coord: [-42, 108], isPOI: 'true' }, { coord: [-58, 108], isPOI: 'false' }, { coord: [-62, 113], isPOI: 'false' }, { coord: [-71, 114], isPOI: 'true' }, { coord: [-71, 166], isPOI: 'true' },
 { coord: [-30, 168], isPOI: 'true' }, { coord: [-24, 113], isPOI: 'false' }, { coord: [-17, 113], isPOI: 'true' }, { coord: [-17, 102], isPOI: 'false' }, { coord: [-20, 101], isPOI: 'false' },
 { coord: [-18, 81], isPOI: 'false' }, { coord: [-20, 80], isPOI: 'true' }, { coord: [-17, 62], isPOI: 'false' }, { coord: [-15, 34], isPOI: 'false' }, { coord: [-8, 34], isPOI: 'false' }, { coord: [-7, 25], isPOI: 'true' }];
 
@@ -39,9 +39,9 @@ floor2Coordinates = [{ coord: [-42, 108], isPOI: 'true' }, { coord: [-58, 108], 
 //Floor 2 marker icons & popups
 var count = 0;
 
-for (i = 0; i < floor2Coordinates.length; i++) {
+for (var i = 0; i < floor2Coordinates.length; i++) {
     var markerIcon;
-    if (floor2Coordinates[i].isPOI == 'true') {
+    if (floor2Coordinates[i].isPOI === 'true') {
         //POI marker icon
         markerIcon = markerIconPOIBlue;
         count++;

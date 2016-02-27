@@ -25,16 +25,16 @@ var markerIconPOIRed = L.icon({
 });
 var markerIconNode = L.icon({
     iconUrl: 'images/none-marker-icon.png',
-    shadowUrl: '',
+    shadowUrl: ''
 });
 
 //Get storyline selected from storyline.html
 var storylineSelected = localStorage.getItem("currentStoryline");
 
-var floorArray = [{ floor: [] }, { floor: [] }, { floor: [] }, { floor: [] }, { floor: [] }, ];
+var floorArray = [{ floor: [] }, { floor: [] }, { floor: [] }, { floor: [] }, { floor: [] } ];
 
 //Floor 2 marker & node coordinates
-storyline1Coordinates = [
+var storyline1Coordinates = [
     [],
     [
         { coord: [-42, 108], isPOI: 'true' }, { coord: [-58, 108], isPOI: 'false' }, { coord: [-62, 113], isPOI: 'false' }, { coord: [-71, 114], isPOI: 'true' }, { coord: [-71, 166], isPOI: 'true' },
@@ -45,7 +45,7 @@ storyline1Coordinates = [
     [],
     []
 ];
-storyline2Coordinates = [
+var storyline2Coordinates = [
     [
         { coord: [-84, 115], isPOI: 'true' }, { coord: [-81, 115], isPOI: 'false' }, { coord: [-81, 113], isPOI: 'true' }
     ],
@@ -59,13 +59,13 @@ storyline2Coordinates = [
 ];
 //Floor 2 marker icons & popups
 
-var floorlatlngs = [{ floor: [] }, { floor: [] }, { floor: [] }, { floor: [] }, { floor: [] }, ];
+var floorlatlngs = [{ floor: [] }, { floor: [] }, { floor: [] }, { floor: [] }, { floor: [] } ];
 
-if (storylineSelected == 1) {
+if (storylineSelected === 1) {
     setMarkersAndPolyline(storyline1Coordinates);
-} else if (storylineSelected == 2) {
+} else if (storylineSelected === 2) {
     setMarkersAndPolyline(storyline2Coordinates);
-} else if (storylineSelected == 3) {
+} else if (storylineSelected === 3) {
 
 } else {
     //no storyline selected (free map)
@@ -75,11 +75,11 @@ if (storylineSelected == 1) {
 function setMarkersAndPolyline(storylineCoordinates) {
     var count = 0;
     var start = true;
-    var end = true;
-    for (floorIndex = 0; floorIndex < 5; floorIndex++) {
-        for (nodeIndex = 0; nodeIndex < storylineCoordinates[floorIndex].length; nodeIndex++) {
+    //var end = true; Unused
+    for (var floorIndex = 0; floorIndex < 5; floorIndex++) {
+        for (var nodeIndex = 0; nodeIndex < storylineCoordinates[floorIndex].length; nodeIndex++) {
             var markerIcon;
-            if (storylineCoordinates[floorIndex][nodeIndex].isPOI == 'true') {
+            if (storylineCoordinates[floorIndex][nodeIndex].isPOI === 'true') {
                 //POI marker icon
                 markerIcon = markerIconPOIBlue;
                 count++;
@@ -88,7 +88,7 @@ function setMarkersAndPolyline(storylineCoordinates) {
                     markerIcon = markerIconPOIGreen;
                     start = false;
                 }
-                if (nodeIndex == storylineCoordinates[floorIndex].length - 1 && 0 == storylineCoordinates[floorIndex+1].length) {
+                if (nodeIndex === storylineCoordinates[floorIndex].length - 1 && 0 === storylineCoordinates[floorIndex+1].length) {
                     //end marker icon
                     markerIcon = markerIconPOIRed;
                 }

@@ -22,7 +22,7 @@ QUnit.test("ShowAllLayers", function (assert) {
         var layersObj = map._layers;
         var found = false;
         for (var prop in layersObj) {
-            if (typeof layersObj[prop]._url != 'undefined' && layersObj[prop]._url != null) {
+            if (typeof layersObj[prop]._url !== 'undefined' && layersObj[prop]._url != null) {
                 var url = layersObj[prop]._url;
                 assert.ok(url.toLowerCase().indexOf("floor" + floorNumber) > -1, "Able to switch to floor #" + floorNumber);
                 found = true;

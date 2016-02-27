@@ -9,7 +9,7 @@ function createListView() {
         //aTag.href = "#";
         var foundTitle = false;
         for (var j = 0; j < poi[i].title.length; j++) {
-            if (poi[i].title[j].language == language) {
+            if (poi[i].title[j].language === language) {
                 aTag.innerHTML = poi[i].title[j].title;
                 aTag.id = poi[i].id;
                 aTag.addEventListener("click", focusOnNode, false);
@@ -43,20 +43,20 @@ function focusOnNode(node) {
     var poi = DATA.node[0].poi;
     var coordinates = {};
     var floorId;
-    var markerId;
+    //var markerId;
     for (var i = 0; i < poi.length; i++) {
-        if(poi[i].id == id) {
+        if(poi[i].id === id) {
             coordinates.x = poi[i].x;
             coordinates.y = poi[i].y;
             floorId = poi[i].floorID;
-            markerId = poi[i].id;
+            //markerId = poi[i].id; 
         }
     }
 
-    if (typeof floorId != 'undefined' && floorId != null) {
+    if (typeof floorId !== 'undefined' && floorId != null) {
         var floors = $('input[name=leaflet-base-layers]:radio');
         jQuery.each(floors, function(index, radio) {
-            if ($(radio).next()[0].innerHTML.trim() == floorId.trim()) {
+            if ($(radio).next()[0].innerHTML.trim() === floorId.trim()) {
                 if (radio.checked) {
                     map.setView(new L.LatLng(coordinates.x, coordinates.y), 4, { animate: true });
                 } else {
@@ -75,7 +75,7 @@ function focusOnNode(node) {
 //They should be assigned when creating the markers
 function openMarkerPopup(markerId) {
     map.eachLayer(function(marker) {
-        if (marker._leaflet_id == markerId) {
+        if (marker._leaflet_id === markerId) {
             marker.openPopup();
             return;
         }

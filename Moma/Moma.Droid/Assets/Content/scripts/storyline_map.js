@@ -8,6 +8,10 @@
 
     //--set variable storylineSelected to the storyline id/number selected from the storyline selection page
     
+    //zoom levels
+    var mapMinZoom = 1;
+    var mapMaxZoom = 5;
+
     //floor maps
     floorArray[0].floor.push(L.tileLayer('floor1/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
     floorArray[1].floor.push(L.tileLayer('floor2/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
@@ -16,15 +20,16 @@
     floorArray[4].floor.push(L.tileLayer('floor5/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
 
     //storyline polyline paths
-    if (storylineSelected == 1) {
+    if (storylineSelected === 1) {
         floorArray[1].floor.push(L.polyline(floorlatlngs[1].floor, { color: '#0066ff', weight: 10, opacity: 0.7 }));
-    } else if (storylineSelected == 2) {
+    } else if (storylineSelected === 2) {
         floorArray[0].floor.push(L.polyline(floorlatlngs[0].floor, { color: '#0066ff', weight: 10, opacity: 0.7 }));
         floorArray[1].floor.push(L.polyline(floorlatlngs[1].floor, { color: '#0066ff', weight: 10, opacity: 0.7 }));
-    } else if (storylineSelected == 3) {
-
+    } else if (storylineSelected === 3) {
+        //TODO : Something here
     } else {
         //no storyline selected (free map)
+        //Remove this this?
     }
 
     //Floor layer groups
@@ -47,10 +52,6 @@
         //"Markers": floor1Overlay
     };
 
-    //zoom levels
-    var mapMinZoom = 1;
-    var mapMaxZoom = 5;
-
     //create map
     var map = L.map('map', {
         maxZoom: mapMaxZoom,
@@ -69,12 +70,12 @@
 
 
     //Display start POI floor
-    if (storylineSelected == 1) {
+    if (storylineSelected === 1) {
         floor2LayerGroup.addTo(map);
-    } else if (storylineSelected == 2) {
-
-    } else if (storylineSelected == 3) {
-
+    } else if (storylineSelected === 2) {
+        //TODO: No storyline yet
+    } else if (storylineSelected === 3) {
+        //TODO: No storyline yet
     } else {
         //no storyline selected (free map)
     }

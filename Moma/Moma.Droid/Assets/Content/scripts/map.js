@@ -1,6 +1,11 @@
 ﻿var baseMaps;
 var map;
 function init() {
+
+    //zoom levels
+    var mapMinZoom = 1;
+    var mapMaxZoom = 5;
+
     //floor maps
     floor1Array.push(L.tileLayer('floor1/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
     floor2Array.push(L.tileLayer('floor2/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
@@ -27,10 +32,6 @@ function init() {
     var overlayMaps = {
         //"Markers": floor1Overlay
     };
-
-    //zoom levels
-    var mapMinZoom = 1;
-    var mapMaxZoom = 5;
 
     //create map
     map = L.map('map', {
