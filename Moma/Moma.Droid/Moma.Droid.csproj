@@ -6049,15 +6049,6 @@
     <AndroidAsset Include="Assets\Content\data\final_schema.js" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\scripts\jquery-1.12.0.min.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidAsset Include="Assets\Content\scripts\jquery.mobile-1.4.5.min.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidAsset Include="Assets\Content\scripts\leaflet.js" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidAsset Include="Assets\Content\scripts\map.js" />
   </ItemGroup>
   <ItemGroup>
@@ -6079,22 +6070,31 @@
     <AndroidAsset Include="Assets\Content\styles\storylines.css" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\scripts\jquery.mobile-init.js" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidAsset Include="Assets\Content\scripts\storyline_init.js" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\styles\free-tour.css" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\QUnit_index.html" />
+    <AndroidAsset Include="Assets\Content\tests\QUnit_index.html" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\scripts\qunit-1.22.0.js" />
+    <AndroidAsset Include="Assets\Content\scripts\tests\mapItemsTests.js" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\scripts\tests.js" />
+    <AndroidAsset Include="Assets\Content\scripts\lib\jquery-1.12.0.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\scripts\lib\jquery.mobile-1.4.5.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\scripts\lib\jquery.mobile-init.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\scripts\lib\leaflet.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\scripts\lib\qunit-1.22.0.js" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.0.1.6505\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.0.1.6505\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

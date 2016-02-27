@@ -1,4 +1,4 @@
-﻿//creates the list view dynamically based on the js file
+﻿//creates the list view of POI dynamically based on the js file
 function createListView() {
     var language = getLanguage();
     var ul = $('#listViewUl');

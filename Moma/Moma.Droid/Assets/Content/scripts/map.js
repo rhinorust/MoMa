@@ -1,4 +1,5 @@
-﻿var baseMaps;
+﻿//Global variables. Can be accessed in other js linked to html page.
+var baseMaps;
 var map;
 function init() {
 
