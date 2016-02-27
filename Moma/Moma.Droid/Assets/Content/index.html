@@ -14,6 +14,8 @@
     <script src="scripts/lib/jquery.mobile-1.4.5.min.js"></script>
     <script src="scripts/search.js"></script>
     <link rel="stylesheet" href="styles/free-tour.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/poiInformationBox.css">
+    <script src="scripts/poiInformationBox.js"></script>
 </head>
 <body onload="init(); createListView()">
     <div data-role="page" id="index">
@@ -25,6 +27,19 @@
             </div>
         <div data-role="content">
             <div id="map"></div>
+        </div>
+    </div>
+    <div id="POI_InformationBox">
+        <div id="body">
+            <header>
+                <div id="title">
+                    <h1>Title</h1>
+                </div>
+                <div id="closeButton">
+                    <img id="close" src="images/closePOIIB.png">
+                </div>
+            </header>
+            <section id="content"></section>
         </div>
     </div>
 </body>

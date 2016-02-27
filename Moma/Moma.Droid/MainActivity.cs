@@ -14,6 +14,8 @@ namespace Moma.Droid
     [Activity(Label = "MoMa", Icon = "@drawable/moma_appIcon", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
     {
+        IBeaconsDirector iBeaconsDirector; // The boss that directs what is to be done with iBeacons
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -24,6 +26,10 @@ namespace Moma.Droid
             cultureHandler.SetCurrentCulture(language);
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
+
+            // IBeacons
+            iBeaconsDirector = new IBeaconsDirector();
+            iBeaconsDirector.startScanning();
         }
     }
 }
