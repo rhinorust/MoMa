@@ -41,7 +41,7 @@ var count = 0;
 
 for (var i = 0; i < floor2Coordinates.length; i++) {
     var markerIcon;
-    if (floor2Coordinates[i].isPOI === 'true') {
+    if (floor2Coordinates[i].isPOI == 'true') {
         //POI marker icon
         markerIcon = markerIconPOIBlue;
         count++;

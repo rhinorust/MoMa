@@ -88,7 +88,7 @@ function setMarkersAndPolyline(storylineCoordinates) {
                     markerIcon = markerIconPOIGreen;
                     start = false;
                 }
-                if (nodeIndex === storylineCoordinates[floorIndex].length - 1 && 0 === storylineCoordinates[floorIndex+1].length) {
+                if (nodeIndex == storylineCoordinates[floorIndex].length - 1 && 0 == storylineCoordinates[floorIndex+1].length) {
                     //end marker icon
                     markerIcon = markerIconPOIRed;
                 }
