@@ -96,5 +96,5 @@ function endPreview() {
 }
 
 function startStoryline() {
-    window.location.replace("storyline_index.html");
+    window.location.replace("storyline_selected.html");
 }
