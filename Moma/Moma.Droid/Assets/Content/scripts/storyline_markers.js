@@ -61,11 +61,11 @@ var storyline2Coordinates = [
 
 var floorlatlngs = [{ floor: [] }, { floor: [] }, { floor: [] }, { floor: [] }, { floor: [] } ];
 
-if (storylineSelected === 1) {
+if (storylineSelected == 1) {
     setMarkersAndPolyline(storyline1Coordinates);
-} else if (storylineSelected === 2) {
+} else if (storylineSelected == 2) {
     setMarkersAndPolyline(storyline2Coordinates);
-} else if (storylineSelected === 3) {
+} else if (storylineSelected == 3) {
 
 } else {
     //no storyline selected (free map)
