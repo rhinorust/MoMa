@@ -19,6 +19,9 @@
     floorArray[3].floor.push(L.tileLayer('floor4/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
     floorArray[4].floor.push(L.tileLayer('floor5/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
 
+    $('#currentStoryline').text("Current storyline: " + localStorage.getItem("currentStoryline"));
+    $('#previewStoryline').text("Previewing storyline: " + localStorage.getItem("currentStoryline"));
+
     //storyline polyline paths
     if (storylineSelected == 1) {
         floorArray[1].floor.push(L.polyline(floorlatlngs[1].floor, { color: '#0066ff', weight: 10, opacity: 0.7 }));
