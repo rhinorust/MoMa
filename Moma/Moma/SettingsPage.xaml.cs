@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace Moma
 {
     public partial class SettingsPage : ContentPage
     {
-        private Dictionary<string, string> languageDict = new Dictionary<string, string>
+        private readonly Dictionary<string, string> _languageDict = new Dictionary<string, string>(StringComparer.CurrentCultureIgnoreCase)
         {
             {"English", "english"},
             {"French", "french" },
@@ -20,100 +21,82 @@ namespace Moma
         {
             InitializeComponent();
             Title = AppLanguageResource.Settings;
-            var grid = new Grid
-            {
-                VerticalOptions = LayoutOptions.FillAndExpand,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                RowDefinitions =
-                {
-                    new RowDefinition { Height = new GridLength(40, GridUnitType.Absolute) },
-                    new RowDefinition { Height = GridLength.Auto }
-                },
-                ColumnDefinitions =
-                {
-                    new ColumnDefinition { Width = GridLength.Auto },
-                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
-                }
-            };
-
-            grid.Children.Add(new Label
-            {
-                Text = AppLanguageResource.Language,
-                TextColor = Color.Black,
-                VerticalOptions = LayoutOptions.Center
-            },0,0);
-
-            Picker picker = new Picker
-            {
-                Title = AppLanguageResource.Language,
-                BackgroundColor = Color.Gray,
-                WidthRequest = 100,
-                VerticalOptions = LayoutOptions.CenterAndExpand
-            };
-
-            picker.SelectedIndexChanged += ChangeLanguageSettings;
-
-            foreach (var lang in languageDict.Keys)
-            {
-                picker.Items.Add(lang);
-            }
-
-            grid.Children.Add(picker,1,0);
-            Content = grid;
+            var settingsDependency = DependencyService.Get<IUserSettings>();
+            FillLanguagePicker(settingsDependency);
+            SetSwitches(settingsDependency);
         }
 
-        protected void ChangeLanguageSettings(object sender, EventArgs e)
+        private void SetSwitches(IUserSettings settingsDependency)
         {
-            var picker = sender as Picker;
-            var settings = DependencyService.Get<IUserSettings>();
-            if (picker.SelectedIndex == -1)
+            VibrationSwitch.IsToggled = settingsDependency.GetUserSetting("vibration").Equals("1");
+            PopupSwitch.IsToggled = settingsDependency.GetUserSetting("popup").Equals("1");
+        }
+
+        private void SaveButtonOnClicked(object sender, EventArgs eventArgs)
+        {
+            var settingsDict = new Dictionary<string, string>
             {
-                settings.SetUserSetting("language", "english");
+                {"language", LanguagePicker.Items[LanguagePicker.SelectedIndex]},
+                {"vibration", VibrationSwitch.IsToggled ? "1" : "0"},
+                {"popup", PopupSwitch.IsToggled ? "1" : "0"}
+            };
+            SaveUserSettings(settingsDict);
+        }
+
+        private void ResetButtonOnClicked(object sender, EventArgs eventArgs)
+        {
+            var settingsDict = new Dictionary<string, string>
+            {
+                {"language", "english"},
+                {"vibration", "1"},
+                {"popup", "1"}
+            };
+            LanguagePicker.SelectedIndex = 0;
+            VibrationSwitch.IsToggled = true;
+            PopupSwitch.IsToggled = true;
+            SaveUserSettings(settingsDict);
+        }
+
+        private void FillLanguagePicker(IUserSettings settingsDependency)
+        {
+            LanguagePicker.Title = AppLanguageResource.Language;
+            string selectedLanguage = GetCurrentLanguage(settingsDependency);
+
+            int index = 0;
+            int selectedIndex = 0;
+            foreach (var lang in _languageDict.Keys)
+            {
+                if (lang.ToLower().Equals(selectedLanguage.ToLower()))
+                    selectedIndex = index;
+                LanguagePicker.Items.Add(lang);
+                index++;
             }
-            else
+            LanguagePicker.SelectedIndex = selectedIndex;
+        }
+
+        private static string GetCurrentLanguage(IUserSettings settingsDependency)
+        {
+            var language = settingsDependency.GetUserSetting("language");
+            return !string.IsNullOrEmpty(language) ? language : "english";
+        }
+
+        protected void SaveUserSettings(Dictionary<string,string> settingsDict)
+        {
+            var settingsDependency = DependencyService.Get<IUserSettings>();
+            var cultureDependency = DependencyService.Get<ICurrentCulture>();
+            string language = "english";
+            foreach (var setting in settingsDict)
             {
-                string languageValue;
-                if (languageDict.TryGetValue(picker.Items[picker.SelectedIndex], out languageValue))
+                settingsDependency.SetUserSetting(setting.Key, setting.Value);
+                if (setting.Key.ToLower().Equals("language"))
                 {
-                    var previousLanguage = settings.GetUserSetting("language");
-                    settings.SetUserSetting("language", languageValue);
-                    string alertMsg;
-                    string alertTitle;
-                    switch (languageValue.ToLower())
-                    {
-                        case "english":
-                            alertMsg = AppLanguageResource.LanguageChangeEN;
-                            alertTitle = AppLanguageResource.LanguageChangeAlertEN;
-                            break;
-                        case "deutsche":
-                            alertMsg = AppLanguageResource.LanguageChangeDE;
-                            alertTitle = AppLanguageResource.LanguageChangeAlertDE;
-                            break;
-                        case "french":
-                            alertMsg = AppLanguageResource.LanguageChangeFR;
-                            alertTitle = AppLanguageResource.LanguageChangeAlertFR;
-                            break;
-                        default:
-                            if (previousLanguage.ToLower().Equals("french"))
-                            {
-                                alertMsg = AppLanguageResource.LanguageChangeFR;
-                                alertTitle = AppLanguageResource.LanguageChangeAlertFR;
-                            }
-                            else if (previousLanguage.ToLower().Equals("deutsche"))
-                            {
-                                alertMsg = AppLanguageResource.LanguageChangeDE;
-                                alertTitle = AppLanguageResource.LanguageChangeAlertDE;
-                            }
-                            else
-                            {
-                                alertMsg = AppLanguageResource.LanguageChangeEN;
-                                alertTitle = AppLanguageResource.LanguageChangeAlertEN;
-                            }
-                            break;
-                    }
-                    DisplayAlert(alertTitle, alertMsg, "OK");
+                    language = setting.Value;
                 }
             }
+            var currentCulture = new CultureInfo(cultureDependency.GetCurrentCulture(language));
+            string alertTitle = AppLanguageResource.ResourceManager.GetString("SettingsChangedTitle",currentCulture);
+            string alertContent = AppLanguageResource.ResourceManager.GetString("SettingsChanged", currentCulture);
+            DisplayAlert(alertTitle, alertContent, "OK");
         }
     }
 }

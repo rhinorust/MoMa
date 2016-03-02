@@ -7,7 +7,6 @@ using Xamarin.Forms;
 
 namespace Moma
 {
-    class CustomPicker : Picker
-    { 
-    }
+    public class CustomPicker : Picker
+    { }
 }

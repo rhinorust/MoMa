@@ -9,5 +9,6 @@ namespace Moma
     public interface ICurrentCulture
     {
         void SetCurrentCulture(string language);
+        string GetCurrentCulture(string currentLanguage);
     }
 }
