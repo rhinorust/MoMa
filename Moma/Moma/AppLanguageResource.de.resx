@@ -132,12 +132,6 @@
   <data name="Language" xml:space="preserve">
     <value>Sprache</value>
   </data>
-  <data name="LanguageChange" xml:space="preserve">
-    <value>Die Anwendungssprache wird aktualisiert, sobald die App neu gestartet wird.</value>
-  </data>
-  <data name="LanguageChangeAlert" xml:space="preserve">
-    <value>ändern Sprache</value>
-  </data>
   <data name="LanguageSelection" xml:space="preserve">
     <value>Gewählte Sprache</value>
   </data>
@@ -149,6 +143,12 @@
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Einstellungen</value>
+  </data>
+  <data name="SettingsChanged" xml:space="preserve">
+    <value>Anwendungseinstellungen wurden geändert . Die Sprache wird beim nächsten Neustart der Anwendung aktualisiert werden.</value>
+  </data>
+  <data name="SettingsChangedTitle" xml:space="preserve">
+    <value>Einstellungen geändert</value>
   </data>
   <data name="Storyline" xml:space="preserve">
     <value>Geschichten</value>

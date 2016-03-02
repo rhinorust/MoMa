@@ -26,9 +26,9 @@
             <Label Text="Language" FontSize="15" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black" Grid.Row="1" Grid.Column="1"/>
             <moma:CustomPicker x:Name="LanguagePicker" Grid.Row="1" Grid.Column="2"></moma:CustomPicker>
             <Label Text="Vibration" FontSize="15" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black" Grid.Row="2" Grid.Column="1"/>
-            <Switch IsEnabled="True" IsVisible="True" x:Name="VibrationSwitch" Grid.Row="2" Grid.Column="2"/>
+            <Switch IsEnabled="True" IsVisible="True" x:Name="VibrationSwitch" Grid.Row="2" Grid.Column="2" HorizontalOptions="Start"/>
             <Label Text="Automatic Popup" FontSize="15" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black" Grid.Row="3" Grid.Column="1"/>
-            <Switch IsEnabled="True" IsVisible="True" x:Name="PopupSwitch" Grid.Row="3" Grid.Column="2"/>
+            <Switch IsEnabled="True" IsVisible="True" x:Name="PopupSwitch" Grid.Row="3" Grid.Column="2" HorizontalOptions="Start"/>
           </Grid.Children>
         </Grid>
         <Grid x:Name="ButtonsGrid">
@@ -43,7 +43,7 @@
           <Grid.HorizontalOptions><LayoutOptions>FillAndExpand</LayoutOptions></Grid.HorizontalOptions>
           <Grid.Children>
             <Button x:Name="ResetButton" BackgroundColor="White" HorizontalOptions="CenterAndExpand" BorderColor="Gray" Text="Reset" TextColor="Gray" WidthRequest="70" BorderWidth="2" Grid.Row="1" Grid.Column="0" Clicked="ResetButtonOnClicked"/>
-            <Button x:Name="SaveButton" BackgroundColor="Blue" HorizontalOptions="CenterAndExpand" BorderColor="Blue" Text="Save" TextColor="White" WidthRequest="70" BorderWidth="2"  Clicked="SaveButtonOnClicked" Grid.Row="1" Grid.Column="1"/>
+            <Button x:Name="SaveButton" BackgroundColor="#0066ff" HorizontalOptions="CenterAndExpand" BorderColor="Blue" Text="Save" TextColor="White" WidthRequest="70" BorderWidth="2"  Clicked="SaveButtonOnClicked" Grid.Row="1" Grid.Column="1"/>
           </Grid.Children>
         </Grid>
       </StackLayout.Children>

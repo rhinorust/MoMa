@@ -40,7 +40,7 @@ namespace Moma
                 {"vibration", VibrationSwitch.IsToggled ? "1" : "0"},
                 {"popup", PopupSwitch.IsToggled ? "1" : "0"}
             };
-            SaveUserSettings(settingsDict, true);
+            SaveUserSettings(settingsDict);
         }
 
         private void ResetButtonOnClicked(object sender, EventArgs eventArgs)
@@ -54,7 +54,7 @@ namespace Moma
             LanguagePicker.SelectedIndex = 0;
             VibrationSwitch.IsToggled = true;
             PopupSwitch.IsToggled = true;
-            SaveUserSettings(settingsDict, false);
+            SaveUserSettings(settingsDict);
         }
 
         private void FillLanguagePicker(IUserSettings settingsDependency)
@@ -80,23 +80,23 @@ namespace Moma
             return !string.IsNullOrEmpty(language) ? language : "english";
         }
 
-        protected void SaveUserSettings(Dictionary<string,string> settingsDict, bool isSave)
+        protected void SaveUserSettings(Dictionary<string,string> settingsDict)
         {
             var settingsDependency = DependencyService.Get<IUserSettings>();
             var cultureDependency = DependencyService.Get<ICurrentCulture>();
-            //string language = "english";
+            string language = "english";
             foreach (var setting in settingsDict)
             {
                 settingsDependency.SetUserSetting(setting.Key, setting.Value);
-                /*if (setting.Key.ToLower().Equals("language"))
+                if (setting.Key.ToLower().Equals("language"))
                 {
                     language = setting.Value;
-                }*/
+                }
             }
-            DisplayAlert("Settings Changed",
-                isSave
-                    ? "Your new settings were saved and will be available upon the next restart of the application"
-                    : "Settings were reset to their default value", "OK");
+            var currentCulture = new CultureInfo(cultureDependency.GetCurrentCulture(language));
+            string alertTitle = AppLanguageResource.ResourceManager.GetString("SettingsChangedTitle",currentCulture);
+            string alertContent = AppLanguageResource.ResourceManager.GetString("SettingsChanged", currentCulture);
+            DisplayAlert(alertTitle, alertContent, "OK");
         }
     }
 }

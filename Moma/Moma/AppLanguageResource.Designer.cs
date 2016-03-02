@@ -107,24 +107,6 @@ namespace Moma {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The application language will be updated once the app is restarted..
-        /// </summary>
-        internal static string LanguageChange {
-            get {
-                return ResourceManager.GetString("LanguageChange", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Language Modified.
-        /// </summary>
-        internal static string LanguageChangeAlert {
-            get {
-                return ResourceManager.GetString("LanguageChangeAlert", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Selected language.
         /// </summary>
         internal static string LanguageSelection {
@@ -157,6 +139,24 @@ namespace Moma {
         internal static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application settings were modified. The language will be updated upon the next restart of the application..
+        /// </summary>
+        internal static string SettingsChanged {
+            get {
+                return ResourceManager.GetString("SettingsChanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings modified.
+        /// </summary>
+        internal static string SettingsChangedTitle {
+            get {
+                return ResourceManager.GetString("SettingsChangedTitle", resourceCulture);
             }
         }
         
