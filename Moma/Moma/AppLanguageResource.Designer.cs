@@ -107,56 +107,20 @@ namespace Moma {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ändern Sprache.
+        ///   Looks up a localized string similar to The application language will be updated once the app is restarted..
         /// </summary>
-        internal static string LanguageChangeAlertDE {
+        internal static string LanguageChange {
             get {
-                return ResourceManager.GetString("LanguageChangeAlertDE", resourceCulture);
+                return ResourceManager.GetString("LanguageChange", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Language Modified.
         /// </summary>
-        internal static string LanguageChangeAlertEN {
+        internal static string LanguageChangeAlert {
             get {
-                return ResourceManager.GetString("LanguageChangeAlertEN", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Langue modifiée.
-        /// </summary>
-        internal static string LanguageChangeAlertFR {
-            get {
-                return ResourceManager.GetString("LanguageChangeAlertFR", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Die Anwendungssprache wird aktualisiert, sobald die App neu gestartet wird..
-        /// </summary>
-        internal static string LanguageChangeDE {
-            get {
-                return ResourceManager.GetString("LanguageChangeDE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The application language will be updated once the app is restarted..
-        /// </summary>
-        internal static string LanguageChangeEN {
-            get {
-                return ResourceManager.GetString("LanguageChangeEN", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Le language sera modifié lors du prochain redémarrage de l&apos;application..
-        /// </summary>
-        internal static string LanguageChangeFR {
-            get {
-                return ResourceManager.GetString("LanguageChangeFR", resourceCulture);
+                return ResourceManager.GetString("LanguageChangeAlert", resourceCulture);
             }
         }
         

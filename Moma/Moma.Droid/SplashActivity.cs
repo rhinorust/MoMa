@@ -41,18 +41,26 @@ namespace Moma.Droid
             startupWork.ContinueWith(t =>
             {
                 Log.Debug(TAG, "Work is finished - start Activity1.");
-                var userSettings = new AndroidUserSettings();
-                if (string.IsNullOrEmpty(userSettings.GetUserSetting("language")))
-                {
-                    StartActivity(new Intent(Application.Context, typeof(LanguageInitializer)));
-                }
-                else
-                {
-                    StartActivity(new Intent(Application.Context, typeof(MainActivity)));
-                }
+                ValidateSettings();
             }, TaskScheduler.FromCurrentSynchronizationContext());
 
             startupWork.Start();
+        }
+
+        private void ValidateSettings()
+        {
+            var userSettings = new AndroidUserSettings();
+            if (string.IsNullOrEmpty(userSettings.GetUserSetting("vibration")))
+            {
+                userSettings.SetUserSetting("vibration", "1");
+            }
+            if (string.IsNullOrEmpty(userSettings.GetUserSetting("popup")))
+            {
+                userSettings.SetUserSetting("popup", "1");
+            }
+            StartActivity(string.IsNullOrEmpty(userSettings.GetUserSetting("language"))
+                ? new Intent(Application.Context, typeof (LanguageInitializer))
+                : new Intent(Application.Context, typeof (MainActivity)));
         }
     }
 }
