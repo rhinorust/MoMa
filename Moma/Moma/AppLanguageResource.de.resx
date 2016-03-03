@@ -132,11 +132,26 @@
   <data name="Language" xml:space="preserve">
     <value>Sprache</value>
   </data>
+  <data name="LanguageDef" xml:space="preserve">
+    <value>Anzeige und Ausstellungen Sprache</value>
+  </data>
   <data name="LanguageSelection" xml:space="preserve">
     <value>Gewählte Sprache</value>
   </data>
   <data name="Map" xml:space="preserve">
     <value>Kostenlosen Besuch</value>
+  </data>
+  <data name="Popup" xml:space="preserve">
+    <value>Automatisch dialogfenster</value>
+  </data>
+  <data name="PopupDef" xml:space="preserve">
+    <value>Automatisch dialogfenster während der Ausstellungen</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Zurückstellen</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Sparen</value>
   </data>
   <data name="Scavenger" xml:space="preserve">
     <value>Aasfresser Jagd</value>
@@ -152,5 +167,11 @@
   </data>
   <data name="Storyline" xml:space="preserve">
     <value>Geschichten</value>
+  </data>
+  <data name="Vibration" xml:space="preserve">
+    <value>Vibrieren</value>
+  </data>
+  <data name="VibrationDef" xml:space="preserve">
+    <value>Vibrieren auf den mitteilungen</value>
   </data>
 </root>

@@ -107,6 +107,15 @@ namespace Moma {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Display and exhibitions language.
+        /// </summary>
+        internal static string LanguageDef {
+            get {
+                return ResourceManager.GetString("LanguageDef", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Selected language.
         /// </summary>
         internal static string LanguageSelection {
@@ -121,6 +130,42 @@ namespace Moma {
         internal static string Map {
             get {
                 return ResourceManager.GetString("Map", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Popup.
+        /// </summary>
+        internal static string Popup {
+            get {
+                return ResourceManager.GetString("Popup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatic popups during exhibitions.
+        /// </summary>
+        internal static string PopupDef {
+            get {
+                return ResourceManager.GetString("PopupDef", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset.
+        /// </summary>
+        internal static string Reset {
+            get {
+                return ResourceManager.GetString("Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
             }
         }
         
@@ -166,6 +211,24 @@ namespace Moma {
         internal static string Storyline {
             get {
                 return ResourceManager.GetString("Storyline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vibration.
+        /// </summary>
+        internal static string Vibration {
+            get {
+                return ResourceManager.GetString("Vibration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone vibrations for notifications.
+        /// </summary>
+        internal static string VibrationDef {
+            get {
+                return ResourceManager.GetString("VibrationDef", resourceCulture);
             }
         }
     }

@@ -21,6 +21,16 @@ namespace Moma
         {
             InitializeComponent();
             Title = AppLanguageResource.Settings;
+
+            LanguageLabel.Text = AppLanguageResource.Language;
+            LanguageDefLabel.Text = AppLanguageResource.LanguageDef;
+            VibrationLabel.Text = AppLanguageResource.Vibration;
+            VibrationDefLabel.Text = AppLanguageResource.VibrationDef;
+            PopupLabel.Text = AppLanguageResource.Popup;
+            PopupDefLabel.Text = AppLanguageResource.PopupDef;
+            SaveButton.Text = AppLanguageResource.Save;
+            ResetButton.Text = AppLanguageResource.Reset;
+
             var settingsDependency = DependencyService.Get<IUserSettings>();
             FillLanguagePicker(settingsDependency);
             SetSwitches(settingsDependency);

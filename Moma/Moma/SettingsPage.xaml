@@ -7,33 +7,46 @@
   <ContentPage.Content>
     <StackLayout x:Name="StackLayoutSettings">
       <StackLayout.Children>
-        <Grid x:Name="GridSettings">
+        <Grid x:Name="GridSettings" Padding="15, 30, 15, 30">
           <Grid.RowDefinitions>
-            <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
-          <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
           </Grid.RowDefinitions>
           <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="25"></ColumnDefinition>
-            <ColumnDefinition Width="150"></ColumnDefinition>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
           </Grid.ColumnDefinitions>
           <Grid.HorizontalOptions><LayoutOptions>FillAndExpand</LayoutOptions></Grid.HorizontalOptions>
           <Grid.ColumnSpacing>15</Grid.ColumnSpacing>
           <Grid.RowSpacing>15</Grid.RowSpacing>
           <Grid.Children>
-            <Label Text="Language" FontSize="15" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black" Grid.Row="1" Grid.Column="1"/>
-            <moma:CustomPicker x:Name="LanguagePicker" Grid.Row="1" Grid.Column="2"></moma:CustomPicker>
-            <Label Text="Vibration" FontSize="15" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black" Grid.Row="2" Grid.Column="1"/>
-            <Switch IsEnabled="True" IsVisible="True" x:Name="VibrationSwitch" Grid.Row="2" Grid.Column="2" HorizontalOptions="Start"/>
-            <Label Text="Automatic Popup" FontSize="15" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black" Grid.Row="3" Grid.Column="1"/>
-            <Switch IsEnabled="True" IsVisible="True" x:Name="PopupSwitch" Grid.Row="3" Grid.Column="2" HorizontalOptions="Start"/>
+            <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+              <StackLayout.Children>
+                <Label x:Name="LanguageLabel" FontSize="17" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black"/>
+                <Label x:Name="LanguageDefLabel" FontSize="12" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Gray"/>
+              </StackLayout.Children>
+            </StackLayout>
+            <moma:CustomPicker x:Name="LanguagePicker" Grid.Row="0" Grid.Column="2" HorizontalOptions="End"></moma:CustomPicker>
+            <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+              <StackLayout.Children>
+                <Label x:Name="VibrationLabel" FontSize="17" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black" Grid.Row="1" Grid.Column="0"/>
+                <Label x:Name="VibrationDefLabel" FontSize="12" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Gray" Grid.Row="1" Grid.Column="0"/>
+              </StackLayout.Children>
+            </StackLayout>
+            <Switch IsEnabled="True" IsVisible="True" x:Name="VibrationSwitch" Grid.Row="1" Grid.Column="2" HorizontalOptions="End"/>
+            <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+              <StackLayout.Children>
+                <Label x:Name="PopupLabel" FontSize="15" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black" Grid.Row="2" Grid.Column="0"/>
+                <Label x:Name="PopupDefLabel" FontSize="12" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Gray" Grid.Row="1" Grid.Column="0"/>
+              </StackLayout.Children>
+            </StackLayout>
+            <Switch IsEnabled="True" IsVisible="True" x:Name="PopupSwitch" Grid.Row="2" Grid.Column="2" HorizontalOptions="End"/>
           </Grid.Children>
         </Grid>
-        <Grid x:Name="ButtonsGrid">
+        <Grid>
           <Grid.RowDefinitions>
-            <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
           </Grid.RowDefinitions>
           <Grid.ColumnDefinitions>
@@ -42,8 +55,8 @@
           </Grid.ColumnDefinitions>
           <Grid.HorizontalOptions><LayoutOptions>FillAndExpand</LayoutOptions></Grid.HorizontalOptions>
           <Grid.Children>
-            <Button x:Name="ResetButton" BackgroundColor="White" HorizontalOptions="CenterAndExpand" BorderColor="Gray" Text="Reset" TextColor="Gray" WidthRequest="70" BorderWidth="2" Grid.Row="1" Grid.Column="0" Clicked="ResetButtonOnClicked"/>
-            <Button x:Name="SaveButton" BackgroundColor="#0066ff" HorizontalOptions="CenterAndExpand" BorderColor="Blue" Text="Save" TextColor="White" WidthRequest="70" BorderWidth="2"  Clicked="SaveButtonOnClicked" Grid.Row="1" Grid.Column="1"/>
+            <Button x:Name="ResetButton" BackgroundColor="White" HorizontalOptions="Center" BorderColor="Gray" TextColor="Gray" BorderWidth="2" Grid.Row="0" Grid.Column="0" Clicked="ResetButtonOnClicked"/>
+            <Button x:Name="SaveButton" BackgroundColor="#0066ff" HorizontalOptions="Center" BorderColor="Blue" TextColor="White" BorderWidth="2"  Clicked="SaveButtonOnClicked" Grid.Row="0" Grid.Column="1"/>
           </Grid.Children>
         </Grid>
       </StackLayout.Children>

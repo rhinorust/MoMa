@@ -132,11 +132,26 @@
   <data name="Language" xml:space="preserve">
     <value>Langue</value>
   </data>
+  <data name="LanguageDef" xml:space="preserve">
+    <value>Langue de l'affichage et des expositions</value>
+  </data>
   <data name="LanguageSelection" xml:space="preserve">
     <value>Sélection de la langue</value>
   </data>
   <data name="Map" xml:space="preserve">
     <value>Visite Libre</value>
+  </data>
+  <data name="Popup" xml:space="preserve">
+    <value>Popup</value>
+  </data>
+  <data name="PopupDef" xml:space="preserve">
+    <value>Fenêtres d'informations automatique lors des expositions</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Réinitialiser</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Enregistrer</value>
   </data>
   <data name="Scavenger" xml:space="preserve">
     <value>Cherche et trouve</value>
@@ -152,5 +167,11 @@
   </data>
   <data name="Storyline" xml:space="preserve">
     <value>Itinéraire</value>
+  </data>
+  <data name="Vibration" xml:space="preserve">
+    <value>Vibration</value>
+  </data>
+  <data name="VibrationDef" xml:space="preserve">
+    <value>Vibration lors de notifications</value>
   </data>
 </root>
