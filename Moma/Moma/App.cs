@@ -9,23 +9,23 @@ namespace Moma
 {
     public class App : Application
     {
-        public App()
-        {
+        // Allows Android, iOS and Windows Phone to call functions from inside here.
+        // From those, do: App.Current.TheMethodYouWantToCall()
+        public static App Current { get; set; }
+
+        // The boss that directs what is to be done with iBeacons.
+        IBeaconsDirector iBeaconsDirector;
+
+        public App() {
             // The root page of your application
             MainPage = new Moma.MainPage();
-            /*MainPage = new ContentPage
-            {
-                Content = new StackLayout
-                {
-                    VerticalOptions = LayoutOptions.Center,
-                    Children = {
-						new Label {
-							XAlign = TextAlignment.Center,
-							Text = "Welcome to Xamarin Forms!"
-						}
-					}
-                }
-            };*/
+
+            // Initialize the director and try starting the iBeacons' service
+            iBeaconsDirector = new IBeaconsDirector();
+        }
+
+        public IBeaconsDirector IBeaconsDirector() {
+            return iBeaconsDirector;
         }
 
         protected override void OnStart()
