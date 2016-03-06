@@ -1,4 +1,10 @@
-﻿function displayStoryline() {
+﻿var map;
+
+var polyline = [];
+function displayStoryline() {
+    //Test - next POI button
+    $("#nextBtn").hide();
+
     //--TO DO
     //GET & PARSE JSON (add to separate js file before the marker.js file)
     //rearange the js and divide into separate files
@@ -22,18 +28,30 @@
     $('#currentStoryline').text("Current storyline: " + localStorage.getItem("currentStoryline"));
     $('#previewStoryline').text("Previewing storyline: " + localStorage.getItem("currentStoryline"));
 
-    //storyline polyline paths
     if (storylineSelected == 1) {
-        floorArray[1].floor.push(L.polyline(floorlatlngs[1].floor, { color: '#0066ff', weight: 10, opacity: 0.7 }));
+        storylineSelectedCoordinates = storyline1Coordinates;
+        setMarkersAndPolyline(storyline1Coordinates);
     } else if (storylineSelected == 2) {
-        floorArray[0].floor.push(L.polyline(floorlatlngs[0].floor, { color: '#0066ff', weight: 10, opacity: 0.7 }));
-        floorArray[1].floor.push(L.polyline(floorlatlngs[1].floor, { color: '#0066ff', weight: 10, opacity: 0.7 }));
+        storylineSelectedCoordinates = storyline2Coordinates;
+        setMarkersAndPolyline(storyline2Coordinates);
     } else if (storylineSelected == 3) {
-        //TODO : Something here
+
     } else {
         //no storyline selected (free map)
-        //Remove this this?
     }
+    //storyline polyline paths
+
+    polyline[0] = L.polyline(floorlatlngs[0].floor, { color: '#0066ff', weight: 10, opacity: 0.7 });
+    polyline[1] = L.polyline(floorlatlngs[1].floor, { color: '#0066ff', weight: 10, opacity: 0.7 });
+    polyline[2] = L.polyline(floorlatlngs[2].floor, { color: '#0066ff', weight: 10, opacity: 0.7 });
+    polyline[3] = L.polyline(floorlatlngs[3].floor, { color: '#0066ff', weight: 10, opacity: 0.7 });
+    polyline[4] = L.polyline(floorlatlngs[4].floor, { color: '#0066ff', weight: 10, opacity: 0.7 });
+
+    floorArray[0].floor.push(polyline[0]);
+    floorArray[1].floor.push(polyline[1]);
+    floorArray[2].floor.push(polyline[2]);
+    floorArray[3].floor.push(polyline[3]);
+    floorArray[4].floor.push(polyline[4]);
 
     //Floor layer groups
     var floor1LayerGroup = L.layerGroup(floorArray[0].floor),
@@ -56,7 +74,7 @@
     };
 
     //create map
-    var map = L.map('map', {
+    map = L.map('map', {
         maxZoom: mapMaxZoom,
         minZoom: mapMinZoom,
         crs: L.CRS.Simple,
@@ -90,7 +108,6 @@
 
     // zoom the map to the polyline
     //map.fitBounds(polyline.getBounds());
-
 }
 
 function endPreview() {
@@ -99,5 +116,109 @@ function endPreview() {
 }
 
 function startStoryline() {
-    window.location.replace("storyline_selected.html");
+    $("#starBtn").hide();
+    $("#backBtn").hide();
+    $("#previewStoryline").hide();
+    $("#nextBtn").show();
+    focusOnStart();
+}
+
+function focusOnStart() {
+    for (var floorIndex = 0; floorIndex < 5; floorIndex++) {
+        for (var nodeIndex = 0; nodeIndex < storylineSelectedCoordinates[floorIndex].length; nodeIndex++) {
+            if (storylineSelectedCoordinates[floorIndex][nodeIndex].isStart == "true") {
+                node = storylineSelectedCoordinates[floorIndex][nodeIndex];
+                floorNumber = floorIndex + 1;
+                focusOnNode(node, floorNumber);
+                break;
+            }
+        }
+    }
+}
+function nextPOI() {
+    for (var floorIndex = 0; floorIndex < 5; floorIndex++) {
+        for (var nodeIndex = 0; nodeIndex < storylineSelectedCoordinates[floorIndex].length; nodeIndex++) {
+            //alert(floorIndex + ", " + nodeIndex);
+            var x = storylineSelectedCoordinates[floorIndex][nodeIndex].coord[0];
+            var y = storylineSelectedCoordinates[floorIndex][nodeIndex].coord[1];
+
+            if (storylineSelectedCoordinates[floorIndex][nodeIndex].isPOI == "true") {
+                var node = storylineSelectedCoordinates[floorIndex][nodeIndex];
+
+                storylineSelectedCoordinates[floorIndex].splice(0,nodeIndex+1);
+                var floorNumber = floorIndex + 1;
+                focusOnNode(node, floorNumber);
+                return;
+            }
+        }
+    }
+}
+function focusOnNode(node, floorNumber) {
+        var floors = $('input[name=leaflet-base-layers]:radio');
+        jQuery.each(floors, function (index, radio) {
+            if ($(radio).next()[0].innerHTML.trim() == floorNumber+"") {
+                if (radio.checked) {
+                    map.setView(new L.LatLng(node.coord[0], node.coord[1]), 4, { animate: true });
+                } else {
+                    $(radio).prop("checked", true).trigger("click");
+                    map.panTo(new L.LatLng(node.coord[0], node.coord[1]));
+                    map.setZoom(4);
+                }
+                //openMarkerPopup(markerId);
+                return;
+            }
+        });
+    
+}
+
+function simulateBeacon() {
+    
+    iBeaconDiscovered(9377, 54177)
+    //setMarkersAndPolyline(storylineSelectedCoordinates);
+   // reloadMap();
+    nextPOI();
+
+
+}
+
+function reloadMap() {
+
+    floorArray[0].floor.pop();
+    floorArray[1].floor.pop();
+    floorArray[2].floor.pop();
+    floorArray[3].floor.pop();
+    floorArray[4].floor.pop();
+
+    polyline[0] = L.polyline(floorlatlngs[0].floor, { color: '#0066ff', weight: 10, opacity: 0.7 });
+    polyline[1] = L.polyline(floorlatlngs[1].floor, { color: '#0066ff', weight: 10, opacity: 0.7 });
+    polyline[2] = L.polyline(floorlatlngs[2].floor, { color: '#0066ff', weight: 10, opacity: 0.7 });
+    polyline[3] = L.polyline(floorlatlngs[3].floor, { color: '#0066ff', weight: 10, opacity: 0.7 });
+    polyline[4] = L.polyline(floorlatlngs[4].floor, { color: '#0066ff', weight: 10, opacity: 0.7 });
+
+    /*
+    floorArray[0].floor.push(polyline[0]);
+    floorArray[1].floor.push(polyline[1]);
+    floorArray[2].floor.push(polyline[2]);
+    floorArray[3].floor.push(polyline[3]);
+    floorArray[4].floor.push(polyline[4]);*/
+
+    //Floor layer groups
+    var floor1LayerGroup = L.layerGroup(floorArray[0].floor),
+        floor2LayerGroup = L.layerGroup(floorArray[1].floor),
+        floor3LayerGroup = L.layerGroup(floorArray[2].floor),
+        floor4LayerGroup = L.layerGroup(floorArray[3].floor),
+        floor5LayerGroup = L.layerGroup(floorArray[4].floor);
+
+    //floor radio buttons
+    var baseMaps = {
+        "1": floor1LayerGroup,
+        "2": floor2LayerGroup,
+        "3": floor3LayerGroup,
+        "4": floor4LayerGroup,
+        "5": floor5LayerGroup
+    };
+    var overlayMaps = {};
+
+    L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map)
+
 }

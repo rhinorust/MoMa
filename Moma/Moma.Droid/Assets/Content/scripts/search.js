@@ -55,7 +55,7 @@ function focusOnNode(node) {
 
     if (typeof floorId != 'undefined' && floorId != null) {
         var floors = $('input[name=leaflet-base-layers]:radio');
-        jQuery.each(floors, function(index, radio) {
+        jQuery.each(floors, function (index, radio) {
             if ($(radio).next()[0].innerHTML.trim() == floorId.trim()) {
                 if (radio.checked) {
                     map.setView(new L.LatLng(coordinates.x, coordinates.y), 4, { animate: true });
