@@ -69,10 +69,11 @@ namespace Moma
         async Task<IEnumerable<IBeacon>> fetchNewIBeacons()
         {
             IEnumerable<IBeacon> foundIBeacons = await EstimoteManager.Instance.FetchNearbyBeacons(beaconRegion, new TimeSpan(0, 0, 1));
-            /*foreach (IBeacon foundIBeacon in foundIBeacons)
-            {
-
-            }*/
+            foreach (IBeacon foundIBeacon in foundIBeacons) {
+                if (!iBeacons.ContainsKey(foundIBeacon)) {
+                    System.Diagnostics.Debug.WriteLine("=\n= newBeacon =\n=");
+                }
+            }
             return foundIBeacons;
         }
 
