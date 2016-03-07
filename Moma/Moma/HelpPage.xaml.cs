@@ -13,6 +13,7 @@ namespace Moma
         public HelpPage()
         {
             InitializeComponent();
+            Title = AppLanguageResource.Help;
         }
     }
 }

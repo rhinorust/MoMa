@@ -10,12 +10,24 @@ namespace Moma
 {
     public partial class MainPage : MasterDetailPage
     {
+
         public MainPage()
         {
+            var settingsDependency = DependencyService.Get<IUserSettings>();
+            string tourType = settingsDependency.GetUserSetting("tourType");
+
             InitializeComponent();
-            Detail = new NavigationPage(new MapPage()) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
-            masterPage.ListView.ItemSelected += OnItemSelected;
-        } 
+            if (tourType == "guided")
+            {
+                Detail = new NavigationPage(new StorylinePage());
+            }
+
+            else {
+                Detail = new NavigationPage(new MapPage()) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
+                masterPage.ListView.ItemSelected += OnItemSelected;
+            }
+
+        }
         
         void OnItemSelected (object sender, SelectedItemChangedEventArgs e)
 		{
