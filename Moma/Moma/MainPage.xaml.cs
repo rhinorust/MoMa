@@ -18,12 +18,13 @@ namespace Moma
             InitializeComponent();
 
             if (tourType == "guided"){
-                Detail = new NavigationPage(new StorylinePage());
+                Detail = new NavigationPage(new StorylinePage()) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
             }
             else {
                 Detail = new NavigationPage(new MapPage()) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
-                masterPage.ListView.ItemSelected += OnItemSelected;
             }
+
+            masterPage.ListView.ItemSelected += OnItemSelected;
 
         }
 
