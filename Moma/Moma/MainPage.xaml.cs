@@ -12,21 +12,33 @@ namespace Moma
     {
         public MainPage()
         {
-            InitializeComponent();
-            Detail = new NavigationPage(new MapPage()) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
-            masterPage.ListView.ItemSelected += OnItemSelected;
-        } 
-        
-        void OnItemSelected (object sender, SelectedItemChangedEventArgs e)
-		{
-			var item = e.SelectedItem as MasterPageItem;
-			if (item != null) {
-                Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetType)) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
-				masterPage.ListView.SelectedItem = null;
-				IsPresented = false;
-			}
-		}
-    }
+            var settingsDependency = DependencyService.Get<IUserSettings>();
+            string tourType = settingsDependency.GetUserSetting("tourType");
 
-   
+            InitializeComponent();
+
+            if (tourType == "guided"){
+                Detail = new NavigationPage(new StorylinePage()) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
+            }
+            else {
+                Detail = new NavigationPage(new MapPage()) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
+            }
+
+            masterPage.ListView.ItemSelected += OnItemSelected;
+
+        }
+
+        void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var item = e.SelectedItem as MasterPageItem;
+            if (item != null)
+            {
+                Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetType)) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
+                masterPage.ListView.SelectedItem = null;
+                IsPresented = false;
+            }
+        }
+    }
 }
+
+
