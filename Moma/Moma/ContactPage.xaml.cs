@@ -13,6 +13,7 @@ namespace Moma
         public ContactPage()
         {
             InitializeComponent();
+            Title = AppLanguageResource.Contact;
         }
     }
 }

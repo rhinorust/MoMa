@@ -13,6 +13,7 @@ namespace Moma
         public DirectionsPage()
         {
             InitializeComponent();
+            Title = AppLanguageResource.Directions;
         }
     }
 }
