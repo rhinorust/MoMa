@@ -142,6 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AndroidUserSettings.cs" />
+    <Compile Include="TourType.cs" />
     <Compile Include="CultureHandler.cs" />
     <Compile Include="CustomNavigationRenderer.cs" />
     <Compile Include="HybridWebViewRenderer.cs" />
@@ -156,6 +157,7 @@
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\data\final_schema.json" />
     <AndroidAsset Include="Assets\Content\styles\qunit-1.22.0.css" />
+    <AndroidAsset Include="Assets\Content\sonar-project.properties" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
@@ -6151,6 +6153,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\styles\poiInformationBox.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\storyline_selected.html" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.0.1.6505\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.0.1.6505\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
