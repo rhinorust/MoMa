@@ -6117,7 +6117,7 @@
     <AndroidAsset Include="Assets\Content\styles\free-tour.css" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\tests\QUnit_index.html" />
+    <AndroidAsset Include="Assets\Content\QUnit_index.html" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\scripts\tests\mapItemsTests.js" />
@@ -6151,6 +6151,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\styles\poiInformationBox.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\scripts\lib\qunit-reporter-junit.js" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.0.1.6505\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.0.1.6505\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

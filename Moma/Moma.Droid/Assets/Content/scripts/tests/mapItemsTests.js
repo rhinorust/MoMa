@@ -1,4 +1,12 @@
-﻿QUnit.module("Verify all items present");
+﻿QUnit.jUnitReport = function (data) {
+    var console = window.console;
+    if (console) {
+        console.log(data.xml);
+    }
+};
+
+
+QUnit.module("Verify all items present");
 QUnit.test("AllPOIListed", function (assert) {
     createListView();
     var poiCount = DATA.node[0].poi.length;
