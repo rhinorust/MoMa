@@ -8,9 +8,9 @@ namespace Moma
 
     public class Timer : CancellationTokenSource, IDisposable
     {
-        public Timer(TimerCallback callback, object state, int interval)
+        public Timer(TimerCallback callback, object state, int delayBeforeTimerStarts, int interval)
         {
-            Task.Delay(interval, Token).ContinueWith(async (t, s) =>
+            Task.Delay(delayBeforeTimerStarts, Token).ContinueWith(async (t, s) =>
             {
                 var tuple = (Tuple<TimerCallback, object>)s;
 

@@ -21,8 +21,13 @@ namespace Moma
         Timer blueToothRetryTimer;
 
         // The interval between checks for iBeacons
-        const int CHECK_FOR_NEW_IBEACONS_INTERVAL = 1; // in seconds
+        const int CHECK_FOR_NEW_IBEACONS_INTERVAL = 2; // in seconds
+        // Or else iBeacons found during app start-up don't get reported to the user
+        const int IBEACON_TIMER_START_DELAY = 10;
         Timer iBeaconsCheckTimer;
+
+        // "Immediate", "Near", "Far" or "Unknown" only possible
+        const String iBeaconsProximityRequirement = "Immediate";
 
         public IBeaconsDirector()
         {
@@ -49,6 +54,7 @@ namespace Moma
                     if (blueToothRetryTimer == null)
                         blueToothRetryTimer = new Timer(tryStartingIBeaconsService,
                                                         null,
+                                                        0,
                                                         CHECK_FOR_BLUETOOTH_INTERVAL * 1000);
                 }
                 else if (status == BeaconInitStatus.Success)
@@ -61,55 +67,42 @@ namespace Moma
 
                     EstimoteManager.Instance.StartRanging(beaconRegion);
 
-                    iBeaconsCheckTimer = new Timer(checkForNewIBeacons, null, CHECK_FOR_NEW_IBEACONS_INTERVAL*1000);
+                    iBeaconsCheckTimer = new Timer(doActionForNewIBeacons, null,
+                                                   IBEACON_TIMER_START_DELAY,
+                                                   CHECK_FOR_NEW_IBEACONS_INTERVAL*1000);
                 }
             });
         }
 
-        async Task<IEnumerable<IBeacon>> fetchNewIBeacons()
-        {
-            IEnumerable<IBeacon> foundIBeacons = await EstimoteManager.Instance.FetchNearbyBeacons(beaconRegion, new TimeSpan(0, 0, 1));
-            foreach (IBeacon foundIBeacon in foundIBeacons) {
-                if (!iBeacons.ContainsKey(foundIBeacon)) {
-                    System.Diagnostics.Debug.WriteLine("=\n= newBeacon =\n=");
-                }
-            }
-            return foundIBeacons;
-        }
-
-        public void checkForNewIBeacons(object args)
-        {
-            Device.BeginInvokeOnMainThread(async () =>
-            {
+        public void doActionForNewIBeacons(object args) {
+            Device.BeginInvokeOnMainThread(async () => {
                 IEnumerable<IBeacon> ibeacons = await fetchNewIBeacons();
 
-                foreach (IBeacon ibeacon in ibeacons)
-                {
+                foreach (IBeacon ibeacon in ibeacons) {
+                    // Adding the new iBeacon to the dictionary for further reference
+                    iBeacons.Add(ibeacon, true);
                     // Accessable properties of iBeacons:
                     // -> ibeacon.Minor,
                     // -> ibeacon.Major,
                     // -> ibeacon.Proximity.ToString() returns: "Unknown", "Far", "Near" or "Immediate",
                     // -> ibeacon.Uuid
-                    if ("Immediate".Equals(ibeacon.Proximity.ToString()))
+                    if (ibeacon.Proximity.ToString().Equals(iBeaconsProximityRequirement))
                         map.CallJs("iBeaconDiscovered(" + ibeacon.Major + "," + ibeacon.Minor + ");");
                 }
             });
         }
 
-        // Tells us if the IBeaconsDirector is scanning for iBeacons.
-        //     Hint: You can basically use isScanning() to know whether
-        // BlueTooth is enabled on the device or not. The IBeaconsDirector
-        // won't be scanning for iBeacons if BlueTooth is disabled.
+        async Task<IEnumerable<IBeacon>> fetchNewIBeacons() {
+            IEnumerable<IBeacon> foundIBeacons = await EstimoteManager.Instance.FetchNearbyBeacons(beaconRegion, new TimeSpan(0, 0, 1));
+            List<IBeacon> newIBeacons = new List<IBeacon>();
 
-        // Not implemented yet
-        /*public void isScanning(Object state)
-        {
-            IReadOnlyList<BeaconRegion> regionsRanging = EstimoteManager.Instance.RangingRegions;
-            foreach (BeaconRegion beaconRegion in regionsRanging) {
-                System.Diagnostics.Debug.WriteLine("=\n=\n" + beaconRegion.Identifier + "=\n=\n");
-                    // Musee Des Ondes
+            foreach (IBeacon foundIBeacon in foundIBeacons) {
+                if (!iBeacons.ContainsKey(foundIBeacon)) {
+                    System.Diagnostics.Debug.WriteLine("=\n= newBeacon =\n=");
+                    newIBeacons.Add(foundIBeacon);
+                }
             }
-            System.Diagnostics.Debug.WriteLine("=\n=\n" + regionsRanging.Count + "=\n=\n");
-        }*/
+            return newIBeacons;
+        }
     }
 }
