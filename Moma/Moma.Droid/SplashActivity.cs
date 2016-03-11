@@ -60,7 +60,7 @@ namespace Moma.Droid
             }
             StartActivity(string.IsNullOrEmpty(userSettings.GetUserSetting("language"))
                 ? new Intent(Application.Context, typeof (LanguageInitializer))
-                : new Intent(Application.Context, typeof (MainActivity)));
+                : new Intent(Application.Context, typeof(TourType)));
         }
     }
 }

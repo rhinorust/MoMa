@@ -100,7 +100,7 @@ namespace App1.Droid
             builder.SetCancelable(false);
             builder.SetPositiveButton("OK", delegate
             {
-                StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+                StartActivity(new Intent(Application.Context, typeof(TourType)));
             });
             builder.Show();
         }
