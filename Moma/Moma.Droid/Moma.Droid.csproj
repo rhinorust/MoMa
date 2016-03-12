@@ -141,6 +141,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AndroidAppHandler.cs" />
     <Compile Include="AndroidUserSettings.cs" />
     <Compile Include="CultureHandler.cs" />
     <Compile Include="CustomNavigationRenderer.cs" />

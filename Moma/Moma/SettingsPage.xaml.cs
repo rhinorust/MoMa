@@ -30,6 +30,9 @@ namespace Moma
             PopupDefLabel.Text = AppLanguageResource.PopupDef;
             SaveButton.Text = AppLanguageResource.Save;
             ResetButton.Text = AppLanguageResource.Reset;
+            ResetAppButton.Text = AppLanguageResource.ResetApp;
+            SoundLabel.Text = AppLanguageResource.Sound;
+            SoundDefLabel.Text = AppLanguageResource.SoundDef;
 
             var settingsDependency = DependencyService.Get<IUserSettings>();
             FillLanguagePicker(settingsDependency);
@@ -40,6 +43,7 @@ namespace Moma
         {
             VibrationSwitch.IsToggled = settingsDependency.GetUserSetting("vibration").Equals("1");
             PopupSwitch.IsToggled = settingsDependency.GetUserSetting("popup").Equals("1");
+            SoundSwitch.IsToggled = settingsDependency.GetUserSetting("sound").Equals("1");
         }
 
         private void SaveButtonOnClicked(object sender, EventArgs eventArgs)
@@ -48,23 +52,31 @@ namespace Moma
             {
                 {"language", LanguagePicker.Items[LanguagePicker.SelectedIndex]},
                 {"vibration", VibrationSwitch.IsToggled ? "1" : "0"},
-                {"popup", PopupSwitch.IsToggled ? "1" : "0"}
+                {"popup", PopupSwitch.IsToggled ? "1" : "0"},
+                {"sound", SoundSwitch.IsToggled ? "1" : "0"}
             };
-            SaveUserSettings(settingsDict);
+            SaveUserSettings(settingsDict, false);
         }
 
         private void ResetButtonOnClicked(object sender, EventArgs eventArgs)
         {
+            ResetDefaultSettings("english");
+        }
+
+        private void ResetDefaultSettings(string language)
+        {
             var settingsDict = new Dictionary<string, string>
             {
-                {"language", "english"},
+                {"language", language},
                 {"vibration", "1"},
-                {"popup", "1"}
+                {"popup", "1"},
+                {"sound", "1" }
             };
             LanguagePicker.SelectedIndex = 0;
             VibrationSwitch.IsToggled = true;
             PopupSwitch.IsToggled = true;
-            SaveUserSettings(settingsDict);
+            SoundSwitch.IsToggled = true;
+            SaveUserSettings(settingsDict, string.IsNullOrEmpty(language));
         }
 
         private void FillLanguagePicker(IUserSettings settingsDependency)
@@ -90,7 +102,7 @@ namespace Moma
             return !string.IsNullOrEmpty(language) ? language : "english";
         }
 
-        protected void SaveUserSettings(Dictionary<string,string> settingsDict)
+        protected void SaveUserSettings(Dictionary<string,string> settingsDict, bool isApplicationReset)
         {
             var settingsDependency = DependencyService.Get<IUserSettings>();
             var cultureDependency = DependencyService.Get<ICurrentCulture>();
@@ -103,10 +115,24 @@ namespace Moma
                     language = setting.Value;
                 }
             }
-            var currentCulture = new CultureInfo(cultureDependency.GetCurrentCulture(language));
-            string alertTitle = AppLanguageResource.ResourceManager.GetString("SettingsChangedTitle",currentCulture);
-            string alertContent = AppLanguageResource.ResourceManager.GetString("SettingsChanged", currentCulture);
-            DisplayAlert(alertTitle, alertContent, "OK");
+            if (!isApplicationReset)
+            {
+                var currentCulture = new CultureInfo(cultureDependency.GetCurrentCulture(language));
+                string alertTitle = AppLanguageResource.ResourceManager.GetString("SettingsChangedTitle", currentCulture);
+                string alertContent = AppLanguageResource.ResourceManager.GetString("SettingsChanged", currentCulture);
+                DisplayAlert(alertTitle, alertContent, "OK");
+            }
+        }
+
+        private async void ResetAppButton_OnClicked(object sender, EventArgs e)
+        {
+            bool result = await DisplayAlert(AppLanguageResource.ResetTitle, AppLanguageResource.ResetMsg, AppLanguageResource.Yes, AppLanguageResource.No);
+            if (result)
+            {
+                ResetDefaultSettings(string.Empty);
+                var appHandler = DependencyService.Get<IAppHandler>();
+                appHandler.Abort();
+            }
         }
     }
 }
