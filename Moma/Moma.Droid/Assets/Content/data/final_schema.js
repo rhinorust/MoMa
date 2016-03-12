@@ -4,34 +4,34 @@
 var DATA = {
     "floorPlan": [
       {
-          "floorID": "1",
+          "floorID": 1,
           "imagePath": "floor1/floor1.png",
-          "imageWidth": "7995",
-          "imageHeight": "3945"
+          "imageWidth": 188,
+          "imageHeight": 93
       },
       {
-          "floorID": "2",
+          "floorID": 2,
           "imagePath": "floor2/floor2.png",
-          "imageWidth": "7995",
-          "imageHeight": "3945"
+          "imageWidth": 188,
+          "imageHeight": 93
       },
       {
-          "floorID": "3",
+          "floorID": 3,
           "imagePath": "floor3/floor3.png",
-          "imageWidth": "7995",
-          "imageHeight": "3945"
+          "imageWidth": 188,
+          "imageHeight": 93
       },
       {
-          "floorID": "4",
+          "floorID": 4,
           "imagePath": "floor4/floor4.png",
-          "imageWidth": "7995",
-          "imageHeight": "3945"
+          "imageWidth": 188,
+          "imageHeight": 93
       },
       {
-          "floorID": "5",
+          "floorID": 5,
           "imagePath": "floor5/floor5.png",
-          "imageWidth": "7995",
-          "imageHeight": "3945"
+          "imageWidth": 188,
+          "imageHeight": 93
       }
     ],
     "node": [
@@ -61,7 +61,7 @@ var DATA = {
                 ],
                 "x": "115",
                 "y": "-84",
-                "floorID": "1",
+                "floorID": 1,
                 "iBeacon": {
                     "uuid": "0000",
                     "major": "<major>",
@@ -159,7 +159,7 @@ var DATA = {
                 ],
                 "x": "115",
                 "y": "-71",
-                "floorID": "2",
+                "floorID": 2,
                 "iBeacon": {
                     "uuid": "0001",
                     "major": "<major>",
@@ -257,7 +257,7 @@ var DATA = {
                 ],
                 "x": "166",
                 "y": "-71",
-                "floorID": "2",
+                "floorID": 2,
                 "iBeacon": {
                     "uuid": "0002",
                     "major": "<major>",
@@ -355,7 +355,7 @@ var DATA = {
                 ],
                 "x": "168",
                 "y": "-30",
-                "floorID": "2",
+                "floorID": 2,
                 "iBeacon": {
                     "uuid": "0003",
                     "major": "<major>",
@@ -453,7 +453,7 @@ var DATA = {
                 ],
                 "x": "113",
                 "y": "-17",
-                "floorID": "2",
+                "floorID": 2,
                 "iBeacon": {
                     "uuid": "0004",
                     "major": "<major>",
@@ -551,7 +551,7 @@ var DATA = {
                 ],
                 "x": "80",
                 "y": "-20",
-                "floorID": "2",
+                "floorID": 2,
                 "iBeacon": {
                     "uuid": "0005",
                     "major": "<major>",
@@ -649,7 +649,7 @@ var DATA = {
                 ],
                 "x": "25",
                 "y": "-7",
-                "floorID": "2",
+                "floorID": 2,
                 "iBeacon": {
                     "uuid": "0006",
                     "major": "<major>",
@@ -733,7 +733,7 @@ var DATA = {
                 },
                 "x": "115",
                 "y": "-81",
-                "floorID": "1"
+                "floorID": 1
             },
             {
                 "id": "1001",
@@ -743,7 +743,7 @@ var DATA = {
                 },
                 "x": "113",
                 "y": "-81",
-                "floorID": "1"
+                "floorID": 1
             },
             {
                 "id": "1002",
@@ -753,7 +753,7 @@ var DATA = {
                 },
                 "x": "113",
                 "y": "-81",
-                "floorID": "2"
+                "floorID": 2
             },
             {
                 "id": "1003",
@@ -763,7 +763,7 @@ var DATA = {
                 },
                 "x": "113",
                 "y": "-24",
-                "floorID": "2"
+                "floorID": 2
             },
             {
                 "id": "1004",
@@ -773,7 +773,7 @@ var DATA = {
                 },
                 "x": "102",
                 "y": "-17",
-                "floorID": "2"
+                "floorID": 2
             },
             {
                 "id": "1005",
@@ -783,7 +783,7 @@ var DATA = {
                 },
                 "x": "101",
                 "y": "-20",
-                "floorID": "2"
+                "floorID": 2
             },
             {
                 "id": "1006",
@@ -793,7 +793,7 @@ var DATA = {
                 },
                 "x": "81",
                 "y": "-18",
-                "floorID": "1"
+                "floorID": 1
             },
             {
                 "id": "1007",
@@ -803,7 +803,7 @@ var DATA = {
                 },
                 "x": "62",
                 "y": "-17",
-                "floorID": "2"
+                "floorID": 2
             },
             {
                 "id": "1008",
@@ -813,7 +813,7 @@ var DATA = {
                 },
                 "x": "34",
                 "y": "-15",
-                "floorID": "2"
+                "floorID": 2
             },
             {
                 "id": "1009",
@@ -823,7 +823,7 @@ var DATA = {
                 },
                 "x": "34",
                 "y": "-8",
-                "floorID": "2"
+                "floorID": 2
             }
           ]
       }
@@ -898,3 +898,4 @@ var DATA = {
       }
     ]
 };
+
