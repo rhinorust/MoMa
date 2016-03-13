@@ -20,8 +20,13 @@ using Android.App;
             protected override void OnCreate(Bundle bundle)
          {
              base.OnCreate(bundle);
- 
-             var layout = new LinearLayout(this);
+            var userSettings = new AndroidUserSettings();
+            var language = userSettings.GetUserSetting("language");
+
+            var cultureHandler = new CultureHandler();
+            var cultureString = cultureHandler.GetCurrentCulture(language);
+
+            var layout = new LinearLayout(this);
              layout.Orientation = Orientation.Vertical;
              layout.SetBackgroundColor(Android.Graphics.Color.White);
  
@@ -34,8 +39,8 @@ using Android.App;
 
  
              var storylineButton = new Button(this);
-             storylineButton.Text = "Guided Tour";
-             storylineButton.TextAlignment = TextAlignment.Center;
+             storylineButton.Text = TranslationManager.GetResourceValue("Storyline", cultureString);
+            storylineButton.TextAlignment = TextAlignment.Center;
              storylineButton.SetTextColor(Android.Graphics.Color.Black);
              storylineButton.SetBackgroundColor(Color.ParseColor("#001533"));
              storylineButton.SetTextColor(Android.Graphics.Color.White);
@@ -45,7 +50,7 @@ using Android.App;
 
  
              var freeTourButton = new Button(this);
-             freeTourButton.Text = "Free Tour";
+                freeTourButton.Text = TranslationManager.GetResourceValue("Map", cultureString);
              freeTourButton.TextAlignment = TextAlignment.Center;
              freeTourButton.SetBackgroundColor(Color.ParseColor("#001533"));
              freeTourButton.SetTextColor(Android.Graphics.Color.White);
@@ -68,8 +73,7 @@ using Android.App;
              var userSettings = new AndroidUserSettings();
              userSettings.SetUserSetting("tourType", tourType);
  
-            //language = language.Substring(0,1).ToUpper() + language.Substring(1);
              StartActivity(new Intent(Application.Context, typeof(MainActivity)));
-        }
+         }
      }
  }
