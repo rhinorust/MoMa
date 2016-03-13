@@ -1,7 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:moma="clr-namespace:Moma;assembly=Moma"
              x:Class="Moma.DirectionsPage"
              BackgroundColor="White">
-  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+  <ContentPage.Content>
+    <StackLayout x:Name="StackLayoutDirections">
+      <Grid x:Name="onRedirect">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"></ColumnDefinition>
+          <ColumnDefinition Width="*"></ColumnDefinition>
+          <ColumnDefinition Width="*"></ColumnDefinition>
+          <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.HorizontalOptions>
+          <LayoutOptions>FillAndExpand</LayoutOptions>
+        </Grid.HorizontalOptions>
+        <Image x:Name="GoogleMapsLogo" Source="Google_Maps_Icon.jpg" Grid.Row="2" Grid.Column="0"/>
+        <Label x:Name="OpenInBrowserLabel" FontSize="17" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3"/>
+        <Label x:Name="NoConnectionLabel" FontSize="17" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"/>
+        <Label x:Name="NoConnectionCarLabel" FontSize="17" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black" Grid.Row="1" Grid.Column="0"/>
+        <Label x:Name="NoConnectionSTMLabel" FontSize="17" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black" Grid.Row="2" Grid.Column="0"/>
+        <Label x:Name="NoConnectionCarDescription" FontSize="17" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Gray" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"/>
+        <Label x:Name="NoConnectionSTMDescription" FontSize="17" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Gray" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3"/>
+      </Grid>
+    </StackLayout>
+  </ContentPage.Content>
 </ContentPage>

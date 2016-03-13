@@ -62,6 +62,34 @@ namespace Moma {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Get on Autoroute 40 towards the Autoroute 15
+        ///
+        ///Take Autoroute 15 S
+        ///
+        ///Take Autoroute 720 E
+        ///
+        ///Exit at Rue Saint Antoine O
+        ///
+        ///Turn Right on Rue Lacasse 
+        ///
+        ///Arrive at 1001 Rue Lenoir on Right.
+        /// </summary>
+        internal static string CarDirections {
+            get {
+                return ResourceManager.GetString("CarDirections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General Directions via car:.
+        /// </summary>
+        internal static string CarDirectionsTitle {
+            get {
+                return ResourceManager.GetString("CarDirectionsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact.
         /// </summary>
         internal static string Contact {
@@ -139,6 +167,24 @@ namespace Moma {
         internal static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Not connected to the internet.
+        /// </summary>
+        internal static string NoInternetConnection {
+            get {
+                return ResourceManager.GetString("NoInternetConnection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open museum directions in web browser..
+        /// </summary>
+        internal static string OpenInBrowser {
+            get {
+                return ResourceManager.GetString("OpenInBrowser", resourceCulture);
             }
         }
         
@@ -240,7 +286,7 @@ namespace Moma {
                 return ResourceManager.GetString("SettingsChangedTitle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Sound.
         /// </summary>
@@ -249,13 +295,39 @@ namespace Moma {
                 return ResourceManager.GetString("Sound", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Sounds for notifications.
         /// </summary>
         internal static string SoundDef {
             get {
                 return ResourceManager.GetString("SoundDef", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit at Place Saint-Henri metro station
+        ///
+        ///Turn left onto Rue Saint-Jacques
+        ///
+        ///Turn Right onto Rue Lenoir
+        ///
+        ///Arrive at 1001 Rue Lenoir on Right.
+        /// </summary>
+        internal static string STMDirections {
+            get {
+                return ResourceManager.GetString("STMDirections", resourceCulture);
+            }
+        }
+
+
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General Directions via STM:.
+        /// </summary>
+        internal static string STMDirectionsTitle {
+            get {
+                return ResourceManager.GetString("STMDirectionsTitle", resourceCulture);
             }
         }
         
