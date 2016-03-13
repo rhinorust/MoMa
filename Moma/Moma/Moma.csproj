@@ -60,6 +60,7 @@
     <Compile Include="IBeaconsDirector.cs" />
     <Compile Include="ICurrentCulture.cs" />
     <Compile Include="IJavascriptInterface.cs" />
+    <Compile Include="INetworkConnection.cs" />
     <Compile Include="IUserSettings.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
