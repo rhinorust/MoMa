@@ -90,8 +90,10 @@ function Floor(floorID) {
     this.imageHeight;
     this.POI = [];//poi + pot on this layer
     this.POT = [];
-    this.markerLayer = [];
+    this.markersById = [];
     this.tileLayer;
+    this.markers = [];
+    this.groupLayer;
 
     this.parseFloor = function () {
         var floor = DATA.floorPlan[floorID - 1];
@@ -102,8 +104,13 @@ function Floor(floorID) {
     this.parseFloor();//call function on constructor
 
     this.createTileLayer = function (minZoom, maxZoom) {
-        this.tileLayer = L.tileLayer('floor'+floorID+'/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom });
+        this.tileLayer = L.tileLayer('floor'+floorID+'/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, attribution: '', noWrap: true, tms: false});
     };
+
+    this.groupLayers = function () {
+        this.groupLayer = L.featureGroup(this.markers).addLayer(this.tileLayer);
+    };
+
 }
 
 function Storyline(id, title, description, nodePath, thumbnailPath, walkingTimeInMinutes, floorsCovered) {
@@ -137,9 +144,10 @@ function Map() {
         for (i = 0; i < arrayPOI.length; i++) {
             var p = arrayPOI[i];
             var poi = new POI(p.id, p.x, p.y, p.floorID, p.title[0].title, p.description[0].description, p.iBeacon, p.media.video, p.media.image, p.media.audio);
-            floors[p.floorID - 1].POI.push(poi);
-            floors[p.floorID - 1].markerLayer.push(L.marker([poi.y,poi.x], { icon: markerIconPOIBlue }).bindPopup(poi.description));
-            ListPOI.push(poi);
+            floors[p.floorID - 1].POI[poi.id+""] = poi;
+            floors[p.floorID - 1].markersById[poi.id + ""] = L.marker([poi.y, poi.x], { icon: markerIconPOIBlue }).bindPopup(poi.description);
+            floors[p.floorID - 1].markers.push(floors[p.floorID - 1].markersById[poi.id + ""]);
+            ListPOI[poi.id + ""] = poi;
         }
         return floors;
     };
@@ -149,8 +157,8 @@ function Map() {
         for (i = 0; i < arrayPOT.length; i++) {
             var p = arrayPOT[i];
             var pot = new POT(p.id, p.x, p.y, p.floorID, p.label.label);
-            floors[p.floorID - 1].POT.push(pot);
-            ListPOT.push(pot);
+            floors[p.floorID - 1].POT[pot.id+""] = pot;
+            ListPOT[pot.id+""] = pot;
         }
         return floors;
     };
@@ -161,4 +169,21 @@ function Map() {
         }
         return floors;
     }
+
+    this.groupLayers = function (floors) {
+        for (i = 0; i < floors.length; i++) {
+            floors[i].groupLayers();
+        }
+        return floors;
+    };
+    this.addLayersToMap = function (floors, map) {
+        for (i = 0; i < floors.length; i++) {
+            floors[i].groupLayer.addTo(map);
+        }
+        return map;
+    };
+}
+
+function StorylineMap() {
+
 }

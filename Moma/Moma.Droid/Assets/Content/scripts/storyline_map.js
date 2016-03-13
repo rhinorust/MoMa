@@ -1,12 +1,17 @@
-﻿var MapObj = new Map();
+﻿//Marker Icons
+var MapObj = new Map();
 var ListPOI = [];
 var ListPOT = [];
+var baseMaps;
+var map;
 
-//Marker Icons
 var markerIconPOIBlue = MapObj.createMarker('images/marker-icon-blue.png', 64, 64, 30, 64, 1, 1);
 var markerIconPOIGreen = MapObj.createMarker('images/marker-icon-green.png', 64, 64, 30, 64, 1, 1);
 var markerIconPOIRed = MapObj.createMarker('images/marker-icon-red.png', 64, 64, 30, 64, 1, 1);
 var markerIconNode = MapObj.createMarker('images/none-marker-icon.png');
+var mapMinZoom = 1;
+var mapMaxZoom = 5;
+var floors = [new Floor(1), new Floor(2), new Floor(3), new Floor(4), new Floor(5)];
 
 
 //Get storyline selected from storyline.html

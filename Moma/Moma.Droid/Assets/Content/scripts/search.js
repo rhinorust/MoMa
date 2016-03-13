@@ -48,7 +48,7 @@ function focusOnNode(node) {
         if(poi[i].id == id) {
             coordinates.x = poi[i].x;
             coordinates.y = poi[i].y;
-            floorId = poi[i].floorID;
+            floorId = poi[i].floorID+"";
             //markerId = poi[i].id; 
         }
     }
