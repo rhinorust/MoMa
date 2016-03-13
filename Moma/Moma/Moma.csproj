@@ -57,6 +57,7 @@
       <DependentUpon>HelpPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="HybridWebView.cs" />
+    <Compile Include="IAppHandler.cs" />
     <Compile Include="IBeaconsDirector.cs" />
     <Compile Include="ICurrentCulture.cs" />
     <Compile Include="IJavascriptInterface.cs" />

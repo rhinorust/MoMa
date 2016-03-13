@@ -157,6 +157,9 @@ Ankunft in 1001 Rue Lenoir auf der rechten</value>
   <data name="Map" xml:space="preserve">
     <value>Kostenlosen Besuch</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>Nein</value>
+  </data>
   <data name="NoInternetConnection" xml:space="preserve">
     <value>Nicht mit dem Internet verbunden</value>
   </data>
@@ -172,6 +175,15 @@ Ankunft in 1001 Rue Lenoir auf der rechten</value>
   <data name="Reset" xml:space="preserve">
     <value>Zurückstellen</value>
   </data>
+  <data name="ResetApp" xml:space="preserve">
+    <value>Resetknopf Verwendung</value>
+  </data>
+  <data name="ResetMsg" xml:space="preserve">
+    <value>Anwendungsprogramm wird automatisch neu gestartet.</value>
+  </data>
+  <data name="ResetTitle" xml:space="preserve">
+    <value>Resetknopf anwendungsprogramm?</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Sparen</value>
   </data>
@@ -186,6 +198,12 @@ Ankunft in 1001 Rue Lenoir auf der rechten</value>
   </data>
   <data name="SettingsChangedTitle" xml:space="preserve">
     <value>Einstellungen geändert</value>
+  </data>
+  <data name="Sound" xml:space="preserve">
+    <value>Klingen</value>
+  </data>
+  <data name="SoundDef" xml:space="preserve">
+    <value>Klingen auf den mitteilungen</value>
   </data>
   <data name="STMDirections" xml:space="preserve">
     <value>Fahren Sie an der Place Saint-Henri U-Bahn-Station
@@ -207,5 +225,8 @@ Ankunft in 1001 Rue Lenoir auf der rechten</value>
   </data>
   <data name="VibrationDef" xml:space="preserve">
     <value>Vibrieren auf den mitteilungen</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Ja</value>
   </data>
 </root>

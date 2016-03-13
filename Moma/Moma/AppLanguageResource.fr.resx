@@ -157,6 +157,9 @@ Arrivée au 1001 Rue Lenoir sur le droit</value>
   <data name="Map" xml:space="preserve">
     <value>Visite Libre</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>Non</value>
+  </data>
   <data name="NoInternetConnection" xml:space="preserve">
     <value>Pas connecté à l'Internet</value>
   </data>
@@ -172,6 +175,15 @@ Arrivée au 1001 Rue Lenoir sur le droit</value>
   <data name="Reset" xml:space="preserve">
     <value>Réinitialiser</value>
   </data>
+  <data name="ResetApp" xml:space="preserve">
+    <value>Réinitialiser l'application</value>
+  </data>
+  <data name="ResetMsg" xml:space="preserve">
+    <value>L'application redémarrera automatiquement.</value>
+  </data>
+  <data name="ResetTitle" xml:space="preserve">
+    <value>Réinitialiser l'application?</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Enregistrer</value>
   </data>
@@ -186,6 +198,12 @@ Arrivée au 1001 Rue Lenoir sur le droit</value>
   </data>
   <data name="SettingsChangedTitle" xml:space="preserve">
     <value>Paramètres modifiés</value>
+  </data>
+  <data name="Sound" xml:space="preserve">
+    <value>Sons</value>
+  </data>
+  <data name="SoundDef" xml:space="preserve">
+    <value>Sons lors de notifications</value>
   </data>
   <data name="STMDirections" xml:space="preserve">
     <value>Sortir à la station de métro Place Saint-Henri
@@ -207,5 +225,8 @@ Arrivée au 1001 Rue Lenoir sur le droit</value>
   </data>
   <data name="VibrationDef" xml:space="preserve">
     <value>Vibration lors de notifications</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Oui</value>
   </data>
 </root>

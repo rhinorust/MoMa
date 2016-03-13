@@ -29,3 +29,4 @@ function iBeaconDiscovered(major, minor) {
 
 	poiIB.css('visibility', 'visible');
 }
+

@@ -162,6 +162,15 @@ namespace Moma {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        internal static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Not connected to the internet.
         /// </summary>
         internal static string NoInternetConnection {
@@ -203,6 +212,33 @@ namespace Moma {
         internal static string Reset {
             get {
                 return ResourceManager.GetString("Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset Application.
+        /// </summary>
+        internal static string ResetApp {
+            get {
+                return ResourceManager.GetString("ResetApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application will restart automatically..
+        /// </summary>
+        internal static string ResetMsg {
+            get {
+                return ResourceManager.GetString("ResetMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset Application?.
+        /// </summary>
+        internal static string ResetTitle {
+            get {
+                return ResourceManager.GetString("ResetTitle", resourceCulture);
             }
         }
         
@@ -250,6 +286,24 @@ namespace Moma {
                 return ResourceManager.GetString("SettingsChangedTitle", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Sound.
+        /// </summary>
+        internal static string Sound {
+            get {
+                return ResourceManager.GetString("Sound", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Sounds for notifications.
+        /// </summary>
+        internal static string SoundDef {
+            get {
+                return ResourceManager.GetString("SoundDef", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Exit at Place Saint-Henri metro station
@@ -265,6 +319,8 @@ namespace Moma {
                 return ResourceManager.GetString("STMDirections", resourceCulture);
             }
         }
+
+
         
         /// <summary>
         ///   Looks up a localized string similar to General Directions via STM:.
@@ -299,6 +355,15 @@ namespace Moma {
         internal static string VibrationDef {
             get {
                 return ResourceManager.GetString("VibrationDef", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        internal static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

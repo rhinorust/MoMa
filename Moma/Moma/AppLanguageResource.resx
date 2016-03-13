@@ -157,6 +157,9 @@ Arrive at 1001 Rue Lenoir on Right</value>
   <data name="Map" xml:space="preserve">
     <value>Free Tour</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
   <data name="NoInternetConnection" xml:space="preserve">
     <value>Not connected to the internet</value>
   </data>
@@ -172,6 +175,15 @@ Arrive at 1001 Rue Lenoir on Right</value>
   <data name="Reset" xml:space="preserve">
     <value>Reset</value>
   </data>
+  <data name="ResetApp" xml:space="preserve">
+    <value>Reset Application</value>
+  </data>
+  <data name="ResetMsg" xml:space="preserve">
+    <value>Application will restart automatically.</value>
+  </data>
+  <data name="ResetTitle" xml:space="preserve">
+    <value>Reset Application?</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
@@ -186,6 +198,12 @@ Arrive at 1001 Rue Lenoir on Right</value>
   </data>
   <data name="SettingsChangedTitle" xml:space="preserve">
     <value>Settings modified</value>
+  </data>
+  <data name="Sound" xml:space="preserve">
+    <value>Sound</value>
+  </data>
+  <data name="SoundDef" xml:space="preserve">
+    <value>Sounds for notifications</value>
   </data>
   <data name="STMDirections" xml:space="preserve">
     <value>Exit at Place Saint-Henri metro station
@@ -207,5 +225,8 @@ Arrive at 1001 Rue Lenoir on Right</value>
   </data>
   <data name="VibrationDef" xml:space="preserve">
     <value>Phone vibrations for notifications</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>
