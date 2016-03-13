@@ -33,10 +33,14 @@ namespace Moma
                 OpenInBrowserLabel.Text = AppLanguageResource.OpenInBrowser;
 
                 var tgr = new TapGestureRecognizer { NumberOfTapsRequired = 1 };
-                tgr.Command = new Command((o) =>
+                tgr.Command = new Command(async (o) =>
                 {
-                    Uri uri = new Uri("https://www.google.ca/maps/place/Mus%C3%A9e+Des+Ondes+Emile+Berliner/@45.4777315,-73.5948578,17z/data=!3m1!4b1!4m2!3m1!1s0x4cc9109f76dd243b:0xb3b9280e1bc3a89d");
-                    Device.OpenUri(uri);
+                    var answer = await App.Current.MainPage.DisplayAlert("Exit", "Do you wan't to exit the App?", "Yes", "No");
+                    if (answer == true)
+                    {
+                        Uri uri = new Uri("https://www.google.ca/maps/place/Mus%C3%A9e+Des+Ondes+Emile+Berliner/@45.4777315,-73.5948578,19z/data=!3m1!4b1!4m2!3m1!1s0x4cc9109f76dd243b:0xb3b9280e1bc3a89d");
+                        Device.OpenUri(uri);
+                    }
                 });
                 onRedirect.GestureRecognizers.Add(tgr);
             }
@@ -54,12 +58,6 @@ namespace Moma
                 NoConnectionSTMLabel.Text = AppLanguageResource.STMDirectionsTitle;
                 NoConnectionSTMDescription.Text = AppLanguageResource.STMDirections;
             }
-        }
-
-        private void OpenInBrowserButtonOnClick(object sender, EventArgs eventArgs)
-        {
-           Uri uri = new Uri("https://www.google.ca/maps/place/Mus%C3%A9e+Des+Ondes+Emile+Berliner/@45.4777315,-73.5948578,19z/data=!3m1!4b1!4m2!3m1!1s0x4cc9109f76dd243b:0xb3b9280e1bc3a89d");
-           Device.OpenUri(uri);
         }
     }
 }
