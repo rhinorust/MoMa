@@ -229,4 +229,7 @@ Ankunft in 1001 Rue Lenoir auf der rechten</value>
   <data name="Yes" xml:space="preserve">
     <value>Ja</value>
   </data>
+  <data name="Default" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
 </root>
