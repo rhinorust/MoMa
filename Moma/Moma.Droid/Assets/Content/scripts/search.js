@@ -58,10 +58,10 @@ function focusOnNode(node) {
         jQuery.each(floors, function (index, radio) {
             if ($(radio).next()[0].innerHTML.trim() == floorId.trim()) {
                 if (radio.checked) {
-                    map.setView(new L.LatLng(coordinates.x, coordinates.y), 4, { animate: true });
+                    map.setView(new L.LatLng(coordinates.y, coordinates.x), 4, { animate: true });
                 } else {
                     $(radio).prop("checked", true).trigger("click");
-                    map.panTo(new L.LatLng(coordinates.x, coordinates.y));
+                    map.panTo(new L.LatLng(coordinates.y, coordinates.x));
                     map.setZoom(4);
                 }
                 //openMarkerPopup(markerId);
