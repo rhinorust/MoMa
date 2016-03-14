@@ -85,7 +85,7 @@ function textf(fileName) {
 
 function stopAudioAndVideo() {
     var vid = $('video');
-    if (vid) {
+    if (vid)  {
         vid.get(0).pause();
     }
     jsBridge.stopAudioFile(audioFileName);
