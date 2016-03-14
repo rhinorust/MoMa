@@ -117,6 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CarDirections" xml:space="preserve">
+    <value>Obtenez sur l'autoroute 40 en direction de l'autoroute 15
+
+Prendre l'autoroute 15 S
+
+Prendre l'autoroute 720 E
+
+Sortir à la rue Saint Antoine O
+
+Tournez à droite sur la rue Lacasse
+
+Arrivée au 1001 Rue Lenoir sur le droit</value>
+  </data>
+  <data name="CarDirectionsTitle" xml:space="preserve">
+    <value>Indications générales par voiture:</value>
+  </data>
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
   </data>
@@ -141,6 +157,15 @@
   <data name="Map" xml:space="preserve">
     <value>Visite Libre</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>Non</value>
+  </data>
+  <data name="NoInternetConnection" xml:space="preserve">
+    <value>Pas connecté à l'Internet</value>
+  </data>
+  <data name="OpenInBrowser" xml:space="preserve">
+    <value>Ouvre directions dans un navigateur web.</value>
+  </data>
   <data name="Popup" xml:space="preserve">
     <value>Popup</value>
   </data>
@@ -149,6 +174,15 @@
   </data>
   <data name="Reset" xml:space="preserve">
     <value>Réinitialiser</value>
+  </data>
+  <data name="ResetApp" xml:space="preserve">
+    <value>Réinitialiser l'application</value>
+  </data>
+  <data name="ResetMsg" xml:space="preserve">
+    <value>L'application redémarrera automatiquement.</value>
+  </data>
+  <data name="ResetTitle" xml:space="preserve">
+    <value>Réinitialiser l'application?</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Enregistrer</value>
@@ -165,6 +199,24 @@
   <data name="SettingsChangedTitle" xml:space="preserve">
     <value>Paramètres modifiés</value>
   </data>
+  <data name="Sound" xml:space="preserve">
+    <value>Sons</value>
+  </data>
+  <data name="SoundDef" xml:space="preserve">
+    <value>Sons lors de notifications</value>
+  </data>
+  <data name="STMDirections" xml:space="preserve">
+    <value>Sortir à la station de métro Place Saint-Henri
+
+Tournez à gauche sur la rue Saint-Jacques
+
+Tournez à droite sur la rue Lenoir
+
+Arrivée au 1001 Rue Lenoir sur le droit</value>
+  </data>
+  <data name="STMDirectionsTitle" xml:space="preserve">
+    <value>Indications générales par STM:</value>
+  </data>
   <data name="Storyline" xml:space="preserve">
     <value>Itinéraire</value>
   </data>
@@ -173,5 +225,8 @@
   </data>
   <data name="VibrationDef" xml:space="preserve">
     <value>Vibration lors de notifications</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Oui</value>
   </data>
 </root>

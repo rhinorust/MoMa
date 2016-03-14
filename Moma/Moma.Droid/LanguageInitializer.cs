@@ -91,7 +91,6 @@ namespace App1.Droid
             var cultureHandler = new CultureHandler();
             var cultureString = cultureHandler.GetCurrentCulture(language);
 
-            //language = language.Substring(0,1).ToUpper() + language.Substring(1);
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.SetTitle(TranslationManager.GetResourceValue("LanguageSelection", cultureString));
 

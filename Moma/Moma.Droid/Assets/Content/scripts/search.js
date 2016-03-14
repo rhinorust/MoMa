@@ -20,7 +20,7 @@ function createListView() {
         }
         if (foundTitle) {
             ul.append(li);
-            ul.listview('refresh');
+            ul.listview().listview('refresh');
         }
     }
 }
