@@ -99,6 +99,15 @@ namespace Moma {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Default.
+        /// </summary>
+        internal static string Default {
+            get {
+                return ResourceManager.GetString("Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The default language is English. It may be changed at any time in the settings..
         /// </summary>
         internal static string DefaultLanguage {
@@ -169,7 +178,7 @@ namespace Moma {
                 return ResourceManager.GetString("No", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Not connected to the internet.
         /// </summary>
@@ -286,7 +295,7 @@ namespace Moma {
                 return ResourceManager.GetString("SettingsChangedTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Sound.
         /// </summary>
@@ -295,7 +304,7 @@ namespace Moma {
                 return ResourceManager.GetString("Sound", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Sounds for notifications.
         /// </summary>
@@ -319,8 +328,6 @@ namespace Moma {
                 return ResourceManager.GetString("STMDirections", resourceCulture);
             }
         }
-
-
         
         /// <summary>
         ///   Looks up a localized string similar to General Directions via STM:.
