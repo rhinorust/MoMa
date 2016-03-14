@@ -95,6 +95,10 @@ function Floor(floorID) {
     this.markers = [];
     this.groupLayer;
 
+    this.polyline;
+    this.polylineLatLng = [];
+    
+
     this.parseFloor = function () {
         var floor = DATA.floorPlan[floorID - 1];
         this.imagePath = floor.imagePath;
@@ -108,7 +112,12 @@ function Floor(floorID) {
     };
 
     this.groupLayers = function () {
-        this.groupLayer = L.featureGroup(this.markers).addLayer(this.tileLayer);
+        this.groupLayer = L.layerGroup(this.markers).addLayer(this.tileLayer);
+    };
+
+    this.addPolylineLayer = function () {
+        this.polyline = L.polyline(this.polylineLatLng, { color: '#0066ff', weight: 10, opacity: 0.7 });
+        this.groupLayer.addLayer(this.polyline);
     };
 
 }
@@ -121,6 +130,7 @@ function Storyline(id, title, description, nodePath, thumbnailPath, walkingTimeI
     this.thumbnailPath = thumbnailPath;
     this.walkingTimeInMinutes = walkingTimeInMinutes;
     this.floorsCovered = floorsCovered
+    this.nodes = []; //associative array
 }
 
 //Map Object
@@ -157,7 +167,9 @@ function Map() {
         for (i = 0; i < arrayPOT.length; i++) {
             var p = arrayPOT[i];
             var pot = new POT(p.id, p.x, p.y, p.floorID, p.label.label);
-            floors[p.floorID - 1].POT[pot.id+""] = pot;
+            floors[p.floorID - 1].POT[pot.id + ""] = pot;
+            floors[p.floorID - 1].markersById[pot.id + ""] = L.marker([pot.y, pot.x], { icon: markerIconNode });
+            floors[p.floorID - 1].markers.push(floors[p.floorID - 1].markersById[pot.id + ""]);
             ListPOT[pot.id+""] = pot;
         }
         return floors;
@@ -185,5 +197,68 @@ function Map() {
 }
 
 function StorylineMap() {
+
+    this.parseStoryline = function (storylineSelectedID) {
+        var arrayStoryline = DATA.storyline;
+        var storyline;
+        for (i = 0; i < arrayStoryline.length; i++) {
+            var s = arrayStoryline[i];
+            if (storylineSelectedID == s.id) {
+                storyline = new Storyline(s.id, s.title[0].title, s.description[0].description, s.path, s.thumbnail, s.walkingTimeInMinutes, s.floorsCovered);
+            }
+        }
+        return storyline;
+    };
+    
+    this.parseNodePath = function (storyline) {
+        var nodePath = storyline.nodePath;
+        for (i = 0; i < nodePath.length; i++) {
+            var node;
+
+            //if node == 1---(pot) else if node == 0---(poi)
+            if (nodePath[i].charAt(0) == "1") {
+                node = ListPOT[nodePath[i]];
+            } else if (nodePath[i].charAt(0) == "0") {
+                node = ListPOI[nodePath[i]];
+            }
+            
+            storyline.nodes[node.id] = node;
+        }
+
+        return storyline;
+    };
+    this.createPolyline = function (floors, storyline) {
+
+        //empty markers array of all floors
+        for (i = 0; i < floors.length; i++) {
+            floors[i].markers = [];
+            floors[i].polylineLatLng = [];
+        }
+        //loop though nodePath array
+        var nodePath = storyline.nodePath;
+        for (i = 0; i < nodePath.length; i++) {
+            var node = storyline.nodes[nodePath[i]];
+
+            //get marker from floors[floorsID-1].markersById[POT.id] and add marker to floors[floorsID-1].markers
+            var marker = floors[node.floorID - 1].markersById[node.id];
+            if (i == 0) {
+                marker.setIcon(markerIconPOIGreen);
+            }
+            if (i == nodePath.length - 1) {
+                marker.setIcon(markerIconPOIRed);
+            }
+            floors[node.floorID - 1].markers.push(marker);
+            floors[node.floorID - 1].polylineLatLng.push([parseInt(node.y), parseInt(node.x)]);
+        }
+
+        return floors;
+    };
+
+    this.addPolylines = function (floors) {
+        for (i = 0; i < floors.length; i++) {
+            floors[i].addPolylineLayer();
+        }
+        return floors;
+    };
 
 }

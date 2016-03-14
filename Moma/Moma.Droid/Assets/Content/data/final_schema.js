@@ -793,7 +793,7 @@ var DATA = {
                 },
                 "x": "81",
                 "y": "-18",
-                "floorID": 1
+                "floorID": 2
             },
             {
                 "id": "1007",
@@ -872,7 +872,7 @@ var DATA = {
           ],
           "thumbnail": "<path of thumbnail>",
           "walkingTimeInMinutes": "<minutes>",
-          "floorsCovered": "1-2"
+          "floorsCovered": "2"
       },
       {
           "id": "S2",
