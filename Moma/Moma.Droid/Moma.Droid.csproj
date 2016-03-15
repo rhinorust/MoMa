@@ -143,6 +143,7 @@
   <ItemGroup>
     <Compile Include="AndroidAppHandler.cs" />
     <Compile Include="AndroidUserSettings.cs" />
+    <Compile Include="AudioService.cs" />
     <Compile Include="CultureHandler.cs" />
     <Compile Include="CustomNavigationRenderer.cs" />
     <Compile Include="HybridWebViewRenderer.cs" />
@@ -6154,6 +6155,27 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\styles\poiInformationBox.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\videos\MOEB_POINT_1_-_Small.mov" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\videos\MOEB_POINT_2_-_Small.mov" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\videos\MOEB_POINT_3_-_Small.mov" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\videos\MOEB_Introduction_-_Small.mov" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\audio\MOEB_POINT_4_-_Small.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\images\playAudio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Content\JSON.txt" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\scripts\lib\qunit-reporter-junit.js" />

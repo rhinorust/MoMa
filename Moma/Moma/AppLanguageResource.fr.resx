@@ -229,4 +229,7 @@ Arrivée au 1001 Rue Lenoir sur le droit</value>
   <data name="Yes" xml:space="preserve">
     <value>Oui</value>
   </data>
+  <data name="Default" xml:space="preserve">
+    <value>Défaut</value>
+  </data>
 </root>

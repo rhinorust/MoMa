@@ -229,4 +229,7 @@ Arrive at 1001 Rue Lenoir on Right</value>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
 </root>

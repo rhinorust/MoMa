@@ -1,4 +1,11 @@
-﻿//creates the list view of POI dynamically based on the js file
+﻿$(document).ready(function() {
+    $(document).on("keyup", "input[data-type='search']", function() {
+        $('#listViewUl').show();
+        $('#listViewUl').listview('refresh');
+    });
+});
+
+//creates the list view of POI dynamically based on the js file
 function createListView() {
     var language = getLanguage();
     var ul = $('#listViewUl');
@@ -6,7 +13,7 @@ function createListView() {
     for (var i = 0; i < poi.length; i++) {
         var li = document.createElement('li');
         var aTag = document.createElement('a');
-        //aTag.href = "#";
+        aTag.href = "#";
         var foundTitle = false;
         for (var j = 0; j < poi[i].title.length; j++) {
             if (poi[i].title[j].language == language) {
@@ -20,9 +27,9 @@ function createListView() {
         }
         if (foundTitle) {
             ul.append(li);
-            ul.listview().listview('refresh');
         }
     }
+    ul.listview().listview('refresh');
 }
 
 //Should get the language from the resource file
@@ -37,9 +44,8 @@ function getLanguage() {
 //Opens the popup of the marker
 function focusOnNode(node) {
     node.preventDefault();
-    $('li').attr("class", "ui-screen-hidden");
+    $('#listViewUl li').attr("class", "ui-screen-hidden");
     var id = node.target.id;
-    $('#autocomplete-input').val(node.target.innerHTML);
     var poi = DATA.node[0].poi;
     var coordinates = {};
     var floorId;
@@ -54,21 +60,30 @@ function focusOnNode(node) {
     }
 
     if (typeof floorId != 'undefined' && floorId != null) {
-        var floors = $('input[name=leaflet-base-layers]:radio');
+        var floors = $('input[name="leaflet-base-layers"][type="radio"]');
         jQuery.each(floors, function (index, radio) {
             if ($(radio).next()[0].innerHTML.trim() == floorId.trim()) {
                 if (radio.checked) {
                     map.setView(new L.LatLng(coordinates.y, coordinates.x), 4, { animate: true });
                 } else {
+            if ($(radio).next()[0].innerHTML.trim() === floorId.trim()) {
+                map.invalidateSize();
+                if (!radio.checked) //{
+               //     map.setView(new L.LatLng(coordinates.x, coordinates.y), 4, { animate: true });
+                //} else {
                     $(radio).prop("checked", true).trigger("click");
                     map.panTo(new L.LatLng(coordinates.y, coordinates.x));
                     map.setZoom(4);
-                }
+                //}
                 //openMarkerPopup(markerId);
                 return;
             }
         });
     }
+    $('#listViewUl').hide();
+    //$('#listViewUl').listview("refresh");
+    $("input[data-type='search']").val(node.target.innerHTML);
+    map.invalidateSize();
 }
 
 //Open the marker popup based on its id. 
