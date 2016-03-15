@@ -1,8 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using Xamarin.UITest;
-using Xamarin.UITest.Queries;
+﻿using Xamarin.UITest;
 
 namespace UITest
 {
@@ -13,7 +9,7 @@ namespace UITest
             if (platform == Platform.Android)
             {
                 return ConfigureApp
-                    .Android.Debug().PreferIdeSettings().EnableLocalScreenshots().ApkFile("../../../Moma/Moma.Droid/Moma.Droid-Aligned.apk")
+                    .Android.Debug().PreferIdeSettings().EnableLocalScreenshots()
                     .StartApp();
             }
 
