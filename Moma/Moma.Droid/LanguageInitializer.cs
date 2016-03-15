@@ -91,7 +91,6 @@ namespace App1.Droid
             var cultureHandler = new CultureHandler();
             var cultureString = cultureHandler.GetCurrentCulture(language);
 
-            //language = language.Substring(0,1).ToUpper() + language.Substring(1);
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.SetTitle(TranslationManager.GetResourceValue("LanguageSelection", cultureString));
 
@@ -100,7 +99,7 @@ namespace App1.Droid
             builder.SetCancelable(false);
             builder.SetPositiveButton("OK", delegate
             {
-                StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+                StartActivity(new Intent(Application.Context, typeof(TourType)));
             });
             builder.Show();
         }

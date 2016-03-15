@@ -13,6 +13,7 @@ namespace Moma
         // From those, do: App.Current.TheMethodYouWantToCall()
         public static App Current { get; set; }
 
+
         // The boss that directs what is to be done with iBeacons.
         IBeaconsDirector iBeaconsDirector;
 
@@ -26,6 +27,11 @@ namespace Moma
 
         public IBeaconsDirector IBeaconsDirector() {
             return iBeaconsDirector;
+
+        public App()
+        {
+            // The root page of your application
+            MainPage = new Moma.MainPage();
         }
 
         protected override void OnStart()

@@ -7,9 +7,15 @@
     <link rel="stylesheet" href="styles/index.css" />
     <script src="scripts/lib/leaflet.js"></script>
     <script src="scripts/lib/jquery-1.12.0.min.js"></script>
+    
+    <link rel="stylesheet" href="styles/storylines.css" />
+    <link rel="stylesheet" type="text/css" href="styles/poiInformationBox.css">
+    <script src="data/final_schema.js"></script>
+    <script src="scripts/objects.js"></script>
     <script src="scripts/storyline_markers.js"></script>
     <script src="scripts/storyline_map.js"></script>
-    <link rel="stylesheet" href="styles/storylines.css"/>
+    <script src="scripts/poiInformationBox.js"></script>
+
 </head>
 <body onload="displayStoryline()">
     <p id="previewStoryline"></p>
@@ -20,6 +26,20 @@
     </div>
     <div style="text-align:center;">
         <button id="starBtn" onclick="startStoryline()">Start</button>
+        <button id="nextBtn" onclick="simulateBeacon()" style="margin-left:40px">Simulate Beacon</button>
+    </div>
+    <div id="POI_InformationBox">
+        <div id="body">
+            <header>
+                <div id="title">
+                    <h1>Title</h1>
+                </div>
+                <div id="closeButton">
+                    <img id="close" src="images/closePOIIB.png">
+                </div>
+            </header>
+            <section id="content"></section>
+        </div>
     </div>
 </body>
 </html>
