@@ -169,22 +169,13 @@ namespace Moma {
                 return ResourceManager.GetString("No", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Not connected to the internet.
         /// </summary>
         internal static string NoInternetConnection {
             get {
                 return ResourceManager.GetString("NoInternetConnection", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Open museum directions in web browser..
-        /// </summary>
-        internal static string OpenInBrowser {
-            get {
-                return ResourceManager.GetString("OpenInBrowser", resourceCulture);
             }
         }
         
@@ -286,7 +277,7 @@ namespace Moma {
                 return ResourceManager.GetString("SettingsChangedTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Sound.
         /// </summary>
@@ -295,7 +286,7 @@ namespace Moma {
                 return ResourceManager.GetString("Sound", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Sounds for notifications.
         /// </summary>
@@ -319,8 +310,6 @@ namespace Moma {
                 return ResourceManager.GetString("STMDirections", resourceCulture);
             }
         }
-
-
         
         /// <summary>
         ///   Looks up a localized string similar to General Directions via STM:.
