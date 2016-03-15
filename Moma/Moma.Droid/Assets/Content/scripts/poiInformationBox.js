@@ -22,7 +22,7 @@ function iBeaconDiscovered(major, minor) {
     var boxTitle = "";
     var boxContent = "";
 
-    var pois = data.node.poi
+    var pois = DATA.node[0].poi;
     // Find the POI with the given major and minor and
     // populate the POI information box with their content
     // Finally, display the POI information box.

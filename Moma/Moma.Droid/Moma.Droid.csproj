@@ -6097,16 +6097,10 @@
     <AndroidAsset Include="Assets\Content\scripts\map.js" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\scripts\markers.js" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidAsset Include="Assets\Content\scripts\search.js" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\scripts\storyline_map.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidAsset Include="Assets\Content\scripts\storyline_markers.js" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\styles\jquery.mobile.structure-1.4.5.min.css" />
@@ -6179,9 +6173,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\scripts\lib\qunit-reporter-junit.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidAsset Include="Assets\Content\storyline_selected.html" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\scripts\lib\blanket.min.js" />
