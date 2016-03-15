@@ -1,4 +1,4 @@
-﻿#starBtn {
+﻿#starBtn,#nextBtn {
     position:fixed;
     bottom:40px;
     margin-left:-37px;
@@ -18,7 +18,7 @@
     -ms-user-select: none;
     user-select: none;
 }
-#starBtn:active {
+#starBtn:active,#nextBtn:active {
     opacity:0.7;
 }
 #backBtn {

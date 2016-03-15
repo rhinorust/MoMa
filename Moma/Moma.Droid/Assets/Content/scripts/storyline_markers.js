@@ -30,6 +30,12 @@ var markerIconNode = L.icon({
 
 //Get storyline selected from storyline.html
 var storylineSelected = localStorage.getItem("currentStoryline");
+var storylineSelectedCoordinates;
+
+//browser testing
+if (storylineSelected == null) {
+    storylineSelected = "1";
+}
 
 var floorArray = [{ floor: [] }, { floor: [] }, { floor: [] }, { floor: [] }, { floor: [] } ];
 
@@ -37,7 +43,7 @@ var floorArray = [{ floor: [] }, { floor: [] }, { floor: [] }, { floor: [] }, { 
 var storyline1Coordinates = [
     [],
     [
-        { coord: [-42, 108], isPOI: 'true' }, { coord: [-58, 108], isPOI: 'false' }, { coord: [-62, 113], isPOI: 'false' }, { coord: [-71, 114], isPOI: 'true' }, { coord: [-71, 166], isPOI: 'true' },
+        { coord: [-42, 108], isPOI: 'true' , isStart: 'true'}, { coord: [-58, 108], isPOI: 'false' }, { coord: [-62, 113], isPOI: 'false' }, { coord: [-71, 114], isPOI: 'true' }, { coord: [-71, 166], isPOI: 'true' },
         { coord: [-30, 168], isPOI: 'true' }, { coord: [-24, 113], isPOI: 'false' }, { coord: [-17, 113], isPOI: 'true' }, { coord: [-17, 102], isPOI: 'false' }, { coord: [-20, 101], isPOI: 'false' },
         { coord: [-18, 81], isPOI: 'false' }, { coord: [-20, 80], isPOI: 'true' }, { coord: [-17, 62], isPOI: 'false' }, { coord: [-15, 34], isPOI: 'false' }, { coord: [-8, 34], isPOI: 'false' }, { coord: [-7, 25], isPOI: 'true' }
     ],
@@ -47,7 +53,7 @@ var storyline1Coordinates = [
 ];
 var storyline2Coordinates = [
     [
-        { coord: [-84, 115], isPOI: 'true' }, { coord: [-81, 115], isPOI: 'false' }, { coord: [-81, 113], isPOI: 'true' }
+        { coord: [-84, 115], isPOI: 'true' , isStart: "true"}, { coord: [-81, 115], isPOI: 'false' }, { coord: [-81, 113], isPOI: 'true' }
     ],
     [
         { coord: [-81, 113], isPOI: 'true' }, { coord: [-72, 114], isPOI: 'true' }, { coord: [-63, 114], isPOI: 'false' }, { coord: [-58, 109], isPOI: 'false' }, { coord: [-46, 109], isPOI: 'false' },
@@ -61,20 +67,8 @@ var storyline2Coordinates = [
 
 var floorlatlngs = [{ floor: [] }, { floor: [] }, { floor: [] }, { floor: [] }, { floor: [] } ];
 
-if (storylineSelected == 1) {
-    setMarkersAndPolyline(storyline1Coordinates);
-} else if (storylineSelected == 2) {
-    setMarkersAndPolyline(storyline2Coordinates);
-} else if (storylineSelected == 3) {
-
-} else {
-    //no storyline selected (free map)
-}
-
-
 function setMarkersAndPolyline(storylineCoordinates) {
     var count = 0;
-    var start = true;
     //var end = true; Unused
     for (var floorIndex = 0; floorIndex < 5; floorIndex++) {
         for (var nodeIndex = 0; nodeIndex < storylineCoordinates[floorIndex].length; nodeIndex++) {
@@ -83,10 +77,9 @@ function setMarkersAndPolyline(storylineCoordinates) {
                 //POI marker icon
                 markerIcon = markerIconPOIBlue;
                 count++;
-                if (start) {
+                if (storylineCoordinates[floorIndex][nodeIndex].isStart == "true") {
                     //start marker icon
                     markerIcon = markerIconPOIGreen;
-                    start = false;
                 }
                 if (nodeIndex == storylineCoordinates[floorIndex].length - 1 && 0 == storylineCoordinates[floorIndex+1].length) {
                     //end marker icon
@@ -102,5 +95,6 @@ function setMarkersAndPolyline(storylineCoordinates) {
 
         }
     }
+    
 }
 

@@ -58,9 +58,13 @@ namespace Moma.Droid
             {
                 userSettings.SetUserSetting("popup", "1");
             }
+            if (string.IsNullOrEmpty(userSettings.GetUserSetting("sound")))
+            {
+                userSettings.SetUserSetting("sound", "1");
+            }
             StartActivity(string.IsNullOrEmpty(userSettings.GetUserSetting("language"))
                 ? new Intent(Application.Context, typeof (LanguageInitializer))
-                : new Intent(Application.Context, typeof (MainActivity)));
+                : new Intent(Application.Context, typeof(TourType)));
         }
     }
 }
