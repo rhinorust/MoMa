@@ -13,7 +13,7 @@ namespace UITest
             if (platform == Platform.Android)
             {
                 return ConfigureApp
-                    .Android.ApkFile("App1.Droid.apk")
+                    .Android.Debug().PreferIdeSettings().EnableLocalScreenshots().ApkFile("../../../Moma/Moma.Droid/Moma.Droid-Aligned.apk")
                     .StartApp();
             }
 

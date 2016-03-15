@@ -28,7 +28,18 @@ namespace UITest
         [Test]
         public void AppLaunches()
         {
-            app.Screenshot("First screen.");
+            app.Screenshot("AppLaunch");
+        }
+
+        [Test]
+        public void SetLanguage()
+        {
+            app.Screenshot("Language");
+            app.WaitForElement(c=>c.Button("English"));
+            app.Tap(c=>c.Marked("English"));
+            app.Tap(c=>c.Marked("OK"));
+            app.WaitForElement(c => c.Button("Free Tour"));
+            app.Screenshot("LanguageSet");
         }
     }
 }
