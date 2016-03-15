@@ -43,7 +43,7 @@ namespace Moma
             {
                 if (item.Title.Equals(AppLanguageResource.Directions) && networkStatus)
                 {
-                    var answer = await App.Current.MainPage.DisplayAlert("Exit", "Do you wan't to exit the App?", "Yes", "No");
+                    var answer = await DisplayAlert("Exit", "Do you wan't to exit the App?", "Yes", "No");
                     if (answer == true)
                     {
                         Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(MapPage))) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
