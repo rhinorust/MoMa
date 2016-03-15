@@ -1,59 +1,55 @@
-﻿//Global variables. Can be accessed in other js linked to html page.
+﻿//Marker Icons
+var MapObj = new Map();
+var ListPOI = [];
+var ListPOT = [];
 var baseMaps;
 var map;
+
+var markerIconPOIBlue = MapObj.createMarker('images/marker-icon-blue.png', 64, 64, 30, 64, 1, 1);
+var markerIconPOIGreen = MapObj.createMarker('images/marker-icon-green.png', 64, 64, 30, 64, 1, 1);
+var markerIconPOIRed = MapObj.createMarker('images/marker-icon-red.png', 64, 64, 30, 64, 1, 1);
+var markerIconNode = MapObj.createMarker('images/none-marker-icon.png');
+var mapMinZoom = 1;
+var mapMaxZoom = 5;
+var floors = [new Floor(1), new Floor(2), new Floor(3), new Floor(4), new Floor(5)];
+
 function init() {
-
-    //zoom levels
-    var mapMinZoom = 1;
-    var mapMaxZoom = 5;
-
-    //floor maps
-    floor1Array.push(L.tileLayer('floor1/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
-    floor2Array.push(L.tileLayer('floor2/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
-    floor3Array.push(L.tileLayer('floor3/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
-    floor4Array.push(L.tileLayer('floor4/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
-    floor5Array.push(L.tileLayer('floor5/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, bounds: mapBounds, attribution: '', noWrap: true, tms: false }));
-
-    //Floor layer groups
-    var floor1LayerGroup = L.layerGroup(floor1Array),
-        floor2LayerGroup = L.layerGroup(floor2Array),
-        floor3LayerGroup = L.layerGroup(floor3Array),
-        floor4LayerGroup = L.layerGroup(floor4Array),
-        floor5LayerGroup = L.layerGroup(floor5Array);
-
-    //floor radio buttons
-    baseMaps = {
-        "1": floor1LayerGroup,
-        "2": floor2LayerGroup,
-        "3": floor3LayerGroup,
-        "4": floor4LayerGroup,
-        "5": floor5LayerGroup
-    };
-    //floor overlay radio buttons
-    var overlayMaps = {
-        //"Markers": floor1Overlay
-    };
-
-    //create map
+//create map
     map = L.map('map', {
         maxZoom: mapMaxZoom,
         minZoom: mapMinZoom,
-        crs: L.CRS.Simple,
-        layers: floor1LayerGroup
-    }).setView([0, 0], mapMaxZoom);
+        crs: L.CRS.Simple
+    }).setView([0, 0], mapMinZoom);
+
+    floors = MapObj.parsePOI(floors);
+    floors = MapObj.parsePOT(floors);
+    floors = MapObj.createFloorTileLayers(floors, mapMinZoom, mapMaxZoom);
+    floors = MapObj.groupLayers(floors);
+
     //map bounds
     var mapBounds = new L.LatLngBounds(
         map.unproject([0, 3072], mapMaxZoom),
         map.unproject([6144, 0], mapMaxZoom));
     //add bounds to map
-    map.fitBounds(mapBounds);
-    //Add controls (radio buttons) to map in order to switch between floors
-    L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map).setPosition('bottomright');
-    map.invalidateSize();
-    //L.rectangle(mapBounds, { color: "#ff7800", weight: 1 }).addTo(map);
+    map.fitBounds(mapBounds, { reset: true });
+    //map.setMaxBounds(map.getBounds());
 
-    //STORYLINE======================================================
-    //line between markers
+    baseMaps = {
+        "1": floors[0].groupLayer.addTo(map),
+        "2": floors[1].groupLayer,
+        "3": floors[2].groupLayer,
+        "4": floors[3].groupLayer,
+        "5": floors[4].groupLayer
+    };
+    var overlayMaps = {};
+
+    //Add controls (radio buttons) to map in order to switch between floors
+    var control = L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map).setPosition('bottomright');
+    map.invalidateSize();
+    
+    //map.removeLayer(floor1LayerGroup);
+    //control.removeLayer(floor1Array);
+    //L.rectangle(mapBounds, { color: "#ff7800", weight: 1 }).addTo(map);
 
     // zoom the map to the polyline
     //map.fitBounds(polyline.getBounds());

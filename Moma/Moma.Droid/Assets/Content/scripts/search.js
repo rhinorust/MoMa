@@ -54,7 +54,7 @@ function focusOnNode(node) {
         if(poi[i].id == id) {
             coordinates.x = poi[i].x;
             coordinates.y = poi[i].y;
-            floorId = poi[i].floorID;
+            floorId = poi[i].floorID+"";
             //markerId = poi[i].id; 
         }
     }
@@ -62,13 +62,17 @@ function focusOnNode(node) {
     if (typeof floorId != 'undefined' && floorId != null) {
         var floors = $('input[name="leaflet-base-layers"][type="radio"]');
         jQuery.each(floors, function (index, radio) {
+            if ($(radio).next()[0].innerHTML.trim() == floorId.trim()) {
+                if (radio.checked) {
+                    map.setView(new L.LatLng(coordinates.y, coordinates.x), 4, { animate: true });
+                } else {
             if ($(radio).next()[0].innerHTML.trim() === floorId.trim()) {
                 map.invalidateSize();
                 if (!radio.checked) //{
                //     map.setView(new L.LatLng(coordinates.x, coordinates.y), 4, { animate: true });
                 //} else {
                     $(radio).prop("checked", true).trigger("click");
-                    map.panTo(new L.LatLng(coordinates.x, coordinates.y));
+                    map.panTo(new L.LatLng(coordinates.y, coordinates.x));
                     map.setZoom(4);
                 //}
                 //openMarkerPopup(markerId);

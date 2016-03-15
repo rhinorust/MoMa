@@ -6187,6 +6187,9 @@
     <AndroidAsset Include="Assets\Content\scripts\lib\blanket.min.js" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\Content\scripts\objects.js" />
+  </ItemGroup>
+  <ItemGroup>
     <AndroidResource Include="Resources\drawable\Google_Maps_Icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
