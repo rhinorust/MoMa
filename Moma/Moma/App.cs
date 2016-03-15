@@ -9,23 +9,15 @@ namespace Moma
 {
     public class App : Application
     {
+
+        // Allows Android, iOS and Windows Phone to call functions from inside here.
+        // From those, do: App.Current.TheMethodYouWantToCall()
+        public static App Current { get; set; }
+
         public App()
         {
             // The root page of your application
             MainPage = new Moma.MainPage();
-            /*MainPage = new ContentPage
-            {
-                Content = new StackLayout
-                {
-                    VerticalOptions = LayoutOptions.Center,
-                    Children = {
-						new Label {
-							XAlign = TextAlignment.Center,
-							Text = "Welcome to Xamarin Forms!"
-						}
-					}
-                }
-            };*/
         }
 
         protected override void OnStart()
