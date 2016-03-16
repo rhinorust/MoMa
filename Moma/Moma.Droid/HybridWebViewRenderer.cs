@@ -38,27 +38,8 @@ namespace Moma.Droid
 				Control.AddJavascriptInterface (new JSBridge (this), "jsBridge");
 				Control.LoadUrl (string.Format ("file:///android_asset/Content/{0}", Element.Uri));
 				InjectJS (JavaScriptFunction);
-                string json = fileToString("JSON.txt");
-                InjectJS("data = " + json);
             }
 		}
-
-        // returns the contents of Moma.Droid/Assets/Content/fileName
-        private string fileToString(string fileName) {
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            StreamReader stream = new StreamReader(assembly.GetManifestResourceStream("App1.Droid.Assets.Content."+fileName));
-            return stream.ReadToEnd();
-        }
-
-        // For debugging. Prints a list of all the embedded resources files
-        private void printEmbeddedResources() {
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            string[] resources = assembly.GetManifestResourceNames();
-            foreach (string resource in resources)
-            {
-                System.Diagnostics.Debug.WriteLine(resource);
-            }
-        }
 
         void InjectJS (string script)
 		{

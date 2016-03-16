@@ -51,7 +51,7 @@ function focusOnNode(node) {
     var floorId;
     //var markerId;
     for (var i = 0; i < poi.length; i++) {
-        if(poi[i].id == id) {
+        if (poi[i].id == id) {
             coordinates.x = poi[i].x;
             coordinates.y = poi[i].y;
             floorId = poi[i].floorID;
@@ -65,7 +65,7 @@ function focusOnNode(node) {
             if ($(radio).next()[0].innerHTML.trim() === floorId.toString().trim()) {
                 map.invalidateSize();
                 if (radio.checked) {
-                    map.setView([coordinates.y, coordinates.x], 4, {animate:true});
+                    map.setView([coordinates.y, coordinates.x], 4, { animate: true });
                 } else {
                     $(radio).prop("checked", true).trigger("click");
                     map.panTo([coordinates.y, coordinates.x]);

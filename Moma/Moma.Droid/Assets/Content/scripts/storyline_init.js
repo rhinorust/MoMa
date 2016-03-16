@@ -15,6 +15,6 @@ function previewStoryline(storylineID) {
 function startStoryline(storylineID) {
     localStorage.removeItem("currentStoryline");
     localStorage.setItem("currentStoryline", storylineID);
-    localStorage.setItem("startStoryline", "true");
+    localStorage.setItem("startIsSelected", "true");
     window.location.replace("storyline_index.html");
 }

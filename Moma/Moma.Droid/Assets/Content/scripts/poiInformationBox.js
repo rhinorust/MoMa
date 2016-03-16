@@ -1,5 +1,4 @@
 var poiIB;
-var data; // JSON.txt data will be stored here by C#
 // Temporary, to be fixed later
 var audioFileName  = "";
 
