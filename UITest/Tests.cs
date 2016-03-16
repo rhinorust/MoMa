@@ -34,10 +34,15 @@ namespace UITest
         [Test]
         public void SetLanguage()
         {
+            SetLanguageSetting();
+        }
+
+        private void SetLanguageSetting()
+        {
             app.Screenshot("Language");
-            app.WaitForElement(c=>c.Button("English"));
-            app.Tap(c=>c.Marked("English"));
-            app.Tap(c=>c.Marked("OK"));
+            app.WaitForElement(c => c.Button("English"));
+            app.Tap(c => c.Marked("English"));
+            app.Tap(c => c.Marked("OK"));
             app.WaitForElement(c => c.Button("Free Tour"));
             app.Screenshot("LanguageSet");
         }
@@ -45,11 +50,9 @@ namespace UITest
         [Test]
         public void OpenAllView()
         {
-            app.WaitForElement(c => c.Button("English"));
-            app.Tap(c => c.Marked("English"));
-            app.Tap(c => c.Marked("OK"));
-            app.WaitForElement(c => c.Button("Free Tour"));
+            SetLanguageSetting();
             app.Tap(c => c.Marked("Free Tour"));
+
             GetView("Storylines");
             GetView("Free Tour");
             GetView("Contact");
@@ -62,8 +65,30 @@ namespace UITest
         {
             app.SwipeLeftToRight(0.99, 1500, true);
             app.Tap(c=>c.Marked(viewName));
+            if (viewName.Equals("Museum Directions", StringComparison.OrdinalIgnoreCase))
+            {
+                app.Tap(c=>c.Marked("No"));
+            }
             app.WaitForElement(c => c.Class("android.widget.TextView").Text(viewName));
         }
+
+        [Test]
+        public void ChangeSetting()
+        {
+            SetLanguageSetting();
+            app.Tap(c => c.Marked("Free Tour"));
+            GetView("Settings");
+            app.Repl();
+        }
+
+        //We need to figure out how to restart the app to check if language is persisted. 
+        /*[Test]
+        public void ValidateLanguagePersistence()
+        {
+            SetLanguageSetting();
+            //Restart app here then check to see if language initializer is launched
+            app.WaitForElement(c => c.Button("Free Tour"));
+        }*/
 
 
     }

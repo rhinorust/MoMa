@@ -41,7 +41,7 @@ var DATA = {
                 "id": "0000",
                 "title": [
                   {
-                      "language": "English",
+                      "language": "EN",
                       "title": "Artifact 0"
                   },
                   {
@@ -51,7 +51,7 @@ var DATA = {
                 ],
                 "description": [
                   {
-                      "language": "English",
+                      "language": "EN",
                       "description": "First artifact of the museum"
                   },
                   {
@@ -95,7 +95,7 @@ var DATA = {
                       "storylineID": "S1",
                       "title": [
                         {
-                            "language": "English",
+                            "language": "EN",
                             "title": "First Storyline POI"
                         },
                         {
@@ -105,7 +105,7 @@ var DATA = {
                       ],
                       "description": [
                         {
-                            "language": "English",
+                            "language": "EN",
                             "description": "First Storyline POI"
                         }
                       ],
@@ -139,7 +139,7 @@ var DATA = {
                 "id": "0001",
                 "title": [
                   {
-                      "language": "English",
+                      "language": "EN",
                       "title": "Artifact 1"
                   },
                   {
@@ -149,7 +149,7 @@ var DATA = {
                 ],
                 "description": [
                   {
-                      "language": "English",
+                      "language": "EN",
                       "description": "Second artifact of the museum"
                   },
                   {
@@ -193,7 +193,7 @@ var DATA = {
                       "storylineID": "S1",
                       "title": [
                         {
-                            "language": "English",
+                            "language": "EN",
                             "title": "First Storyline POI"
                         },
                         {
@@ -203,7 +203,7 @@ var DATA = {
                       ],
                       "description": [
                         {
-                            "language": "English",
+                            "language": "EN",
                             "description": "First Storyline POI"
                         }
                       ],
@@ -237,7 +237,7 @@ var DATA = {
                 "id": "0002",
                 "title": [
                   {
-                      "language": "English",
+                      "language": "EN",
                       "title": "Artifact 2"
                   },
                   {
@@ -247,7 +247,7 @@ var DATA = {
                 ],
                 "description": [
                   {
-                      "language": "English",
+                      "language": "EN",
                       "description": "Third artifact of the museum"
                   },
                   {
@@ -291,7 +291,7 @@ var DATA = {
                       "storylineID": "S1",
                       "title": [
                         {
-                            "language": "English",
+                            "language": "EN",
                             "title": "First Storyline POI"
                         },
                         {
@@ -301,7 +301,7 @@ var DATA = {
                       ],
                       "description": [
                         {
-                            "language": "English",
+                            "language": "EN",
                             "description": "First Storyline POI"
                         }
                       ],
@@ -335,7 +335,7 @@ var DATA = {
                 "id": "0003",
                 "title": [
                   {
-                      "language": "English",
+                      "language": "EN",
                       "title": "Artifact 3"
                   },
                   {
@@ -345,7 +345,7 @@ var DATA = {
                 ],
                 "description": [
                   {
-                      "language": "English",
+                      "language": "EN",
                       "description": "Fourth artifact of the museum"
                   },
                   {
@@ -389,7 +389,7 @@ var DATA = {
                       "storylineID": "S1",
                       "title": [
                         {
-                            "language": "English",
+                            "language": "EN",
                             "title": "First Storyline POI"
                         },
                         {
@@ -399,7 +399,7 @@ var DATA = {
                       ],
                       "description": [
                         {
-                            "language": "English",
+                            "language": "EN",
                             "description": "First Storyline POI"
                         }
                       ],
@@ -433,7 +433,7 @@ var DATA = {
                 "id": "0004",
                 "title": [
                   {
-                      "language": "English",
+                      "language": "EN",
                       "title": "Artifact 4"
                   },
                   {
@@ -443,7 +443,7 @@ var DATA = {
                 ],
                 "description": [
                   {
-                      "language": "English",
+                      "language": "EN",
                       "description": "Fifth artifact of the museum"
                   },
                   {
@@ -487,7 +487,7 @@ var DATA = {
                       "storylineID": "S1",
                       "title": [
                         {
-                            "language": "English",
+                            "language": "EN",
                             "title": "First Storyline POI"
                         },
                         {
@@ -497,7 +497,7 @@ var DATA = {
                       ],
                       "description": [
                         {
-                            "language": "English",
+                            "language": "EN",
                             "description": "First Storyline POI"
                         }
                       ],
@@ -531,7 +531,7 @@ var DATA = {
                 "id": "0005",
                 "title": [
                   {
-                      "language": "English",
+                      "language": "EN",
                       "title": "Artifact 5"
                   },
                   {
@@ -541,7 +541,7 @@ var DATA = {
                 ],
                 "description": [
                   {
-                      "language": "English",
+                      "language": "EN",
                       "description": "Sixth artifact of the museum"
                   },
                   {
@@ -585,7 +585,7 @@ var DATA = {
                       "storylineID": "S1",
                       "title": [
                         {
-                            "language": "English",
+                            "language": "EN",
                             "title": "First Storyline POI"
                         },
                         {
@@ -595,7 +595,7 @@ var DATA = {
                       ],
                       "description": [
                         {
-                            "language": "English",
+                            "language": "EN",
                             "description": "First Storyline POI"
                         }
                       ],
@@ -629,7 +629,7 @@ var DATA = {
                 "id": "0006",
                 "title": [
                   {
-                      "language": "English",
+                      "language": "EN",
                       "title": "Artifact 6"
                   },
                   {
@@ -639,7 +639,7 @@ var DATA = {
                 ],
                 "description": [
                   {
-                      "language": "English",
+                      "language": "EN",
                       "description": "Seventh artifact of the museum"
                   },
                   {
@@ -683,7 +683,7 @@ var DATA = {
                       "storylineID": "S1",
                       "title": [
                         {
-                            "language": "English",
+                            "language": "EN",
                             "title": "First Storyline POI"
                         },
                         {
@@ -693,7 +693,7 @@ var DATA = {
                       ],
                       "description": [
                         {
-                            "language": "English",
+                            "language": "EN",
                             "description": "First Storyline POI"
                         }
                       ],
@@ -887,7 +887,7 @@ var DATA = {
             {
                 "id": "1000",
                 "label": {
-                    "language": "English",
+                    "language": "EN",
                     "label": "corner"
                 },
                 "x": "11",
@@ -897,7 +897,7 @@ var DATA = {
             {
                 "id": "1001",
                 "label": {
-                    "language": "English",
+                    "language": "EN",
                     "label": "corner"
                 },
                 "x": "11",
@@ -907,7 +907,7 @@ var DATA = {
             {
                 "id": "1002",
                 "label": {
-                    "language": "English",
+                    "language": "EN",
                     "label": "corner"
                 },
                 "x": "11",
@@ -917,7 +917,7 @@ var DATA = {
             {
                 "id": "1003",
                 "label": {
-                    "language": "English",
+                    "language": "EN",
                     "label": "corner"
                 },
                 "x": "50",
@@ -927,7 +927,7 @@ var DATA = {
             {
                 "id": "1004",
                 "label": {
-                    "language": "English",
+                    "language": "EN",
                     "label": "corner"
                 },
                 "x": "57",
@@ -937,7 +937,7 @@ var DATA = {
             {
                 "id": "1005",
                 "label": {
-                    "language": "English",
+                    "language": "EN",
                     "label": "corner"
                 },
                 "x": "54",
@@ -947,7 +947,7 @@ var DATA = {
             {
                 "id": "1006",
                 "label": {
-                    "language": "English",
+                    "language": "EN",
                     "label": "corner"
                 },
                 "x": "55",
@@ -957,7 +957,7 @@ var DATA = {
             {
                 "id": "1007",
                 "label": {
-                    "language": "English",
+                    "language": "EN",
                     "label": "corner"
                 },
                 "x": "57",
@@ -967,7 +967,7 @@ var DATA = {
             {
                 "id": "1008",
                 "label": {
-                    "language": "English",
+                    "language": "EN",
                     "label": "corner"
                 },
                 "x": "62",
@@ -977,7 +977,7 @@ var DATA = {
             {
                 "id": "1009",
                 "label": {
-                    "language": "English",
+                    "language": "EN",
                     "label": "corner"
                 },
                 "x": "62",
@@ -1000,13 +1000,13 @@ var DATA = {
           "id": "S1",
           "title": [
             {
-                "language": "English",
+                "language": "EN",
                 "title": "Storyline 1"
             }
           ],
           "description": [
             {
-                "language": "English",
+                "language": "EN",
                 "description": "Storyline 1 description"
             }
           ],
@@ -1037,13 +1037,13 @@ var DATA = {
           "id": "S2",
           "title": [
             {
-                "language": "English",
+                "language": "EN",
                 "title": "Storyline 2"
             }
           ],
           "description": [
             {
-                "language": "English",
+                "language": "EN",
                 "description": "Storyline 2 description"
             }
           ],

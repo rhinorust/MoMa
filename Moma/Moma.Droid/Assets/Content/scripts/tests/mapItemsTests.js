@@ -1,9 +1,4 @@
-﻿blanket.customReporter = function (coverage_results) {
-    console.log(coverage_results);
-};
-
-
-QUnit.jUnitReport = function (data) {
+﻿QUnit.jUnitReport = function (data) {
     var console = window.console;
     if (console) {
         console.log(data.xml);

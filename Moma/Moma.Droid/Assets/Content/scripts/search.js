@@ -34,7 +34,7 @@ function createListView() {
 
 //Should get the language from the resource file
 function getLanguage() {
-    return "English";
+    return "EN";
 }
 
 //Hides the search list and autocomplete the search bar

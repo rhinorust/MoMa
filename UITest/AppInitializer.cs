@@ -1,4 +1,5 @@
 ﻿using Xamarin.UITest;
+using Xamarin.UITest.Configuration;
 
 namespace UITest
 {
