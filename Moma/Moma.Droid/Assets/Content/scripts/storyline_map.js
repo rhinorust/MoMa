@@ -69,6 +69,10 @@ function displayStoryline() {
     //Add controls (radio buttons) to map in order to switch between floors
     L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map).setPosition('bottomright');
 
+    if (localStorage.getItem("startIsSelected") == "true") {
+        localStorage.removeItem("startIsSelected");
+        startStoryline();
+    }
 }
 
 function endPreview() {
