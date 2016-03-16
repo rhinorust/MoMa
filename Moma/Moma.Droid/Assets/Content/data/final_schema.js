@@ -59,8 +59,8 @@ var DATA = {
                       "description": "Premier artéfact du musée"
                   }
                 ],
-                "x": "115",
-                "y": "-84",
+                "x": "8",
+                "y": "-85",
                 "floorID": 1,
                 "iBeacon": {
                     "uuid": "0000",
@@ -157,8 +157,8 @@ var DATA = {
                       "description": "Premier artéfact du musée"
                   }
                 ],
-                "x": "115",
-                "y": "-71",
+                "x": "16",
+                "y": "-85",
                 "floorID": 2,
                 "iBeacon": {
                     "uuid": "0001",
@@ -255,8 +255,8 @@ var DATA = {
                       "description": "Premier artéfact du musée"
                   }
                 ],
-                "x": "166",
-                "y": "-71",
+                "x": "16",
+                "y": "-123",
                 "floorID": 2,
                 "iBeacon": {
                     "uuid": "0002",
@@ -353,8 +353,8 @@ var DATA = {
                       "description": "Premier artéfact du musée"
                   }
                 ],
-                "x": "168",
-                "y": "-30",
+                "x": "47",
+                "y": "-123",
                 "floorID": 2,
                 "iBeacon": {
                     "uuid": "0003",
@@ -451,8 +451,8 @@ var DATA = {
                       "description": "Premier artéfact du musée"
                   }
                 ],
-                "x": "113",
-                "y": "-17",
+                "x": "56",
+                "y": "-85",
                 "floorID": 2,
                 "iBeacon": {
                     "uuid": "0004",
@@ -549,8 +549,8 @@ var DATA = {
                       "description": "Premier artéfact du musée"
                   }
                 ],
-                "x": "80",
-                "y": "-20",
+                "x": "54",
+                "y": "-60",
                 "floorID": 2,
                 "iBeacon": {
                     "uuid": "0005",
@@ -647,8 +647,8 @@ var DATA = {
                       "description": "Premier artéfact du musée"
                   }
                 ],
-                "x": "25",
-                "y": "-7",
+                "x": "63",
+                "y": "-20",
                 "floorID": 2,
                 "iBeacon": {
                     "uuid": "0006",
@@ -731,8 +731,8 @@ var DATA = {
                     "language": "English",
                     "label": "corner"
                 },
-                "x": "115",
-                "y": "-81",
+                "x": "11",
+                "y": "-85",
                 "floorID": 1
             },
             {
@@ -741,8 +741,8 @@ var DATA = {
                     "language": "English",
                     "label": "corner"
                 },
-                "x": "113",
-                "y": "-81",
+                "x": "11",
+                "y": "-84",
                 "floorID": 1
             },
             {
@@ -751,8 +751,8 @@ var DATA = {
                     "language": "English",
                     "label": "corner"
                 },
-                "x": "113",
-                "y": "-81",
+                "x": "11",
+                "y": "-84",
                 "floorID": 2
             },
             {
@@ -761,8 +761,8 @@ var DATA = {
                     "language": "English",
                     "label": "corner"
                 },
-                "x": "113",
-                "y": "-24",
+                "x": "50",
+                "y": "-85",
                 "floorID": 2
             },
             {
@@ -771,8 +771,8 @@ var DATA = {
                     "language": "English",
                     "label": "corner"
                 },
-                "x": "102",
-                "y": "-17",
+                "x": "57",
+                "y": "-77",
                 "floorID": 2
             },
             {
@@ -781,8 +781,8 @@ var DATA = {
                     "language": "English",
                     "label": "corner"
                 },
-                "x": "101",
-                "y": "-20",
+                "x": "54",
+                "y": "-76",
                 "floorID": 2
             },
             {
@@ -791,8 +791,8 @@ var DATA = {
                     "language": "English",
                     "label": "corner"
                 },
-                "x": "81",
-                "y": "-18",
+                "x": "55",
+                "y": "-62",
                 "floorID": 2
             },
             {
@@ -801,8 +801,8 @@ var DATA = {
                     "language": "English",
                     "label": "corner"
                 },
-                "x": "62",
-                "y": "-17",
+                "x": "57",
+                "y": "-28",
                 "floorID": 2
             },
             {
@@ -811,8 +811,8 @@ var DATA = {
                     "language": "English",
                     "label": "corner"
                 },
-                "x": "34",
-                "y": "-15",
+                "x": "62",
+                "y": "-28",
                 "floorID": 2
             },
             {
@@ -821,8 +821,8 @@ var DATA = {
                     "language": "English",
                     "label": "corner"
                 },
-                "x": "34",
-                "y": "-8",
+                "x": "62",
+                "y": "-28",
                 "floorID": 2
             }
           ]
@@ -898,4 +898,3 @@ var DATA = {
       }
     ]
 };
-

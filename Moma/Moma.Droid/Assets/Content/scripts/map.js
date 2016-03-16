@@ -28,8 +28,8 @@ function init() {
 
     //map bounds
     var mapBounds = new L.LatLngBounds(
-        map.unproject([0, 3072], mapMaxZoom),
-        map.unproject([6144, 0], mapMaxZoom));
+        map.unproject([0, 770], 2),
+        map.unproject([900, 0], 2));
     //add bounds to map
     map.fitBounds(mapBounds, { reset: true });
     //map.setMaxBounds(map.getBounds());
