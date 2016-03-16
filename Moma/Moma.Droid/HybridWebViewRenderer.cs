@@ -4,6 +4,10 @@ using Moma;
 using Moma.Droid;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+using Android.Media;
+using System.Reflection;
+using System.IO;
+using System.Threading.Tasks;
 
 [assembly: Dependency(typeof(HybridWebViewRenderer))]
 [assembly: ExportRenderer (typeof(HybridWebView), typeof(HybridWebViewRenderer))]
@@ -34,10 +38,29 @@ namespace Moma.Droid
 				Control.AddJavascriptInterface (new JSBridge (this), "jsBridge");
 				Control.LoadUrl (string.Format ("file:///android_asset/Content/{0}", Element.Uri));
 				InjectJS (JavaScriptFunction);
-			}
+                string json = fileToString("JSON.txt");
+                InjectJS("data = " + json);
+            }
 		}
 
-		void InjectJS (string script)
+        // returns the contents of Moma.Droid/Assets/Content/fileName
+        private string fileToString(string fileName) {
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            StreamReader stream = new StreamReader(assembly.GetManifestResourceStream("App1.Droid.Assets.Content."+fileName));
+            return stream.ReadToEnd();
+        }
+
+        // For debugging. Prints a list of all the embedded resources files
+        private void printEmbeddedResources() {
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            string[] resources = assembly.GetManifestResourceNames();
+            foreach (string resource in resources)
+            {
+                System.Diagnostics.Debug.WriteLine(resource);
+            }
+        }
+
+        void InjectJS (string script)
 		{
 			if (Control != null) {
 				Control.LoadUrl (string.Format ("javascript: {0}", script));

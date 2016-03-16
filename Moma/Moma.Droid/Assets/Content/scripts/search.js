@@ -62,22 +62,20 @@ function focusOnNode(node) {
     if (typeof floorId != 'undefined' && floorId != null) {
         var floors = $('input[name="leaflet-base-layers"][type="radio"]');
         jQuery.each(floors, function (index, radio) {
-            if ($(radio).next()[0].innerHTML.trim() === floorId.trim()) {
+            if ($(radio).next()[0].innerHTML.trim() === floorId.toString().trim()) {
                 map.invalidateSize();
-                if (!radio.checked) //{
-               //     map.setView(new L.LatLng(coordinates.x, coordinates.y), 4, { animate: true });
-                //} else {
+                if (radio.checked) {
+                    map.setView([coordinates.y, coordinates.x], 4, {animate:true});
+                } else {
                     $(radio).prop("checked", true).trigger("click");
-                    map.panTo(new L.LatLng(coordinates.x, coordinates.y));
+                    map.panTo([coordinates.y, coordinates.x]);
                     map.setZoom(4);
-                //}
-                //openMarkerPopup(markerId);
-                return;
+                }
+                return false;
             }
         });
     }
     $('#listViewUl').hide();
-    //$('#listViewUl').listview("refresh");
     $("input[data-type='search']").val(node.target.innerHTML);
     map.invalidateSize();
 }

@@ -147,6 +147,7 @@
   <ItemGroup>
     <Compile Include="AndroidAppHandler.cs" />
     <Compile Include="AndroidUserSettings.cs" />
+    <Compile Include="AudioService.cs" />
     <Compile Include="CultureHandler.cs" />
     <Compile Include="CustomNavigationRenderer.cs" />
     <Compile Include="HybridWebViewRenderer.cs" />
@@ -6100,16 +6101,10 @@
     <AndroidAsset Include="Assets\Content\scripts\map.js" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\scripts\markers.js" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidAsset Include="Assets\Content\scripts\search.js" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\scripts\storyline_map.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidAsset Include="Assets\Content\scripts\storyline_markers.js" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\styles\jquery.mobile.structure-1.4.5.min.css" />
@@ -6160,13 +6155,34 @@
     <AndroidAsset Include="Assets\Content\styles\poiInformationBox.css" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\Content\videos\MOEB_POINT_1_-_Small.mov" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\videos\MOEB_POINT_2_-_Small.mov" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\videos\MOEB_POINT_3_-_Small.mov" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\videos\MOEB_Introduction_-_Small.mov" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\audio\MOEB_POINT_4_-_Small.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\images\playAudio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Content\JSON.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <AndroidAsset Include="Assets\Content\scripts\lib\qunit-reporter-junit.js" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\storyline_selected.html" />
+    <AndroidAsset Include="Assets\Content\scripts\lib\blanket.min.js" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\scripts\lib\blanket.min.js" />
+    <AndroidAsset Include="Assets\Content\scripts\objects.js" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Google_Maps_Icon.png" />

@@ -19,8 +19,6 @@
         <Grid.HorizontalOptions>
           <LayoutOptions>FillAndExpand</LayoutOptions>
         </Grid.HorizontalOptions>
-        <Image x:Name="GoogleMapsLogo" Source="Google_Maps_Icon.jpg" Grid.Row="2" Grid.Column="0"/>
-        <Label x:Name="OpenInBrowserLabel" FontSize="17" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3"/>
         <Label x:Name="NoConnectionLabel" FontSize="17" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"/>
         <Label x:Name="NoConnectionCarLabel" FontSize="17" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black" Grid.Row="1" Grid.Column="0"/>
         <Label x:Name="NoConnectionSTMLabel" FontSize="17" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black" Grid.Row="2" Grid.Column="0"/>
