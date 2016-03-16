@@ -146,6 +146,7 @@
     <Compile Include="AudioService.cs" />
     <Compile Include="CultureHandler.cs" />
     <Compile Include="CustomNavigationRenderer.cs" />
+    <Compile Include="FileIO.cs" />
     <Compile Include="HybridWebViewRenderer.cs" />
     <Compile Include="JSBridge.cs" />
     <Compile Include="LanguageInitializer.cs" />
@@ -158,7 +159,7 @@
     <Compile Include="TourType.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\data\final_schema.json" />
+    <AndroidAsset Include="Assets\Content\data\data_server.json" />
     <AndroidAsset Include="Assets\Content\styles\qunit-1.22.0.css" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
@@ -286,7 +287,7 @@
     <AndroidAsset Include="Assets\Content\styles\leaflet.css" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\data\final_schema.js" />
+    <AndroidAsset Include="Assets\Content\data\data_local.js" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\scripts\map.js" />
@@ -362,9 +363,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\images\playAudio.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Assets\Content\JSON.txt" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\scripts\lib\qunit-reporter-junit.js" />

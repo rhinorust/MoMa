@@ -722,6 +722,165 @@ var DATA = {
                       }
                   }
                 ]
+            },
+            {
+                "id": "0007",
+                "title": [{
+                    "language": "EN",
+                    "title": "Point of Interest 1"
+                }],
+                "description": [{
+                    "language": "EN",
+                    "description": "This is the description for Point of Interest 1"
+                }],
+                "x": 100,
+                "y": 100,
+                "floorID": "1",
+                "iBeacon": {
+                    "uuid": "b9407f30-f5f8-466e-aff9-25556b57fe6d",
+                    "major": 0,
+                    "minor": 0
+                },
+                "media": {
+                    "image": [],
+                    "video": [{
+                        "path": "videos/MOEB_Introduction_-_Small.mov",
+                        "language": "EN",
+                        "caption": "None"
+                    }],
+                    "audio": []
+                },
+                "storyPoint": [{
+                    "storylineID": 0
+                }]
+            },
+            {
+                "id": "0008",
+                "title": [{
+                    "language": "EN",
+                    "title": "Point of Interest 2"
+                }],
+                "description": [{
+                    "language": "EN",
+                    "description": "This is the description for Point of Interest 2"
+                }],
+                "x": 200,
+                "y": 100,
+                "floorID": "1",
+                "iBeacon": {
+                    "uuid": "b9407f30-f5f8-466e-aff9-25556b57fe6d",
+                    "major": 1,
+                    "minor": 1
+                },
+                "media": {
+                    "image": [],
+                    "video": [{
+                        "path": "videos/MOEB_POINT_1_-_Small.mov",
+                        "language": "EN",
+                        "caption": "None"
+                    }],
+                    "audio": []
+                },
+                "storyPoint": [{
+                    "storylineID": 0
+                }]
+            },
+            {
+                "id": "0009",
+                "title": [{
+                    "language": "EN",
+                    "title": "Point of Interest 3"
+                }],
+                "description": [{
+                    "language": "EN",
+                    "description": "This is the description for Point of Interest 3"
+                }],
+                "x": 300,
+                "y": 100,
+                "floorID": "1",
+                "iBeacon": {
+                    "uuid": "b9407f30-f5f8-466e-aff9-25556b57fe6d",
+                    "major": 2,
+                    "minor": 2
+                },
+                "media": {
+                    "image": [],
+                    "video": [{
+                        "path": "videos/MOEB_POINT_2_-_Small.mov",
+                        "language": "EN",
+                        "caption": "None"
+                    }],
+                    "audio": []
+                },
+                "storyPoint": [{
+                    "storylineID": 0
+                }]
+            },
+            {
+                "id": "0010",
+                "title": [{
+                    "language": "EN",
+                    "title": "Point of Interest 4"
+                }],
+                "description": [{
+                    "language": "EN",
+                    "description": "This is the description for Point of Interest 4"
+                }],
+                "x": 400,
+                "y": 100,
+                "floorID": "1",
+                "iBeacon": {
+                    "uuid": "b9407f30-f5f8-466e-aff9-25556b57fe6d",
+                    "major": 3,
+                    "minor": 3
+                },
+                "media": {
+                    "image": [],
+                    "video": [{
+                        "path": "videos/MOEB_POINT_3_-_Small.mov",
+                        "language": "EN",
+                        "caption": "None"
+                    }],
+                    "audio": []
+                },
+                "storyPoint": [{
+                    "storylineID": 0
+                }]
+            },
+            {
+                "id": "0011",
+                "title": [{
+                    "language": "EN",
+                    "title": "Point of Interest 5"
+                }],
+                "description": [{
+                    "language": "EN",
+                    "description": "This is the description for Point of Interest 5"
+                }],
+                "x": 500,
+                "y": 100,
+                "floorID": "1",
+                "iBeacon": {
+                    "uuid": "b9407f30-f5f8-466e-aff9-25556b57fe6d",
+                    "major": 9377,
+                    "minor": 54177
+                },
+                "media": {
+                    "image": [],
+                    "video": [{
+                        "path": "videos/MOEB_POINT_1_-_Small.mov",
+                        "language": "EN",
+                        "caption": "None"
+                    }],
+                    "audio": [{
+                        "path": "audio/MOEB_POINT_4_-_Small.mp3",
+                        "language": "EN",
+                        "caption": "None"
+                    }]
+                },
+                "storyPoint": [{
+                    "storylineID": 0
+                }]
             }
           ],
           "pot": [

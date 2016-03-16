@@ -1,5 +1,4 @@
 var poiIB;
-var data; // JSON.txt data will be stored here by C#
 // Temporary, to be fixed later
 var audioFileName  = "";
 
@@ -12,7 +11,7 @@ $('document').ready(function () {
     });
 
     // Debugging: For opening the POI information box without an iBeacon
-	//iBeaconDiscovered(9377, 54177);
+	iBeaconDiscovered(9377, 54177);
 });
 
 function iBeaconDiscovered(major, minor) {
