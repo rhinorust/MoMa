@@ -62,8 +62,9 @@ function displayStoryline() {
     }).setView([0, 0], mapMaxZoom);
     //map bounds
     var mapBounds = new L.LatLngBounds(
-      map.unproject([0, 3072], mapMaxZoom),
-      map.unproject([6144, 0], mapMaxZoom));
+        map.unproject([0, 6144], mapMaxZoom),
+        map.unproject([3072, 0], mapMaxZoom));
+
     //add bounds to map
     map.fitBounds(mapBounds);
     //Add controls (radio buttons) to map in order to switch between floors
