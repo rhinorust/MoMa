@@ -150,11 +150,11 @@ var DATA = {
                 "description": [
                   {
                       "language": "English",
-                      "description": "First artifact of the museum"
+                      "description": "Second artifact of the museum"
                   },
                   {
                       "language": "French",
-                      "description": "Premier artéfact du musée"
+                      "description": "Second artéfact du musée"
                   }
                 ],
                 "x": "16",
@@ -248,11 +248,11 @@ var DATA = {
                 "description": [
                   {
                       "language": "English",
-                      "description": "First artifact of the museum"
+                      "description": "Third artifact of the museum"
                   },
                   {
                       "language": "French",
-                      "description": "Premier artéfact du musée"
+                      "description": "Troisième artéfact du musée"
                   }
                 ],
                 "x": "16",
@@ -346,11 +346,11 @@ var DATA = {
                 "description": [
                   {
                       "language": "English",
-                      "description": "First artifact of the museum"
+                      "description": "Fourth artifact of the museum"
                   },
                   {
                       "language": "French",
-                      "description": "Premier artéfact du musée"
+                      "description": "Quatrième artéfact du musée"
                   }
                 ],
                 "x": "47",
@@ -444,11 +444,11 @@ var DATA = {
                 "description": [
                   {
                       "language": "English",
-                      "description": "First artifact of the museum"
+                      "description": "Fifth artifact of the museum"
                   },
                   {
                       "language": "French",
-                      "description": "Premier artéfact du musée"
+                      "description": "Cinquième artéfact du musée"
                   }
                 ],
                 "x": "56",
@@ -542,11 +542,11 @@ var DATA = {
                 "description": [
                   {
                       "language": "English",
-                      "description": "First artifact of the museum"
+                      "description": "Sixth artifact of the museum"
                   },
                   {
                       "language": "French",
-                      "description": "Premier artéfact du musée"
+                      "description": "Sixième artéfact du musée"
                   }
                 ],
                 "x": "54",
@@ -640,11 +640,11 @@ var DATA = {
                 "description": [
                   {
                       "language": "English",
-                      "description": "First artifact of the museum"
+                      "description": "Seventh artifact of the museum"
                   },
                   {
                       "language": "French",
-                      "description": "Premier artéfact du musée"
+                      "description": "Septième artéfact du musée"
                   }
                 ],
                 "x": "63",

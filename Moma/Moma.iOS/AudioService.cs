@@ -8,29 +8,35 @@ using Moma;
 using System.Collections.Generic;
 
 [assembly: Dependency(typeof(AudioService))]
+
 namespace App1.iOS
 {
     public class AudioService : IAudio
     {
-        Dictionary<string, AVAudioPlayer> mediaPlayers;
+        private Dictionary<string, AVAudioPlayer> mediaPlayers;
 
-        public AudioService() {
+        public AudioService()
+        {
             mediaPlayers = new Dictionary<string, AVAudioPlayer>();
         }
 
         // Plays the given fileName. Example:
         // playAudioFile("MOEB POINT 4 - Small.mp3") will play Droid/Assets/Content/audio/MOEB POINT 4 - Small.mp3
-        public void PlayAudioFile(string fileName) {
+        public void PlayAudioFile(string fileName)
+        {
             // If this mediaPlayer has been created before, just replay it
-            if (mediaPlayers.ContainsKey(fileName)) {
+            if (mediaPlayers.ContainsKey(fileName))
+            {
                 AVAudioPlayer player;
                 mediaPlayers.TryGetValue(fileName, out player);
                 player.Stop();
                 player.CurrentTime = 0;
                 player.Play();
-            else {
+            }
+            else
+            {
                 string sFilePath = NSBundle.MainBundle.PathForResource(Path.GetFileNameWithoutExtension(fileName),
-                                                                       Path.GetExtension(fileName));
+                    Path.GetExtension(fileName));
                 var url = NSUrl.FromString(sFilePath);
 
                 AVAudioPlayer player = AVAudioPlayer.FromUrl(url);
@@ -44,8 +50,13 @@ namespace App1.iOS
 
         // Stops the given fileName (if it is playing). Example:
         // stopAudioFile("MOEB POINT 4 - Small.mp3") will stop Droid/Assets/Content/audio/MOEB POINT 4 - Small.mp3
-        public void StopAudioFile(string fileName) {
-            if (mediaPlayers.ContainsKey(fileName)) {
+        public
+        void StopAudioFile
+        (string
+        fileName)
+        {
+            if (mediaPlayers.ContainsKey(fileName))
+            {
                 AVAudioPlayer player;
                 mediaPlayers.TryGetValue(fileName, out player);
                 player.Stop();
@@ -54,16 +65,22 @@ namespace App1.iOS
         }
 
         // Will stop all audio playing
-        public void StopAllAudio() {
-            foreach (KeyValuePair<string, AVAudioPlayer> entry in mediaPlayers) {
+        public
+            void StopAllAudio
+            ()
+        {
+            foreach (KeyValuePair<string, AVAudioPlayer> entry in mediaPlayers)
+            {
                 entry.Value.Stop();
                 entry.Value.CurrentTime = 0;
             }
         }
 
-        public void PlayOrStopAudioFile(string fileName) {
+        public void PlayOrStopAudioFile(string fileName)
+        {
             // Not implemented
         }
     }
 }
+
 

@@ -189,15 +189,6 @@ namespace Moma {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open museum directions in web browser..
-        /// </summary>
-        internal static string OpenInBrowser {
-            get {
-                return ResourceManager.GetString("OpenInBrowser", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Popup.
         /// </summary>
         internal static string Popup {
