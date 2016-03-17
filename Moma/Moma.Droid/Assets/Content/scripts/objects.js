@@ -1,4 +1,8 @@
-﻿//Class Diagram Objects
+﻿//language variable
+//english = 0
+var lang = 0;
+
+//Class Diagram Objects
 
 function POI(id, x, y, floorID, title, description, iBeacon, video, image, audio) {
     this.x = x;
@@ -153,7 +157,7 @@ function Map() {
         var arrayPOI = DATA.node[0].poi;
         for (i = 0; i < arrayPOI.length; i++) {
             var p = arrayPOI[i];
-            var poi = new POI(p.id, p.x, p.y, p.floorID, p.title[0].title, p.description[0].description, p.iBeacon, p.media.video, p.media.image, p.media.audio);
+            var poi = new POI(p.id, p.x, p.y, p.floorID, p.title[lang].title, p.description[0].description, p.iBeacon, p.media.video, p.media.image, p.media.audio);
             floors[p.floorID - 1].POI[poi.id+""] = poi;
             floors[p.floorID - 1].markersById[poi.id + ""] = L.marker([poi.y, poi.x], { icon: markerIconPOIBlue }).bindPopup(poi.description);
             floors[p.floorID - 1].markers.push(floors[p.floorID - 1].markersById[poi.id + ""]);
@@ -204,7 +208,7 @@ function StorylineMap() {
         for (i = 0; i < arrayStoryline.length; i++) {
             var s = arrayStoryline[i];
             if (storylineSelectedID == s.id) {
-                storyline = new Storyline(s.id, s.title[0].title, s.description[0].description, s.path, s.thumbnail, s.walkingTimeInMinutes, s.floorsCovered);
+                storyline = new Storyline(s.id, s.title[lang].title, s.description[0].description, s.path, s.thumbnail, s.walkingTimeInMinutes, s.floorsCovered);
             }
         }
         return storyline;

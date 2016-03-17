@@ -138,7 +138,7 @@ function focusOnNode(node) {
                 } else {
                     $(radio).prop("checked", true).trigger("click");
                     map.panTo(new L.LatLng(node.y, node.x));
-                    map.setZoom(4);
+                    map.setZoom(3);
                 }
                 //openMarkerPopup(markerId);
                 return;
