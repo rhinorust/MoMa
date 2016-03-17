@@ -1,5 +1,6 @@
 ﻿//POI ids: 0---
 //POT ids: 1---
+//Edges: floor transition: floor:0, distance:0
 
 var DATA = {
     "floorPlan": [
@@ -725,14 +726,18 @@ var DATA = {
             },
             {
                 "id": "0007",
-                "title": [{
-                    "language": "EN",
-                    "title": "Point of Interest 1"
-                }],
-                "description": [{
-                    "language": "EN",
-                    "description": "This is the description for Point of Interest 1"
-                }],
+                "title": [
+                  {
+                      "language": "EN",
+                      "title": "Point of Interest 1"
+                  }
+                ],
+                "description": [
+                  {
+                      "language": "EN",
+                      "description": "This is the description for Point of Interest 1"
+                  }
+                ],
                 "x": 100,
                 "y": 100,
                 "floorID": "1",
@@ -743,27 +748,35 @@ var DATA = {
                 },
                 "media": {
                     "image": [],
-                    "video": [{
-                        "path": "videos/MOEB_Introduction_-_Small.mov",
-                        "language": "EN",
-                        "caption": "None"
-                    }],
+                    "video": [
+                      {
+                          "path": "videos/MOEB_Introduction_-_Small.mov",
+                          "language": "EN",
+                          "caption": "None"
+                      }
+                    ],
                     "audio": []
                 },
-                "storyPoint": [{
-                    "storylineID": 0
-                }]
+                "storyPoint": [
+                  {
+                      "storylineID": 0
+                  }
+                ]
             },
             {
                 "id": "0008",
-                "title": [{
-                    "language": "EN",
-                    "title": "Point of Interest 2"
-                }],
-                "description": [{
-                    "language": "EN",
-                    "description": "This is the description for Point of Interest 2"
-                }],
+                "title": [
+                  {
+                      "language": "EN",
+                      "title": "Point of Interest 2"
+                  }
+                ],
+                "description": [
+                  {
+                      "language": "EN",
+                      "description": "This is the description for Point of Interest 2"
+                  }
+                ],
                 "x": 200,
                 "y": 100,
                 "floorID": "1",
@@ -774,27 +787,35 @@ var DATA = {
                 },
                 "media": {
                     "image": [],
-                    "video": [{
-                        "path": "videos/MOEB_POINT_1_-_Small.mov",
-                        "language": "EN",
-                        "caption": "None"
-                    }],
+                    "video": [
+                      {
+                          "path": "videos/MOEB_POINT_1_-_Small.mov",
+                          "language": "EN",
+                          "caption": "None"
+                      }
+                    ],
                     "audio": []
                 },
-                "storyPoint": [{
-                    "storylineID": 0
-                }]
+                "storyPoint": [
+                  {
+                      "storylineID": 0
+                  }
+                ]
             },
             {
                 "id": "0009",
-                "title": [{
-                    "language": "EN",
-                    "title": "Point of Interest 3"
-                }],
-                "description": [{
-                    "language": "EN",
-                    "description": "This is the description for Point of Interest 3"
-                }],
+                "title": [
+                  {
+                      "language": "EN",
+                      "title": "Point of Interest 3"
+                  }
+                ],
+                "description": [
+                  {
+                      "language": "EN",
+                      "description": "This is the description for Point of Interest 3"
+                  }
+                ],
                 "x": 300,
                 "y": 100,
                 "floorID": "1",
@@ -805,27 +826,35 @@ var DATA = {
                 },
                 "media": {
                     "image": [],
-                    "video": [{
-                        "path": "videos/MOEB_POINT_2_-_Small.mov",
-                        "language": "EN",
-                        "caption": "None"
-                    }],
+                    "video": [
+                      {
+                          "path": "videos/MOEB_POINT_2_-_Small.mov",
+                          "language": "EN",
+                          "caption": "None"
+                      }
+                    ],
                     "audio": []
                 },
-                "storyPoint": [{
-                    "storylineID": 0
-                }]
+                "storyPoint": [
+                  {
+                      "storylineID": 0
+                  }
+                ]
             },
             {
                 "id": "0010",
-                "title": [{
-                    "language": "EN",
-                    "title": "Point of Interest 4"
-                }],
-                "description": [{
-                    "language": "EN",
-                    "description": "This is the description for Point of Interest 4"
-                }],
+                "title": [
+                  {
+                      "language": "EN",
+                      "title": "Point of Interest 4"
+                  }
+                ],
+                "description": [
+                  {
+                      "language": "EN",
+                      "description": "This is the description for Point of Interest 4"
+                  }
+                ],
                 "x": 400,
                 "y": 100,
                 "floorID": "1",
@@ -836,27 +865,35 @@ var DATA = {
                 },
                 "media": {
                     "image": [],
-                    "video": [{
-                        "path": "videos/MOEB_POINT_3_-_Small.mov",
-                        "language": "EN",
-                        "caption": "None"
-                    }],
+                    "video": [
+                      {
+                          "path": "videos/MOEB_POINT_3_-_Small.mov",
+                          "language": "EN",
+                          "caption": "None"
+                      }
+                    ],
                     "audio": []
                 },
-                "storyPoint": [{
-                    "storylineID": 0
-                }]
+                "storyPoint": [
+                  {
+                      "storylineID": 0
+                  }
+                ]
             },
             {
                 "id": "0011",
-                "title": [{
-                    "language": "EN",
-                    "title": "Point of Interest 5"
-                }],
-                "description": [{
-                    "language": "EN",
-                    "description": "This is the description for Point of Interest 5"
-                }],
+                "title": [
+                  {
+                      "language": "EN",
+                      "title": "Point of Interest 5"
+                  }
+                ],
+                "description": [
+                  {
+                      "language": "EN",
+                      "description": "This is the description for Point of Interest 5"
+                  }
+                ],
                 "x": 500,
                 "y": 100,
                 "floorID": "1",
@@ -867,27 +904,33 @@ var DATA = {
                 },
                 "media": {
                     "image": [],
-                    "video": [{
-                        "path": "videos/MOEB_POINT_1_-_Small.mov",
-                        "language": "EN",
-                        "caption": "None"
-                    }],
-                    "audio": [{
-                        "path": "audio/MOEB_POINT_4_-_Small.mp3",
-                        "language": "EN",
-                        "caption": "None"
-                    }]
+                    "video": [
+                      {
+                          "path": "videos/MOEB_POINT_1_-_Small.mov",
+                          "language": "EN",
+                          "caption": "None"
+                      }
+                    ],
+                    "audio": [
+                      {
+                          "path": "audio/MOEB_POINT_4_-_Small.mp3",
+                          "language": "EN",
+                          "caption": "None"
+                      }
+                    ]
                 },
-                "storyPoint": [{
-                    "storylineID": 0
-                }]
+                "storyPoint": [
+                  {
+                      "storylineID": 0
+                  }
+                ]
             }
           ],
           "pot": [
             {
                 "id": "1000",
                 "label": {
-                    "language": "English",
+                    "language": "EN",
                     "label": "corner"
                 },
                 "x": "11",
@@ -897,8 +940,8 @@ var DATA = {
             {
                 "id": "1001",
                 "label": {
-                    "language": "English",
-                    "label": "corner"
+                    "language": "EN",
+                    "label": "stair"
                 },
                 "x": "11",
                 "y": "-84",
@@ -907,8 +950,8 @@ var DATA = {
             {
                 "id": "1002",
                 "label": {
-                    "language": "English",
-                    "label": "corner"
+                    "language": "EN",
+                    "label": "stair"
                 },
                 "x": "11",
                 "y": "-84",
@@ -917,7 +960,7 @@ var DATA = {
             {
                 "id": "1003",
                 "label": {
-                    "language": "English",
+                    "language": "EN",
                     "label": "corner"
                 },
                 "x": "50",
@@ -927,7 +970,7 @@ var DATA = {
             {
                 "id": "1004",
                 "label": {
-                    "language": "English",
+                    "language": "EN",
                     "label": "corner"
                 },
                 "x": "57",
@@ -937,7 +980,7 @@ var DATA = {
             {
                 "id": "1005",
                 "label": {
-                    "language": "English",
+                    "language": "EN",
                     "label": "corner"
                 },
                 "x": "54",
@@ -947,7 +990,7 @@ var DATA = {
             {
                 "id": "1006",
                 "label": {
-                    "language": "English",
+                    "language": "EN",
                     "label": "corner"
                 },
                 "x": "55",
@@ -957,7 +1000,7 @@ var DATA = {
             {
                 "id": "1007",
                 "label": {
-                    "language": "English",
+                    "language": "EN",
                     "label": "corner"
                 },
                 "x": "57",
@@ -967,17 +1010,7 @@ var DATA = {
             {
                 "id": "1008",
                 "label": {
-                    "language": "English",
-                    "label": "corner"
-                },
-                "x": "62",
-                "y": "-28",
-                "floorID": 2
-            },
-            {
-                "id": "1009",
-                "label": {
-                    "language": "English",
+                    "language": "EN",
                     "label": "corner"
                 },
                 "x": "62",
@@ -989,10 +1022,94 @@ var DATA = {
     ],
     "edge": [
       {
-          "startNode": "<node>",
-          "endNode": "<node>",
-          "floorNumber": "<floor ID>",
-          "distance": "<distance>"
+          "startNode": "0000",
+          "endNode": "1000",
+          "floorNumber": 1,
+          "distance": 5
+      },
+      {
+          "startNode": "1000",
+          "endNode": "1001",
+          "floorNumber": 1,
+          "distance": 2
+      },
+      {
+          "startNode": "1001",
+          "endNode": "1002",
+          "floorNumber": 0,
+          "distance": 0
+      },
+      {
+          "startNode": "1002",
+          "endNode": "0001",
+          "floorNumber": 2,
+          "distance": 5
+      },
+      {
+          "startNode": "0001",
+          "endNode": "0002",
+          "floorNumber": 2,
+          "distance": 20
+      },
+      {
+          "startNode": "0002",
+          "endNode": "0003",
+          "floorNumber": 2,
+          "distance": 15
+      },
+      {
+          "startNode": "0003",
+          "endNode": "1003",
+          "floorNumber": 2,
+          "distance": 20
+      },
+      {
+          "startNode": "1003",
+          "endNode": "0004",
+          "floorNumber": 2,
+          "distance": 5
+      },
+      {
+          "startNode": "0004",
+          "endNode": "1004",
+          "floorNumber": 2,
+          "distance": 5
+      },
+      {
+          "startNode": "1004",
+          "endNode": "1005",
+          "floorNumber": 2,
+          "distance": 3
+      },
+      {
+          "startNode": "1005",
+          "endNode": "1006",
+          "floorNumber": 2,
+          "distance": 10
+      },
+      {
+          "startNode": "1006",
+          "endNode": "0005",
+          "floorNumber": 2,
+          "distance": 3
+      },
+      {
+          "startNode": "0005",
+          "endNode": "1007",
+          "floorNumber": 2,
+          "distance": 20
+      },
+      {
+          "startNode": "1007",
+          "endNode": "1008",
+          "floorNumber": 2,
+          "distance": 3
+      },
+      {
+          "startNode": "1008",
+          "endNode": "0006",
+          "floorNumber": 2,
+          "distance": 5
       }
     ],
     "storyline": [
@@ -1000,13 +1117,13 @@ var DATA = {
           "id": "S1",
           "title": [
             {
-                "language": "English",
+                "language": "EN",
                 "title": "Storyline 1"
             }
           ],
           "description": [
             {
-                "language": "English",
+                "language": "EN",
                 "description": "Storyline 1 description"
             }
           ],
@@ -1026,24 +1143,23 @@ var DATA = {
             "0005",
             "1007",
             "1008",
-            "1009",
             "0006"
           ],
           "thumbnail": "<path of thumbnail>",
-          "walkingTimeInMinutes": "<minutes>",
+          "walkingTimeInMinutes": "30",
           "floorsCovered": "2"
       },
       {
           "id": "S2",
           "title": [
             {
-                "language": "English",
+                "language": "EN",
                 "title": "Storyline 2"
             }
           ],
           "description": [
             {
-                "language": "English",
+                "language": "EN",
                 "description": "Storyline 2 description"
             }
           ],
