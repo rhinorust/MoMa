@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Net.Mime;
 using NUnit.Framework;
 using Xamarin.UITest;
 using Xamarin.UITest.Queries;
@@ -37,14 +38,20 @@ namespace UITest
             SetLanguageSetting();
         }
 
-        private void SetLanguageSetting()
+        [Test]
+        public void StartWithFreeTour()
         {
-            app.Screenshot("Language");
-            app.WaitForElement(c => c.Button("English"));
-            app.Tap(c => c.Marked("English"));
-            app.Tap(c => c.Marked("OK"));
-            app.WaitForElement(c => c.Button("Free Tour"));
-            app.Screenshot("LanguageSet");
+            SetLanguageSetting();
+            app.Tap(c=>c.Button("Free Tour"));
+            app.WaitForElement(c => c.Class("android.widget.TextView").Text("Free Tour"));
+        }
+
+        [Test]
+        public void StartWithStorylines()
+        {
+            SetLanguageSetting();
+            app.Tap(c => c.Button("Storylines"));
+            app.WaitForElement(c => c.Class("android.widget.TextView").Text("Storylines"));
         }
 
         [Test]
@@ -61,24 +68,120 @@ namespace UITest
             GetView("Settings");
         }
 
-        private void GetView(string viewName)
-        {
-            app.SwipeLeftToRight(0.99, 1500, true);
-            app.Tap(c=>c.Marked(viewName));
-            if (viewName.Equals("Museum Directions", StringComparison.OrdinalIgnoreCase))
-            {
-                app.Tap(c=>c.Marked("No"));
-            }
-            app.WaitForElement(c => c.Class("android.widget.TextView").Text(viewName));
-        }
-
         [Test]
         public void ChangeSetting()
         {
             SetLanguageSetting();
             app.Tap(c => c.Marked("Free Tour"));
             GetView("Settings");
-            app.Repl();
+            ChangeUserSettings();
+            CheckSettingsPersistence();
+        }
+
+        [Test]
+        public void TestChangeAndResetSettings()
+        {
+            SetLanguageSetting();
+            app.Tap(c => c.Marked("Free Tour"));
+            GetView("Settings");
+            //Set switches to false
+            ChangeUserSettings();
+            CheckSettingsPersistence();
+
+            //Reset default settings
+            app.Tap(c=>c.Button("Default"));
+            app.Tap(c => c.Marked("OK"));
+
+            //Assert all switches were set back to true
+            bool[] switchesStates = app.Query(c => c.Switch().Invoke("isChecked").Value<bool>());
+            Assert.IsTrue(switchesStates.All(s => s));
+            //Change View
+            GetView("Storylines");
+            //Return to settings
+            GetView("Settings");
+            switchesStates = app.Query(c => c.Switch().Invoke("isChecked").Value<bool>());
+            Assert.IsTrue(switchesStates.All(s => s));
+        }
+
+        [Test]
+        public void TestResetApplication()
+        {
+            SetLanguageSetting();
+            app.Tap(c => c.Marked("Free Tour"));
+            GetView("Settings");
+            //Set switches to false
+            ChangeUserSettings();
+            CheckSettingsPersistence();
+
+            //Reset the application
+            app.Tap(c=>c.Text("Reset"));
+            app.Tap(c=>c.Marked("Yes"));
+
+            //Assert language initializer page is shown
+            app.WaitForElement(c => c.Button("English"));
+        }
+
+        [Test]
+        public void TestNoResetApplication()
+        {
+            SetLanguageSetting();
+            app.Tap(c => c.Marked("Free Tour"));
+            GetView("Settings");
+            //Set switches to false
+            ChangeUserSettings();
+            CheckSettingsPersistence();
+            app.Tap(c => c.Text("Reset"));
+            app.Tap(c=>c.Marked("No"));
+            //Assert no changes were made in the page
+            bool[] switchesStates = app.Query(c => c.Switch().Invoke("isChecked").Value<bool>());
+            Assert.IsTrue(switchesStates.All(s => !s));
+        }
+
+        private void ChangeUserSettings()
+        {
+            var switchesCount = app.Query(c => c.Switch()).Length;
+
+            //Set all the switches to false
+            for (var i = 0; i < switchesCount; i++)
+            {
+                app.Tap(c => c.Class("android.widget.Switch").Index(i));
+            }
+
+            //Save the settings
+            app.Tap(c => c.Button("Save"));
+            app.Tap(c => c.Marked("OK"));
+        }
+
+        private void CheckSettingsPersistence()
+        {
+            //Change View
+            GetView("Storylines");
+            //Return to settings
+            GetView("Settings");
+
+            //Assert all switches were set to false
+            bool[] switchesStates = app.Query(c => c.Switch().Invoke("isChecked").Value<bool>());
+            Assert.IsTrue(switchesStates.All(s => !s));
+        }
+
+        private void SetLanguageSetting()
+        {
+            app.Screenshot("Language");
+            app.WaitForElement(c => c.Button("English"));
+            app.Tap(c => c.Marked("English"));
+            app.Tap(c => c.Marked("OK"));
+            app.WaitForElement(c => c.Button("Free Tour"));
+            app.Screenshot("LanguageSet");
+        }
+        private void GetView(string viewName)
+        {
+            app.SwipeLeftToRight(0.99, 1500, true);
+            app.Tap(c => c.Marked(viewName));
+            if (viewName.Equals("Museum Directions", StringComparison.OrdinalIgnoreCase))
+            {
+                app.Tap(c => c.Marked("No"));
+            }
+            app.WaitForElement(c => c.Class("android.widget.TextView").Text(viewName));
         }
 
         //We need to figure out how to restart the app to check if language is persisted. 
