@@ -10,16 +10,16 @@ function qrCodeTextBtn() {
 }
 
 function showQRText(text) {
-    var title = poiIB.find('#title h1');
-    var content = poiIB.find('#content');
+    if (text != "") {
+        var title = poiIB.find('#title h1');
+        var content = poiIB.find('#content');
 
-    var boxTitle = "QR CODE";
-    var boxContent = text;
+        var boxTitle = "QR CODE";
+        var boxContent = text;
 
-    title.text(boxTitle);
-    content.empty();
-    content.append(boxContent);
-
-    poiIB.css('visibility', 'visible');
-
+        title.text(boxTitle);
+        content.empty();
+        content.append(boxContent);
+        poiIB.css('visibility', 'visible');
+    }
 }
