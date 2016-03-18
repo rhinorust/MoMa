@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moma.Droid", "Moma\Moma.Droid\Moma.Droid.csproj", "{D8481E72-1B13-4AE8-A161-804932D301FC}"
 EndProject
@@ -109,7 +109,6 @@ Global
 		{7AC1E2B4-375F-4B0A-BD13-298FAF60789F}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{7AC1E2B4-375F-4B0A-BD13-298FAF60789F}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{7AC1E2B4-375F-4B0A-BD13-298FAF60789F}.Debug|Mixed Platforms.ActiveCfg = Debug|iPhone
-		{7AC1E2B4-375F-4B0A-BD13-298FAF60789F}.Debug|Mixed Platforms.Build.0 = Debug|iPhone
 		{7AC1E2B4-375F-4B0A-BD13-298FAF60789F}.Debug|x86.ActiveCfg = Debug|iPhone
 		{7AC1E2B4-375F-4B0A-BD13-298FAF60789F}.Release|Any CPU.ActiveCfg = Release|iPhone
 		{7AC1E2B4-375F-4B0A-BD13-298FAF60789F}.Release|ARM.ActiveCfg = Release|iPhone
