@@ -30,7 +30,13 @@ namespace Moma.Droid
             var scanResults = await scanner.Scan(options);
 
             //js.CallJs("showQRText(" + scanResults.Text + ");");
-
+            if (scanResults != null) {
+                return scanResults.Text;
+            }
+            else
+            {
+                return "";
+            }
             return scanResults.Text;
         }
     }
