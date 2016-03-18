@@ -15,6 +15,7 @@ function POI(id, x, y, floorID, title, description, iBeacon, video, image, audio
     this.video = video;
     this.image = image;
     this.audio = audio;
+    this.edges = [];
 
     this.getQRInfo = function (QRID) {
         return"string";
@@ -49,6 +50,14 @@ function POT(id, x, y, floorID, label) {
     this.id = id;
     this.floorID = floorID;
     this.label = label;
+    this.edges = [];
+}
+
+function Edge(startNode, endNode, distance, floorID) {
+    this.startNode = startNode;
+    this.endNode = endNode;
+    this.distance = distance;
+    this.floorID = floorID;
 }
 
 function IBeacon(uuid, major, minor) {
@@ -179,6 +188,24 @@ function Map() {
         return floors;
     };
 
+    this.parseEdges = function () {
+        var arrayEdges = DATA.edge;
+        for (i = 0; i < arrayEdges.length; i++) {
+            var e = arrayEdges[i];
+            var edge = new Edge(e.startNode, e.endNode, e.distance, e.floorID);
+            if (edge.startNode.charAt(0) == "1") {
+                ListPOT[edge.startNode].edges.push(edge);
+            } else if (edge.startNode.charAt(0) == "0") {
+                ListPOI[edge.startNode].edges.push(edge);
+            }
+            if (edge.endNode.charAt(0) == "1") {
+                ListPOT[edge.endNode].edges.push(edge);
+            } else if (edge.endNode.charAt(0) == "0") {
+                ListPOI[edge.endNode].edges.push(edge);
+            }
+        }
+    }
+
     this.createFloorTileLayers = function (floors, minZoom, maxZoom) {
         for (i = 0; i < floors.length; i++) {
             floors[i].createTileLayer(minZoom,maxZoom);
@@ -266,3 +293,96 @@ function StorylineMap() {
     };
 
 }
+
+function Dijkstra(listPOI, listPOT) {
+    this.vertices = [];
+    var infinity = 1 / 0;
+    this.addVertices = function () {
+        //combine ids of pot & poi (for each)
+        for (var key in listPOI) {
+            this.vertices[key] = listPOI[key].edges;
+        }
+        for (var key in listPOT) {
+            this.vertices[key] = listPOT[key].edges;
+        }
+    }
+
+    this.shortestPath = function (start, finish) {
+        this.addVertices();
+        var nodes = new PriorityQueue(),
+            distances = [],
+            previous = [],
+            path = [],
+            smallest, vertex, neighbor, newDistance;
+
+        //initialize vertex distances
+        for (vertex in this.vertices) {
+            if (vertex == start) {
+                distances[vertex] = 0;
+                nodes.enqueue(0, vertex);
+            } else {
+                distances[vertex] = infinity;
+                nodes.enqueue(infinity, vertex);
+            }
+            previous[vertex] = null;
+        }
+        //dijkstras
+        while (!nodes.isEmpty()) {
+            smallest = nodes.dequeue();
+
+            //make path nodes in increasing order of size(shortest path)
+            if (smallest == finish) {
+                path;
+                while (previous[smallest]) {
+                    path.push(smallest);
+                    smallest = previous[smallest];
+                }
+                break;
+            }
+            //continue
+            if (!smallest || distances[smallest] == infinity) {
+                continue;
+            }
+            for (i = 0; i < this.vertices[smallest].length; i++) {
+                edge = this.vertices[smallest][i];
+                if (edge.startNode != smallest) {
+                    neighbor = edge.startNode;
+                } else {
+                    neighbor = edge.endNode;
+                }
+
+                newDistance = distances[smallest] + edge.distance;
+
+                if (newDistance < distances[neighbor]) {
+                    distances[neighbor] = newDistance;
+                    previous[neighbor] = smallest;
+
+                    nodes.enqueue(newDistance, neighbor);
+                }
+
+            }
+        }
+        return path.concat([start]).reverse();
+    }
+    
+    var PriorityQueue = function () {
+        this._nodes = [];
+
+        this.enqueue = function (priority, key) {
+            this._nodes.push({key: key, priority: priority });
+            this.sort();
+        }
+        this.dequeue = function () {
+            return this._nodes.shift().key;
+        }
+        this.sort = function () {
+            this._nodes.sort(function (a, b) {
+                return a.priority - b.priority;
+            });
+        }
+        this.isEmpty = function () {
+            return !this._nodes.length;
+        }
+    }
+}
+

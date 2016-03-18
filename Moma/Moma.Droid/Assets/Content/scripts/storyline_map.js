@@ -15,7 +15,7 @@ var mapMaxZoom = 5;
 var floors = [new Floor(1), new Floor(2), new Floor(3), new Floor(4), new Floor(5)];
 var storyline;
 var storylineSelectedID;
-
+var lastVisitedNodeID = localStorage.getItem("lastVisitedNodeID");
 
 function displayStoryline() {
     //Test - next POI button
@@ -29,10 +29,28 @@ function displayStoryline() {
     floors = MapObj.parsePOI(floors);
     floors = MapObj.parsePOT(floors);
     floors = MapObj.createFloorTileLayers(floors, mapMinZoom, mapMaxZoom);
+    MapObj.parseEdges();
 
     //browser testing (default storyline)
     if (storylineSelectedID == null) {
         storylineSelectedID= "S1";
+    }
+    if (lastVisitedNodeID != null) {
+        //From list of POI & POT & edges, find shortest path
+        //Get all nodes(markers) from shortest path and add them to floor object
+        //create polyline, groupLayers adn add that to map
+        //display title: get to the starting point
+        //once first beacon is scanned, clear markers and call functions below to create the new storyline
+        var dijkstras = new Dijkstra(ListPOI, ListPOT);
+        //start = last visited node, finish = storyline start node 
+        start = "0003";
+        finish = "0000"
+        var shortestPathID = dijkstras.shortestPath(start, finish);
+
+        //remove this
+        for (i = 0; i < shortestPathID.length; i++) {
+            alert(shortestPathID[i]);
+        }
     }
     storyline = StorylineMapObj.parseStoryline(storylineSelectedID);
     storyline = StorylineMapObj.parseNodePath(storyline);
