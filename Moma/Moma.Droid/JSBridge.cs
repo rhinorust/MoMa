@@ -61,8 +61,9 @@ namespace Moma.Droid
         public async void ScanQRCode()
         {
          var result =  await DependencyService.Get<IQrCodeScanningService>().ScanAsync();
-            js.CallJs("showQRText('" + result.Replace("\n", " ") + "');");
-            //jllJs("showQRText('fuck you bitch');");
+            if (result != ""){
+                js.CallJs("showQRText('" + result.Replace("\n", " ") + "');");
+            }            //jllJs("showQRText('fuck you bitch');");
             //
             // js.CallJs("showQRText('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh\nbyeeeeeeehttps://www.the-qrcode-generator.com/sd.knfhsk;dfnkdslfn,sd cds\nsflkcndsl,c dlk ckdsnfdksnmckdsncsancks.\ncz xmc,ashkclsanc.aldsajf;sancms,c zxkcsc\n c c cc c c  c c c c c c c c c c c\nbakakdcbsnc nxz\ncz xmcbskcbaskdbn,snchsaikcbkc\nzxc jxkchalsicsalclasx\nzc ,jxbshcbz,cbnas,kfhcbxcjzxbc mzx\nz c,sbccbsjbcjsbcjsbc\nzacnxmx cmxzncshdskancmx,cnzxc,\n,mcxz ccksnc\naskj\nalskncl.knsklsanck');");
 
