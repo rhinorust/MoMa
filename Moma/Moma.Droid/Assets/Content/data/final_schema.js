@@ -889,8 +889,9 @@ var DATA = {
             }
           ],
           "path": [
-            "<poiID or potID>",
-            "<poiID or potID>"
+            "0000",
+            "1000",
+            "1001"
           ],
           "thumbnail": "<path of thumbnail>",
           "walkingTimeInMinutes": "<minutes>",
