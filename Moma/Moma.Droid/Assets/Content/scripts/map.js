@@ -14,6 +14,8 @@ var mapMaxZoom = 5;
 var floors = [new Floor(1), new Floor(2), new Floor(3), new Floor(4), new Floor(5)];
 
 function init() {
+
+
 //create map
     map = L.map('map', {
         maxZoom: mapMaxZoom,
@@ -28,8 +30,8 @@ function init() {
 
     //map bounds
     var mapBounds = new L.LatLngBounds(
-        map.unproject([0, 6144], mapMaxZoom),
-        map.unproject([3072, 0], mapMaxZoom));
+        map.unproject([0, 6144], map.getMaxZoom()),
+        map.unproject([3072, 0], map.getMaxZoom()));
     //add bounds to map
     map.fitBounds(mapBounds, { reset: true });
     //map.setMaxBounds(map.getBounds());
@@ -49,7 +51,7 @@ function init() {
     
     //map.removeLayer(floor1LayerGroup);
     //control.removeLayer(floor1Array);
-   // L.rectangle(mapBounds, { color: "#ff7800", weight: 1 }).addTo(map);
+   //L.rectangle(mapBounds, { color: "#ff7800", weight: 1 }).addTo(map);
 
     // zoom the map to the polyline
     //map.fitBounds(polyline.getBounds());

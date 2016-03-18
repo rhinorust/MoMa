@@ -19,10 +19,17 @@ namespace Moma.Droid
 {
     class QrCodeScanningService: IQrCodeScanningService
     {
+        IJavascriptInterface js;
         public async Task<string> ScanAsync()
         {
             var scanner = new MobileBarcodeScanner();
-            var scanResults = await scanner.Scan();
+            var options = new ZXing.Mobile.MobileBarcodeScanningOptions();
+            options.PossibleFormats = new List<ZXing.BarcodeFormat>() {
+             ZXing.BarcodeFormat.QR_CODE
+            };
+            var scanResults = await scanner.Scan(options);
+
+            //js.CallJs("showQRText(" + scanResults.Text + ");");
 
             return scanResults.Text;
         }

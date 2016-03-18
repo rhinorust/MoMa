@@ -370,16 +370,16 @@
     <AndroidAsset Include="Assets\Content\styles\poiInformationBox.css" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\videos\MOEB_POINT_1_-_Small.mov" />
+    <AndroidAsset Include="Assets\Content\styles\videos\MOEB_POINT_1_-_Small.mov" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\videos\MOEB_POINT_2_-_Small.mov" />
+    <AndroidAsset Include="Assets\Content\styles\videos\MOEB_POINT_2_-_Small.mov" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\videos\MOEB_POINT_3_-_Small.mov" />
+    <AndroidAsset Include="Assets\Content\styles\videos\MOEB_POINT_3_-_Small.mov" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\videos\MOEB_Introduction_-_Small.mov" />
+    <AndroidAsset Include="Assets\Content\styles\videos\MOEB_Introduction_-_Small.mov" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\audio\MOEB_POINT_4_-_Small.mp3" />
@@ -12564,6 +12564,9 @@
       <Visible>False</Visible>
       <Version>2.0.4.17</Version>
     </XamarinComponentReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\images\View_QR_code.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.0.1.6505\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.0.1.6505\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

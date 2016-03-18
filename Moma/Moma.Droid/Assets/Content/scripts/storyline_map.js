@@ -20,6 +20,7 @@ var storylineSelectedID;
 function displayStoryline() {
     //Test - next POI button
     $("#nextBtn").hide();
+    $("#scanBtn").hide();
 
     
     $('#currentStoryline').text("Current storyline: " + localStorage.getItem("currentStoryline"));
@@ -86,6 +87,7 @@ function startStoryline() {
     $("#backBtn").hide();
     $("#previewStoryline").hide();
     $("#nextBtn").show();
+    $("#scanBtn").show();
     focusOnStart();
 }
 
