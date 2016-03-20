@@ -42,7 +42,7 @@ namespace UITest
         public void StartWithFreeTour()
         {
             SetLanguageSetting();
-            app.Tap(c=>c.Button("Free Tour"));
+            app.Tap(c => c.Button("Free Tour"));
             app.WaitForElement(c => c.Class("android.widget.TextView").Text("Free Tour"));
         }
 
@@ -89,7 +89,7 @@ namespace UITest
             CheckSettingsPersistence();
 
             //Reset default settings
-            app.Tap(c=>c.Button("Default"));
+            app.Tap(c => c.Button("Default"));
             app.Tap(c => c.Marked("OK"));
 
             //Assert all switches were set back to true
@@ -114,8 +114,8 @@ namespace UITest
             CheckSettingsPersistence();
 
             //Reset the application
-            app.Tap(c=>c.Text("Reset"));
-            app.Tap(c=>c.Marked("Yes"));
+            app.Tap(c => c.Text("Reset"));
+            app.Tap(c => c.Marked("Yes"));
 
             //Assert language initializer page is shown
             app.WaitForElement(c => c.Button("English"));
@@ -131,7 +131,7 @@ namespace UITest
             ChangeUserSettings();
             CheckSettingsPersistence();
             app.Tap(c => c.Text("Reset"));
-            app.Tap(c=>c.Marked("No"));
+            app.Tap(c => c.Marked("No"));
             //Assert no changes were made in the page
             bool[] switchesStates = app.Query(c => c.Switch().Invoke("isChecked").Value<bool>());
             Assert.IsTrue(switchesStates.All(s => !s));
@@ -173,6 +173,7 @@ namespace UITest
             app.WaitForElement(c => c.Button("Free Tour"));
             app.Screenshot("LanguageSet");
         }
+
         private void GetView(string viewName)
         {
             app.SwipeLeftToRight(0.99, 1500, true);
@@ -193,6 +194,55 @@ namespace UITest
             app.WaitForElement(c => c.Button("Free Tour"));
         }*/
 
+        [Test]
+        public void StartStoryline()
+        {
+            SetLanguageSetting();
+            app.Tap(c => c.Button("Storylines"));
+            app.Tap(c => c.WebView().Css("#storylines"));
+            app.Tap(c => c.WebView().Css("#start"));
+        }
+
+        [Test]
+        public void PreviewStoryline()
+        {
+            SetLanguageSetting();
+            app.Tap(c => c.Button("Storylines"));
+            app.Tap(c => c.WebView().Css("#storylines"));
+            app.Tap(c => c.WebView().Css("#preview"));
+        }
+
+        [Test]
+        public void StartPreviewStoryline()
+        {
+            PreviewStoryline();
+            app.Tap(c => c.WebView().Css("#starBtn"));
+        }
+
+        [Test]
+        public void BackPreviewStoryline()
+        {
+            PreviewStoryline();
+            app.Tap(c => c.WebView().Css("#backBtn"));
+            app.WaitForElement(c => c.Class("android.widget.TextView").Text("Storylines"));
+        }
+
+        [Test]
+        public void WalkThroughStoryline()
+        {
+            StartStoryline();
+            app.Tap(c => c.WebView().Css("#nextBtn"));
+        }
+
+
+        [Test]
+        public void SearchPOI()
+        {
+            SetLanguageSetting();
+            app.Tap(c => c.Button("Free Tour"));
+            app.EnterText(c => c.WebView().Css("#SearchBarDiv"),"Artifact 1");
+            app.Tap(c => c.WebView().Css("#listViewUl"));
+        }
 
     }
 }
