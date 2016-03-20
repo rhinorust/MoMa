@@ -146,6 +146,13 @@ function Storyline(id, title, description, nodePath, thumbnailPath, walkingTimeI
     this.nodes = []; //associative array
 }
 
+function Navigation(nodePath, isNotAtStart) {
+    this.title = "Navigate to the start";
+    this.nodePath = nodePath;
+    this.nodes = [];
+    this.isNotAtStart = isNotAtStart;
+}
+
 //Map Object
 function Map() {
 

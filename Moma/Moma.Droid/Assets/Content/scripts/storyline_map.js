@@ -16,11 +16,14 @@ var floors = [new Floor(1), new Floor(2), new Floor(3), new Floor(4), new Floor(
 var storyline;
 var storylineSelectedID;
 var lastVisitedNodeID = localStorage.getItem("lastVisitedNodeID");
+var navigationPath = new Navigation([], false);
 
 function displayStoryline() {
     //Test - next POI button
     $("#nextBtn").hide();
-
+    if (storylineSelectedID == null) {
+        storylineSelectedID= "S1";
+    }
     
     $('#currentStoryline').text("Current storyline: " + localStorage.getItem("currentStoryline"));
     $('#previewStoryline').text("Previewing storyline: " + localStorage.getItem("currentStoryline"));
@@ -30,12 +33,12 @@ function displayStoryline() {
     floors = MapObj.parsePOT(floors);
     floors = MapObj.createFloorTileLayers(floors, mapMinZoom, mapMaxZoom);
     MapObj.parseEdges();
+    storyline = StorylineMapObj.parseStoryline(storylineSelectedID);
+    storyline = StorylineMapObj.parseNodePath(storyline);
 
     //browser testing (default storyline)
-    if (storylineSelectedID == null) {
-        storylineSelectedID= "S1";
-    }
-    if (lastVisitedNodeID != null) {
+
+    if (lastVisitedNodeID != null && lastVisitedNodeID != storyline.nodePath[0]) {
         //From list of POI & POT & edges, find shortest path
         //Get all nodes(markers) from shortest path and add them to floor object
         //create polyline, groupLayers adn add that to map
@@ -43,20 +46,20 @@ function displayStoryline() {
         //once first beacon is scanned, clear markers and call functions below to create the new storyline
         var dijkstras = new Dijkstra(ListPOI, ListPOT);
         //start = last visited node, finish = storyline start node 
-        start = "0003";
-        finish = "0000"
+        start = lastVisitedNodeID;
+        finish = storyline.nodePath[0];
         var shortestPathID = dijkstras.shortestPath(start, finish);
+        navigationPath = new Navigation(shortestPathID, true);
+        navigationPath = StorylineMapObj.parseNodePath(navigationPath);
+        floors = StorylineMapObj.createPolyline(floors, navigationPath);
+        floors = MapObj.groupLayers(floors);
+        floors = StorylineMapObj.addPolylines(floors);
 
-        //remove this
-        for (i = 0; i < shortestPathID.length; i++) {
-            alert(shortestPathID[i]);
-        }
+    } else {
+        floors = StorylineMapObj.createPolyline(floors, storyline);
+        floors = MapObj.groupLayers(floors);
+        floors = StorylineMapObj.addPolylines(floors);
     }
-    storyline = StorylineMapObj.parseStoryline(storylineSelectedID);
-    storyline = StorylineMapObj.parseNodePath(storyline);
-    floors = StorylineMapObj.createPolyline(floors, storyline);
-    floors = MapObj.groupLayers(floors);
-    floors = StorylineMapObj.addPolylines(floors);
 
     //floor radio buttons
     var baseMaps = {
@@ -108,8 +111,13 @@ function startStoryline() {
 }
 
 function focusOnStart() {
-    firstNodeID = storyline.nodePath[0];
-    firstNode = storyline.nodes[firstNodeID];
+    if (navigationPath.isNotAtStart) {
+        firstNodeID = navigationPath.nodePath[0];
+        firstNode = navigationPath.nodes[firstNodeID];
+    } else {
+        firstNodeID = storyline.nodePath[0];
+        firstNode = storyline.nodes[firstNodeID];
+    }
     focusOnNode(firstNode);
 }
 
@@ -118,7 +126,7 @@ function focusOnStart() {
 //When beacon in proximity function is fired, should call this method
 //Check whether beacon uuid == next Node.iBeacon.uuid
 //if true -> fire popup
-function currentPOI() {
+function currentPOI(storyline) {
 
     var node;
     for (i = 0; i < storyline.nodePath.length; i++) {
@@ -166,6 +174,31 @@ function focusOnNode(node) {
 
 //testing
 function simulateBeacon() {
-    iBeaconDiscovered(9377, 54177);
-    currentPOI();
+    if (navigationPath.isNotAtStart) {
+        currentPOI(navigationPath);
+        if (localStorage.getItem("lastVisitedNodeID") == storyline.nodePath[0]) {
+            navigationPath.isNotAtStart = false;
+            localStorage.removeItem("lastVisitedNodeID");
+            /*
+            var node = navigationPath.nodes[navigationPath.nodePath[navigationPath.nodePath.length - 1]];
+            var marker = floors[node.floorID - 1].markersById[node.id];
+            floors[node.floorID - 1].groupLayer.removeLayer(marker);
+            map.removeLayer(marker);
+            map.removeLayer(floors[node.floorID - 1].polyline);
+            for (i = 0; i < floors.length; i++) {
+                floors[i].groupLayer.removeLayer(floors[i].polyline);
+                floors[i].markers = [];
+                floors[i].polylineLatLng = [];
+                floors[i].polyline = null;
+            }*/
+            
+            //Readd all markers
+            floors = StorylineMapObj.createPolyline(floors, storyline);
+            floors = StorylineMapObj.addPolylines(floors);
+            focusOnStart();
+        }
+    } else {
+        iBeaconDiscovered(9377, 54177);
+        currentPOI(storyline);
+    }
 }
