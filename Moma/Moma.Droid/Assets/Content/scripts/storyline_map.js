@@ -54,7 +54,7 @@ function displayStoryline() {
         floors = StorylineMapObj.createPolyline(floors, navigationPath);
         floors = MapObj.groupLayers(floors);
         floors = StorylineMapObj.addPolylines(floors);
-
+        $('#currentStoryline').text("Navigate to the start");
     } else {
         floors = StorylineMapObj.createPolyline(floors, storyline);
         floors = MapObj.groupLayers(floors);
@@ -193,7 +193,14 @@ function simulateBeacon() {
             }*/
             
             //Readd all markers
+
             floors = StorylineMapObj.createPolyline(floors, storyline);
+            
+            for (i = 0; i < floors.length; i++) {
+                for (j = 0; j < floors[i].markers.length; j++) {
+                    floors[i].groupLayer.addLayer(floors[i].markers[j]);
+                }
+            }
             floors = StorylineMapObj.addPolylines(floors);
             focusOnStart();
         }
