@@ -244,14 +244,6 @@ namespace UITest
             app.Tap(c => c.WebView().Css("#listViewUl"));
         }
 
-        [Test]
-        public void QRScannerOpens()
-        {
-            SetLanguageSetting();
-            app.Tap(c => c.Button("Free Tour"));
-            app.Tap(c => c.WebView().Css("#scanBtn"));
-        }
-
     }
 }
 
