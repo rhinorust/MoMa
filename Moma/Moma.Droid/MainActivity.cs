@@ -3,7 +3,6 @@ using Android.Content.PM;
 using Android.OS;
 using App1.Droid;
 using Moma;
-using ZXing.Mobile;
 
 namespace Moma.Droid
 {
@@ -16,7 +15,6 @@ namespace Moma.Droid
 
             var setting = new AndroidUserSettings();
             string language = setting.GetUserSetting("language");
-            MobileBarcodeScanner.Initialize(Application);
             var cultureHandler = new CultureHandler();
             cultureHandler.SetCurrentCulture(language);
             global::Xamarin.Forms.Forms.Init(this, bundle);

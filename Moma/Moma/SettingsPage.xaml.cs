@@ -46,7 +46,6 @@ namespace Moma
             if (result)
             {
                 ResetDefaultSettings(string.Empty);
-                ResetWebViewStorage();
                 var appHandler = DependencyService.Get<IAppHandler>();
                 appHandler.Abort();
             }
@@ -137,13 +136,15 @@ namespace Moma
             }
         }
 
-        private void ResetWebViewStorage()
+        private async void ResetAppButton_OnClicked(object sender, EventArgs e)
         {
-            var webView = new HybridWebView
+            bool result = await DisplayAlert(AppLanguageResource.ResetTitle, AppLanguageResource.ResetMsg, AppLanguageResource.Yes, AppLanguageResource.No);
+            if (result)
             {
-                Uri = "clear_storage.html"
-            };
-            Content = webView;
+                ResetDefaultSettings(string.Empty);
+                var appHandler = DependencyService.Get<IAppHandler>();
+                appHandler.Abort();
+            }
         }
     }
 }
