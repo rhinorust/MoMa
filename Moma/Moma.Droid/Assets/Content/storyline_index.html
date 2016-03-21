@@ -14,18 +14,20 @@
     <script src="scripts/objects.js"></script>
     <script src="scripts/storyline_map.js"></script>
     <script src="scripts/poiInformationBox.js"></script>
+    <script src="scripts/qrCodeScanning.js"></script>
 
 </head>
 <body onload="displayStoryline()">
     <p id="previewStoryline"></p>
     <div id="map">
     </div>
-    <div>
+    <div style="text-align:center;">
+        <button id="scanBtn" onclick="qrCodeScanBtn()">Scan</button>
         <button id="backBtn" onclick="endPreview()"><</button>
     </div>
     <div style="text-align:center;">
         <button id="starBtn" onclick="startStoryline()">Start</button>
-        <button id="nextBtn" onclick="simulateBeacon()" style="margin-left:40px">Simulate Beacon</button>
+        <button id="nextBtn" onclick="simulateBeacon()" style="margin-left:115px">Simulate Beacon</button>
     </div>
     <div id="POI_InformationBox">
         <div id="body">
