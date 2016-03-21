@@ -44,27 +44,3 @@
 #backBtn:active {
     opacity:0.7;
 }
-
-#scanBtn{
-	position:fixed;
-    bottom:10px;
-	width:90px;
-    height:90px;
-    margin-left:5%;
-    border-radius:8px;
-    outline:0;
-    border:0px;
-    padding:6px 9px 6px 9px;
-    background:url('../images/View_QR_code.png') center no-repeat;
-    color:#f2f2f2;
-    text-shadow: 2px 2px #00264d;
-    font-size:20pt;
-    box-shadow: 3px 3px 3px #888888;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
