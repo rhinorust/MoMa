@@ -86,10 +86,8 @@ function displayStoryline() {
         layers: floors[0].groupLayer
     });
     map.on("load", function () {
-        if (startNode.floorID != 1) {
-            map.addLayer(floors[startNode.floorID - 1].groupLayer);
-            map.removeLayer(floors[0].groupLayer);
-        }
+        map.addLayer(floors[startNode.floorID - 1].groupLayer);
+        map.removeLayer(floors[0].groupLayer);
         if (localStorage.getItem("startIsSelected") == "true") {
             localStorage.removeItem("startIsSelected");
             startStoryline();
@@ -121,7 +119,6 @@ function startStoryline() {
     $("#backBtn").hide();
     $("#previewStoryline").hide();
     $("#nextBtn").show();
-    $("#scanBtn").show();
     focusOnStart();
 }
 
