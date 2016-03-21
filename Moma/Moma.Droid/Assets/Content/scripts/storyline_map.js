@@ -17,6 +17,7 @@ var storyline;
 var storylineSelectedID;
 var lastVisitedNodeID = localStorage.getItem("lastVisitedNodeID");
 var navigationPath = new Navigation([], false);
+var startNode;
 
 function displayStoryline() {
     //Test - next POI button
@@ -54,11 +55,14 @@ function displayStoryline() {
         floors = StorylineMapObj.createPolyline(floors, navigationPath);
         floors = MapObj.groupLayers(floors);
         floors = StorylineMapObj.addPolylines(floors);
+
+        startNode = ListPOI[navigationPath.nodePath[0]];
         $('#currentStoryline').text("Navigate to the start");
     } else {
         floors = StorylineMapObj.createPolyline(floors, storyline);
         floors = MapObj.groupLayers(floors);
         floors = StorylineMapObj.addPolylines(floors);
+        startNode = ListPOI[storyline.nodePath[0]];
     }
 
     //floor radio buttons
@@ -80,7 +84,17 @@ function displayStoryline() {
         minZoom: mapMinZoom,
         crs: L.CRS.Simple,
         layers: floors[0].groupLayer
-    }).setView([0, 0], mapMaxZoom);
+    });
+    map.on("load", function () {
+        map.addLayer(floors[startNode.floorID - 1].groupLayer);
+        map.removeLayer(floors[0].groupLayer);
+        if (localStorage.getItem("startIsSelected") == "true") {
+            localStorage.removeItem("startIsSelected");
+            startStoryline();
+        }
+        
+    });
+    map.setView([0, 0], mapMaxZoom);
     //map bounds
     var mapBounds = new L.LatLngBounds(
         map.unproject([0, 6144], mapMaxZoom),
@@ -90,11 +104,9 @@ function displayStoryline() {
     map.fitBounds(mapBounds);
     //Add controls (radio buttons) to map in order to switch between floors
     L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map).setPosition('bottomright');
+    
 
-    if (localStorage.getItem("startIsSelected") == "true") {
-        localStorage.removeItem("startIsSelected");
-        startStoryline();
-    }
+    
 }
 
 function endPreview() {
@@ -118,7 +130,7 @@ function focusOnStart() {
         firstNodeID = storyline.nodePath[0];
         firstNode = storyline.nodes[firstNodeID];
     }
-    focusOnNode(firstNode);
+    focusOnNode(firstNode, 3);
 }
 
 
@@ -127,13 +139,12 @@ function focusOnStart() {
 //Check whether beacon uuid == next Node.iBeacon.uuid
 //if true -> fire popup
 function currentPOI(storyline) {
-
     var node;
     for (i = 0; i < storyline.nodePath.length; i++) {
         //if isPOI
         node = storyline.nodes[storyline.nodePath[i]];
         if (storyline.nodePath[i].charAt(0) == "0" && localStorage.getItem("lastVisitedNodeID") != storyline.nodePath[i]) {
-            focusOnNode(node);
+            focusOnNode(node, 3);
             localStorage.setItem("lastVisitedNodeID", storyline.nodePath[i]);
             storyline.nodePath.splice(0, i);
             break;
@@ -155,16 +166,16 @@ function currentPOI(storyline) {
     map.addLayer(floors[node.floorID - 1].polyline);
 }
 
-function focusOnNode(node) {
+function focusOnNode(node, zoom) {
         var floors = $('input[name=leaflet-base-layers]:radio');
         jQuery.each(floors, function (index, radio) {
             if ($(radio).next()[0].innerHTML.trim() == node.floorID+"") {
                 if (radio.checked) {
-                    map.setView(new L.LatLng(node.y, node.x), 3, { animate: true });
+                    map.setView(new L.LatLng(node.y, node.x), zoom, { animate: true });
                 } else {
                     $(radio).prop("checked", true).trigger("click");
                     map.panTo(new L.LatLng(node.y, node.x));
-                    map.setZoom(3);
+                    map.setZoom(zoom);
                 }
                 //openMarkerPopup(markerId);
                 return;
@@ -205,7 +216,7 @@ function simulateBeacon() {
             focusOnStart();
         }
     } else {
-        iBeaconDiscovered(9377, 54177);
         currentPOI(storyline);
+        iBeaconDiscovered(9377, 54177);
     }
 }
