@@ -68,7 +68,7 @@ function iBeaconDiscovered(major, minor) {
 
 function videof(fileName) {
     return '<video controls="controls" src="'+fileName+'"></video>';
-}
+} 
 
 function imagef(fileName) {
     return '<img src="'+fileName+'">';
