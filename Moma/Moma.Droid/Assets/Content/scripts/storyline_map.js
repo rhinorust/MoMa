@@ -22,6 +22,10 @@ function displayStoryline() {
     $("#nextBtn").hide();
     $("#scanBtn").hide();
 
+
+    if (storylineSelectedID == null) {
+        storylineSelectedID= "S1";
+    }
     
     $('#currentStoryline').text("Current storyline: " + localStorage.getItem("currentStoryline"));
     $('#previewStoryline').text("Previewing storyline: " + localStorage.getItem("currentStoryline"));
