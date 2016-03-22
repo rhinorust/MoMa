@@ -22,6 +22,8 @@ var startNode;
 function displayStoryline() {
     //Test - next POI button
     $("#nextBtn").hide();
+    $("#scanBtn").hide();
+
     if (storylineSelectedID == null) {
         storylineSelectedID= "S1";
     }
