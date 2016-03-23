@@ -22,8 +22,10 @@ var startNode;
 function displayStoryline() {
     //Test - next POI button
     $("#nextBtn").hide();
+
     $("#scanBtn").hide();
 
+    //browser testing (default storyline)
     if (storylineSelectedID == null) {
         storylineSelectedID= "S1";
     }
@@ -39,16 +41,9 @@ function displayStoryline() {
     storyline = StorylineMapObj.parseStoryline(storylineSelectedID);
     storyline = StorylineMapObj.parseNodePath(storyline);
 
-    //browser testing (default storyline)
 
     if (lastVisitedNodeID != null && lastVisitedNodeID != storyline.nodePath[0]) {
-        //From list of POI & POT & edges, find shortest path
-        //Get all nodes(markers) from shortest path and add them to floor object
-        //create polyline, groupLayers adn add that to map
-        //display title: get to the starting point
-        //once first beacon is scanned, clear markers and call functions below to create the new storyline
         var dijkstras = new Dijkstra(ListPOI, ListPOT);
-        //start = last visited node, finish = storyline start node 
         start = lastVisitedNodeID;
         finish = storyline.nodePath[0];
         var shortestPathID = dijkstras.shortestPath(start, finish);
@@ -108,9 +103,6 @@ function displayStoryline() {
     map.fitBounds(mapBounds);
     //Add controls (radio buttons) to map in order to switch between floors
     L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map).setPosition('bottomright');
-    
-
-    
 }
 
 function endPreview() {
@@ -195,21 +187,7 @@ function simulateBeacon() {
         if (localStorage.getItem("lastVisitedNodeID") == storyline.nodePath[0]) {
             navigationPath.isNotAtStart = false;
             localStorage.removeItem("lastVisitedNodeID");
-            /*
-            var node = navigationPath.nodes[navigationPath.nodePath[navigationPath.nodePath.length - 1]];
-            var marker = floors[node.floorID - 1].markersById[node.id];
-            floors[node.floorID - 1].groupLayer.removeLayer(marker);
-            map.removeLayer(marker);
-            map.removeLayer(floors[node.floorID - 1].polyline);
-            for (i = 0; i < floors.length; i++) {
-                floors[i].groupLayer.removeLayer(floors[i].polyline);
-                floors[i].markers = [];
-                floors[i].polylineLatLng = [];
-                floors[i].polyline = null;
-            }*/
-            
             //Readd all markers
-
             floors = StorylineMapObj.createPolyline(floors, storyline);
             
             for (i = 0; i < floors.length; i++) {
