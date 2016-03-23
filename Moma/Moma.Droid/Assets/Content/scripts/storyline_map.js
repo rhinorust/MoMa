@@ -24,8 +24,6 @@ function displayStoryline() {
     $("#nextBtn").hide();
     $("#scanBtn").hide();
 
-    $("#scanBtn").hide();
-
     //browser testing (default storyline)
     if (storylineSelectedID == null) {
         storylineSelectedID= "S1";
