@@ -15,13 +15,21 @@ var mapMaxZoom = 5;
 var floors = [new Floor(1), new Floor(2), new Floor(3), new Floor(4), new Floor(5)];
 var storyline;
 var storylineSelectedID;
-
+var lastVisitedNodeID = localStorage.getItem("lastVisitedNodeID");
+var navigationPath = new Navigation([], false);
+var startNode;
 
 function displayStoryline() {
     //Test - next POI button
     $("#nextBtn").hide();
     $("#scanBtn").hide();
 
+    $("#scanBtn").hide();
+
+    //browser testing (default storyline)
+    if (storylineSelectedID == null) {
+        storylineSelectedID= "S1";
+    }
     
     $('#currentStoryline').text("Current storyline: " + localStorage.getItem("currentStoryline"));
     $('#previewStoryline').text("Previewing storyline: " + localStorage.getItem("currentStoryline"));
@@ -30,16 +38,30 @@ function displayStoryline() {
     floors = MapObj.parsePOI(floors);
     floors = MapObj.parsePOT(floors);
     floors = MapObj.createFloorTileLayers(floors, mapMinZoom, mapMaxZoom);
-
-    //browser testing (default storyline)
-    if (storylineSelectedID == null) {
-        storylineSelectedID= "S1";
-    }
+    MapObj.parseEdges();
     storyline = StorylineMapObj.parseStoryline(storylineSelectedID);
     storyline = StorylineMapObj.parseNodePath(storyline);
-    floors = StorylineMapObj.createPolyline(floors, storyline);
-    floors = MapObj.groupLayers(floors);
-    floors = StorylineMapObj.addPolylines(floors);
+
+
+    if (lastVisitedNodeID != null && lastVisitedNodeID != storyline.nodePath[0]) {
+        var dijkstras = new Dijkstra(ListPOI, ListPOT);
+        start = lastVisitedNodeID;
+        finish = storyline.nodePath[0];
+        var shortestPathID = dijkstras.shortestPath(start, finish);
+        navigationPath = new Navigation(shortestPathID, true);
+        navigationPath = StorylineMapObj.parseNodePath(navigationPath);
+        floors = StorylineMapObj.createPolyline(floors, navigationPath);
+        floors = MapObj.groupLayers(floors);
+        floors = StorylineMapObj.addPolylines(floors);
+
+        startNode = ListPOI[navigationPath.nodePath[0]];
+        $('#currentStoryline').text("Navigate to the start");
+    } else {
+        floors = StorylineMapObj.createPolyline(floors, storyline);
+        floors = MapObj.groupLayers(floors);
+        floors = StorylineMapObj.addPolylines(floors);
+        startNode = ListPOI[storyline.nodePath[0]];
+    }
 
     //floor radio buttons
     var baseMaps = {
@@ -60,7 +82,19 @@ function displayStoryline() {
         minZoom: mapMinZoom,
         crs: L.CRS.Simple,
         layers: floors[0].groupLayer
-    }).setView([0, 0], mapMaxZoom);
+    });
+    map.on("load", function () {
+        if (startNode.floorID != 1) {
+            map.addLayer(floors[startNode.floorID - 1].groupLayer);
+            map.removeLayer(floors[0].groupLayer);
+        }
+        if (localStorage.getItem("startIsSelected") == "true") {
+            localStorage.removeItem("startIsSelected");
+            startStoryline();
+        }
+        
+    });
+    map.setView([0, 0], mapMaxZoom);
     //map bounds
     var mapBounds = new L.LatLngBounds(
         map.unproject([0, 6144], mapMaxZoom),
@@ -70,11 +104,6 @@ function displayStoryline() {
     map.fitBounds(mapBounds);
     //Add controls (radio buttons) to map in order to switch between floors
     L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map).setPosition('bottomright');
-
-    if (localStorage.getItem("startIsSelected") == "true") {
-        localStorage.removeItem("startIsSelected");
-        startStoryline();
-    }
 }
 
 function endPreview() {
@@ -92,9 +121,14 @@ function startStoryline() {
 }
 
 function focusOnStart() {
-    firstNodeID = storyline.nodePath[0];
-    firstNode = storyline.nodes[firstNodeID];
-    focusOnNode(firstNode);
+    if (navigationPath.isNotAtStart) {
+        firstNodeID = navigationPath.nodePath[0];
+        firstNode = navigationPath.nodes[firstNodeID];
+    } else {
+        firstNodeID = storyline.nodePath[0];
+        firstNode = storyline.nodes[firstNodeID];
+    }
+    focusOnNode(firstNode, 3);
 }
 
 
@@ -102,14 +136,13 @@ function focusOnStart() {
 //When beacon in proximity function is fired, should call this method
 //Check whether beacon uuid == next Node.iBeacon.uuid
 //if true -> fire popup
-function currentPOI() {
-
+function currentPOI(storyline) {
     var node;
     for (i = 0; i < storyline.nodePath.length; i++) {
         //if isPOI
         node = storyline.nodes[storyline.nodePath[i]];
         if (storyline.nodePath[i].charAt(0) == "0" && localStorage.getItem("lastVisitedNodeID") != storyline.nodePath[i]) {
-            focusOnNode(node);
+            focusOnNode(node, 3);
             localStorage.setItem("lastVisitedNodeID", storyline.nodePath[i]);
             storyline.nodePath.splice(0, i);
             break;
@@ -131,16 +164,16 @@ function currentPOI() {
     map.addLayer(floors[node.floorID - 1].polyline);
 }
 
-function focusOnNode(node) {
+function focusOnNode(node, zoom) {
         var floors = $('input[name=leaflet-base-layers]:radio');
         jQuery.each(floors, function (index, radio) {
             if ($(radio).next()[0].innerHTML.trim() == node.floorID+"") {
                 if (radio.checked) {
-                    map.setView(new L.LatLng(node.y, node.x), 3, { animate: true });
+                    map.setView(new L.LatLng(node.y, node.x), zoom, { animate: true });
                 } else {
                     $(radio).prop("checked", true).trigger("click");
                     map.panTo(new L.LatLng(node.y, node.x));
-                    map.setZoom(4);
+                    map.setZoom(zoom);
                 }
                 //openMarkerPopup(markerId);
                 return;
@@ -150,6 +183,24 @@ function focusOnNode(node) {
 
 //testing
 function simulateBeacon() {
-    iBeaconDiscovered(9377, 54177);
-    currentPOI();
+    if (navigationPath.isNotAtStart) {
+        currentPOI(navigationPath);
+        if (localStorage.getItem("lastVisitedNodeID") == storyline.nodePath[0]) {
+            navigationPath.isNotAtStart = false;
+            localStorage.removeItem("lastVisitedNodeID");
+            //Readd all markers
+            floors = StorylineMapObj.createPolyline(floors, storyline);
+            
+            for (i = 0; i < floors.length; i++) {
+                for (j = 0; j < floors[i].markers.length; j++) {
+                    floors[i].groupLayer.addLayer(floors[i].markers[j]);
+                }
+            }
+            floors = StorylineMapObj.addPolylines(floors);
+            focusOnStart();
+        }
+    } else {
+        currentPOI(storyline);
+        iBeaconDiscovered(9377, 54177);
+    }
 }
