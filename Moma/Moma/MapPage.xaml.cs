@@ -14,13 +14,20 @@ namespace Moma
         {
             InitializeComponent();
             Title = AppLanguageResource.Map;
-            ToolbarItems.Add(new ToolbarItem("Search", "mag.png",CallJS));
+            ToolbarItems.Add(new ToolbarItem("Messages", "messages.png", showHideMessages));
+            ToolbarItems.Add(new ToolbarItem("Search", "mag.png", showHideSearchBar));
         }
 
-        public void CallJS()
+        public void showHideSearchBar()
         {
             var jsInterface = DependencyService.Get<IJavascriptInterface>();
             jsInterface.ShowHideSearchBar();
+        }
+
+        public void showHideMessages()
+        {
+            var jsInterface = DependencyService.Get<IJavascriptInterface>();
+            jsInterface.CallJs("showHideMessages();");
         }
     }
 }

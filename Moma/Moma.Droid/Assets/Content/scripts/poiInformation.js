@@ -3,9 +3,10 @@ var poiIB;
 var audioFileName  = "";
 
 $('document').ready(function () {
-    poiIB = $('#POI_InformationBox');
+    poiIB = $('#POI_Information');
 
-    $('#close').click(function () {
+    var closeButton = poiIB.find('#close');
+    closeButton.click(function () {
         poiIB.css('visibility', 'hidden');
         stopAudioAndVideo()
     });
