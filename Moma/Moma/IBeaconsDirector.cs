@@ -78,6 +78,9 @@ namespace Moma
             Device.BeginInvokeOnMainThread(async () => {
                 IEnumerable<IBeacon> ibeacons = await fetchNewIBeacons();
 
+                string ibeaconsJs = iBeaconsToJavascript(newIBeacons);
+                map.CallJs("addIBeaconsToMessages(" + ibeaconsJs + ");");
+
                 foreach (IBeacon ibeacon in ibeacons) {
                     // Adding the new iBeacon to the dictionary for further reference
                     iBeacons.Add(ibeacon, true);
@@ -96,14 +99,12 @@ namespace Moma
             IEnumerable<IBeacon> foundIBeacons = await EstimoteManager.Instance.FetchNearbyBeacons(beaconRegion, new TimeSpan(0, 0, 1));
             List<IBeacon> newIBeacons = new List<IBeacon>();
 
+            
             string beacons = "[";
             foreach (IBeacon foundBeacon in foundIBeacons) {
                 beacons += "{minor: " + foundBeacon.Minor + ", major: " + foundBeacon.Major + ", prox: '" + foundBeacon.Proximity + "'},";
             }
             beacons = beacons.Substring(0, beacons.Length-1) + "]";
-
-            // Temporary, for museum tour with Anja
-            map.CallJs("setIBeacons(" + beacons + ");");
 
             foreach (IBeacon foundIBeacon in foundIBeacons) {
                 if (!iBeacons.ContainsKey(foundIBeacon)) {
