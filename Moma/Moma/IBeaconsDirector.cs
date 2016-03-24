@@ -79,7 +79,7 @@ namespace Moma
                 IEnumerable<IBeacon> ibeacons = await fetchNewIBeacons();
 
                 string ibeaconsJs = iBeaconsToJavascript(newIBeacons);
-                map.CallJs("addIBeaconsToMessages(" + ibeaconsJs + ");");
+                map.CallJs("addIBeaconsToMessages("+ibeaconsJs+");");
 
                 foreach (IBeacon ibeacon in ibeacons) {
                     // Adding the new iBeacon to the dictionary for further reference
