@@ -1,45 +1,59 @@
 ﻿var messageBox;
+var boxTitle;
+var boxIBeacons;
+var boxQRCodes;
 
 $('document').ready(function () {
-    messageBox = $('#messages');
+    messageBox  = $('#messages');
+    boxTitle    = messageBox.find('#title h1');
+    boxIBeacons = messageBox.find('#iBeacons ul');
+    boxQRCodes = messageBox.find('#QRCodes ul');
 
-    var closeButton = messageBox.find('#close');
-    closeButton.click(function () {
+    boxTitle.text("Messages");
+
+    messageBox.find('#close').click(function () {
         messageBox.css('visibility', 'hidden');
     });
 
     // Debugging
-    //setIBeacons([{ minor: 44, major: 66, prox: 'Near' }, { minor: 88, major: 99, prox: 'Far' }]);
+    //addToMessages({ type: 'iBeacon', title: 'iBeacon test', minor: 40, major: 50 });
+    //addToMessages({ type: 'QRCode', title: 'QRCode title', data: 'QRCode data' });
     //showHideMessages();
 });
 
-function setIBeacons(arrayOfIBeacons) {
-    var title = messageBox.find('#title h1');
-    var iBeacons = messageBox.find('#iBeacons');
-    var qrCodes = messageBox.find('#QRCodes');
+// Examples for poi:
+// poi = {type: "QRCode", title: "POI title", data: "Data included in QRCode"}
+// or
+// poi = {type: "iBeacon", title: "POI title", minor: minor, major: major, 
+// 
+// post: The given poi is appended as a link to the messages list
+function addToMessages(poi) {
+    // What jsFunction will be fired when the link is clicked
+    var jsFunction = "";
+    if (poi.type === "iBeacon")
+        jsFunction = "showIBeacon(" + poi.minor + "," + poi.major + ");";
+    if (poi.type === "QRCode")
+        jsFunction = "showQRCode('" + poi.title + "','" + poi.data + "');";
 
-    title.text("Messages");
+    // What box we are appending to
+    var appendBox = (poi.type === "iBeacon") ? boxIBeacons : boxQRCodes;
 
-    // Populate iBeacons
-    var appendix = '<ul>';
-    for (var i = 0; i < arrayOfIBeacons.length; i++) {
-        appendix += '<li><p>iBeacon ' + (i + 1);
-        appendix += ', minor: ' + arrayOfIBeacons[i].minor;
-        appendix += ', major: ' + arrayOfIBeacons[i].major;
-        appendix += ', proximity: ' + arrayOfIBeacons[i].prox + '</p></li>';
-    }
-    appendix += '</ul>';
-    iBeacons.empty();
-    iBeacons.append(appendix);
+    // If there's no items in the appendBox yet, clear the hardcoded string that's sitting there
+    if (appendBox.text().indexOf("<li>") === -1) appendBox.empty();
 
-    // Populate QR Codes
-    appendix = '<h2>QRCodes</h2>';
-    /*for (var i = 0; i < 2; i++) {
-        appendix += '<li><p>QRCode '+(i+1)+'</p></li>';
-    }
-    appendix += '</ul>';*/
-    qrCodes.empty();
-    qrCodes.append(appendix);
+    var appendix = '<li>';
+    // Add what happens when this link is clicked
+    appendix += '<a onclick="' + jsFunction;
+    // also, when clicked, close the messageBox
+    appendix += 'messageBox.css(\'visibility\', \'hidden\');';
+    // Prevent link's default behaviour
+    appendix += '" href="javascript:void(0);">';
+    // Link's title
+    appendix += poi.title + '</a>';
+    appendix += '</li>';
+
+    // Append the link to the correct box
+    appendBox.append(appendix);
 }
 
 // Called by C# when user clicks the messages icon in the toolbar

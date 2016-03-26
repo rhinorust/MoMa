@@ -88,3 +88,13 @@ video {
     margin: 0;
     padding: 0;
 }
+
+.informationBox li {
+    padding-bottom: 10px;
+}
+
+.informationBox ul {
+    list-style: none;
+    margin: 10px 0 0 0;
+    padding: 0 10px 0 10px;
+}

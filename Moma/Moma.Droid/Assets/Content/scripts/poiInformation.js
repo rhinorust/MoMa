@@ -1,26 +1,29 @@
 var poiIB;
+var boxTitle;
+var boxContent;
+
 // Temporary, to be fixed later
 var audioFileName  = "";
 
 $('document').ready(function () {
-    poiIB = $('#POI_Information');
+    poiIB      = $('#POI_Information');
+    boxTitle   = poiIB.find('#title h1');
+    boxContent = poiIB.find('#content');
 
     var closeButton = poiIB.find('#close');
     closeButton.click(function () {
         poiIB.css('visibility', 'hidden');
-        stopAudioAndVideo()
+        //stopAudioAndVideo()
     });
 
     // Debugging: For opening the POI information box without an iBeacon
-	//iBeaconDiscovered(9377, 54177);
+    //showIBeacon(54177, 9377);
 });
 
-function iBeaconDiscovered(major, minor) {
-    var title = poiIB.find('#title h1');
-    var content = poiIB.find('#content');
-
-    var boxTitle = "";
-    var boxContent = "";
+// Displays the POI information box populated with this iBeacon's information
+function showIBeacon(minor, major) {
+    var title = "";
+    var content = "";
 
     var pois = DATA.node[0].poi;
     // Find the POI with the given major and minor and
@@ -39,32 +42,40 @@ function iBeaconDiscovered(major, minor) {
             // If there are images
             if (images.length > 0) {
                 for (var j = 0; j < images.length; j++)
-                    boxContent += imagef(images[j].path);
+                    content += imagef(images[j].path);
             }   
             // If there are videos
             if (videos.length > 0) {
                 // Only add one for now
-                boxContent += videof(videos[0].path);
+                content += videof(videos[0].path);
             }
             // If there is audio
             if (audio.length > 0) {
                 // Only add one for now
                 audioFileName = audio[0].path;
-                boxContent += audiof(audio[0].path);
+                content += audiof(audio[0].path);
             }
 
-            boxContent += textf(poiDescription);
-            boxTitle = poiTitle;
+            content += textf(poiDescription);
+            title = poiTitle;
 
-            title.text(boxTitle);
-            content.empty();
-            content.append(boxContent);
+            boxTitle.text(title);
+            boxContent.empty();
+            boxContent.append(content);
 
             poiIB.css('visibility', 'visible');
 
             break;
         }
     }
+}
+
+function showQRCode(title, data) {
+    poiIB.find('#title h1').text(title);
+    boxContent.empty();
+    boxContent.append(data);
+
+    poiIB.css('visibility', 'visible');
 }
 
 function videof(fileName) {

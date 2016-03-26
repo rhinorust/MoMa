@@ -23,11 +23,11 @@ namespace Moma
         // The interval between checks for iBeacons
         const int CHECK_FOR_NEW_IBEACONS_INTERVAL = 2; // in seconds
         // Or else iBeacons found during app start-up don't get reported to the user
-        const int IBEACON_TIMER_START_DELAY = 10;
+        const int IBEACON_TIMER_START_DELAY = 30;
         Timer iBeaconsCheckTimer;
 
-        // "Immediate", "Near", "Far" or "Unknown" only possible
-        const String iBeaconsProximityRequirement = "Immediate";
+        // Temporary
+        private int iBeaconIndex = 0;
 
         public IBeaconsDirector()
         {
@@ -76,40 +76,53 @@ namespace Moma
 
         public void doActionForNewIBeacons(object args) {
             Device.BeginInvokeOnMainThread(async () => {
-                IEnumerable<IBeacon> ibeacons = await fetchNewIBeacons();
+                IEnumerable<IBeacon> newIBeacons = await fetchNewIBeacons();
 
-                string ibeaconsJs = iBeaconsToJavascript(newIBeacons);
-                map.CallJs("addIBeaconsToMessages("+ibeaconsJs+");");
-
-                foreach (IBeacon ibeacon in ibeacons) {
+                foreach (IBeacon iBeacon in newIBeacons) {
                     // Adding the new iBeacon to the dictionary for further reference
-                    iBeacons.Add(ibeacon, true);
+
                     // Accessable properties of iBeacons:
                     // -> ibeacon.Minor,
                     // -> ibeacon.Major,
                     // -> ibeacon.Proximity.ToString() returns: "Unknown", "Far", "Near" or "Immediate",
                     // -> ibeacon.Uuid
-                    if (ibeacon.Proximity.ToString().Equals(iBeaconsProximityRequirement))
-                        map.CallJs("iBeaconDiscovered(" + ibeacon.Major + "," + ibeacon.Minor + ");");
+                    
+                    string iBeaconJS = iBeaconToJavascript(iBeacon);
+                    map.CallJs("addToMessages(" + iBeaconJS + ");");
+                    map.CallJs("messageBox.css('visibility', 'hidden');");
+                    map.CallJs("showIBeacon(" + iBeacon.Minor + "," + iBeacon.Major + ");");
                 }
             });
+        }
+
+        // Converts a C# iBeacon instance to javascript instance,
+        // adds type: 'iBeacon' for the showPOI javascript function
+        // and title: 'iBeacon #' temporarily
+        private string iBeaconToJavascript(IBeacon iBeacon) {
+            string iBeaconJS = "{";
+            iBeaconJS += "minor: " + iBeacon.Minor + ",";
+            iBeaconJS += "major: " + iBeacon.Major + ",";
+            iBeaconJS += "proximity: '" + iBeacon.Proximity + "',";
+            iBeaconJS += "type: 'iBeacon'" + ",";
+            iBeaconJS += "title: 'iBeacon " + iBeaconIndex + "'";
+            iBeaconJS += "}";
+            iBeaconIndex++;
+
+            return iBeaconJS;
         }
 
         async Task<IEnumerable<IBeacon>> fetchNewIBeacons() {
             IEnumerable<IBeacon> foundIBeacons = await EstimoteManager.Instance.FetchNearbyBeacons(beaconRegion, new TimeSpan(0, 0, 1));
             List<IBeacon> newIBeacons = new List<IBeacon>();
 
-            
-            string beacons = "[";
-            foreach (IBeacon foundBeacon in foundIBeacons) {
-                beacons += "{minor: " + foundBeacon.Minor + ", major: " + foundBeacon.Major + ", prox: '" + foundBeacon.Proximity + "'},";
-            }
-            beacons = beacons.Substring(0, beacons.Length-1) + "]";
-
             foreach (IBeacon foundIBeacon in foundIBeacons) {
-                if (!iBeacons.ContainsKey(foundIBeacon)) {
-                    System.Diagnostics.Debug.WriteLine("=\n= newBeacon =\n=");
-                    newIBeacons.Add(foundIBeacon);
+                string prox = foundIBeacon.Proximity.ToString();
+                if (prox.Equals("Near") || prox.Equals("Immediate")) {
+                    if (!iBeacons.ContainsKey(foundIBeacon)) {
+                        System.Diagnostics.Debug.WriteLine("=\n= newBeacon =\n="); // Debugging
+                        newIBeacons.Add(foundIBeacon); // Add to the return list
+                        iBeacons.Add(foundIBeacon, true); // Add to dictionary
+                    }
                 }
             }
             return newIBeacons;
