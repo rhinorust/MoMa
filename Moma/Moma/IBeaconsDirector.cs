@@ -104,7 +104,7 @@ namespace Moma
             iBeaconJS += "major: " + iBeacon.Major + ",";
             iBeaconJS += "proximity: '" + iBeacon.Proximity + "',";
             iBeaconJS += "type: 'iBeacon'" + ",";
-            iBeaconJS += "title: 'iBeacon " + iBeaconIndex + "'";
+            iBeaconJS += "title: 'Point of interest " + iBeaconIndex + "'";
             iBeaconJS += "}";
             iBeaconIndex++;
 

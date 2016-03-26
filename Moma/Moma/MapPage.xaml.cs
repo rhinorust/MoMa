@@ -14,8 +14,10 @@ namespace Moma
         {
             InitializeComponent();
             Title = AppLanguageResource.Map;
-            ToolbarItems.Add(new ToolbarItem("Messages", "messages.png", showHideMessages));
+            ToolbarItem bla = new ToolbarItem("Messages", "messages.png", showHideMessages);
+            ToolbarItems.Add(bla);
             ToolbarItems.Add(new ToolbarItem("Search", "mag.png", showHideSearchBar));
+            ToolbarItems.Remove(bla);
         }
 
         public void showHideSearchBar()
