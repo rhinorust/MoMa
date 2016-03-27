@@ -1,22 +1,22 @@
 ﻿var messageBox;
-var boxTitle;
-var boxIBeacons;
-var boxQRCodes;
+var messageBoxTitle;
+var messageBoxIBeacons;
+var messageBoxQRCodes;
 
 $('document').ready(function () {
-    messageBox  = $('#messages');
-    boxTitle    = messageBox.find('#title h1');
-    boxIBeacons = messageBox.find('#iBeacons ul');
-    boxQRCodes = messageBox.find('#QRCodes ul');
+    messageBox         = $('#messages');
+    messageBoxTitle    = messageBox.find('#title h1');
+    messageBoxIBeacons = messageBox.find('#iBeacons ul');
+    messageBoxQRCodes  = messageBox.find('#QRCodes ul');
 
-    boxTitle.text("Messages");
+    messageBoxTitle.text("Messages");
 
     messageBox.find('#close').click(function () {
         messageBox.css('visibility', 'hidden');
     });
 
     // Debugging
-    //addToMessages({ type: 'iBeacon', title: 'iBeacon test', minor: 40, major: 50 });
+    //addToMessages({ type: 'iBeacon', title: 'Point of Interest 5', minor: 54177, major: 9377 });
     //addToMessages({ type: 'QRCode', title: 'QRCode title', data: 'QRCode data' });
     //showHideMessages();
 });
@@ -24,7 +24,7 @@ $('document').ready(function () {
 // Examples for poi:
 // poi = {type: "QRCode", title: "POI title", data: "Data included in QRCode"}
 // or
-// poi = {type: "iBeacon", title: "POI title", minor: minor, major: major, 
+// poi = {type: "iBeacon", title: "POI title", minor: minor, major: major} 
 // 
 // post: The given poi is appended as a link to the messages list
 function addToMessages(poi) {
@@ -36,12 +36,12 @@ function addToMessages(poi) {
         jsFunction = "showQRCode('" + poi.title + "','" + poi.data + "');";
 
     // What box we are appending to
-    var appendBox = (poi.type === "iBeacon") ? boxIBeacons : boxQRCodes;
+    var appendBox = (poi.type === "iBeacon") ? messageBoxIBeacons : messageBoxQRCodes;
 
     // If there's no items in the appendBox yet, clear the hardcoded string that's sitting there
     if (appendBox.text().indexOf("<li>") === -1) appendBox.empty();
 
-    var appendix = '<li>';
+    var appendix = '<li><p class="newMessage">NEW</p>';
     // Add what happens when this link is clicked
     appendix += '<a onclick="' + jsFunction;
     // also, when clicked, close the messageBox
@@ -51,6 +51,9 @@ function addToMessages(poi) {
     // Link's title
     appendix += poi.title + '</a>';
     appendix += '</li>';
+
+    // Updating the messageIcon in the C# toolbar
+    jsBridge.messageWasAdded(poi.title);
 
     // Append the link to the correct box
     appendBox.append(appendix);

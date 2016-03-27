@@ -4897,67 +4897,76 @@ namespace App1.Droid
 			public const int menu_icon = 2130837606;
 			
 			// aapt resource value: 0x7f020067
-			public const int messages = 2130837607;
+			public const int messages_none = 2130837607;
 			
 			// aapt resource value: 0x7f020068
-			public const int moma = 2130837608;
+			public const int messages_one = 2130837608;
 			
 			// aapt resource value: 0x7f020069
-			public const int moma_appIcon = 2130837609;
+			public const int messages_plus = 2130837609;
 			
 			// aapt resource value: 0x7f02006a
-			public const int mr_ic_cast_dark = 2130837610;
+			public const int messages_two = 2130837610;
 			
 			// aapt resource value: 0x7f02006b
-			public const int mr_ic_cast_light = 2130837611;
+			public const int moma = 2130837611;
 			
 			// aapt resource value: 0x7f02006c
-			public const int mr_ic_media_route_connecting_mono_dark = 2130837612;
+			public const int moma_appIcon = 2130837612;
 			
 			// aapt resource value: 0x7f02006d
-			public const int mr_ic_media_route_connecting_mono_light = 2130837613;
+			public const int mr_ic_cast_dark = 2130837613;
 			
 			// aapt resource value: 0x7f02006e
-			public const int mr_ic_media_route_mono_dark = 2130837614;
+			public const int mr_ic_cast_light = 2130837614;
 			
 			// aapt resource value: 0x7f02006f
-			public const int mr_ic_media_route_mono_light = 2130837615;
+			public const int mr_ic_media_route_connecting_mono_dark = 2130837615;
 			
 			// aapt resource value: 0x7f020070
-			public const int mr_ic_pause_dark = 2130837616;
+			public const int mr_ic_media_route_connecting_mono_light = 2130837616;
 			
 			// aapt resource value: 0x7f020071
-			public const int mr_ic_pause_light = 2130837617;
+			public const int mr_ic_media_route_mono_dark = 2130837617;
 			
 			// aapt resource value: 0x7f020072
-			public const int mr_ic_play_dark = 2130837618;
+			public const int mr_ic_media_route_mono_light = 2130837618;
 			
 			// aapt resource value: 0x7f020073
-			public const int mr_ic_play_light = 2130837619;
+			public const int mr_ic_pause_dark = 2130837619;
 			
 			// aapt resource value: 0x7f020074
-			public const int mr_ic_settings_dark = 2130837620;
+			public const int mr_ic_pause_light = 2130837620;
 			
 			// aapt resource value: 0x7f020075
-			public const int mr_ic_settings_light = 2130837621;
-			
-			// aapt resource value: 0x7f02007b
-			public const int notification_template_icon_bg = 2130837627;
+			public const int mr_ic_play_dark = 2130837621;
 			
 			// aapt resource value: 0x7f020076
-			public const int RhinoRust = 2130837622;
+			public const int mr_ic_play_light = 2130837622;
 			
 			// aapt resource value: 0x7f020077
-			public const int RhinoRust_style = 2130837623;
+			public const int mr_ic_settings_dark = 2130837623;
 			
 			// aapt resource value: 0x7f020078
-			public const int scavenger_icon = 2130837624;
+			public const int mr_ic_settings_light = 2130837624;
+			
+			// aapt resource value: 0x7f02007e
+			public const int notification_template_icon_bg = 2130837630;
 			
 			// aapt resource value: 0x7f020079
-			public const int settings_icon = 2130837625;
+			public const int RhinoRust = 2130837625;
 			
 			// aapt resource value: 0x7f02007a
-			public const int storyline_icon = 2130837626;
+			public const int RhinoRust_style = 2130837626;
+			
+			// aapt resource value: 0x7f02007b
+			public const int scavenger_icon = 2130837627;
+			
+			// aapt resource value: 0x7f02007c
+			public const int settings_icon = 2130837628;
+			
+			// aapt resource value: 0x7f02007d
+			public const int storyline_icon = 2130837629;
 			
 			static Drawable()
 			{

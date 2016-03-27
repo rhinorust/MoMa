@@ -26,9 +26,6 @@ namespace Moma
         const int IBEACON_TIMER_START_DELAY = 30;
         Timer iBeaconsCheckTimer;
 
-        // Temporary
-        private int iBeaconIndex = 0;
-
         public IBeaconsDirector()
         {
             UUID = "b9407f30-f5f8-466e-aff9-25556b57fe6d";
@@ -87,26 +84,19 @@ namespace Moma
                     // -> ibeacon.Proximity.ToString() returns: "Unknown", "Far", "Near" or "Immediate",
                     // -> ibeacon.Uuid
                     
-                    string iBeaconJS = iBeaconToJavascript(iBeacon);
-                    map.CallJs("addToMessages(" + iBeaconJS + ");");
-                    map.CallJs("messageBox.css('visibility', 'hidden');");
-                    map.CallJs("showIBeacon(" + iBeacon.Minor + "," + iBeacon.Major + ");");
+                    map.CallJs("iBeaconDiscovered(" + iBeacon.Minor + "," + iBeacon.Major + ");");
                 }
             });
         }
 
-        // Converts a C# iBeacon instance to javascript instance,
-        // adds type: 'iBeacon' for the showPOI javascript function
-        // and title: 'iBeacon #' temporarily
+        // Converts a C# iBeacon instance to javascript instance
+        // -> Not used as of now <-
         private string iBeaconToJavascript(IBeacon iBeacon) {
             string iBeaconJS = "{";
             iBeaconJS += "minor: " + iBeacon.Minor + ",";
             iBeaconJS += "major: " + iBeacon.Major + ",";
             iBeaconJS += "proximity: '" + iBeacon.Proximity + "',";
-            iBeaconJS += "type: 'iBeacon'" + ",";
-            iBeaconJS += "title: 'Point of interest " + iBeaconIndex + "'";
             iBeaconJS += "}";
-            iBeaconIndex++;
 
             return iBeaconJS;
         }
@@ -117,7 +107,7 @@ namespace Moma
 
             foreach (IBeacon foundIBeacon in foundIBeacons) {
                 string prox = foundIBeacon.Proximity.ToString();
-                if (prox.Equals("Near") || prox.Equals("Immediate")) {
+                if (/*prox.Equals("Near") || */prox.Equals("Immediate")) {
                     if (!iBeacons.ContainsKey(foundIBeacon)) {
                         System.Diagnostics.Debug.WriteLine("=\n= newBeacon =\n="); // Debugging
                         newIBeacons.Add(foundIBeacon); // Add to the return list

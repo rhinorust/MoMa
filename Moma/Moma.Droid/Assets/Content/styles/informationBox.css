@@ -98,3 +98,13 @@ video {
     margin: 10px 0 0 0;
     padding: 0 10px 0 10px;
 }
+
+#messages p.oldMessage {
+    margin: 0;
+}
+
+#messages p.newMessage {
+    color: dodgerblue;
+    display: inline;
+    margin-right: 10px;
+}
