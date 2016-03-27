@@ -10,6 +10,7 @@ namespace Moma.Droid
 {
     public class AudioService : IAudio
     {
+
         Dictionary<string, MediaPlayer> mediaPlayers;
         IJavascriptInterface js;
 
@@ -18,12 +19,16 @@ namespace Moma.Droid
             js = DependencyService.Get<IJavascriptInterface>();
         }
 
-        // Plays the given fileName. Example:
+        // Plays the given fileName if it's not already playing. Example:
         // playAudioFile("MOEB POINT 4 - Small.mp3") will play Droid/Assets/Content/audio/MOEB POINT 4 - Small.mp3
+        // if it's not already playing
         public void PlayAudioFile(string fileName) {
             MediaPlayer player = getPlayer(fileName);
             if (player != null) {
-                player.Prepare(); // Replays it
+                if (!player.IsPlaying) {
+                    player.Stop();
+                    player.Prepare(); // Replays it
+                }
             }
             else createPlayerAndPlay(fileName);
         }

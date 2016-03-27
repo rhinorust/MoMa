@@ -2,9 +2,6 @@ var poiIB;
 var poiIBoxTitle;
 var poiIBoxContent;
 
-// Temporary, to be fixed later
-var audioFileName  = "";
-
 $('document').ready(function () {
     poiIB          = $('#POI_Information');
     poiIBoxTitle   = poiIB.find('#title h1');
@@ -13,7 +10,6 @@ $('document').ready(function () {
     var closeButton = poiIB.find('#close');
     closeButton.click(function () {
         poiIB.css('visibility', 'hidden');
-        stopAudioAndVideo()
     });
 
     // Debugging: For opening the POI information box without an iBeacon
@@ -26,9 +22,17 @@ function iBeaconDiscovered(minor, major) {
     var poi = findPOIWithIBeacon(minor, major);
 
     if (poi !== -1) { // If it was found
-        var poiTitle = poi.title[0].title;
-        addToMessages({ type: "iBeacon", title: poiTitle, minor: minor, major: major });
-        showIBeacon(minor, major); // Show the IBeacon's information
+        // If it's not a background audio iBeacon
+        if (poi.media.audio.length == 0) {
+            var poiTitle = poi.title[0].title;
+            addToMessages({ type: "iBeacon", title: poiTitle, minor: minor, major: major });
+            showIBeacon(minor, major); // Show the IBeacon's information
+        }
+        // If it is an audio iBeacon, let the C#'s iBeaconsDirector know and it will take
+        // care of playing/looping/stopping the audio based on dynamic proximity to it's iBeacon
+        if (poi.media.audio.length != 0) {
+            jsBridge.setIBeaconAsAudioIBeacon(minor, major, poi.media.audio[0].path);
+        }
     }
 }
 
@@ -58,7 +62,6 @@ function showIBeacon(minor, major) {
         // Add the media elements to the POI information box
         var images = poi.media.image;
         //var videos = poi.media.video;
-        //var audio = poi.media.audio;
 
         var content = "";
 
@@ -71,12 +74,6 @@ function showIBeacon(minor, major) {
         /*if (videos.length > 0) {
             // Only add one for now
             content += videof(videos[0].path);
-        }
-        // If there is audio
-        if (audio.length > 0) {
-            // Only add one for now
-            audioFileName = audio[0].path;
-            content += audiof(audio[0].path);
         }*/
 
         content += textf(poiDescription);
@@ -139,10 +136,6 @@ function imagef(fileName) {
     return '<img src="'+fileName+'">';
 }
 
-function audiof(fileName) {
-    return '<img src="images/playAudio.png" onClick="jsBridge.playOrStopAudioFile(\''+fileName+'\')">';
-}
-
 function textf(fileName) {
     return '<p>'+fileName+'</p>';
 }
@@ -152,5 +145,4 @@ function stopAudioAndVideo() {
     if (vid) {
         vid.get(0).pause();
     }
-    jsBridge.stopAudioFile(audioFileName);
 }

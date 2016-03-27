@@ -61,6 +61,13 @@ namespace Moma.Droid
             DependencyService.Get<IAudio>().PlayOrStopAudioFile(fileName);
         }
 
+        [JavascriptInterface]
+        [Export]
+        public void setIBeaconAsAudioIBeacon(int minor, int major, string audioFileName)
+        {
+            App.Current.IBeaconsDirector().setIBeaconAsAudioIBeacon(minor, major, audioFileName);
+        }
+
         // ==============
         // QR Codes stuff
         // ==============
