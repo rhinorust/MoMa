@@ -49,7 +49,7 @@ function findPOIWithIBeacon(minor, major) {
             return poi;
         }
     }
-    return -1; // If none was found
+    return -1; // If none was found 
 }
 
 // Displays the POI information box populated with this iBeacon's information
