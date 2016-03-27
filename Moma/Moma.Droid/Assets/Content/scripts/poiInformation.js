@@ -13,7 +13,7 @@ $('document').ready(function () {
     var closeButton = poiIB.find('#close');
     closeButton.click(function () {
         poiIB.css('visibility', 'hidden');
-        //stopAudioAndVideo()
+        stopAudioAndVideo()
     });
 
     // Debugging: For opening the POI information box without an iBeacon
