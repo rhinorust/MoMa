@@ -13,10 +13,14 @@
     <script src="scripts/lib/jquery.mobile-init.js"></script>
     <script src="scripts/lib/jquery.mobile-1.4.5.min.js"></script>
     <script src="scripts/qrCodeScanning.js"></script>
+    <script src="scripts/translation.js"></script>
+    <script src="scripts/localization.js"></script>
 
 <style>
 </style>
-<script></script>
+<script> 
+    var currentLanguage = jsBridge.getLanguage();
+</script>
 </head>
 
 <body style="background-color:white;" onload="showFoundQRCodes()">
@@ -65,7 +69,7 @@
         <br />
         <p id="currentRanking"></p>
         <br/>
-        <img id="medalRep" />
+        <img style="visibility:hidden;" id="medalRep" />
     </div>
 </body>
 

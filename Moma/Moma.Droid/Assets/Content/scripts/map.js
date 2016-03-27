@@ -48,6 +48,8 @@ function init() {
     //Add controls (radio buttons) to map in order to switch between floors
     var control = L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map).setPosition('bottomright');
     map.invalidateSize();
+
+    $("#scanText").html(tools.getLocalization(translation, ['map', 'scan']));
     
     //map.removeLayer(floor1LayerGroup);
     //control.removeLayer(floor1Array);

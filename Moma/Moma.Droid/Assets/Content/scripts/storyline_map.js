@@ -23,6 +23,7 @@ function displayStoryline() {
     //Test - next POI button
     $("#nextBtn").hide();
     $("#scanBtn").hide();
+    $("#scanText").html(tools.getLocalization(translation, ['map', 'scan']));
 
     //browser testing (default storyline)
     if (storylineSelectedID == null) {
