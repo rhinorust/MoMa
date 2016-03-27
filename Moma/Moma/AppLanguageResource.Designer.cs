@@ -252,7 +252,7 @@ namespace Moma {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Free Scan.
+        ///   Looks up a localized string similar to Scavenger Hunt.
         /// </summary>
         internal static string Scavenger {
             get {

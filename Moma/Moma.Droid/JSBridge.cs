@@ -80,6 +80,14 @@ namespace Moma.Droid
         public void redirect()
         {
         }
+        [JavascriptInterface]
+        [Export]
+        public int getQRNumber()
+        {
+            var num = DependencyService.Get<IQrCodeScanningService>().getNumberQRCodes();
+
+            return num;
+        }
 
     }
 }

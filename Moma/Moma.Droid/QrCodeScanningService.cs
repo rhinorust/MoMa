@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using Xamarin.Forms;
@@ -13,6 +13,9 @@ using Android.Widget;
 using ZXing.Mobile;
 using System.Threading.Tasks;
 using Moma.Droid;
+using System.Globalization;
+using System.Threading;
+using System.Collections.Generic;
 
 [assembly: Dependency(typeof(QrCodeScanningService))]
 namespace Moma.Droid
@@ -20,6 +23,8 @@ namespace Moma.Droid
     class QrCodeScanningService: IQrCodeScanningService
     {
         IJavascriptInterface js;
+        static Hashtable scannedQRCodes;
+
         public async Task<string> ScanAsync()
         {
             var scanner = new MobileBarcodeScanner();
@@ -31,13 +36,39 @@ namespace Moma.Droid
 
             //js.CallJs("showQRText(" + scanResults.Text + ");");
             if (scanResults != null) {
+                addQRCode(scanResults.Text);
                 return scanResults.Text;
             }
             else
             {
                 return "";
             }
-            return scanResults.Text;
+           // return scanResults.Text;
         }
+
+        public void addQRCode(string text)
+        {
+            if (scannedQRCodes == null)
+            {
+                scannedQRCodes = new Hashtable();
+            }
+
+            if (!scannedQRCodes.ContainsValue(text))
+            {
+                scannedQRCodes.Add(Guid.NewGuid(), text);
+            }
+        }
+
+        public int getNumberQRCodes()
+        {
+            return scannedQRCodes.Count;
+        }
+
+        public Hashtable getQRList()
+        {
+            return scannedQRCodes;
+        }
+
+
     }
 }

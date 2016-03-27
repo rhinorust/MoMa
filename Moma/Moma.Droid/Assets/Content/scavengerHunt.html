@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="styles/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="styles/custom-theme.css" />
+    <link rel="stylesheet" href="styles/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="styles/jquery.mobile.structure-1.4.5.min.css" />
+    <link rel="stylesheet" href="styles/scanvenger.css" />
+    <script src="scripts/lib/jquery-1.12.0.min.js"></script>
+    <script src="scripts/lib/jquery.mobile-init.js"></script>
+    <script src="scripts/lib/jquery.mobile-1.4.5.min.js"></script>
+    <script src="scripts/qrCodeScanning.js"></script>
+
+<style>
+</style>
+<script></script>
+</head>
+
+<body style="background-color:white;" onload="showFoundQRCodes()">
+    <br /><br />
+    <div class="RankTable">
+        <div class="ribbon both_ribbon">
+            <span>Rankings</span>
+        </div>
+        <table>
+            <tr>
+                <th width="50%">Number of QR Codes</th>
+                <th>Rank</th>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Bronze</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Silver</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td>Gold</td>
+            </tr>
+            <tr>
+                <td>20</td>
+                <td>Platinum</td>
+            </tr>
+ <!--
+            <tr>
+                <td>25</td>
+                <td>Platinum</td>
+            </tr>
+            <tr>
+                <td>30</td>
+                <td>Diamond</td>
+            </tr>
+-->
+        </table>
+    </div>
+    <br />
+
+    <div class="QRText">
+        <span id="qrcodes"></span>
+        <br />
+        <p id="currentRanking"></p>
+        <br/>
+        <img id="medalRep" />
+    </div>
+</body>
+
+</html>
