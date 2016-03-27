@@ -62,17 +62,15 @@ namespace Moma {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Get on Autoroute 40 towards the Autoroute 15
+        ///   Looks up a localized string similar to ➥ Get on Autoroute 40 towards the Autoroute 15
         ///
-        ///Take Autoroute 15 S
+        ///➥ Take Autoroute 15 S
         ///
-        ///Take Autoroute 720 E
+        ///➥ Take Autoroute 720 E
         ///
-        ///Exit at Rue Saint Antoine O
+        ///➥ Exit at Rue Saint Antoine O
         ///
-        ///Turn Right on Rue Lacasse 
-        ///
-        ///Arrive at 1001 Rue Lenoir on Right.
+        ///➥ Turn Right on Rue Lacasse .
         /// </summary>
         internal static string CarDirections {
             get {
@@ -81,7 +79,7 @@ namespace Moma {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to General Directions via car:.
+        ///   Looks up a localized string similar to General Directions via Car.
         /// </summary>
         internal static string CarDirectionsTitle {
             get {
@@ -113,6 +111,15 @@ namespace Moma {
         internal static string DefaultLanguage {
             get {
                 return ResourceManager.GetString("DefaultLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ➥ Arrive at 1001 Rue Lenoir on Right.
+        /// </summary>
+        internal static string Destination {
+            get {
+                return ResourceManager.GetString("Destination", resourceCulture);
             }
         }
         
@@ -306,13 +313,11 @@ namespace Moma {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exit at Place Saint-Henri metro station
+        ///   Looks up a localized string similar to ➥ Exit at Place Saint-Henri metro station
         ///
-        ///Turn left onto Rue Saint-Jacques
+        ///➥ Turn left onto Rue Saint-Jacques
         ///
-        ///Turn Right onto Rue Lenoir
-        ///
-        ///Arrive at 1001 Rue Lenoir on Right.
+        ///➥ Turn Right onto Rue Lenoir.
         /// </summary>
         internal static string STMDirections {
             get {
@@ -321,7 +326,7 @@ namespace Moma {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to General Directions via STM:.
+        ///   Looks up a localized string similar to General Directions via STM.
         /// </summary>
         internal static string STMDirectionsTitle {
             get {

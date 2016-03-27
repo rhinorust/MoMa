@@ -118,20 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CarDirections" xml:space="preserve">
-    <value>Obtenez sur l'autoroute 40 en direction de l'autoroute 15
+    <value>➥ Obtenez sur l'autoroute 40 en direction de l'autoroute 15
 
-Prendre l'autoroute 15 S
+➥ Prendre l'autoroute 15 S
 
-Prendre l'autoroute 720 E
+➥ Prendre l'autoroute 720 E
 
-Sortir à la rue Saint Antoine O
+➥ Sortir à la rue Saint Antoine O
 
-Tournez à droite sur la rue Lacasse
-
-Arrivée au 1001 Rue Lenoir sur le droit</value>
+➥ Tournez à droite sur la rue Lacasse</value>
   </data>
   <data name="CarDirectionsTitle" xml:space="preserve">
-    <value>Indications générales par voiture:</value>
+    <value>Indications générales par voiture</value>
   </data>
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
@@ -203,16 +201,14 @@ Arrivée au 1001 Rue Lenoir sur le droit</value>
     <value>Sons lors de notifications</value>
   </data>
   <data name="STMDirections" xml:space="preserve">
-    <value>Sortir à la station de métro Place Saint-Henri
+    <value>➥ Sortir à la station de métro Place Saint-Henri
 
-Tournez à gauche sur la rue Saint-Jacques
+➥ Tournez à gauche sur la rue Saint-Jacques
 
-Tournez à droite sur la rue Lenoir
-
-Arrivée au 1001 Rue Lenoir sur le droit</value>
+➥ Tournez à droite sur la rue Lenoir</value>
   </data>
   <data name="STMDirectionsTitle" xml:space="preserve">
-    <value>Indications générales par STM:</value>
+    <value>Indications générales par STM</value>
   </data>
   <data name="Storyline" xml:space="preserve">
     <value>Itinéraire</value>
@@ -228,5 +224,8 @@ Arrivée au 1001 Rue Lenoir sur le droit</value>
   </data>
   <data name="Default" xml:space="preserve">
     <value>Défaut</value>
+  </data>
+  <data name="Destination" xml:space="preserve">
+    <value>➥ Arrivée au 1001 Rue Lenoir sur le droit</value>
   </data>
 </root>

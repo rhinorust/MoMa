@@ -118,20 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CarDirections" xml:space="preserve">
-    <value>Get on Autoroute 40 towards the Autoroute 15
+    <value>➥ Get on Autoroute 40 towards the Autoroute 15
 
-Take Autoroute 15 S
+➥ Take Autoroute 15 S
 
-Take Autoroute 720 E
+➥ Take Autoroute 720 E
 
-Exit at Rue Saint Antoine O
+➥ Exit at Rue Saint Antoine O
 
-Turn Right on Rue Lacasse 
-
-Arrive at 1001 Rue Lenoir on Right</value>
+➥ Turn Right on Rue Lacasse </value>
   </data>
   <data name="CarDirectionsTitle" xml:space="preserve">
-    <value>General Directions via car:</value>
+    <value>General Directions via Car</value>
   </data>
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
@@ -203,16 +201,14 @@ Arrive at 1001 Rue Lenoir on Right</value>
     <value>Sounds for notifications</value>
   </data>
   <data name="STMDirections" xml:space="preserve">
-    <value>Exit at Place Saint-Henri metro station
+    <value>➥ Exit at Place Saint-Henri metro station
 
-Turn left onto Rue Saint-Jacques
+➥ Turn left onto Rue Saint-Jacques
 
-Turn Right onto Rue Lenoir
-
-Arrive at 1001 Rue Lenoir on Right</value>
+➥ Turn Right onto Rue Lenoir</value>
   </data>
   <data name="STMDirectionsTitle" xml:space="preserve">
-    <value>General Directions via STM:</value>
+    <value>General Directions via STM</value>
   </data>
   <data name="Storyline" xml:space="preserve">
     <value>Storylines</value>
@@ -228,5 +224,8 @@ Arrive at 1001 Rue Lenoir on Right</value>
   </data>
   <data name="Default" xml:space="preserve">
     <value>Default</value>
+  </data>
+  <data name="Destination" xml:space="preserve">
+    <value>➥ Arrive at 1001 Rue Lenoir on Right</value>
   </data>
 </root>
