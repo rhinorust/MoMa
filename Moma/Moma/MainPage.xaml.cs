@@ -49,7 +49,7 @@ namespace Moma
                         Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(MapPage))) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
                         masterPage.ListView.SelectedItem = null;
                         IsPresented = false;
-                        Uri uri = new Uri("https://www.google.ca/maps/place/Mus%C3%A9e+Des+Ondes+Emile+Berliner/@45.4777315,-73.5948578,19z/data=!3m1!4b1!4m2!3m1!1s0x4cc9109f76dd243b:0xb3b9280e1bc3a89d");
+                        Uri uri = new Uri("https://www.google.ca/maps/place/1001+Rue+Lenoir,+Montr%C3%A9al,+QC+H4C+2Z6/@45.4766472,-73.5924109,17z/data=!4m2!3m1!1s0x4cc9109f3e1c689d:0xfe5e29cc968bfa44");
                         Device.OpenUri(uri);
                     }
                     else
