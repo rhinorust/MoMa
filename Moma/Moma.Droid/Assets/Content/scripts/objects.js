@@ -96,11 +96,11 @@ function Audio(audioID, path, caption) {
     }
 }
 
-function Floor(floorID) {
+function Floor(floorID,imagePath,imageWidth,imageHeight) {
     this.floorID = floorID;
-    this.imagePath;
-    this.imageWidth;
-    this.imageHeight;
+    this.imagePath = imagePath;
+    this.imageWidth = imageWidth;
+    this.imageHeight = imageHeight;
     this.POI = [];//poi + pot on this layer
     this.POT = [];
     this.markersById = [];
@@ -111,15 +111,6 @@ function Floor(floorID) {
     this.polyline;
     this.polylineLatLng = [];
     
-
-    this.parseFloor = function () {
-        var floor = DATA.floorPlan[floorID - 1];
-        this.imagePath = floor.imagePath;
-        this.imageWidth = floor.imageWidth;
-        this.imageHeight = floor.imageHeight;
-    };
-    this.parseFloor();//call function on constructor
-
     this.createTileLayer = function (minZoom, maxZoom) {
         this.tileLayer = L.tileLayer('floor'+floorID+'/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, attribution: '', noWrap: true, tms: false});
     };
@@ -155,6 +146,9 @@ function Navigation(nodePath, isNotAtStart) {
 
 //Map Object
 function Map() {
+    //***remove once new map images are implemented
+    var trueImageWidth = 93;
+    var trueImageHeight = 188;
 
     this.createMarker = function (iconURL, iconWidth, iconHeight, iconAnchorWidth, iconAnchorHeight, iconAnchorX, iconAnchorY) {
         var marker = L.icon({
@@ -169,14 +163,30 @@ function Map() {
         return marker;
     };
 
+    this.parseFloors = function () {
+        var floors = [];
+        var arrayFloors = DATA.floorPlan;
+        for (i = 0; i < arrayFloors.length; i++) {
+            var f = arrayFloors[i];
+            floorDiff = parseInt(f.floorID) - i;
+            var floor = new Floor(f.floorID, f.imagePath, f.imageWidth, f.imageHeight);
+            floors.push(floor);
+        }
+        return floors;
+    }
+
     this.parsePOI = function (floors) {
         var arrayPOI = DATA.node[0].poi;
         for (i = 0; i < arrayPOI.length; i++) {
             var p = arrayPOI[i];
-            var poi = new POI(p.id, p.x, p.y, p.floorID, p.title[lang].title, p.description[0].description, p.iBeacon, p.media.video, p.media.image, p.media.audio);
-            floors[p.floorID - 1].POI[poi.id+""] = poi;
-            floors[p.floorID - 1].markersById[poi.id + ""] = L.marker([poi.y, poi.x], { icon: markerIconPOIBlue }).bindPopup(poi.description);
-            floors[p.floorID - 1].markers.push(floors[p.floorID - 1].markersById[poi.id + ""]);
+            var floorIDInt = parseInt(p.floorID);
+            var trueX = (Math.round((trueImageWidth / floors[floorIDInt - floorDiff].imageWidth) * p.x)) + "";
+            var trueY = (-1 * Math.round((trueImageHeight / floors[floorIDInt - floorDiff].imageHeight) * p.y)) + "";
+
+            var poi = new POI(p.id, trueX, trueY, p.floorID, p.title[lang].title, p.description[0].description, p.iBeacon, p.media.video, p.media.image, p.media.audio);
+            floors[floorIDInt - floorDiff].POI[poi.id + ""] = poi;
+            floors[floorIDInt - floorDiff].markersById[poi.id + ""] = L.marker([poi.y, poi.x], { icon: markerIconPOIBlue }).bindPopup(poi.description);
+            floors[floorIDInt - floorDiff].markers.push(floors[floorIDInt - floorDiff].markersById[poi.id + ""]);
             ListPOI[poi.id + ""] = poi;
         }
         return floors;
@@ -186,10 +196,14 @@ function Map() {
         var arrayPOT = DATA.node[0].pot;
         for (i = 0; i < arrayPOT.length; i++) {
             var p = arrayPOT[i];
-            var pot = new POT(p.id, p.x, p.y, p.floorID, p.label.label);
-            floors[p.floorID - 1].POT[pot.id + ""] = pot;
-            floors[p.floorID - 1].markersById[pot.id + ""] = L.marker([pot.y, pot.x], { icon: markerIconNode });
-            floors[p.floorID - 1].markers.push(floors[p.floorID - 1].markersById[pot.id + ""]);
+            var floorIDInt = parseInt(p.floorID);
+            var trueX = (Math.round((trueImageWidth / floors[floorIDInt - floorDiff].imageWidth) * p.x)) + "";
+            var trueY = (-1 * Math.round((trueImageHeight / floors[floorIDInt - floorDiff].imageHeight) * p.y)) + "";
+
+            var pot = new POT(p.id, trueX, trueY, p.floorID, p.label.label);
+            floors[floorIDInt - floorDiff].POT[pot.id + ""] = pot;
+            floors[floorIDInt - floorDiff].markersById[pot.id + ""] = L.marker([pot.y, pot.x], { icon: markerIconNode });
+            floors[floorIDInt - floorDiff].markers.push(floors[floorIDInt - floorDiff].markersById[pot.id + ""]);
             ListPOT[pot.id+""] = pot;
         }
         return floors;
@@ -241,7 +255,7 @@ function StorylineMap() {
         var storyline;
         for (i = 0; i < arrayStoryline.length; i++) {
             var s = arrayStoryline[i];
-            if (storylineSelectedID == s.id) {
+            if (storylineSelectedID == s.id+"") {
                 storyline = new Storyline(s.id, s.title[lang].title, s.description[0].description, s.path, s.thumbnail, s.walkingTimeInMinutes, s.floorsCovered);
             }
         }
@@ -260,7 +274,7 @@ function StorylineMap() {
                 node = ListPOI[nodePath[i]];
             }
             
-            storyline.nodes[node.id] = node;
+            storyline.nodes[node.id+""] = node;
         }
 
         return storyline;
@@ -278,15 +292,16 @@ function StorylineMap() {
             var node = storyline.nodes[nodePath[i]];
 
             //get marker from floors[floorsID-1].markersById[POT.id] and add marker to floors[floorsID-1].markers
-            var marker = floors[node.floorID - 1].markersById[node.id];
+            var floorIDInt = parseInt(node.floorID);
+            var marker = floors[floorIDInt - floorDiff].markersById[node.id + ""];
             if (i == 0) {
                 marker.setIcon(markerIconPOIGreen);
             }
-            if (i == nodePath.length - 1) {
+            if (i == nodePath.length - floorDiff) {
                 marker.setIcon(markerIconPOIRed);
             }
-            floors[node.floorID - 1].markers.push(marker);
-            floors[node.floorID - 1].polylineLatLng.push([parseInt(node.y), parseInt(node.x)]);
+            floors[floorIDInt - floorDiff].markers.push(marker);
+            floors[floorIDInt - floorDiff].polylineLatLng.push([parseInt(node.y), parseInt(node.x)]);
         }
 
         return floors;
