@@ -139,7 +139,7 @@ function currentPOI(storyline) {
     for (i = 0; i < storyline.nodePath.length; i++) {
         //if isPOI
         node = storyline.nodes[storyline.nodePath[i]];
-        if (storyline.nodePath[i].charAt(0) == "0" && localStorage.getItem("lastVisitedNodeID") != storyline.nodePath[i]) {
+        if (ListPOI[storyline.nodePath[i]] != null && localStorage.getItem("lastVisitedNodeID") != storyline.nodePath[i]) {
             focusOnNode(node, 3);
             localStorage.setItem("lastVisitedNodeID", storyline.nodePath[i]);
             storyline.nodePath.splice(0, i);

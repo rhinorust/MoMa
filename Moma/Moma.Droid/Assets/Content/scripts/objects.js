@@ -200,14 +200,14 @@ function Map() {
         for (i = 0; i < arrayEdges.length; i++) {
             var e = arrayEdges[i];
             var edge = new Edge(e.startNode, e.endNode, e.distance, e.floorID);
-            if (edge.startNode.charAt(0) == "1") {
+            if (ListPOT[edge.startNode] != null) {
                 ListPOT[edge.startNode].edges.push(edge);
-            } else if (edge.startNode.charAt(0) == "0") {
+            } else if (ListPOI[edge.startNode] != null) {
                 ListPOI[edge.startNode].edges.push(edge);
             }
-            if (edge.endNode.charAt(0) == "1") {
+            if (ListPOT[edge.endNode] != null) {
                 ListPOT[edge.endNode].edges.push(edge);
-            } else if (edge.endNode.charAt(0) == "0") {
+            } else if (ListPOI[edge.endNode] != null) {
                 ListPOI[edge.endNode].edges.push(edge);
             }
         }
@@ -254,9 +254,9 @@ function StorylineMap() {
             var node;
 
             //if node == 1---(pot) else if node == 0---(poi)
-            if (nodePath[i].charAt(0) == "1") {
+            if (ListPOT[nodePath[i]] != null) {
                 node = ListPOT[nodePath[i]];
-            } else if (nodePath[i].charAt(0) == "0") {
+            } else if (ListPOI[nodePath[i]] != null) {
                 node = ListPOI[nodePath[i]];
             }
             
