@@ -368,16 +368,16 @@
     <AndroidAsset Include="Assets\Content\styles\informationBox.css" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\styles\videos\MOEB_POINT_1_-_Small.mov" />
+    <AndroidAsset Include="Assets\Content\videos\MOEB_POINT_1_-_Small.mov" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\styles\videos\MOEB_POINT_2_-_Small.mov" />
+    <AndroidAsset Include="Assets\Content\videos\MOEB_POINT_2_-_Small.mov" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\styles\videos\MOEB_POINT_3_-_Small.mov" />
+    <AndroidAsset Include="Assets\Content\videos\MOEB_POINT_3_-_Small.mov" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\styles\videos\MOEB_Introduction_-_Small.mov" />
+    <AndroidAsset Include="Assets\Content\videos\MOEB_Introduction_-_Small.mov" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\audio\MOEB_POINT_4_-_Small.mp3" />
