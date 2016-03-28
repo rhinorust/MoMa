@@ -904,20 +904,8 @@ var DATA = {
                 },
                 "media": {
                     "image": [],
-                    "video": [
-                      {
-                          "path": "videos/MOEB_POINT_1_-_Small.mov",
-                          "language": "EN",
-                          "caption": "None"
-                      }
-                    ],
-                    "audio": [
-                      {
-                          "path": "audio/MOEB_POINT_4_-_Small.mp3",
-                          "language": "EN",
-                          "caption": "None"
-                      }
-                    ]
+                    "video": [],
+                    "audio": []
                 },
                 "storyPoint": [
                   {
