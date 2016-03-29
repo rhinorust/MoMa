@@ -43,7 +43,7 @@ function init() {
     //map.setMaxBounds(map.getBounds());
 
     for (i = 0; i < floors.length; i++) {
-        var property = (i + floorDiff);
+        var property = (i + floorDiff)+"";
         if (i == 0) {
             baseMaps[property] = floors[i].groupLayer.addTo(map);
         } else {

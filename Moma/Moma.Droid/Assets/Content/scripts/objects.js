@@ -53,11 +53,29 @@ function POT(id, x, y, floorID, label) {
     this.edges = [];
 }
 
-function Edge(startNode, endNode, distance, floorID) {
+function Edge(startNode, endNode, startNodeFloorID, endNodeFloorID) {
     this.startNode = startNode;
     this.endNode = endNode;
-    this.distance = distance;
-    this.floorID = floorID;
+    this.distance;
+    this.startNodeFloorID = startNodeFloorID;
+    this.endNodeFloorID = endNodeFloorID;
+
+    this.getDistance = function () {
+        if (endNodeFloorID == startNodeFloorID) {
+            var startNode = ListPOI[this.startNode + ""];
+            if (startNode == null) {
+                startNode = ListPOT[this.startNode + ""];
+            }
+            var endNode = ListPOI[this.endNode + ""];
+            if (endNode == null) {
+                endNode = ListPOT[this.endNode + ""];
+            }
+            this.distance = Math.sqrt(Math.pow((startNode.x - endNode.x), 2) + Math.pow((startNode.y - endNode.y),2));
+        } else {
+            this.distance = 0;
+        }
+    }
+    this.getDistance();
 }
 
 function IBeacon(uuid, major, minor) {
@@ -180,8 +198,8 @@ function Map() {
         for (i = 0; i < arrayPOI.length; i++) {
             var p = arrayPOI[i];
             var floorIDInt = parseInt(p.floorID);
-            var trueX = (Math.round((trueImageWidth / floors[floorIDInt - floorDiff].imageWidth) * p.x)) + "";
-            var trueY = (-1 * Math.round((trueImageHeight / floors[floorIDInt - floorDiff].imageHeight) * p.y)) + "";
+            var trueX = (Math.round((trueImageWidth / floors[floorIDInt - floorDiff].imageWidth) * p.x));
+            var trueY = (-1 * Math.round((trueImageHeight / floors[floorIDInt - floorDiff].imageHeight) * p.y));
 
             var poi = new POI(p.id, trueX, trueY, p.floorID, p.title[lang].title, p.description[0].description, p.iBeacon, p.media.video, p.media.image, p.media.audio);
             floors[floorIDInt - floorDiff].POI[poi.id + ""] = poi;
@@ -197,8 +215,8 @@ function Map() {
         for (i = 0; i < arrayPOT.length; i++) {
             var p = arrayPOT[i];
             var floorIDInt = parseInt(p.floorID);
-            var trueX = (Math.round((trueImageWidth / floors[floorIDInt - floorDiff].imageWidth) * p.x)) + "";
-            var trueY = (-1 * Math.round((trueImageHeight / floors[floorIDInt - floorDiff].imageHeight) * p.y)) + "";
+            var trueX = (Math.round((trueImageWidth / floors[floorIDInt - floorDiff].imageWidth) * p.x));
+            var trueY = (-1 * Math.round((trueImageHeight / floors[floorIDInt - floorDiff].imageHeight) * p.y));
 
             var pot = new POT(p.id, trueX, trueY, p.floorID, p.label.label);
             floors[floorIDInt - floorDiff].POT[pot.id + ""] = pot;
@@ -213,16 +231,16 @@ function Map() {
         var arrayEdges = DATA.edge;
         for (i = 0; i < arrayEdges.length; i++) {
             var e = arrayEdges[i];
-            var edge = new Edge(e.startNode, e.endNode, e.distance, e.floorID);
-            if (ListPOT[edge.startNode] != null) {
-                ListPOT[edge.startNode].edges.push(edge);
-            } else if (ListPOI[edge.startNode] != null) {
-                ListPOI[edge.startNode].edges.push(edge);
+            var edge = new Edge(e.startNode.id, e.endNode.id, e.startNode.floorID, e.endNode.floorID);
+            if (ListPOT[edge.startNode + ""] != null) {
+                ListPOT[edge.startNode + ""].edges.push(edge);
+            } else if (ListPOI[edge.startNode + ""] != null) {
+                ListPOI[edge.startNode + ""].edges.push(edge);
             }
-            if (ListPOT[edge.endNode] != null) {
-                ListPOT[edge.endNode].edges.push(edge);
-            } else if (ListPOI[edge.endNode] != null) {
-                ListPOI[edge.endNode].edges.push(edge);
+            if (ListPOT[edge.endNode + ""] != null) {
+                ListPOT[edge.endNode + ""].edges.push(edge);
+            } else if (ListPOI[edge.endNode + ""] != null) {
+                ListPOI[edge.endNode + ""].edges.push(edge);
             }
         }
     }
@@ -255,8 +273,9 @@ function StorylineMap() {
         var storyline;
         for (i = 0; i < arrayStoryline.length; i++) {
             var s = arrayStoryline[i];
-            if (storylineSelectedID == s.id+"") {
-                storyline = new Storyline(s.id, s.title[lang].title, s.description[0].description, s.path, s.thumbnail, s.walkingTimeInMinutes, s.floorsCovered);
+
+            if (storylineSelectedID == s.id + "") {
+                storyline = new Storyline(s.id, s.title, s.description, s.path, s.thumbnail, s.walkingTimeInMinutes, s.floorsCovered);
             }
         }
         return storyline;
@@ -266,12 +285,11 @@ function StorylineMap() {
         var nodePath = storyline.nodePath;
         for (i = 0; i < nodePath.length; i++) {
             var node;
-
             //if node == 1---(pot) else if node == 0---(poi)
-            if (ListPOT[nodePath[i]] != null) {
-                node = ListPOT[nodePath[i]];
-            } else if (ListPOI[nodePath[i]] != null) {
-                node = ListPOI[nodePath[i]];
+            if (ListPOT[nodePath[i]+""] != null) {
+                node = ListPOT[nodePath[i]+""];
+            } else if (ListPOI[nodePath[i]+""] != null) {
+                node = ListPOI[nodePath[i]+""];
             }
             
             storyline.nodes[node.id+""] = node;
@@ -289,7 +307,7 @@ function StorylineMap() {
         //loop though nodePath array
         var nodePath = storyline.nodePath;
         for (i = 0; i < nodePath.length; i++) {
-            var node = storyline.nodes[nodePath[i]];
+            var node = storyline.nodes[nodePath[i]+""];
 
             //get marker from floors[floorsID-1].markersById[POT.id] and add marker to floors[floorsID-1].markers
             var floorIDInt = parseInt(node.floorID);
@@ -297,7 +315,7 @@ function StorylineMap() {
             if (i == 0) {
                 marker.setIcon(markerIconPOIGreen);
             }
-            if (i == nodePath.length - floorDiff) {
+            if (i == nodePath.length - 1) {
                 marker.setIcon(markerIconPOIRed);
             }
             floors[floorIDInt - floorDiff].markers.push(marker);
@@ -367,10 +385,10 @@ function Dijkstra(listPOI, listPOT) {
             }
             for (i = 0; i < this.vertices[smallest].length; i++) {
                 edge = this.vertices[smallest][i];
-                if (edge.startNode != smallest) {
-                    neighbor = edge.startNode;
+                if (edge.startNode+"" != smallest) {
+                    neighbor = edge.startNode+"";
                 } else {
-                    neighbor = edge.endNode;
+                    neighbor = edge.endNode+"";
                 }
 
                 newDistance = distances[smallest] + edge.distance;
