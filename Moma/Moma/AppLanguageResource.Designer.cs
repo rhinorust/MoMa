@@ -62,6 +62,24 @@ namespace Moma {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1001, Lenoir St., local E-206. Montreal,Quebec, H4C 2Z6.
+        /// </summary>
+        internal static string Address {
+            get {
+                return ResourceManager.GetString("Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        internal static string AddressTitle {
+            get {
+                return ResourceManager.GetString("AddressTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ➥ Get on Autoroute 40 towards the Autoroute 15
         ///
         ///➥ Take Autoroute 15 S
@@ -196,6 +214,46 @@ namespace Moma {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Friday 2 p.m. à 5 p.m.
+        ///Saturday 2 p.m. à 5 p.m.
+        ///Sunday 2 p.m. à 5 p.m.
+        ///Wednesday (Appointment only)
+        ///Groups by appointment at anytime..
+        /// </summary>
+        internal static string OpeningHours {
+            get {
+                return ResourceManager.GetString("OpeningHours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opening Hours.
+        /// </summary>
+        internal static string OpeningHoursTitle {
+            get {
+                return ResourceManager.GetString("OpeningHoursTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone : (514) 932-9663.
+        /// </summary>
+        internal static string Phone {
+            get {
+                return ResourceManager.GetString("Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone.
+        /// </summary>
+        internal static string PhoneTitle {
+            get {
+                return ResourceManager.GetString("PhoneTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Popup.
         /// </summary>
         internal static string Popup {
@@ -210,6 +268,27 @@ namespace Moma {
         internal static string PopupDef {
             get {
                 return ResourceManager.GetString("PopupDef", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adult: 5 $
+        ///Student: 3 $
+        ///Family: 10 $
+        ///Groups (5+) : 3 $ each.
+        /// </summary>
+        internal static string Pricing {
+            get {
+                return ResourceManager.GetString("Pricing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pricing.
+        /// </summary>
+        internal static string PricingTitle {
+            get {
+                return ResourceManager.GetString("PricingTitle", resourceCulture);
             }
         }
         
@@ -358,6 +437,24 @@ namespace Moma {
         internal static string VibrationDef {
             get {
                 return ResourceManager.GetString("VibrationDef", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://moeb.ca/en.
+        /// </summary>
+        internal static string Website {
+            get {
+                return ResourceManager.GetString("Website", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Website.
+        /// </summary>
+        internal static string WebsiteTitle {
+            get {
+                return ResourceManager.GetString("WebsiteTitle", resourceCulture);
             }
         }
         

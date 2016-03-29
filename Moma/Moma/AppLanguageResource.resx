@@ -228,4 +228,41 @@
   <data name="Destination" xml:space="preserve">
     <value>➥ Arrive at 1001 Rue Lenoir on Right</value>
   </data>
+  <data name="Address" xml:space="preserve">
+    <value>1001, Lenoir St., local E-206. Montreal,Quebec, H4C 2Z6</value>
+  </data>
+  <data name="AddressTitle" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="OpeningHours" xml:space="preserve">
+    <value>Friday 2 p.m. à 5 p.m.
+Saturday 2 p.m. à 5 p.m.
+Sunday 2 p.m. à 5 p.m.
+Wednesday (Appointment only)
+Groups by appointment at anytime.</value>
+  </data>
+  <data name="OpeningHoursTitle" xml:space="preserve">
+    <value>Opening Hours</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone : (514) 932-9663</value>
+  </data>
+  <data name="PhoneTitle" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="Pricing" xml:space="preserve">
+    <value>Adult: 5 $
+Student: 3 $
+Family: 10 $
+Groups (5+) : 3 $ each</value>
+  </data>
+  <data name="PricingTitle" xml:space="preserve">
+    <value>Pricing</value>
+  </data>
+  <data name="Website" xml:space="preserve">
+    <value>http://moeb.ca/en</value>
+  </data>
+  <data name="WebsiteTitle" xml:space="preserve">
+    <value>Website</value>
+  </data>
 </root>

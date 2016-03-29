@@ -38,7 +38,7 @@ namespace Moma
                     new Label
                     {
                         Text = AppLanguageResource.CarDirections,
-                        TextColor = Color.Black,
+                        TextColor = Color.Black,        
                     },
                     new Label
                     {
@@ -109,7 +109,7 @@ namespace Moma
                 {
                     Orientation = StackOrientation.Vertical,
                     VerticalOptions = LayoutOptions.StartAndExpand,
-                    Padding = new Thickness(15,0,0,0),
+                    Padding = new Thickness(5,0,0,0),
                     Children = { label }
                 };
             }
@@ -129,7 +129,7 @@ namespace Moma
         public View ContentItems { get; set; }
         public Thickness Padding { get; set; }
         public String FontFamily { get; }
-
+        public TextAlignment HeaderTextAlignment {get; set;}
 
     }
 
@@ -154,8 +154,8 @@ namespace Moma
             }
             public ContentView AssosiatedContent
             { get; set; }
-            #endregion
-        }
+        #endregion
+    }
 
         public class Accordion : ContentView
         {
@@ -201,8 +201,8 @@ namespace Moma
                         {
                             Text = vSingleItem.HeaderText,
                             TextColor = vSingleItem.HeaderTextColor,
-                            BackgroundColor = vSingleItem.HeaderBackGroundColor
-                            
+                            BackgroundColor = vSingleItem.HeaderBackGroundColor,
+
                         };
 
                         var vAccordionContent = new ContentView()
