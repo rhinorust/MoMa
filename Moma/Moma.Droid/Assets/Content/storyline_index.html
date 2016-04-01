@@ -16,7 +16,12 @@
     <script src="scripts/messages.js"></script>
     <script src="scripts/poiInformation.js"></script>
     <script src="scripts/qrCodeScanning.js"></script>
+    <script src="scripts/translation.js"></script>
+    <script src="scripts/localization.js"></script>
 
+    <script>
+    var currentLanguage = jsBridge.getLanguage();
+    </script>
 </head>
 <body onload="displayStoryline()">
     <p id="previewStoryline"></p>

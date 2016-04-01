@@ -24,12 +24,13 @@ function displayStoryline() {
     $("#nextBtn").hide();
     $("#scanBtn").hide();
     $("#endBtn").hide();
+    $("#scanText").html(tools.getLocalization(translation, ['map', 'scan']));
 
     //browser testing (default storyline)
     if (storylineSelectedID == null) {
         storylineSelectedID = "S1";
     }
-
+    
     $('#currentStoryline').text("Current storyline: " + localStorage.getItem("currentStoryline"));
     $('#previewStoryline').text("Previewing storyline: " + localStorage.getItem("currentStoryline"));
     storylineSelectedID = localStorage.getItem("currentStoryline");
@@ -90,7 +91,7 @@ function displayStoryline() {
         if (localStorage.getItem("startIsSelected") == "true") {
             startStoryline();
         }
-
+        
     });
     map.setView([0, 0], mapMaxZoom);
     //map bounds
@@ -171,20 +172,20 @@ function currentPOI(storyline) {
 }
 
 function focusOnNode(node, zoom) {
-    var floors = $('input[name=leaflet-base-layers]:radio');
-    jQuery.each(floors, function (index, radio) {
+        var floors = $('input[name=leaflet-base-layers]:radio');
+        jQuery.each(floors, function (index, radio) {
         if ($(radio).next()[0].innerHTML.trim() == node.floorID + "") {
-            if (radio.checked) {
-                map.setView(new L.LatLng(node.y, node.x), zoom, { animate: true });
-            } else {
-                $(radio).prop("checked", true).trigger("click");
-                map.panTo(new L.LatLng(node.y, node.x));
-                map.setZoom(zoom);
+                if (radio.checked) {
+                    map.setView(new L.LatLng(node.y, node.x), zoom, { animate: true });
+                } else {
+                    $(radio).prop("checked", true).trigger("click");
+                    map.panTo(new L.LatLng(node.y, node.x));
+                    map.setZoom(zoom);
+                }
+                //openMarkerPopup(markerId);
+                return;
             }
-            //openMarkerPopup(markerId);
-            return;
-        }
-    });
+        });
 }
 
 //testing
@@ -196,7 +197,7 @@ function simulateBeacon() {
             localStorage.removeItem("lastVisitedNodeID");
             //Readd all markers
             floors = StorylineMapObj.createPolyline(floors, storyline);
-
+            
             for (i = 0; i < floors.length; i++) {
                 for (j = 0; j < floors[i].markers.length; j++) {
                     floors[i].groupLayer.addLayer(floors[i].markers[j]);

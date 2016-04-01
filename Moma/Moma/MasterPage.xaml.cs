@@ -32,12 +32,12 @@ namespace Moma
                 IconSource = "ic_action_map.png",
                 TargetType = typeof(StorylinePage)
             });
-           // masterPageItems.Add(new MasterPageItem
-            //{
-            //    Title = AppLanguageResource.Scavenger,
-            //    IconSource = "ic_action_search.png",
-             //   TargetType = typeof(ScavengerPage)
-            //});
+           masterPageItems.Add(new MasterPageItem
+           {
+              Title = AppLanguageResource.Scavenger,
+              IconSource = "ic_action_search.png",
+              TargetType = typeof(ScavengerPage)
+            });
             masterPageItems.Add(new MasterPageItem
             {
                 Title = AppLanguageResource.Directions,

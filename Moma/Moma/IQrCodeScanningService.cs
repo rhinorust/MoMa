@@ -9,5 +9,6 @@ namespace Moma
    public interface IQrCodeScanningService
     {
         Task<string> ScanAsync();
+        int getNumberQRCodes();
     }
 }

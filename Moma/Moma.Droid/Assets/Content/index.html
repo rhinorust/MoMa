@@ -21,6 +21,11 @@
     <script src="scripts/messages.js"></script>
     <script src="scripts/poiInformation.js"></script>
     <script src="scripts/qrCodeScanning.js"></script>
+    <script src="scripts/translation.js"></script>
+    <script src="scripts/localization.js"></script>
+<script>
+    var currentLanguage = jsBridge.getLanguage();
+</script>
 </head>
 
 <body onload="init(); createListView();">
@@ -32,7 +37,7 @@
             <div id="map"></div>
         </div>
 	<div style="text-align:center;">
-        <button id="scanBtn" onclick="qrCodeScanBtn()">Scan</button>	
+        <button id="scanBtn" onclick="qrCodeScanBtn()"><span id="scanText"></span></button>	
 	</div>
     </div>
     <div class="informationBox" id="POI_Information">
