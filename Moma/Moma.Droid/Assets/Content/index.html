@@ -13,12 +13,13 @@
     <script src="scripts/lib/jquery.mobile-1.4.5.min.js"></script>
 
     <link rel="stylesheet" href="styles/free-tour.css" />
-    <link rel="stylesheet" type="text/css" href="styles/poiInformationBox.css">
+    <link rel="stylesheet" type="text/css" href="styles/informationBox.css">
     <script src="data/data_local.js"></script>
     <script src="scripts/objects.js"></script>
     <script src="scripts/map.js"></script>
     <script src="scripts/search.js"></script>
-    <script src="scripts/poiInformationBox.js"></script>
+    <script src="scripts/messages.js"></script>
+    <script src="scripts/poiInformation.js"></script>
     <script src="scripts/qrCodeScanning.js"></script>
     <script src="scripts/translation.js"></script>
     <script src="scripts/localization.js"></script>
@@ -39,17 +40,33 @@
         <button id="scanBtn" onclick="qrCodeScanBtn()"><span id="scanText"></span></button>	
 	</div>
     </div>
-    <div id="POI_InformationBox">
+    <div class="informationBox" id="POI_Information">
         <div id="body">
             <header>
                 <div id="title">
                     <h1>Title</h1>
                 </div>
                 <div id="closeButton">
-                    <img id="close" src="images/closePOIIB.png">
+                    <img id="close" src="images/boxCloseButton.png">
                 </div>
             </header>
             <section id="content"></section>
+        </div>
+    </div>
+    <div class="informationBox" id="messages">
+        <div id="body">
+            <header>
+                <div id="title">
+                    <h1>Title</h1>
+                </div>
+                <div id="closeButton">
+                    <img id="close" src="images/boxCloseButton.png">
+                </div>
+            </header>
+            <section id="content">
+                <div id="iBeacons"><ul><p>No points of interest have been discovered yet.</p></ul></div>
+                <div id="QRCodes"><ul><p>No QRCodes have been scanned yet.</p></ul></div>
+            </section>
         </div>
     </div>
 </body>

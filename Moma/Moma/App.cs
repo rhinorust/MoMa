@@ -22,6 +22,9 @@ namespace Moma
 
             // Initialize the director and try starting the iBeacons' service
             iBeaconsDirector = new IBeaconsDirector();
+
+            // Keeping the instance of this page in the Current
+            Current = this;
         }
 
         public IBeaconsDirector IBeaconsDirector() {

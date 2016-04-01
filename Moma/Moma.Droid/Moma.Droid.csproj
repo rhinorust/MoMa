@@ -353,7 +353,7 @@
     <AndroidAsset Include="Assets\Content\scripts\lib\qunit-1.22.0.js" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\images\closePOIIB.png" />
+    <AndroidAsset Include="Assets\Content\images\boxCloseButton.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\images\CocaColaBeacon.png" />
@@ -362,10 +362,10 @@
     <AndroidAsset Include="Assets\Content\images\marker-icon2.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\scripts\poiInformationBox.js" />
+    <AndroidAsset Include="Assets\Content\scripts\poiInformation.js" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\styles\poiInformationBox.css" />
+    <AndroidAsset Include="Assets\Content\styles\informationBox.css" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\videos\MOEB_POINT_1_-_Small.mov" />
@@ -12570,28 +12570,19 @@
     <AndroidAsset Include="Assets\Content\clear_storage.html" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\scavengerHunt.html" />
+    <AndroidAsset Include="Assets\Content\scripts\messages.js" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\images\bronze-medal2.png" />
+    <AndroidResource Include="Resources\drawable\messages_none.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\images\gold-medal2.png" />
+    <AndroidResource Include="Resources\drawable\messages_one.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\images\platinum-medal2.png" />
+    <AndroidResource Include="Resources\drawable\messages_plus.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\images\silver-medal2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidAsset Include="Assets\Content\styles\scanvenger.css" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidAsset Include="Assets\Content\scripts\localization.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidAsset Include="Assets\Content\scripts\translation.js" />
+    <AndroidResource Include="Resources\drawable\messages_two.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.0.1.6505\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.0.1.6505\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

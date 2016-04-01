@@ -23,11 +23,12 @@ function displayStoryline() {
     //Test - next POI button
     $("#nextBtn").hide();
     $("#scanBtn").hide();
+    $("#endBtn").hide();
     $("#scanText").html(tools.getLocalization(translation, ['map', 'scan']));
 
     //browser testing (default storyline)
     if (storylineSelectedID == null) {
-        storylineSelectedID= "S1";
+        storylineSelectedID = "S1";
     }
     
     $('#currentStoryline').text("Current storyline: " + localStorage.getItem("currentStoryline"));
@@ -88,7 +89,6 @@ function displayStoryline() {
             map.removeLayer(floors[0].groupLayer);
         }
         if (localStorage.getItem("startIsSelected") == "true") {
-            localStorage.removeItem("startIsSelected");
             startStoryline();
         }
         
@@ -110,12 +110,20 @@ function endPreview() {
     window.location.replace("storylines.html");
 }
 
+function endStoryline() {
+    localStorage.removeItem("currentStoryline");
+    localStorage.removeItem("startIsSelected");
+    window.location.replace("storylines.html");
+}
+
 function startStoryline() {
+    localStorage.setItem("startIsSelected", "true");
     $("#starBtn").hide();
     $("#backBtn").hide();
     $("#previewStoryline").hide();
     $("#nextBtn").show();
     $("#scanBtn").show();
+    $("#endBtn").show();
     focusOnStart();
 }
 
@@ -153,7 +161,7 @@ function currentPOI(storyline) {
         }
     }
     floors = StorylineMapObj.createPolyline(floors, storyline);
-    map.removeLayer(floors[node.floorID-1].polyline);
+    map.removeLayer(floors[node.floorID - 1].polyline);
 
     for (i = 0; i < floors.length; i++) {
         floors[i].groupLayer.removeLayer(floors[i].polyline);
@@ -166,7 +174,7 @@ function currentPOI(storyline) {
 function focusOnNode(node, zoom) {
         var floors = $('input[name=leaflet-base-layers]:radio');
         jQuery.each(floors, function (index, radio) {
-            if ($(radio).next()[0].innerHTML.trim() == node.floorID+"") {
+        if ($(radio).next()[0].innerHTML.trim() == node.floorID + "") {
                 if (radio.checked) {
                     map.setView(new L.LatLng(node.y, node.x), zoom, { animate: true });
                 } else {

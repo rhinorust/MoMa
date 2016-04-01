@@ -10,8 +10,10 @@ namespace Moma
     {
         BeaconRegion beaconRegion;          // We'll be directing iBeacons within this beaconRegion.
         String UUID;                        // The iBeacons use this UUID
-        Dictionary<IBeacon, bool> iBeacons; // and will be stored here when found during scanning,
+        Dictionary<IBeacon, string[]> iBeacons; // and will be stored here when found during scanning,
         IJavascriptInterface map;           // notifying the indoor map when desired.
+
+        // The dictionary's string[] = {"true", audioFileName} if it's an audio iBeacon, false otherwise
 
         // These two variables are used when BlueTooth is disabled on the device.
         // In case BlueTooth wasn't enabled on app launch, the IBeaconDirector
@@ -23,18 +25,17 @@ namespace Moma
         // The interval between checks for iBeacons
         const int CHECK_FOR_NEW_IBEACONS_INTERVAL = 2; // in seconds
         // Or else iBeacons found during app start-up don't get reported to the user
-        const int IBEACON_TIMER_START_DELAY = 10;
+        const int IBEACON_TIMER_START_DELAY = 30;
         Timer iBeaconsCheckTimer;
 
-        // "Immediate", "Near", "Far" or "Unknown" only possible
-        const String iBeaconsProximityRequirement = "Immediate";
+        const string PROXIMITY_RESTRICTION = "Immediate";
 
         public IBeaconsDirector()
         {
             UUID = "b9407f30-f5f8-466e-aff9-25556b57fe6d";
             beaconRegion = new BeaconRegion("Musee Des Ondes", UUID);
             map = DependencyService.Get<IJavascriptInterface>();
-            iBeacons = new Dictionary<IBeacon, bool>();
+            iBeacons = new Dictionary<IBeacon, string[]>();
 
             // Only fails if BlueTooth is disabled or the device doesn't support it
             tryStartingIBeaconsService(null);
@@ -67,29 +68,84 @@ namespace Moma
 
                     EstimoteManager.Instance.StartRanging(beaconRegion);
 
-                    iBeaconsCheckTimer = new Timer(doActionForNewIBeacons, null,
+                    iBeaconsCheckTimer = new Timer(iBeaconIntervalCheck, null,
                                                    IBEACON_TIMER_START_DELAY,
                                                    CHECK_FOR_NEW_IBEACONS_INTERVAL*1000);
                 }
             });
         }
 
-        public void doActionForNewIBeacons(object args) {
+        public void iBeaconIntervalCheck(object args) {
             Device.BeginInvokeOnMainThread(async () => {
-                IEnumerable<IBeacon> ibeacons = await fetchNewIBeacons();
+                IEnumerable<IBeacon> newIBeacons = await fetchNewIBeacons();
 
-                foreach (IBeacon ibeacon in ibeacons) {
+                manageBackgroundAudio();
+
+                foreach (IBeacon iBeacon in newIBeacons) {
                     // Adding the new iBeacon to the dictionary for further reference
-                    iBeacons.Add(ibeacon, true);
-                    // Accessable properties of iBeacons:
+
+                    // Accessible properties of iBeacons:
                     // -> ibeacon.Minor,
                     // -> ibeacon.Major,
                     // -> ibeacon.Proximity.ToString() returns: "Unknown", "Far", "Near" or "Immediate",
                     // -> ibeacon.Uuid
-                    if (ibeacon.Proximity.ToString().Equals(iBeaconsProximityRequirement))
-                        map.CallJs("iBeaconDiscovered(" + ibeacon.Major + "," + ibeacon.Minor + ");");
+                    
+                    map.CallJs("iBeaconDiscovered(" + iBeacon.Minor + "," + iBeacon.Major + ");");
                 }
             });
+        }
+
+        // Loops through the already found iBeacons for audio iBeacons
+        // and if they are in range, play them, else stop playing them 
+        // As of now, it will allow many to be playing at once.
+        private void manageBackgroundAudio()
+        {
+            foreach (IBeacon key in iBeacons.Keys)
+            {
+                // If it is an audio iBeacon
+                if (iBeacons[key][0].Equals("true"))
+                {
+                    // If it's close enough
+                    if (satisfiesProximity(key.Proximity.ToString()))
+                    {
+                        // Play it if it's not already playing
+                        DependencyService.Get<IAudio>().PlayAudioFile(iBeacons[key][1]);
+                    }
+                    // If it's not, stop playing it if it's playing
+                    else
+                        DependencyService.Get<IAudio>().StopAudioFile(iBeacons[key][1]);
+                }
+            }
+        }
+
+        // Returns true if proximity is less than or equal to PROXIMITY_RESTRICTION
+        private bool satisfiesProximity(string proximity)
+        {
+            if (PROXIMITY_RESTRICTION.Equals("Immediate")) {
+                if (proximity.Equals("Immediate")) return true;
+            }
+            if (PROXIMITY_RESTRICTION.Equals("Near")) {
+                if (proximity.Equals("Immediate")) return true;
+                if (proximity.Equals("Near")) return true;
+            }
+            if (PROXIMITY_RESTRICTION.Equals("Far")) {
+                if (proximity.Equals("Immediate")) return true;
+                if (proximity.Equals("Near")) return true;
+                if (proximity.Equals("Far")) return true;
+            }
+            return false;
+        }
+
+        // Converts a C# iBeacon instance to javascript instance
+        // -> Not used as of now <-
+        private string iBeaconToJavascript(IBeacon iBeacon) {
+            string iBeaconJS = "{";
+            iBeaconJS += "minor: " + iBeacon.Minor + ",";
+            iBeaconJS += "major: " + iBeacon.Major + ",";
+            iBeaconJS += "proximity: '" + iBeacon.Proximity + "',";
+            iBeaconJS += "}";
+
+            return iBeaconJS;
         }
 
         async Task<IEnumerable<IBeacon>> fetchNewIBeacons() {
@@ -97,12 +153,32 @@ namespace Moma
             List<IBeacon> newIBeacons = new List<IBeacon>();
 
             foreach (IBeacon foundIBeacon in foundIBeacons) {
-                if (!iBeacons.ContainsKey(foundIBeacon)) {
-                    System.Diagnostics.Debug.WriteLine("=\n= newBeacon =\n=");
-                    newIBeacons.Add(foundIBeacon);
+                string prox = foundIBeacon.Proximity.ToString();
+                if (satisfiesProximity(prox)) {
+                    if (!iBeacons.ContainsKey(foundIBeacon)) {
+                        System.Diagnostics.Debug.WriteLine("=\n= newBeacon =\n="); // Debugging
+                        newIBeacons.Add(foundIBeacon); // Add to the return list
+                        iBeacons.Add(foundIBeacon, new string[] { "false", "" }); // Add to dictionary
+                    }
                 }
             }
             return newIBeacons;
+        }
+
+        // Set the iBeacon with the given minor and major values as a background audio
+        // iBeacon. Furthermore, stores the audioFileName to play for that audio iBeacon
+        public void setIBeaconAsAudioIBeacon(int minor, int major, string audioFileName) {
+            foreach (IBeacon key in iBeacons.Keys)
+            {
+                // Finding the corresponding iBeacon in the dictionary
+                if (key.Minor == (ushort)minor && key.Major == (ushort)major)
+                {
+                    // Storing the fact that it's an audio iBeacon along with
+                    // the audiofile to play for it
+                    iBeacons[key] = new string[] { "true", audioFileName };
+                    break;
+                }
+            }
         }
     }
 }

@@ -7,13 +7,11 @@
 }
 
 function previewStoryline(storylineID) {
-    localStorage.removeItem("currentStoryline");
     localStorage.setItem("currentStoryline", storylineID);
     location.replace("storyline_index.html");
 }
 
 function startStoryline(storylineID) {
-    localStorage.removeItem("currentStoryline");
     localStorage.setItem("currentStoryline", storylineID);
     localStorage.setItem("startIsSelected", "true");
     window.location.replace("storyline_index.html");
