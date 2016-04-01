@@ -35,10 +35,21 @@ function showQRText(text) {
 }
 function showFoundQRCodes() {
    
-    //var num = jsBridge.getQRNumber();
-    var num = 5;
+   var num = jsBridge.getQRNumber();
+   // var num = 5;
     var src = "";
     var text;
+
+    $("#rank").text(tools.getLocalization(translation, ['scanvengerHunt', 'ranking']));
+    $("#numRank").text(tools.getLocalization(translation, ['scanvengerHunt', 'numRank']));
+    $("#tableRank").text(tools.getLocalization(translation, ['scanvengerHunt', 'rank']));
+    $("#bronze").text(tools.getLocalization(translation, ['scanvengerHunt', 'bronze']));
+    $("#silver").text(tools.getLocalization(translation, ['scanvengerHunt', 'silver']));
+    $("#gold").text(tools.getLocalization(translation, ['scanvengerHunt', 'gold']));
+    $("#platinum").text(tools.getLocalization(translation, ['scanvengerHunt', 'platinum']));
+
+
+
 
     if (num == 0) {
         $("#qrcodes").text(tools.getLocalization(translation, ['scanvengerHunt', 'noneFound']));

@@ -11,7 +11,10 @@ var translation = {
             bronze: "Bronze",
             silver: "Silver",
             gold: "Gold",
-            platinum: "Platinum"
+            platinum: "Platinum",
+            ranking: "Rankings",
+            rank: "Rank",
+            numRank: "Number of QR Codes"
         },
         map: {
             scan:"Scan"
@@ -28,7 +31,10 @@ var translation = {
             bronze: "Bronze",
             silver: "Argent",
             gold: "Or",
-            platinum: "Platine"
+            platinum: "Platine",
+            ranking: "Classements",
+            rank: "Rang",
+            numRank: "Nombre de codes QR"
         },
         map: {
             scan: "Scan"
@@ -45,7 +51,10 @@ var translation = {
             bronze: "Bronze",
             silver: "Silber",
             gold: "Gold",
-            platinum: "Platin"
+            platinum: "Platin",
+            ranking: "Rankings",
+            rank: "Rank",
+            numRank: "Anzahl der QR-Codes"
         },
         map: {
             scan: "Scan"

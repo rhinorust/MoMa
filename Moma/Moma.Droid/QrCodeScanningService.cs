@@ -62,7 +62,13 @@ namespace Moma.Droid
 
         public int getNumberQRCodes()
         {
-            return scannedQRCodes.Count;
+            if (scannedQRCodes == null)
+            {
+                return 0;
+            }
+            else {
+                return scannedQRCodes.Count;
+            }
         }
 
         public Hashtable getQRList()
