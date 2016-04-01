@@ -165,8 +165,8 @@ function Navigation(nodePath, isNotAtStart) {
 //Map Object
 function Map() {
     //***remove once new map images are implemented
-    var trueImageWidth = 93;
-    var trueImageHeight = 188;
+    var trueImageWidth = 146;
+    var trueImageHeight = 147;
 
     this.createMarker = function (iconURL, iconWidth, iconHeight, iconAnchorWidth, iconAnchorHeight, iconAnchorX, iconAnchorY) {
         var marker = L.icon({
@@ -198,8 +198,16 @@ function Map() {
         for (i = 0; i < arrayPOI.length; i++) {
             var p = arrayPOI[i];
             var floorIDInt = parseInt(p.floorID);
-            var trueX = (Math.round((trueImageWidth / floors[floorIDInt - floorDiff].imageWidth) * p.x));
-            var trueY = (-1 * Math.round((trueImageHeight / floors[floorIDInt - floorDiff].imageHeight) * p.y));
+            var imageWidth = floors[floorIDInt - floorDiff].imageWidth;
+            var imageHeight = floors[floorIDInt - floorDiff].imageHeight;
+            while ( imageWidth >= 256 && imageHeight >= 256) {
+                imageWidth = imageWidth/2;
+                imageHeight = imageHeight/2;
+            }
+            imageHeight = imageHeight * (-1);
+
+            var trueX = (Math.round((imageWidth / floors[floorIDInt - floorDiff].imageWidth) * p.x));
+            var trueY = (Math.round((imageHeight / floors[floorIDInt - floorDiff].imageHeight) * p.y));
 
             var poi = new POI(p.id, trueX, trueY, p.floorID, p.title[lang].title, p.description[0].description, p.iBeacon, p.media.video, p.media.image, p.media.audio);
             floors[floorIDInt - floorDiff].POI[poi.id + ""] = poi;
