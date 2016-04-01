@@ -53,13 +53,13 @@ function POT(id, x, y, floorID, label) {
     this.edges = [];
 }
 
-function Edge(startNode, endNode, startNodeFloorID, endNodeFloorID) {
+function Edge(startNode, endNode, distance) {
     this.startNode = startNode;
     this.endNode = endNode;
-    this.distance;
-    this.startNodeFloorID = startNodeFloorID;
-    this.endNodeFloorID = endNodeFloorID;
+    this.distance = distance;
 
+    //Not used anymore
+    /*
     this.getDistance = function () {
         if (endNodeFloorID == startNodeFloorID) {
             var startNode = ListPOI[this.startNode + ""];
@@ -74,8 +74,7 @@ function Edge(startNode, endNode, startNodeFloorID, endNodeFloorID) {
         } else {
             this.distance = 0;
         }
-    }
-    this.getDistance();
+    }*/
 }
 
 function IBeacon(uuid, major, minor) {
@@ -239,7 +238,7 @@ function Map() {
         var arrayEdges = DATA.edge;
         for (i = 0; i < arrayEdges.length; i++) {
             var e = arrayEdges[i];
-            var edge = new Edge(e.startNode.id, e.endNode.id, e.startNode.floorID, e.endNode.floorID);
+            var edge = new Edge(e.startNode, e.endNode, e.distance);
             if (ListPOT[edge.startNode + ""] != null) {
                 ListPOT[edge.startNode + ""].edges.push(edge);
             } else if (ListPOI[edge.startNode + ""] != null) {
