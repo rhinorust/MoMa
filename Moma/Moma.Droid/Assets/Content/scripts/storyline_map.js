@@ -199,6 +199,6 @@ function simulateBeacon() {
         }
     } else {
         currentPOI(storyline);
-        iBeaconDiscovered(9377, 54177);
+        //iBeaconDiscovered(9377, 54177);
     }
 }
