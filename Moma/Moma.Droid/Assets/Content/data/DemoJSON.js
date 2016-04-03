@@ -43,12 +43,12 @@
                     "image": [],
                     "video": [
                       {
-                          "path": "video/MOEB POINT 1 - Small.mov",
+                          "path": "point1",
                           "language": "EN",
                           "caption": "MOEB Point 1"
                       },
                       {
-                          "path": "video/MOEB_Introduction - Small.mov",
+                          "path": "intro",
                           "language": "EN",
                           "caption": "MOEB Intro"
                       }
@@ -106,12 +106,12 @@
                     ],
                     "video": [
                       {
-                          "path": "video/MOEB POINT 2  - Small.mov",
+                          "path": "point2",
                           "language": "EN",
                           "caption": "MOEB Point 2"
                       },
                       {
-                          "path": "video/MOEB POINT 4 - Small.mov",
+                          "path": "point4",
                           "language": "EN",
                           "caption": "MOEB Point 4"
                       }
@@ -163,7 +163,7 @@
                     "image": [],
                     "video": [
                       {
-                          "path": "video/MOEB POINT 4 - Small.mov",
+                          "path": "point4",
                           "language": "EN",
                           "caption": "MOEB Point 4"
                       }

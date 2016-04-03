@@ -44,7 +44,7 @@ function findPOIWithIBeacon(minor, major) {
     // return the iBeacon object if found
     for (var i = 0; i < pois.length; i++) {
         var poi = pois[i];
-        var iBeacon = poi.iBeacon;
+        var iBeacon = poi.ibeacon;
         if (iBeacon.minor === minor && iBeacon.major === major) {
             return poi;
         }
