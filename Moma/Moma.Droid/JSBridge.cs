@@ -125,6 +125,17 @@ namespace Moma.Droid
             // update the messagesIcon to the new number of unread messages
             MapPage.Current.messageWasRead(messageTitle);
         }
+
+
+        // ==========
+        // Debugging
+        // ==========
+        [JavascriptInterface]
+        [Export]
+        public void print(string text)
+        {
+            System.Diagnostics.Debug.WriteLine("\n=\n=\n=\n="+text+ "\n=\n=\n=\n=");
+        }
     }
 }
 
