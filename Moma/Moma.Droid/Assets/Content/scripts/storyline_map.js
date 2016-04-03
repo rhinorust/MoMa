@@ -107,7 +107,14 @@ function endPreview() {
     window.location.replace("storylines.html");
 }
 
+function endStoryline() {
+    localStorage.removeItem("currentStoryline");
+    localStorage.removeItem("startIsSelected");
+    window.location.replace("storylines.html");
+}
+
 function startStoryline() {
+    localStorage.setItem("startIsSelected", "true");
     $("#starBtn").hide();
     $("#backBtn").hide();
     $("#previewStoryline").hide();
