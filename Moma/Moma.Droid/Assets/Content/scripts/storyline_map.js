@@ -23,7 +23,9 @@ var startNode;
 function displayStoryline() {
     //Test - next POI button
     $("#nextBtn").hide();
-    $("#scanBtn").hide(); 
+    $("#scanBtn").hide();
+    $("#endBtn").hide();
+    $("#scanText").html(tools.getLocalization(translation, ['map', 'scan']));
     
     $('#currentStoryline').text("Current storyline: " + localStorage.getItem("currentStoryline"));
     $('#previewStoryline').text("Previewing storyline: " + localStorage.getItem("currentStoryline"));
@@ -53,7 +55,7 @@ function displayStoryline() {
         floors = StorylineMapObj.addPolylines(floors);
 
         startNode = ListPOI[navigationPath.nodePath[0]+""];
-        $('#currentStoryline').text("Navigate to the start");
+        //$('#currentStoryline').text("Navigate to the start");
     } else {
         floors = StorylineMapObj.createPolyline(floors, storyline);
         floors = MapObj.groupLayers(floors);
@@ -84,7 +86,6 @@ function displayStoryline() {
             map.addLayer(floors[parseInt(startNode.floorID) - floorDiff].groupLayer);
 
         if (localStorage.getItem("startIsSelected") == "true") {
-            localStorage.removeItem("startIsSelected");
             startStoryline();
         }
         
@@ -112,6 +113,7 @@ function startStoryline() {
     $("#previewStoryline").hide();
     $("#nextBtn").show();
     $("#scanBtn").show();
+    $("#endBtn").show();
     focusOnStart();
 }
 
