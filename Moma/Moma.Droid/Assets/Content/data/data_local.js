@@ -2,7 +2,8 @@
 //POT ids: 1---
 //Edges: floor transition: floor:0, distance:0
 
-var DATA = {
+var DATA;
+    bla = {
     "floorPlan": [
       {
           "floorID": 1,
