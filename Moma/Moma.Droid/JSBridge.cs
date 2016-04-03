@@ -71,6 +71,16 @@ namespace Moma.Droid
         }
 
         // ==============
+        // Video playback
+        // ==============
+        [JavascriptInterface]
+        [Export]
+        public void playVideo(string videoName, string poiTitle, bool interrupt)
+        {
+            MainPage.Current.playVideo(videoName, poiTitle, interrupt);
+        }
+
+        // ==============
         // QR Codes stuff
         // ==============
         [JavascriptInterface]
@@ -147,6 +157,17 @@ namespace Moma.Droid
             // Tells the MapPage there was one message read which will
             // update the messagesIcon to the new number of unread messages
             MapPage.Current.messageWasRead(messageTitle);
+        }
+
+
+        // ==========
+        // Debugging
+        // ==========
+        [JavascriptInterface]
+        [Export]
+        public void print(string text)
+        {
+            System.Diagnostics.Debug.WriteLine("\n=\n=\n=\n="+text+ "\n=\n=\n=\n=");
         }
     }
 }

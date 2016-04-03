@@ -61,38 +61,45 @@ function showIBeacon(minor, major) {
         var poiTitle = poi.title[0].title;
         // Add the media elements to the POI information box
         var images = poi.media.image;
-        //var videos = poi.media.video;
+        var videos = poi.media.video;
 
         var content = "";
 
-        // If there are images
-        if (images.length > 0) {
-            for (var j = 0; j < images.length; j++)
-                content += imagef(images[j].path);
-        }   
-        // If there are videos
-        /*if (videos.length > 0) {
-            // Only add one for now
-            content += videof(videos[0].path);
-        }*/
+        // If there are videos, we ask C# to show them all
+        if (videos.length > 0) {
+            // Interrupt and play the first video
+            jsBridge.playVideo(videos[0].path, videos[0].caption, true);
 
-        content += textf(poiDescription);
-        var title = poiTitle;
+            // Add the rest to the C#'s video playQueue
+            for (var i = 1; i < videos.length; i++) {
+                jsBridge.playVideo(videos[i].path, videos[i].caption, false);
+            }
+        }
+        // Else, if there are images or text we will show the poi information box
+        else {
+            if (images.length > 0) {
+                for (var j = 0; j < images.length; j++)
+                    content += imagef(images[j].path);
+            }
 
-        poiIBoxTitle.text(title);
-        poiIBoxContent.empty();
-        poiIBoxContent.append(content);
+            content += textf(poiDescription);
+            var title = poiTitle;
+
+            poiIBoxTitle.text(title);
+            poiIBoxContent.empty();
+            poiIBoxContent.append(content);
+
+            // Close the message box
+            messageBox.css('visibility', 'hidden');
+
+            poiIB.css('visibility', 'visible');
+        }
 
         // Updating the messageIcon in the C# toolbar
-        jsBridge.messageWasRead(title);
+        jsBridge.messageWasRead(poiTitle);
 
         // Remove it's new tag from the iBeacons' list if it exists
-        removeNEWTagFor(title, '#iBeacons');
-
-        // Close the message box
-        messageBox.css('visibility', 'hidden');
-
-        poiIB.css('visibility', 'visible');
+        removeNEWTagFor(poiTitle, '#iBeacons');
     }
 }
 
@@ -128,21 +135,10 @@ function removeNEWTagFor(title, container) {
     });
 }
 
-function videof(fileName) {
-    return '<video controls="controls" src="'+fileName+'"></video>';
-} 
-
 function imagef(fileName) {
     return '<img src="'+fileName+'">';
 }
 
 function textf(fileName) {
     return '<p>'+fileName+'</p>';
-}
-
-function stopAudioAndVideo() {
-    var vid = $('video');
-    if (vid) {
-        vid.get(0).pause();
-    }
 }

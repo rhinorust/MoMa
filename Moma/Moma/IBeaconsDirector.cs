@@ -76,6 +76,8 @@ namespace Moma
         }
 
         public void iBeaconIntervalCheck(object args) {
+            //MainPage.Current.playVideo("intro");
+
             Device.BeginInvokeOnMainThread(async () => {
                 IEnumerable<IBeacon> newIBeacons = await fetchNewIBeacons();
 

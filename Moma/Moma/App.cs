@@ -18,7 +18,7 @@ namespace Moma
 
         public App() {
             // The root page of your application
-            MainPage = new Moma.MainPage();
+            this.MainPage = new Moma.MainPage();
 
             // Initialize the director and try starting the iBeacons' service
             iBeaconsDirector = new IBeaconsDirector();

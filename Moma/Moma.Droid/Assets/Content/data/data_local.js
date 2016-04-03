@@ -788,13 +788,11 @@ var DATA;
                 },
                 "media": {
                     "image": [],
-                    "video": [
-                      {
-                          "path": "videos/MOEB_POINT_1_-_Small.mov",
-                          "language": "EN",
-                          "caption": "None"
-                      }
-                    ],
+                    "video": [{
+                        "path": "point1",
+                        "language": "EN",
+                        "caption": "None"
+                    }],
                     "audio": []
                 },
                 "storyPoint": [
@@ -827,13 +825,11 @@ var DATA;
                 },
                 "media": {
                     "image": [],
-                    "video": [
-                      {
-                          "path": "videos/MOEB_POINT_2_-_Small.mov",
-                          "language": "EN",
-                          "caption": "None"
-                      }
-                    ],
+                    "video": [{
+                        "path": "point2",
+                        "language": "EN",
+                        "caption": "None"
+                    }],
                     "audio": []
                 },
                 "storyPoint": [
@@ -866,13 +862,11 @@ var DATA;
                 },
                 "media": {
                     "image": [],
-                    "video": [
-                      {
-                          "path": "videos/MOEB_POINT_3_-_Small.mov",
-                          "language": "EN",
-                          "caption": "None"
-                      }
-                    ],
+                    "video": [{
+                        "path": "point3",
+                        "language": "EN",
+                        "caption": "None"
+                    }],
                     "audio": []
                 },
                 "storyPoint": [
