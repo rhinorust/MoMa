@@ -164,6 +164,7 @@
     <Compile Include="AndroidAppHandler.cs" />
     <Compile Include="AndroidUserSettings.cs" />
     <Compile Include="AudioService.cs" />
+    <Compile Include="Controls\MyVideoView.cs" />
     <Compile Include="CultureHandler.cs" />
     <Compile Include="CustomNavigationRenderer.cs" />
     <Compile Include="FileIO.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="LanguageInitializer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="CustomPickerRenderer.cs" />
+    <Compile Include="MyVideoPlayerRenderer.cs" />
     <Compile Include="NetworkConnection.cs" />
     <Compile Include="QrCodeScanningService.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -185,6 +187,8 @@
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
+    <AndroidResource Include="Resources\layout\toolbar.axml" />
+    <AndroidResource Include="Resources\layout\VideoLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\icon.png" />
@@ -12583,6 +12587,27 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\messages_two.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\Colors.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\Strings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\raw\intro.mp4" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\raw\point1.mp4" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\raw\point2.mp4" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\raw\point3.mp4" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\raw\point4.mp4" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.0.1.6505\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.0.1.6505\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

@@ -10,6 +10,11 @@ namespace Moma
 {
     public partial class MainPage : MasterDetailPage
     {
+        public static MainPage Current { get; set; }
+
+        public NavigationPage guided;
+        public NavigationPage free;
+
         public MainPage()
         {
             var settingsDependency = DependencyService.Get<IUserSettings>();
@@ -17,15 +22,37 @@ namespace Moma
 
             InitializeComponent();
 
+/*            guided = new NavigationPage(new StorylinePage()) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
+            free   = new NavigationPage(new MapPage()) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
+
             if (tourType == "guided"){
-                Detail = new NavigationPage(new StorylinePage()) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
+                Detail = guided;
             }
             else {
-                Detail = new NavigationPage(new MapPage()) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
+                //mapPage = new MapPage();
+                //videoPage = new VideoPage();
+                Detail = free;
             }
 
             masterPage.ListView.ItemSelected += OnItemSelected;
 
+            Current = this;*/
+
+            //Current.Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(VideoPage))) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
+        }
+
+        public void toMapPage()
+        {
+            //Detail.Navigation.PushAsync(mapPage);
+            //Detail.Navigation.RemovePage(Detail);
+        }
+
+        public void toVideoPage()
+        {
+            //Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(VideoPage))) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
+            //Detail = new NavigationPage(new VideoPage()) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
+            //Detail = guided;//.Navigation.PushAsync(videoPage);
+            //Detail.Navigation.RemovePage(Detail);
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)

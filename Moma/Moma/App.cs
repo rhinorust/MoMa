@@ -17,6 +17,9 @@ namespace Moma
         IBeaconsDirector iBeaconsDirector;
 
         public App() {
+            this.MainPage = new NavigationPage(new AndroidVideoPlayer());
+
+            /*
             // The root page of your application
             MainPage = new Moma.MainPage();
 
@@ -24,12 +27,35 @@ namespace Moma
             iBeaconsDirector = new IBeaconsDirector();
 
             // Keeping the instance of this page in the Current
-            Current = this;
+            Current = this;*/
         }
 
         public IBeaconsDirector IBeaconsDirector() {
             return iBeaconsDirector;
         }
+
+
+
+
+        public static MasterDetailPage MasterDetail
+        {
+            get;
+            private set;
+        }
+
+        public void toVideoPage()
+        {
+            /*MasterDetail = new MasterDetailPage
+            {
+                Detail = new NavigationPage(new VideoPage()),
+                Master = new ContentPage() { Title = "Loading..." }
+            };
+
+            MainPage = MasterDetail;*/
+        }
+
+
+
 
         protected override void OnStart()
         {
