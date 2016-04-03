@@ -5,6 +5,8 @@ using Java.Interop;
 using Android.Widget;
 using Android.Content;
 using Xamarin.Forms;
+using System.Threading;
+using App1.Droid;
 
 namespace Moma.Droid
 {
@@ -105,6 +107,37 @@ namespace Moma.Droid
 
         public void redirect()
         {
+        }
+        [JavascriptInterface]
+        [Export]
+        public int getQRNumber()
+        {
+            var num = DependencyService.Get<IQrCodeScanningService>().getNumberQRCodes();
+
+            return num;
+        }
+
+        [JavascriptInterface]
+        [Export]
+        public string getLanguage()
+        {
+            var userSettings = new AndroidUserSettings();
+            var language = userSettings.GetUserSetting("language");
+
+            if (language.ToLower().Equals("english"))
+            {
+                return "en";
+            }
+            if (language.ToLower().Equals("french"))
+            {
+                return "fr";
+            }
+            if (language.ToLower().Equals("deutsche"))
+            {
+                return "de";
+            }
+            return "en";
+
         }
 
         // ==========================

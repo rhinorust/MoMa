@@ -3,7 +3,8 @@ var MapObj = new Map();
 var StorylineMapObj = new StorylineMap();
 var ListPOI = [];
 var ListPOT = [];
-var baseMaps;
+var floorDiff = 1;
+var baseMaps = {};
 var map;
 
 var markerIconPOIBlue = MapObj.createMarker('images/marker-icon-blue.png', 64, 64, 30, 64, 1, 1);
@@ -12,43 +13,65 @@ var markerIconPOIRed = MapObj.createMarker('images/marker-icon-red.png', 64, 64,
 var markerIconNode = MapObj.createMarker('images/none-marker-icon.png');
 var mapMinZoom = 1;
 var mapMaxZoom = 5;
-var floors = [new Floor(1), new Floor(2), new Floor(3), new Floor(4), new Floor(5)];
+var floors = [];
 var storyline;
 var storylineSelectedID;
-
+var lastVisitedNodeID = localStorage.getItem("lastVisitedNodeID");
+var navigationPath = new Navigation([], false);
+var startNode;
 
 function displayStoryline() {
     //Test - next POI button
     $("#nextBtn").hide();
     $("#scanBtn").hide();
-
+    $("#endBtn").hide();
+    $("#scanText").html(tools.getLocalization(translation, ['map', 'scan']));
     
     $('#currentStoryline').text("Current storyline: " + localStorage.getItem("currentStoryline"));
     $('#previewStoryline').text("Previewing storyline: " + localStorage.getItem("currentStoryline"));
     storylineSelectedID = localStorage.getItem("currentStoryline");
-
+    //browser testing (default storyline)
+    if (storylineSelectedID == null) {
+        storylineSelectedID= "0";
+    }
+    floors = MapObj.parseFloors();
     floors = MapObj.parsePOI(floors);
     floors = MapObj.parsePOT(floors);
     floors = MapObj.createFloorTileLayers(floors, mapMinZoom, mapMaxZoom);
-
-    //browser testing (default storyline)
-    if (storylineSelectedID == null) {
-        storylineSelectedID= "S1";
-    }
+    MapObj.parseEdges();
     storyline = StorylineMapObj.parseStoryline(storylineSelectedID);
     storyline = StorylineMapObj.parseNodePath(storyline);
-    floors = StorylineMapObj.createPolyline(floors, storyline);
-    floors = MapObj.groupLayers(floors);
-    floors = StorylineMapObj.addPolylines(floors);
+
+
+    if (lastVisitedNodeID != null && lastVisitedNodeID != storyline.nodePath[0]+"") {
+        var dijkstras = new Dijkstra(ListPOI, ListPOT);
+        start = lastVisitedNodeID;
+        finish = storyline.nodePath[0]+"";
+        var shortestPathID = dijkstras.shortestPath(start, finish);
+        navigationPath = new Navigation(shortestPathID, true);
+        navigationPath = StorylineMapObj.parseNodePath(navigationPath);
+        floors = StorylineMapObj.createPolyline(floors, navigationPath);
+        floors = MapObj.groupLayers(floors);
+        floors = StorylineMapObj.addPolylines(floors);
+
+        startNode = ListPOI[navigationPath.nodePath[0]+""];
+        //$('#currentStoryline').text("Navigate to the start");
+    } else {
+        floors = StorylineMapObj.createPolyline(floors, storyline);
+        floors = MapObj.groupLayers(floors);
+        floors = StorylineMapObj.addPolylines(floors);
+        startNode = ListPOI[storyline.nodePath[0]+""];
+    }
 
     //floor radio buttons
-    var baseMaps = {
-        "1": floors[0].groupLayer,
-        "2": floors[1].groupLayer,
-        "3": floors[2].groupLayer,
-        "4": floors[3].groupLayer,
-        "5": floors[4].groupLayer
-    };
+    for (i = 0; i < floors.length; i++) {
+        var property = (i + floorDiff)+"";
+        if (i == 0) {
+            baseMaps[property] = floors[i].groupLayer;
+        } else {
+            baseMaps[property] = floors[i].groupLayer;
+        }
+    }
     //floor overlay radio buttons
     var overlayMaps = {
         //"Markers": floor1Overlay
@@ -58,9 +81,16 @@ function displayStoryline() {
     map = L.map('map', {
         maxZoom: mapMaxZoom,
         minZoom: mapMinZoom,
-        crs: L.CRS.Simple,
-        layers: floors[0].groupLayer
-    }).setView([0, 0], mapMaxZoom);
+        crs: L.CRS.Simple    });
+    map.on("load", function () {
+            map.addLayer(floors[parseInt(startNode.floorID) - floorDiff].groupLayer);
+
+        if (localStorage.getItem("startIsSelected") == "true") {
+            startStoryline();
+        }
+        
+    });
+    map.setView([0, 0], mapMaxZoom);
     //map bounds
     var mapBounds = new L.LatLngBounds(
         map.unproject([0, 6144], mapMaxZoom),
@@ -70,11 +100,6 @@ function displayStoryline() {
     map.fitBounds(mapBounds);
     //Add controls (radio buttons) to map in order to switch between floors
     L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map).setPosition('bottomright');
-
-    if (localStorage.getItem("startIsSelected") == "true") {
-        localStorage.removeItem("startIsSelected");
-        startStoryline();
-    }
 }
 
 function endPreview() {
@@ -82,19 +107,32 @@ function endPreview() {
     window.location.replace("storylines.html");
 }
 
+function endStoryline() {
+    localStorage.removeItem("currentStoryline");
+    localStorage.removeItem("startIsSelected");
+    window.location.replace("storylines.html");
+}
+
 function startStoryline() {
+    localStorage.setItem("startIsSelected", "true");
     $("#starBtn").hide();
     $("#backBtn").hide();
     $("#previewStoryline").hide();
     $("#nextBtn").show();
     $("#scanBtn").show();
+    $("#endBtn").show();
     focusOnStart();
 }
 
 function focusOnStart() {
-    firstNodeID = storyline.nodePath[0];
-    firstNode = storyline.nodes[firstNodeID];
-    focusOnNode(firstNode);
+    if (navigationPath.isNotAtStart) {
+        firstNodeID = navigationPath.nodePath[0]+"";
+        firstNode = navigationPath.nodes[firstNodeID];
+    } else {
+        firstNodeID = storyline.nodePath[0]+"";
+        firstNode = storyline.nodes[firstNodeID];
+    }
+    focusOnNode(firstNode, 3);
 }
 
 
@@ -102,45 +140,47 @@ function focusOnStart() {
 //When beacon in proximity function is fired, should call this method
 //Check whether beacon uuid == next Node.iBeacon.uuid
 //if true -> fire popup
-function currentPOI() {
-
+function currentPOI(storyline) {
     var node;
+    var floorIDInt;
     for (i = 0; i < storyline.nodePath.length; i++) {
         //if isPOI
-        node = storyline.nodes[storyline.nodePath[i]];
-        if (storyline.nodePath[i].charAt(0) == "0" && localStorage.getItem("lastVisitedNodeID") != storyline.nodePath[i]) {
-            focusOnNode(node);
-            localStorage.setItem("lastVisitedNodeID", storyline.nodePath[i]);
+        node = storyline.nodes[storyline.nodePath[i]+""];
+        floorIDInt = parseInt(node.floorID);
+        if (ListPOI[storyline.nodePath[i]+""] != null && localStorage.getItem("lastVisitedNodeID") != storyline.nodePath[i]+"") {
+            focusOnNode(node, 3);
+            localStorage.setItem("lastVisitedNodeID", storyline.nodePath[i]+"");
             storyline.nodePath.splice(0, i);
             break;
         } else {
-            var marker = floors[node.floorID - 1].markersById[node.id];
-            floors[node.floorID - 1].groupLayer.removeLayer(marker);
+            
+            var marker = floors[floorIDInt - floorDiff].markersById[node.id+""];
+            floors[floorIDInt - floorDiff].groupLayer.removeLayer(marker);
             map.removeLayer(marker);
             //remove marker from floor.groupLayer too
         }
     }
     floors = StorylineMapObj.createPolyline(floors, storyline);
-    map.removeLayer(floors[node.floorID-1].polyline);
+    map.removeLayer(floors[floorIDInt - floorDiff].polyline);
 
     for (i = 0; i < floors.length; i++) {
         floors[i].groupLayer.removeLayer(floors[i].polyline);
         //floors[i].groupLayers();
         floors[i].addPolylineLayer();
     }
-    map.addLayer(floors[node.floorID - 1].polyline);
+    map.addLayer(floors[floorIDInt - floorDiff].polyline);
 }
 
-function focusOnNode(node) {
+function focusOnNode(node, zoom) {
         var floors = $('input[name=leaflet-base-layers]:radio');
         jQuery.each(floors, function (index, radio) {
             if ($(radio).next()[0].innerHTML.trim() == node.floorID+"") {
                 if (radio.checked) {
-                    map.setView(new L.LatLng(node.y, node.x), 3, { animate: true });
+                    map.setView(new L.LatLng(node.y, node.x), zoom, { animate: true });
                 } else {
                     $(radio).prop("checked", true).trigger("click");
                     map.panTo(new L.LatLng(node.y, node.x));
-                    map.setZoom(4);
+                    map.setZoom(zoom);
                 }
                 //openMarkerPopup(markerId);
                 return;
@@ -150,6 +190,24 @@ function focusOnNode(node) {
 
 //testing
 function simulateBeacon() {
-    iBeaconDiscovered(9377, 54177);
-    currentPOI();
+    if (navigationPath.isNotAtStart) {
+        currentPOI(navigationPath);
+        if (localStorage.getItem("lastVisitedNodeID") == storyline.nodePath[0]+"") {
+            navigationPath.isNotAtStart = false;
+            localStorage.removeItem("lastVisitedNodeID");
+            //Readd all markers
+            floors = StorylineMapObj.createPolyline(floors, storyline);
+            
+            for (i = 0; i < floors.length; i++) {
+                for (j = 0; j < floors[i].markers.length; j++) {
+                    floors[i].groupLayer.addLayer(floors[i].markers[j]);
+                }
+            }
+            floors = StorylineMapObj.addPolylines(floors);
+            focusOnStart();
+        }
+    } else {
+        currentPOI(storyline);
+        //iBeaconDiscovered(9377, 54177);
+    }
 }

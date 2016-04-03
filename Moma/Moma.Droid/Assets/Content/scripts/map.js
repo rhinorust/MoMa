@@ -2,7 +2,8 @@
 var MapObj = new Map();
 var ListPOI = [];
 var ListPOT = [];
-var baseMaps;
+var floorDiff = 1;
+var baseMaps = {};
 var map;
 
 var markerIconPOIBlue = MapObj.createMarker('images/marker-icon-blue.png', 64, 64, 30, 64, 1, 1);
@@ -11,11 +12,15 @@ var markerIconPOIRed = MapObj.createMarker('images/marker-icon-red.png', 64, 64,
 var markerIconNode = MapObj.createMarker('images/none-marker-icon.png');
 var mapMinZoom = 1;
 var mapMaxZoom = 5;
-var floors = [new Floor(1), new Floor(2), new Floor(3), new Floor(4), new Floor(5)];
+var floors = [];
 
 function init() {
 
-
+    L.CRS.CustomZoom = L.extend({}, L.CRS.Simple, {
+        scale: function (zoom) {
+            return 256 * Math.pow(2, zoom);
+        }
+    });
 //create map
     map = L.map('map', {
         maxZoom: mapMaxZoom,
@@ -23,6 +28,7 @@ function init() {
         crs: L.CRS.Simple
     }).setView([0, 0], mapMinZoom);
 
+    floors = MapObj.parseFloors();
     floors = MapObj.parsePOI(floors);
     floors = MapObj.parsePOT(floors);
     floors = MapObj.createFloorTileLayers(floors, mapMinZoom, mapMaxZoom);
@@ -36,18 +42,21 @@ function init() {
     map.fitBounds(mapBounds, { reset: true });
     //map.setMaxBounds(map.getBounds());
 
-    baseMaps = {
-        "1": floors[0].groupLayer.addTo(map),
-        "2": floors[1].groupLayer,
-        "3": floors[2].groupLayer,
-        "4": floors[3].groupLayer,
-        "5": floors[4].groupLayer
-    };
+    for (i = 0; i < floors.length; i++) {
+        var property = (i + floorDiff)+"";
+        if (i == 0) {
+            baseMaps[property] = floors[i].groupLayer.addTo(map);
+        } else {
+            baseMaps[property] = floors[i].groupLayer;
+        }
+    }
     var overlayMaps = {};
 
     //Add controls (radio buttons) to map in order to switch between floors
     var control = L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map).setPosition('bottomright');
     map.invalidateSize();
+
+    $("#scanText").html(tools.getLocalization(translation, ['map', 'scan']));
     
     //map.removeLayer(floor1LayerGroup);
     //control.removeLayer(floor1Array);
