@@ -12,47 +12,74 @@ namespace Moma
     {
         public static MainPage Current { get; set; }
 
-        public NavigationPage guided;
-        public NavigationPage free;
+        // For queueing videos to be played
+        List<string[]> playQueue;
 
         public MainPage()
         {
             var settingsDependency = DependencyService.Get<IUserSettings>();
             string tourType = settingsDependency.GetUserSetting("tourType");
 
+            playQueue = new List<string[]>();
+
             InitializeComponent();
 
-/*            guided = new NavigationPage(new StorylinePage()) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
-            free   = new NavigationPage(new MapPage()) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
-
-            if (tourType == "guided"){
-                Detail = guided;
+            if (tourType == "guided")
+            {
+                Detail = new NavigationPage(new StorylinePage()) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
             }
             else {
-                //mapPage = new MapPage();
-                //videoPage = new VideoPage();
-                Detail = free;
+                Detail = new NavigationPage(new MapPage()) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
             }
 
             masterPage.ListView.ItemSelected += OnItemSelected;
 
-            Current = this;*/
-
-            //Current.Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(VideoPage))) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
+            Current = this;
         }
 
-        public void toMapPage()
+        // Called by javascript when a video iBeacon is discovered
+        // videoName is filename inside Resources/raw, poiTitle the poi's title to show on scren
+        // and if interrupt = true the video plays right away, otherwise it waits for currently
+        // playing video to finish playing
+        public void playVideo(string videoName, string poiTitle, bool interrupt)
         {
-            //Detail.Navigation.PushAsync(mapPage);
-            //Detail.Navigation.RemovePage(Detail);
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                if (interrupt)
+                {
+                    // If there's already a video page showing, pop it off the stack before pushing the new one
+                    if (Detail.Navigation.NavigationStack.Last<Page>() is AndroidVideoPlayer)
+                        Detail.Navigation.PopAsync();
+                    // Push the new one
+                    Detail.Navigation.PushAsync(new AndroidVideoPlayer(videoName, poiTitle));
+                }
+                else
+                {
+                    // Add the video to the playqueue
+                    playQueue.Add(new string[] { videoName, poiTitle });
+                }
+            });
         }
 
-        public void toVideoPage()
+        // Used for popping of finished videos off the stack if there are items in the playQueue
+        public void videoEnded(string videoName)
         {
-            //Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(VideoPage))) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
-            //Detail = new NavigationPage(new VideoPage()) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
-            //Detail = guided;//.Navigation.PushAsync(videoPage);
-            //Detail.Navigation.RemovePage(Detail);
+            // Don't do anything if there aren't any more videos to play
+            if (playQueue.Count != 0)
+            {
+                Page currentPage = Detail.Navigation.NavigationStack.Last<Page>();
+                if (currentPage is AndroidVideoPlayer)
+                {
+                    if (((AndroidVideoPlayer)currentPage).getVideoName().Equals(videoName))
+                    {
+                        Detail.Navigation.PopAsync(); // Get rid of it
+                    }
+                }
+                // Play the next video on the queue
+                playVideo(playQueue.First<string[]>()[0], playQueue.First<string[]>()[1], true);
+                // Remove it from the playqueue
+                playQueue.RemoveAt(0);
+            }
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)

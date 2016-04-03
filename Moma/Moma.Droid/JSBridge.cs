@@ -69,6 +69,16 @@ namespace Moma.Droid
         }
 
         // ==============
+        // Video playback
+        // ==============
+        [JavascriptInterface]
+        [Export]
+        public void playVideo(string videoName, string poiTitle, bool interrupt)
+        {
+            MainPage.Current.playVideo(videoName, poiTitle, interrupt);
+        }
+
+        // ==============
         // QR Codes stuff
         // ==============
         [JavascriptInterface]

@@ -12,9 +12,18 @@ namespace Moma
     public class AndroidVideoPlayer : ContentPage
     {
         private VideoPlayerView player;
+        private  string videoName;
 
-        public AndroidVideoPlayer()
+        public string getVideoName()
         {
+            return videoName;
+        }
+
+        public AndroidVideoPlayer(string videoName, string poiTitle)
+        {
+            Title = poiTitle;
+            this.videoName = videoName;
+
             player = new VideoPlayerView();
 
             this.ToolbarItems.Add(new ToolbarItem
@@ -85,16 +94,16 @@ namespace Moma
                 })
             });
 
-            // heightRequest must be set it not full screen
+            // heightRequest must be set if not full screen
             player.HeightRequest = 200;
             player.VideoPlayer.AddVideoController = false;
 
 
             // location in Assets folder.  file marked as Asset, NOT Resource
-            player.VideoPlayer.FileSource = "point1";
+            player.VideoPlayer.FileSource = videoName;
 
             // autoplay video
-            //player.VideoPlayer.AutoPlay = true;
+            player.VideoPlayer.AutoPlay = true;
 
             this.Content = new StackLayout
             {
@@ -104,6 +113,13 @@ namespace Moma
                     player
                 }
             };
+        }
+
+        protected override void OnDisappearing()
+        {
+            Library.VideoState videoState = this.player.VideoPlayer.State;
+            if (videoState != Library.VideoState.ENDED)
+                MainPage.Current.videoEnded(videoName);
         }
 
         protected override void OnAppearing()
@@ -116,6 +132,8 @@ namespace Moma
                     if (s == Library.VideoState.ENDED)
                     {
                         System.Diagnostics.Debug.WriteLine("State: ENDED");
+                        // Notify MainPage so the next video in the playqueue can be played.
+                        MainPage.Current.videoEnded(videoName);
                     }
                     else if (s == Library.VideoState.PAUSE)
                     {

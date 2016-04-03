@@ -30,8 +30,6 @@ namespace Moma
 
         const string PROXIMITY_RESTRICTION = "Immediate";
 
-        int ka = 3;
-
         public IBeaconsDirector()
         {
             UUID = "b9407f30-f5f8-466e-aff9-25556b57fe6d";
@@ -78,14 +76,7 @@ namespace Moma
         }
 
         public void iBeaconIntervalCheck(object args) {
-            if (ka == 0) {
-                App.Current.toVideoPage();
-                //MainPage.Current.Navigation.RemovePage(MainPage.Current.free);
-                // Go to video page
-                //MainPage.Current.toVideoPage();
-            }
-            System.Diagnostics.Debug.WriteLine("=\n=\n"+ ka +"\n=\n=");
-            ka--;
+            //MainPage.Current.playVideo("intro");
 
             Device.BeginInvokeOnMainThread(async () => {
                 IEnumerable<IBeacon> newIBeacons = await fetchNewIBeacons();
