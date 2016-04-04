@@ -11,7 +11,8 @@
     <RootNamespace>App1.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>App1iOS</AssemblyName>
-    <NuGetPackageImportStamp>4ffd777e</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -87,6 +88,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AudioService.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />
@@ -121,19 +123,47 @@
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Acr.Settings, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Acr.Settings.4.3.2\lib\Xamarin.iOS10\Acr.Settings.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Acr.Settings.Interface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Acr.Settings.4.3.2\lib\Xamarin.iOS10\Acr.Settings.Interface.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Estimotes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Estimotes.Xplat.1.5.3\lib\Xamarin.iOS10\Estimotes.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Estimotes.Interface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Estimotes.Xplat.1.5.3\lib\Xamarin.iOS10\Estimotes.Interface.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="Xamarin.Forms.Core, Version=1.3.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.Forms.1.3.3.6323\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
+    <Reference Include="Xamarin.Estimote.iOS, Version=1.0.5760.38401, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Estimote.iOS.3.7.0.0\lib\Xamarin.iOS10\Xamarin.Estimote.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Xamarin.Forms.Platform.iOS, Version=1.3.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.Forms.1.3.3.6323\lib\Xamarin.iOS10\Xamarin.Forms.Platform.iOS.dll</HintPath>
+    <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.2.0.1.6505\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Xamarin.Forms.Xaml, Version=1.3.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.Forms.1.3.3.6323\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
+    <Reference Include="Xamarin.Forms.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.2.0.1.6505\lib\Xamarin.iOS10\Xamarin.Forms.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform.iOS, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.2.0.1.6505\lib\Xamarin.iOS10\Xamarin.Forms.Platform.iOS.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.2.0.1.6505\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.iOS" />
@@ -165,12 +195,404 @@
   <ItemGroup>
     <BundleResource Include="Resources\map_icon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Content\0\0\0.png" />
+    <BundleResource Include="Content\1\0\0.png" />
+    <BundleResource Include="Content\1\1\0.png" />
+    <BundleResource Include="Content\2\0\0.png" />
+    <BundleResource Include="Content\2\0\1.png" />
+    <BundleResource Include="Content\2\1\0.png" />
+    <BundleResource Include="Content\2\1\1.png" />
+    <BundleResource Include="Content\2\2\0.png" />
+    <BundleResource Include="Content\2\2\1.png" />
+    <BundleResource Include="Content\3\0\0.png" />
+    <BundleResource Include="Content\3\0\1.png" />
+    <BundleResource Include="Content\3\0\2.png" />
+    <BundleResource Include="Content\3\1\0.png" />
+    <BundleResource Include="Content\3\1\1.png" />
+    <BundleResource Include="Content\3\1\2.png" />
+    <BundleResource Include="Content\3\2\0.png" />
+    <BundleResource Include="Content\3\2\1.png" />
+    <BundleResource Include="Content\3\2\2.png" />
+    <BundleResource Include="Content\3\3\0.png" />
+    <BundleResource Include="Content\3\3\1.png" />
+    <BundleResource Include="Content\3\3\2.png" />
+    <BundleResource Include="Content\3\4\0.png" />
+    <BundleResource Include="Content\3\4\1.png" />
+    <BundleResource Include="Content\3\4\2.png" />
+    <BundleResource Include="Content\3\5\0.png" />
+    <BundleResource Include="Content\3\5\1.png" />
+    <BundleResource Include="Content\3\5\2.png" />
+    <BundleResource Include="Content\4\0\0.png" />
+    <BundleResource Include="Content\4\0\1.png" />
+    <BundleResource Include="Content\4\0\2.png" />
+    <BundleResource Include="Content\4\0\3.png" />
+    <BundleResource Include="Content\4\0\4.png" />
+    <BundleResource Include="Content\4\0\5.png" />
+    <BundleResource Include="Content\4\1\0.png" />
+    <BundleResource Include="Content\4\1\1.png" />
+    <BundleResource Include="Content\4\1\2.png" />
+    <BundleResource Include="Content\4\1\3.png" />
+    <BundleResource Include="Content\4\1\4.png" />
+    <BundleResource Include="Content\4\1\5.png" />
+    <BundleResource Include="Content\4\10\0.png" />
+    <BundleResource Include="Content\4\10\1.png" />
+    <BundleResource Include="Content\4\10\2.png" />
+    <BundleResource Include="Content\4\10\3.png" />
+    <BundleResource Include="Content\4\10\4.png" />
+    <BundleResource Include="Content\4\10\5.png" />
+    <BundleResource Include="Content\4\11\0.png" />
+    <BundleResource Include="Content\4\11\1.png" />
+    <BundleResource Include="Content\4\11\2.png" />
+    <BundleResource Include="Content\4\11\3.png" />
+    <BundleResource Include="Content\4\11\4.png" />
+    <BundleResource Include="Content\4\11\5.png" />
+    <BundleResource Include="Content\4\2\0.png" />
+    <BundleResource Include="Content\4\2\1.png" />
+    <BundleResource Include="Content\4\2\2.png" />
+    <BundleResource Include="Content\4\2\3.png" />
+    <BundleResource Include="Content\4\2\4.png" />
+    <BundleResource Include="Content\4\2\5.png" />
+    <BundleResource Include="Content\4\3\0.png" />
+    <BundleResource Include="Content\4\3\1.png" />
+    <BundleResource Include="Content\4\3\2.png" />
+    <BundleResource Include="Content\4\3\3.png" />
+    <BundleResource Include="Content\4\3\4.png" />
+    <BundleResource Include="Content\4\3\5.png" />
+    <BundleResource Include="Content\4\4\0.png" />
+    <BundleResource Include="Content\4\4\1.png" />
+    <BundleResource Include="Content\4\4\2.png" />
+    <BundleResource Include="Content\4\4\3.png" />
+    <BundleResource Include="Content\4\4\4.png" />
+    <BundleResource Include="Content\4\4\5.png" />
+    <BundleResource Include="Content\4\5\0.png" />
+    <BundleResource Include="Content\4\5\1.png" />
+    <BundleResource Include="Content\4\5\2.png" />
+    <BundleResource Include="Content\4\5\3.png" />
+    <BundleResource Include="Content\4\5\4.png" />
+    <BundleResource Include="Content\4\5\5.png" />
+    <BundleResource Include="Content\4\6\0.png" />
+    <BundleResource Include="Content\4\6\1.png" />
+    <BundleResource Include="Content\4\6\2.png" />
+    <BundleResource Include="Content\4\6\3.png" />
+    <BundleResource Include="Content\4\6\4.png" />
+    <BundleResource Include="Content\4\6\5.png" />
+    <BundleResource Include="Content\4\7\0.png" />
+    <BundleResource Include="Content\4\7\1.png" />
+    <BundleResource Include="Content\4\7\2.png" />
+    <BundleResource Include="Content\4\7\3.png" />
+    <BundleResource Include="Content\4\7\4.png" />
+    <BundleResource Include="Content\4\7\5.png" />
+    <BundleResource Include="Content\4\8\0.png" />
+    <BundleResource Include="Content\4\8\1.png" />
+    <BundleResource Include="Content\4\8\2.png" />
+    <BundleResource Include="Content\4\8\3.png" />
+    <BundleResource Include="Content\4\8\4.png" />
+    <BundleResource Include="Content\4\8\5.png" />
+    <BundleResource Include="Content\4\9\0.png" />
+    <BundleResource Include="Content\4\9\1.png" />
+    <BundleResource Include="Content\4\9\2.png" />
+    <BundleResource Include="Content\4\9\3.png" />
+    <BundleResource Include="Content\4\9\4.png" />
+    <BundleResource Include="Content\4\9\5.png" />
+    <BundleResource Include="Content\5\0\0.png" />
+    <BundleResource Include="Content\5\0\1.png" />
+    <BundleResource Include="Content\5\0\10.png" />
+    <BundleResource Include="Content\5\0\11.png" />
+    <BundleResource Include="Content\5\0\2.png" />
+    <BundleResource Include="Content\5\0\3.png" />
+    <BundleResource Include="Content\5\0\4.png" />
+    <BundleResource Include="Content\5\0\5.png" />
+    <BundleResource Include="Content\5\0\6.png" />
+    <BundleResource Include="Content\5\0\7.png" />
+    <BundleResource Include="Content\5\0\8.png" />
+    <BundleResource Include="Content\5\0\9.png" />
+    <BundleResource Include="Content\5\1\0.png" />
+    <BundleResource Include="Content\5\1\1.png" />
+    <BundleResource Include="Content\5\1\10.png" />
+    <BundleResource Include="Content\5\1\11.png" />
+    <BundleResource Include="Content\5\1\2.png" />
+    <BundleResource Include="Content\5\1\3.png" />
+    <BundleResource Include="Content\5\1\4.png" />
+    <BundleResource Include="Content\5\1\5.png" />
+    <BundleResource Include="Content\5\1\6.png" />
+    <BundleResource Include="Content\5\1\7.png" />
+    <BundleResource Include="Content\5\1\8.png" />
+    <BundleResource Include="Content\5\1\9.png" />
+    <BundleResource Include="Content\5\10\0.png" />
+    <BundleResource Include="Content\5\10\1.png" />
+    <BundleResource Include="Content\5\10\10.png" />
+    <BundleResource Include="Content\5\10\11.png" />
+    <BundleResource Include="Content\5\10\2.png" />
+    <BundleResource Include="Content\5\10\3.png" />
+    <BundleResource Include="Content\5\10\4.png" />
+    <BundleResource Include="Content\5\10\5.png" />
+    <BundleResource Include="Content\5\10\6.png" />
+    <BundleResource Include="Content\5\10\7.png" />
+    <BundleResource Include="Content\5\10\8.png" />
+    <BundleResource Include="Content\5\10\9.png" />
+    <BundleResource Include="Content\5\11\0.png" />
+    <BundleResource Include="Content\5\11\1.png" />
+    <BundleResource Include="Content\5\11\10.png" />
+    <BundleResource Include="Content\5\11\11.png" />
+    <BundleResource Include="Content\5\11\2.png" />
+    <BundleResource Include="Content\5\11\3.png" />
+    <BundleResource Include="Content\5\11\4.png" />
+    <BundleResource Include="Content\5\11\5.png" />
+    <BundleResource Include="Content\5\11\6.png" />
+    <BundleResource Include="Content\5\11\7.png" />
+    <BundleResource Include="Content\5\11\8.png" />
+    <BundleResource Include="Content\5\11\9.png" />
+    <BundleResource Include="Content\5\12\0.png" />
+    <BundleResource Include="Content\5\12\1.png" />
+    <BundleResource Include="Content\5\12\10.png" />
+    <BundleResource Include="Content\5\12\11.png" />
+    <BundleResource Include="Content\5\12\2.png" />
+    <BundleResource Include="Content\5\12\3.png" />
+    <BundleResource Include="Content\5\12\4.png" />
+    <BundleResource Include="Content\5\12\5.png" />
+    <BundleResource Include="Content\5\12\6.png" />
+    <BundleResource Include="Content\5\12\7.png" />
+    <BundleResource Include="Content\5\12\8.png" />
+    <BundleResource Include="Content\5\12\9.png" />
+    <BundleResource Include="Content\5\13\0.png" />
+    <BundleResource Include="Content\5\13\1.png" />
+    <BundleResource Include="Content\5\13\10.png" />
+    <BundleResource Include="Content\5\13\11.png" />
+    <BundleResource Include="Content\5\13\2.png" />
+    <BundleResource Include="Content\5\13\3.png" />
+    <BundleResource Include="Content\5\13\4.png" />
+    <BundleResource Include="Content\5\13\5.png" />
+    <BundleResource Include="Content\5\13\6.png" />
+    <BundleResource Include="Content\5\13\7.png" />
+    <BundleResource Include="Content\5\13\8.png" />
+    <BundleResource Include="Content\5\13\9.png" />
+    <BundleResource Include="Content\5\14\0.png" />
+    <BundleResource Include="Content\5\14\1.png" />
+    <BundleResource Include="Content\5\14\10.png" />
+    <BundleResource Include="Content\5\14\11.png" />
+    <BundleResource Include="Content\5\14\2.png" />
+    <BundleResource Include="Content\5\14\3.png" />
+    <BundleResource Include="Content\5\14\4.png" />
+    <BundleResource Include="Content\5\14\5.png" />
+    <BundleResource Include="Content\5\14\6.png" />
+    <BundleResource Include="Content\5\14\7.png" />
+    <BundleResource Include="Content\5\14\8.png" />
+    <BundleResource Include="Content\5\14\9.png" />
+    <BundleResource Include="Content\5\15\0.png" />
+    <BundleResource Include="Content\5\15\1.png" />
+    <BundleResource Include="Content\5\15\10.png" />
+    <BundleResource Include="Content\5\15\11.png" />
+    <BundleResource Include="Content\5\15\2.png" />
+    <BundleResource Include="Content\5\15\3.png" />
+    <BundleResource Include="Content\5\15\4.png" />
+    <BundleResource Include="Content\5\15\5.png" />
+    <BundleResource Include="Content\5\15\6.png" />
+    <BundleResource Include="Content\5\15\7.png" />
+    <BundleResource Include="Content\5\15\8.png" />
+    <BundleResource Include="Content\5\15\9.png" />
+    <BundleResource Include="Content\5\16\0.png" />
+    <BundleResource Include="Content\5\16\1.png" />
+    <BundleResource Include="Content\5\16\10.png" />
+    <BundleResource Include="Content\5\16\11.png" />
+    <BundleResource Include="Content\5\16\2.png" />
+    <BundleResource Include="Content\5\16\3.png" />
+    <BundleResource Include="Content\5\16\4.png" />
+    <BundleResource Include="Content\5\16\5.png" />
+    <BundleResource Include="Content\5\16\6.png" />
+    <BundleResource Include="Content\5\16\7.png" />
+    <BundleResource Include="Content\5\16\8.png" />
+    <BundleResource Include="Content\5\16\9.png" />
+    <BundleResource Include="Content\5\17\0.png" />
+    <BundleResource Include="Content\5\17\1.png" />
+    <BundleResource Include="Content\5\17\10.png" />
+    <BundleResource Include="Content\5\17\11.png" />
+    <BundleResource Include="Content\5\17\2.png" />
+    <BundleResource Include="Content\5\17\3.png" />
+    <BundleResource Include="Content\5\17\4.png" />
+    <BundleResource Include="Content\5\17\5.png" />
+    <BundleResource Include="Content\5\17\6.png" />
+    <BundleResource Include="Content\5\17\7.png" />
+    <BundleResource Include="Content\5\17\8.png" />
+    <BundleResource Include="Content\5\17\9.png" />
+    <BundleResource Include="Content\5\18\0.png" />
+    <BundleResource Include="Content\5\18\1.png" />
+    <BundleResource Include="Content\5\18\10.png" />
+    <BundleResource Include="Content\5\18\11.png" />
+    <BundleResource Include="Content\5\18\2.png" />
+    <BundleResource Include="Content\5\18\3.png" />
+    <BundleResource Include="Content\5\18\4.png" />
+    <BundleResource Include="Content\5\18\5.png" />
+    <BundleResource Include="Content\5\18\6.png" />
+    <BundleResource Include="Content\5\18\7.png" />
+    <BundleResource Include="Content\5\18\8.png" />
+    <BundleResource Include="Content\5\18\9.png" />
+    <BundleResource Include="Content\5\19\0.png" />
+    <BundleResource Include="Content\5\19\1.png" />
+    <BundleResource Include="Content\5\19\10.png" />
+    <BundleResource Include="Content\5\19\11.png" />
+    <BundleResource Include="Content\5\19\2.png" />
+    <BundleResource Include="Content\5\19\3.png" />
+    <BundleResource Include="Content\5\19\4.png" />
+    <BundleResource Include="Content\5\19\5.png" />
+    <BundleResource Include="Content\5\19\6.png" />
+    <BundleResource Include="Content\5\19\7.png" />
+    <BundleResource Include="Content\5\19\8.png" />
+    <BundleResource Include="Content\5\19\9.png" />
+    <BundleResource Include="Content\5\2\0.png" />
+    <BundleResource Include="Content\5\2\1.png" />
+    <BundleResource Include="Content\5\2\10.png" />
+    <BundleResource Include="Content\5\2\11.png" />
+    <BundleResource Include="Content\5\2\2.png" />
+    <BundleResource Include="Content\5\2\3.png" />
+    <BundleResource Include="Content\5\2\4.png" />
+    <BundleResource Include="Content\5\2\5.png" />
+    <BundleResource Include="Content\5\2\6.png" />
+    <BundleResource Include="Content\5\2\7.png" />
+    <BundleResource Include="Content\5\2\8.png" />
+    <BundleResource Include="Content\5\2\9.png" />
+    <BundleResource Include="Content\5\20\0.png" />
+    <BundleResource Include="Content\5\20\1.png" />
+    <BundleResource Include="Content\5\20\10.png" />
+    <BundleResource Include="Content\5\20\11.png" />
+    <BundleResource Include="Content\5\20\2.png" />
+    <BundleResource Include="Content\5\20\3.png" />
+    <BundleResource Include="Content\5\20\4.png" />
+    <BundleResource Include="Content\5\20\5.png" />
+    <BundleResource Include="Content\5\20\6.png" />
+    <BundleResource Include="Content\5\20\7.png" />
+    <BundleResource Include="Content\5\20\8.png" />
+    <BundleResource Include="Content\5\20\9.png" />
+    <BundleResource Include="Content\5\21\0.png" />
+    <BundleResource Include="Content\5\21\1.png" />
+    <BundleResource Include="Content\5\21\10.png" />
+    <BundleResource Include="Content\5\21\11.png" />
+    <BundleResource Include="Content\5\21\2.png" />
+    <BundleResource Include="Content\5\21\3.png" />
+    <BundleResource Include="Content\5\21\4.png" />
+    <BundleResource Include="Content\5\21\5.png" />
+    <BundleResource Include="Content\5\21\6.png" />
+    <BundleResource Include="Content\5\21\7.png" />
+    <BundleResource Include="Content\5\21\8.png" />
+    <BundleResource Include="Content\5\21\9.png" />
+    <BundleResource Include="Content\5\22\0.png" />
+    <BundleResource Include="Content\5\22\1.png" />
+    <BundleResource Include="Content\5\22\10.png" />
+    <BundleResource Include="Content\5\22\11.png" />
+    <BundleResource Include="Content\5\22\2.png" />
+    <BundleResource Include="Content\5\22\3.png" />
+    <BundleResource Include="Content\5\22\4.png" />
+    <BundleResource Include="Content\5\22\5.png" />
+    <BundleResource Include="Content\5\22\6.png" />
+    <BundleResource Include="Content\5\22\7.png" />
+    <BundleResource Include="Content\5\22\8.png" />
+    <BundleResource Include="Content\5\22\9.png" />
+    <BundleResource Include="Content\5\23\0.png" />
+    <BundleResource Include="Content\5\23\1.png" />
+    <BundleResource Include="Content\5\23\10.png" />
+    <BundleResource Include="Content\5\23\11.png" />
+    <BundleResource Include="Content\5\23\2.png" />
+    <BundleResource Include="Content\5\23\3.png" />
+    <BundleResource Include="Content\5\23\4.png" />
+    <BundleResource Include="Content\5\23\5.png" />
+    <BundleResource Include="Content\5\23\6.png" />
+    <BundleResource Include="Content\5\23\7.png" />
+    <BundleResource Include="Content\5\23\8.png" />
+    <BundleResource Include="Content\5\23\9.png" />
+    <BundleResource Include="Content\5\3\0.png" />
+    <BundleResource Include="Content\5\3\1.png" />
+    <BundleResource Include="Content\5\3\10.png" />
+    <BundleResource Include="Content\5\3\11.png" />
+    <BundleResource Include="Content\5\3\2.png" />
+    <BundleResource Include="Content\5\3\3.png" />
+    <BundleResource Include="Content\5\3\4.png" />
+    <BundleResource Include="Content\5\3\5.png" />
+    <BundleResource Include="Content\5\3\6.png" />
+    <BundleResource Include="Content\5\3\7.png" />
+    <BundleResource Include="Content\5\3\8.png" />
+    <BundleResource Include="Content\5\3\9.png" />
+    <BundleResource Include="Content\5\4\0.png" />
+    <BundleResource Include="Content\5\4\1.png" />
+    <BundleResource Include="Content\5\4\10.png" />
+    <BundleResource Include="Content\5\4\11.png" />
+    <BundleResource Include="Content\5\4\2.png" />
+    <BundleResource Include="Content\5\4\3.png" />
+    <BundleResource Include="Content\5\4\4.png" />
+    <BundleResource Include="Content\5\4\5.png" />
+    <BundleResource Include="Content\5\4\6.png" />
+    <BundleResource Include="Content\5\4\7.png" />
+    <BundleResource Include="Content\5\4\8.png" />
+    <BundleResource Include="Content\5\4\9.png" />
+    <BundleResource Include="Content\5\5\0.png" />
+    <BundleResource Include="Content\5\5\1.png" />
+    <BundleResource Include="Content\5\5\10.png" />
+    <BundleResource Include="Content\5\5\11.png" />
+    <BundleResource Include="Content\5\5\2.png" />
+    <BundleResource Include="Content\5\5\3.png" />
+    <BundleResource Include="Content\5\5\4.png" />
+    <BundleResource Include="Content\5\5\5.png" />
+    <BundleResource Include="Content\5\5\6.png" />
+    <BundleResource Include="Content\5\5\7.png" />
+    <BundleResource Include="Content\5\5\8.png" />
+    <BundleResource Include="Content\5\5\9.png" />
+    <BundleResource Include="Content\5\6\0.png" />
+    <BundleResource Include="Content\5\6\1.png" />
+    <BundleResource Include="Content\5\6\10.png" />
+    <BundleResource Include="Content\5\6\11.png" />
+    <BundleResource Include="Content\5\6\2.png" />
+    <BundleResource Include="Content\5\6\3.png" />
+    <BundleResource Include="Content\5\6\4.png" />
+    <BundleResource Include="Content\5\6\5.png" />
+    <BundleResource Include="Content\5\6\6.png" />
+    <BundleResource Include="Content\5\6\7.png" />
+    <BundleResource Include="Content\5\6\8.png" />
+    <BundleResource Include="Content\5\6\9.png" />
+    <BundleResource Include="Content\5\7\0.png" />
+    <BundleResource Include="Content\5\7\1.png" />
+    <BundleResource Include="Content\5\7\10.png" />
+    <BundleResource Include="Content\5\7\11.png" />
+    <BundleResource Include="Content\5\7\2.png" />
+    <BundleResource Include="Content\5\7\3.png" />
+    <BundleResource Include="Content\5\7\4.png" />
+    <BundleResource Include="Content\5\7\5.png" />
+    <BundleResource Include="Content\5\7\6.png" />
+    <BundleResource Include="Content\5\7\7.png" />
+    <BundleResource Include="Content\5\7\8.png" />
+    <BundleResource Include="Content\5\7\9.png" />
+    <BundleResource Include="Content\5\8\0.png" />
+    <BundleResource Include="Content\5\8\1.png" />
+    <BundleResource Include="Content\5\8\10.png" />
+    <BundleResource Include="Content\5\8\11.png" />
+    <BundleResource Include="Content\5\8\2.png" />
+    <BundleResource Include="Content\5\8\3.png" />
+    <BundleResource Include="Content\5\8\4.png" />
+    <BundleResource Include="Content\5\8\5.png" />
+    <BundleResource Include="Content\5\8\6.png" />
+    <BundleResource Include="Content\5\8\7.png" />
+    <BundleResource Include="Content\5\8\8.png" />
+    <BundleResource Include="Content\5\8\9.png" />
+    <BundleResource Include="Content\5\9\0.png" />
+    <BundleResource Include="Content\5\9\1.png" />
+    <BundleResource Include="Content\5\9\10.png" />
+    <BundleResource Include="Content\5\9\11.png" />
+    <BundleResource Include="Content\5\9\2.png" />
+    <BundleResource Include="Content\5\9\3.png" />
+    <BundleResource Include="Content\5\9\4.png" />
+    <BundleResource Include="Content\5\9\5.png" />
+    <BundleResource Include="Content\5\9\6.png" />
+    <BundleResource Include="Content\5\9\7.png" />
+    <BundleResource Include="Content\5\9\8.png" />
+    <BundleResource Include="Content\5\9\9.png" />
+    <Content Include="Content\index.html" />
+    <Content Include="Content\leaflet.css" />
+    <Content Include="Content\leaflet.js" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
-  <Import Project="..\..\packages\Xamarin.Forms.1.3.3.6323\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.1.3.3.6323\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
+  <Import Project="..\..\packages\Xamarin.Forms.2.0.1.6505\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.0.1.6505\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\Xamarin.Forms.1.3.3.6323\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.1.3.3.6323\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Xamarin.Forms.2.0.1.6505\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.2.0.1.6505\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets'))" />
   </Target>
 </Project>
