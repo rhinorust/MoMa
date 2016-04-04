@@ -39,7 +39,7 @@ function addToMessages(poi) {
     var appendBox = (poi.type === "iBeacon") ? messageBoxIBeacons : messageBoxQRCodes;
 
     // If there's no items in the appendBox yet, clear the hardcoded string that's sitting there
-    if (appendBox.text().indexOf("<li>") === -1) appendBox.empty();
+    //if (appendBox.text().indexOf("<li>") === -1) appendBox.empty();
 
     var appendix = '<li><p class="newMessage">NEW</p>';
     // Add what happens when this link is clicked

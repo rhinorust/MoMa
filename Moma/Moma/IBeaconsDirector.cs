@@ -33,7 +33,7 @@ namespace Moma
         const int IBEACON_TIMER_START_DELAY = 30;
         Timer iBeaconsCheckTimer;
 
-        const string PROXIMITY_RESTRICTION = "Immediate";
+        const string PROXIMITY_RESTRICTION = "Near";
 
         // For synchronizing javascript and C# threads of accessing the iBeacons dictionary
         Semaphore semaphore;
