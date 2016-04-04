@@ -16,11 +16,7 @@ var floors = [];
 
 function init() {
 
-    L.CRS.CustomZoom = L.extend({}, L.CRS.Simple, {
-        scale: function (zoom) {
-            return 256 * Math.pow(2, zoom);
-        }
-    });
+
 //create map
     map = L.map('map', {
         maxZoom: mapMaxZoom,

@@ -62,7 +62,7 @@ namespace App1.Droid
 
 
             var deutscheButton = new Button(this);
-            deutscheButton.Text = "Deutch";
+            deutscheButton.Text = "Deutsch";
             deutscheButton.TextAlignment = TextAlignment.Center;
             deutscheButton.SetBackgroundColor(Color.ParseColor("#001533"));
             deutscheButton.SetTextColor(Android.Graphics.Color.White);

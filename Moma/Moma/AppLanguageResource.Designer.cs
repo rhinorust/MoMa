@@ -62,17 +62,33 @@ namespace Moma {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Get on Autoroute 40 towards the Autoroute 15
+        ///   Looks up a localized string similar to 1001, Lenoir St., local E-206. Montreal,Quebec, H4C 2Z6.
+        /// </summary>
+        internal static string Address {
+            get {
+                return ResourceManager.GetString("Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        internal static string AddressTitle {
+            get {
+                return ResourceManager.GetString("AddressTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ➥ Get on Autoroute 40 towards the Autoroute 15
         ///
-        ///Take Autoroute 15 S
+        ///➥ Take Autoroute 15 S
         ///
-        ///Take Autoroute 720 E
+        ///➥ Take Autoroute 720 E
         ///
-        ///Exit at Rue Saint Antoine O
+        ///➥ Exit at Rue Saint Antoine O
         ///
-        ///Turn Right on Rue Lacasse 
-        ///
-        ///Arrive at 1001 Rue Lenoir on Right.
+        ///➥ Turn Right on Rue Lacasse .
         /// </summary>
         internal static string CarDirections {
             get {
@@ -81,7 +97,7 @@ namespace Moma {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to General Directions via car:.
+        ///   Looks up a localized string similar to General Directions via Car.
         /// </summary>
         internal static string CarDirectionsTitle {
             get {
@@ -113,6 +129,15 @@ namespace Moma {
         internal static string DefaultLanguage {
             get {
                 return ResourceManager.GetString("DefaultLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ➥ Arrive at 1001 Rue Lenoir on Right.
+        /// </summary>
+        internal static string Destination {
+            get {
+                return ResourceManager.GetString("Destination", resourceCulture);
             }
         }
         
@@ -189,6 +214,46 @@ namespace Moma {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Friday 2 p.m. à 5 p.m.
+        ///Saturday 2 p.m. à 5 p.m.
+        ///Sunday 2 p.m. à 5 p.m.
+        ///Wednesday (Appointment only)
+        ///Groups by appointment at anytime..
+        /// </summary>
+        internal static string OpeningHours {
+            get {
+                return ResourceManager.GetString("OpeningHours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opening Hours.
+        /// </summary>
+        internal static string OpeningHoursTitle {
+            get {
+                return ResourceManager.GetString("OpeningHoursTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone : (514) 932-9663.
+        /// </summary>
+        internal static string Phone {
+            get {
+                return ResourceManager.GetString("Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone.
+        /// </summary>
+        internal static string PhoneTitle {
+            get {
+                return ResourceManager.GetString("PhoneTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Popup.
         /// </summary>
         internal static string Popup {
@@ -203,6 +268,27 @@ namespace Moma {
         internal static string PopupDef {
             get {
                 return ResourceManager.GetString("PopupDef", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adult: 5 $
+        ///Student: 3 $
+        ///Family: 10 $
+        ///Groups (5+) : 3 $ each.
+        /// </summary>
+        internal static string Pricing {
+            get {
+                return ResourceManager.GetString("Pricing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pricing.
+        /// </summary>
+        internal static string PricingTitle {
+            get {
+                return ResourceManager.GetString("PricingTitle", resourceCulture);
             }
         }
         
@@ -306,13 +392,11 @@ namespace Moma {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exit at Place Saint-Henri metro station
+        ///   Looks up a localized string similar to ➥ Exit at Place Saint-Henri metro station
         ///
-        ///Turn left onto Rue Saint-Jacques
+        ///➥ Turn left onto Rue Saint-Jacques
         ///
-        ///Turn Right onto Rue Lenoir
-        ///
-        ///Arrive at 1001 Rue Lenoir on Right.
+        ///➥ Turn Right onto Rue Lenoir.
         /// </summary>
         internal static string STMDirections {
             get {
@@ -321,7 +405,7 @@ namespace Moma {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to General Directions via STM:.
+        ///   Looks up a localized string similar to General Directions via STM.
         /// </summary>
         internal static string STMDirectionsTitle {
             get {
@@ -353,6 +437,24 @@ namespace Moma {
         internal static string VibrationDef {
             get {
                 return ResourceManager.GetString("VibrationDef", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://moeb.ca/en.
+        /// </summary>
+        internal static string Website {
+            get {
+                return ResourceManager.GetString("Website", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Website.
+        /// </summary>
+        internal static string WebsiteTitle {
+            get {
+                return ResourceManager.GetString("WebsiteTitle", resourceCulture);
             }
         }
         

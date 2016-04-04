@@ -118,20 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CarDirections" xml:space="preserve">
-    <value>Holen Sie sich auf Autoroute 40 in Richtung der Autobahn 15
+    <value>➥ Holen Sie sich auf Autoroute 40 in Richtung der Autobahn 15
 
-Nehmen Sie die Autoroute 15 S
+➥ Nehmen Sie die Autoroute 15 S
 
-Nehmen Sie die Autoroute 720 E
+➥ Nehmen Sie die Autoroute 720 E
 
-Fahren Sie an der Rue Saint Antoine O
+➥ Fahren Sie an der Rue Saint Antoine O
 
-Biegen Sie rechts in die Rue Lacasse
-
-Ankunft in 1001 Rue Lenoir auf der rechten</value>
+➥ Biegen Sie rechts in die Rue Lacasse</value>
   </data>
   <data name="CarDirectionsTitle" xml:space="preserve">
-    <value>Allgemeine Anfahrt mit dem Auto:</value>
+    <value>Allgemeine Anfahrt mit dem Auto</value>
   </data>
   <data name="Contact" xml:space="preserve">
     <value>Kontakt</value>
@@ -203,16 +201,14 @@ Ankunft in 1001 Rue Lenoir auf der rechten</value>
     <value>Klingen auf den mitteilungen</value>
   </data>
   <data name="STMDirections" xml:space="preserve">
-    <value>Fahren Sie an der Place Saint-Henri U-Bahn-Station
+    <value>➥ Fahren Sie an der Place Saint-Henri U-Bahn-Station
 
-Biegen Sie links in die Rue Saint-Jacques
+➥ Biegen Sie links in die Rue Saint-Jacques
 
-Biegen Sie rechts in die Rue Lenoir
-
-Ankunft in 1001 Rue Lenoir auf der rechten</value>
+➥ Biegen Sie rechts in die Rue Lenoir</value>
   </data>
   <data name="STMDirectionsTitle" xml:space="preserve">
-    <value>Allgemeine Anfahrt mit dem STM:</value>
+    <value>Allgemeine Anfahrt mit dem STM</value>
   </data>
   <data name="Storyline" xml:space="preserve">
     <value>Geschichten</value>
@@ -228,5 +224,14 @@ Ankunft in 1001 Rue Lenoir auf der rechten</value>
   </data>
   <data name="Default" xml:space="preserve">
     <value>Fehler</value>
+  </data>
+  <data name="Destination" xml:space="preserve">
+    <value>➥ Fahren Sie an der Place Saint-Henri U-Bahn-Station
+
+➥ Biegen Sie links in die Rue Saint-Jacques
+
+➥ Biegen Sie rechts in die Rue Lenoir
+
+➥ Ankunft in 1001 Rue Lenoir auf der rechten</value>
   </data>
 </root>
