@@ -25,7 +25,6 @@ $('document').ready(function () {
 // poi = {type: "QRCode", title: "POI title", data: "Data included in QRCode"}
 // or
 // poi = {type: "iBeacon", title: "POI title", minor: minor, major: major} 
-// 
 // post: The given poi is appended as a link to the messages list
 function addToMessages(poi) {
     // What jsFunction will be fired when the link is clicked
@@ -39,7 +38,8 @@ function addToMessages(poi) {
     var appendBox = (poi.type === "iBeacon") ? messageBoxIBeacons : messageBoxQRCodes;
 
     // If there's no items in the appendBox yet, clear the hardcoded string that's sitting there
-    if (appendBox.text().indexOf("<li>") === -1) appendBox.empty();
+    if (appendBox.text().indexOf("<li>") === -1)
+        appendBox.empty();
 
     var appendix = '<li><p class="newMessage">NEW</p>';
     // Add what happens when this link is clicked

@@ -38,7 +38,6 @@ function init() {
         map.unproject([3072, 0], map.getMaxZoom()));
     //add bounds to map
     map.fitBounds(mapBounds, { reset: true });
-    //map.setMaxBounds(map.getBounds());
 
     baseMaps = {
         "1": floors[0].groupLayer.addTo(map),
@@ -54,12 +53,4 @@ function init() {
     map.invalidateSize();
 
     $("#scanText").html(tools.getLocalization(translation, ['map', 'scan']));
-    
-    //map.removeLayer(floor1LayerGroup);
-    //control.removeLayer(floor1Array);
-   //L.rectangle(mapBounds, { color: "#ff7800", weight: 1 }).addTo(map);
-
-    // zoom the map to the polyline
-    //map.fitBounds(polyline.getBounds());
- 
 }

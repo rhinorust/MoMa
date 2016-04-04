@@ -102,28 +102,29 @@
     <File>
       <Path>F:\Documents\GitHubVisualStudio\MoMa\Moma\Moma.Droid\AudioService.cs</Path>
       <Metrics>
-        <Lines>83</Lines>
+        <Lines>88</Lines>
         <Classes>1</Classes>
         <Accessors>0</Accessors>
-        <Statements>31</Statements>
+        <Statements>33</Statements>
         <Functions>7</Functions>
         <PublicApi>6</PublicApi>
         <PublicUndocumentedApi>3</PublicUndocumentedApi>
-        <Complexity>15</Complexity>
+        <Complexity>16</Complexity>
         <FileComplexityDistribution>0=0;5=0;10=1;20=0;30=0;60=0;90=0</FileComplexityDistribution>
         <FunctionComplexityDistribution>1=2;2=5;4=0;6=0;8=0;10=0;12=0</FunctionComplexityDistribution>
         <Comments>
           <NoSonar />
           <NonBlank>
-            <Line>21</Line>
             <Line>22</Line>
-            <Line>26</Line>
-            <Line>31</Line>
-            <Line>32</Line>
-            <Line>41</Line>
-            <Line>60</Line>
-            <Line>68</Line>
-            <Line>69</Line>
+            <Line>23</Line>
+            <Line>24</Line>
+            <Line>30</Line>
+            <Line>36</Line>
+            <Line>37</Line>
+            <Line>46</Line>
+            <Line>65</Line>
+            <Line>73</Line>
+            <Line>74</Line>
           </NonBlank>
         </Comments>
         <LinesOfCode>
@@ -138,53 +139,51 @@
           <Line>10</Line>
           <Line>11</Line>
           <Line>12</Line>
-          <Line>13</Line>
           <Line>14</Line>
-          <Line>16</Line>
+          <Line>15</Line>
           <Line>17</Line>
           <Line>18</Line>
           <Line>19</Line>
-          <Line>23</Line>
-          <Line>24</Line>
+          <Line>20</Line>
           <Line>25</Line>
           <Line>26</Line>
           <Line>27</Line>
           <Line>28</Line>
           <Line>29</Line>
+          <Line>30</Line>
+          <Line>31</Line>
+          <Line>32</Line>
           <Line>33</Line>
           <Line>34</Line>
-          <Line>35</Line>
-          <Line>36</Line>
-          <Line>37</Line>
           <Line>38</Line>
           <Line>39</Line>
+          <Line>40</Line>
+          <Line>41</Line>
           <Line>42</Line>
           <Line>43</Line>
           <Line>44</Line>
-          <Line>45</Line>
-          <Line>46</Line>
           <Line>47</Line>
           <Line>48</Line>
           <Line>49</Line>
+          <Line>50</Line>
           <Line>51</Line>
           <Line>52</Line>
           <Line>53</Line>
           <Line>54</Line>
-          <Line>55</Line>
           <Line>56</Line>
           <Line>57</Line>
           <Line>58</Line>
+          <Line>59</Line>
+          <Line>60</Line>
           <Line>61</Line>
           <Line>62</Line>
           <Line>63</Line>
-          <Line>64</Line>
-          <Line>65</Line>
           <Line>66</Line>
+          <Line>67</Line>
+          <Line>68</Line>
+          <Line>69</Line>
           <Line>70</Line>
           <Line>71</Line>
-          <Line>72</Line>
-          <Line>73</Line>
-          <Line>74</Line>
           <Line>75</Line>
           <Line>76</Line>
           <Line>77</Line>
@@ -192,18 +191,23 @@
           <Line>79</Line>
           <Line>80</Line>
           <Line>81</Line>
+          <Line>82</Line>
+          <Line>83</Line>
+          <Line>84</Line>
+          <Line>85</Line>
+          <Line>86</Line>
         </LinesOfCode>
       </Metrics>
       <Issues>
         <Issue>
           <Id>S2933</Id>
-          <Line>13</Line>
-          <Message>Make "mediaPlayers" "readonly".</Message>
+          <Line>15</Line>
+          <Message>Make "js" "readonly".</Message>
         </Issue>
         <Issue>
           <Id>S2933</Id>
           <Line>14</Line>
-          <Message>Make "js" "readonly".</Message>
+          <Message>Make "mediaPlayers" "readonly".</Message>
         </Issue>
       </Issues>
     </File>
@@ -549,22 +553,28 @@
     <File>
       <Path>F:\Documents\GitHubVisualStudio\MoMa\Moma\Moma.Droid\JSBridge.cs</Path>
       <Metrics>
-        <Lines>87</Lines>
+        <Lines>154</Lines>
         <Classes>1</Classes>
         <Accessors>0</Accessors>
-        <Statements>12</Statements>
-        <Functions>9</Functions>
-        <PublicApi>10</PublicApi>
-        <PublicUndocumentedApi>9</PublicUndocumentedApi>
-        <Complexity>12</Complexity>
-        <FileComplexityDistribution>0=0;5=0;10=1;20=0;30=0;60=0;90=0</FileComplexityDistribution>
-        <FunctionComplexityDistribution>1=7;2=2;4=0;6=0;8=0;10=0;12=0</FunctionComplexityDistribution>
+        <Statements>26</Statements>
+        <Functions>14</Functions>
+        <PublicApi>15</PublicApi>
+        <PublicUndocumentedApi>12</PublicUndocumentedApi>
+        <Complexity>23</Complexity>
+        <FileComplexityDistribution>0=0;5=0;10=0;20=1;30=0;60=0;90=0</FileComplexityDistribution>
+        <FunctionComplexityDistribution>1=11;2=2;4=0;6=1;8=0;10=0;12=0</FunctionComplexityDistribution>
         <Comments>
           <NoSonar />
           <NonBlank>
-            <Line>33</Line>
-            <Line>66</Line>
-            <Line>68</Line>
+            <Line>36</Line>
+            <Line>74</Line>
+            <Line>84</Line>
+            <Line>86</Line>
+            <Line>134</Line>
+            <Line>139</Line>
+            <Line>140</Line>
+            <Line>147</Line>
+            <Line>148</Line>
           </NonBlank>
         </Comments>
         <LinesOfCode>
@@ -575,40 +585,41 @@
           <Line>5</Line>
           <Line>6</Line>
           <Line>7</Line>
+          <Line>8</Line>
           <Line>9</Line>
-          <Line>10</Line>
           <Line>11</Line>
           <Line>12</Line>
           <Line>13</Line>
           <Line>14</Line>
           <Line>15</Line>
+          <Line>16</Line>
           <Line>17</Line>
-          <Line>18</Line>
           <Line>19</Line>
           <Line>20</Line>
+          <Line>21</Line>
           <Line>22</Line>
-          <Line>23</Line>
           <Line>24</Line>
           <Line>25</Line>
+          <Line>26</Line>
           <Line>27</Line>
-          <Line>28</Line>
           <Line>29</Line>
           <Line>30</Line>
-          <Line>35</Line>
-          <Line>36</Line>
-          <Line>37</Line>
+          <Line>31</Line>
+          <Line>32</Line>
+          <Line>33</Line>
           <Line>38</Line>
           <Line>39</Line>
+          <Line>40</Line>
           <Line>41</Line>
           <Line>42</Line>
           <Line>43</Line>
-          <Line>44</Line>
           <Line>45</Line>
+          <Line>46</Line>
           <Line>47</Line>
           <Line>48</Line>
           <Line>49</Line>
           <Line>50</Line>
-          <Line>51</Line>
+          <Line>52</Line>
           <Line>53</Line>
           <Line>54</Line>
           <Line>55</Line>
@@ -620,42 +631,92 @@
           <Line>62</Line>
           <Line>63</Line>
           <Line>64</Line>
-          <Line>65</Line>
           <Line>66</Line>
+          <Line>67</Line>
+          <Line>68</Line>
+          <Line>69</Line>
           <Line>70</Line>
-          <Line>72</Line>
-          <Line>73</Line>
-          <Line>74</Line>
-          <Line>75</Line>
+          <Line>71</Line>
           <Line>76</Line>
           <Line>77</Line>
           <Line>78</Line>
+          <Line>79</Line>
           <Line>80</Line>
           <Line>81</Line>
           <Line>82</Line>
+          <Line>83</Line>
           <Line>84</Line>
-          <Line>85</Line>
+          <Line>88</Line>
+          <Line>90</Line>
+          <Line>91</Line>
+          <Line>92</Line>
+          <Line>93</Line>
+          <Line>94</Line>
+          <Line>95</Line>
+          <Line>96</Line>
+          <Line>98</Line>
+          <Line>99</Line>
+          <Line>100</Line>
+          <Line>101</Line>
+          <Line>102</Line>
+          <Line>103</Line>
+          <Line>104</Line>
+          <Line>105</Line>
+          <Line>107</Line>
+          <Line>108</Line>
+          <Line>110</Line>
+          <Line>111</Line>
+          <Line>112</Line>
+          <Line>113</Line>
+          <Line>114</Line>
+          <Line>115</Line>
+          <Line>117</Line>
+          <Line>118</Line>
+          <Line>119</Line>
+          <Line>120</Line>
+          <Line>121</Line>
+          <Line>122</Line>
+          <Line>123</Line>
+          <Line>124</Line>
+          <Line>125</Line>
+          <Line>126</Line>
+          <Line>127</Line>
+          <Line>128</Line>
+          <Line>129</Line>
+          <Line>131</Line>
+          <Line>136</Line>
+          <Line>137</Line>
+          <Line>138</Line>
+          <Line>141</Line>
+          <Line>142</Line>
+          <Line>144</Line>
+          <Line>145</Line>
+          <Line>146</Line>
+          <Line>149</Line>
+          <Line>150</Line>
+          <Line>151</Line>
+          <Line>152</Line>
         </LinesOfCode>
       </Metrics>
       <Issues>
         <Issue>
           <Id>S125</Id>
-          <Line>66</Line>
+          <Line>84</Line>
           <Message>Remove this commented out code.</Message>
         </Issue>
         <Issue>
           <Id>S125</Id>
-          <Line>68</Line>
+          <Line>86</Line>
           <Message>Remove this commented out code.</Message>
         </Issue>
         <Issue>
           <Id>S3168</Id>
-          <Line>61</Line>
+          <Line>78</Line>
           <Message>Return "Task" instead.</Message>
         </Issue>
         <Issue>
           <Id>S2933</Id>
-          <Line>15</Line>
+          <Line>17</Line>
           <Message>Make "js" "readonly".</Message>
         </Issue>
       </Issues>
@@ -891,20 +952,21 @@
     <File>
       <Path>F:\Documents\GitHubVisualStudio\MoMa\Moma\Moma.Droid\QrCodeScanningService.cs</Path>
       <Metrics>
-        <Lines>44</Lines>
+        <Lines>82</Lines>
         <Classes>1</Classes>
         <Accessors>0</Accessors>
-        <Statements>8</Statements>
-        <Functions>1</Functions>
+        <Statements>17</Statements>
+        <Functions>4</Functions>
         <PublicApi>0</PublicApi>
         <PublicUndocumentedApi>0</PublicUndocumentedApi>
-        <Complexity>4</Complexity>
-        <FileComplexityDistribution>0=1;5=0;10=0;20=0;30=0;60=0;90=0</FileComplexityDistribution>
-        <FunctionComplexityDistribution>1=0;2=0;4=1;6=0;8=0;10=0;12=0</FunctionComplexityDistribution>
+        <Complexity>12</Complexity>
+        <FileComplexityDistribution>0=0;5=0;10=1;20=0;30=0;60=0;90=0</FileComplexityDistribution>
+        <FunctionComplexityDistribution>1=1;2=1;4=2;6=0;8=0;10=0;12=0</FunctionComplexityDistribution>
         <Comments>
           <NoSonar />
           <NonBlank>
-            <Line>32</Line>
+            <Line>37</Line>
+            <Line>47</Line>
           </NonBlank>
         </Comments>
         <LinesOfCode>
@@ -922,9 +984,9 @@
           <Line>13</Line>
           <Line>14</Line>
           <Line>15</Line>
+          <Line>16</Line>
           <Line>17</Line>
           <Line>18</Line>
-          <Line>19</Line>
           <Line>20</Line>
           <Line>21</Line>
           <Line>22</Line>
@@ -932,33 +994,68 @@
           <Line>24</Line>
           <Line>25</Line>
           <Line>26</Line>
-          <Line>27</Line>
           <Line>28</Line>
           <Line>29</Line>
           <Line>30</Line>
+          <Line>31</Line>
+          <Line>32</Line>
           <Line>33</Line>
           <Line>34</Line>
           <Line>35</Line>
-          <Line>36</Line>
-          <Line>37</Line>
           <Line>38</Line>
           <Line>39</Line>
           <Line>40</Line>
           <Line>41</Line>
           <Line>42</Line>
           <Line>43</Line>
+          <Line>44</Line>
+          <Line>45</Line>
+          <Line>46</Line>
+          <Line>48</Line>
+          <Line>50</Line>
+          <Line>51</Line>
+          <Line>52</Line>
+          <Line>53</Line>
+          <Line>54</Line>
+          <Line>55</Line>
+          <Line>57</Line>
+          <Line>58</Line>
+          <Line>59</Line>
+          <Line>60</Line>
+          <Line>61</Line>
+          <Line>63</Line>
+          <Line>64</Line>
+          <Line>65</Line>
+          <Line>66</Line>
+          <Line>67</Line>
+          <Line>68</Line>
+          <Line>69</Line>
+          <Line>70</Line>
+          <Line>71</Line>
+          <Line>72</Line>
+          <Line>74</Line>
+          <Line>75</Line>
+          <Line>76</Line>
+          <Line>77</Line>
+          <Line>80</Line>
+          <Line>81</Line>
         </LinesOfCode>
       </Metrics>
       <Issues>
         <Issue>
           <Id>S125</Id>
-          <Line>32</Line>
+          <Line>37</Line>
           <Message>Remove this commented out code.</Message>
         </Issue>
         <Issue>
-          <Id>S1144</Id>
-          <Line>22</Line>
-          <Message>Remove this unused private member.</Message>
+          <Id>S125</Id>
+          <Line>47</Line>
+          <Message>Remove this commented out code.</Message>
+        </Issue>
+        <Issue>
+          <Id>S2696</Id>
+          <Line>54</Line>
+          <Message>Make the enclosing method "static" or remove this set.</Message>
         </Issue>
       </Issues>
     </File>

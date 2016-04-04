@@ -101,7 +101,8 @@ function Floor(floorID) {
     this.imagePath;
     this.imageWidth;
     this.imageHeight;
-    this.POI = [];//poi + pot on this layer
+    //poi + pot on this layer
+    this.POI = [];
     this.POT = [];
     this.markersById = [];
     this.tileLayer;
@@ -110,7 +111,6 @@ function Floor(floorID) {
 
     this.polyline;
     this.polylineLatLng = [];
-    
 
     this.parseFloor = function () {
         var floor = DATA.floorPlan[floorID - 1];
@@ -118,7 +118,8 @@ function Floor(floorID) {
         this.imageWidth = floor.imageWidth;
         this.imageHeight = floor.imageHeight;
     };
-    this.parseFloor();//call function on constructor
+    //call function on constructor
+    this.parseFloor();
 
     this.createTileLayer = function (minZoom, maxZoom) {
         this.tileLayer = L.tileLayer('floor'+floorID+'/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, attribution: '', noWrap: true, tms: false});
@@ -142,7 +143,7 @@ function Storyline(id, title, description, nodePath, thumbnailPath, walkingTimeI
     this.nodePath = nodePath;
     this.thumbnailPath = thumbnailPath;
     this.walkingTimeInMinutes = walkingTimeInMinutes;
-    this.floorsCovered = floorsCovered
+    this.floorsCovered = floorsCovered;
     this.nodes = []; //associative array
 }
 
@@ -160,18 +161,20 @@ function Map() {
         var marker = L.icon({
             iconUrl: iconURL,
             shadowUrl: '',
-            iconSize: [iconWidth, iconHeight], // size of the icon
+            iconSize: [iconWidth, iconHeight],
             //shadowSize: [50, 64], // size of the shadow
-            iconAnchor: [iconAnchorWidth, iconAnchorHeight], // point of the icon which will correspond to marker's location
+            // point of the icon which will correspond to marker's location
+            iconAnchor: [iconAnchorWidth, iconAnchorHeight],
             //shadowAnchor: [4, 62],  // the same for the shadow
-            popupAnchor: [iconAnchorX, iconAnchorY] // point from which the popup should open relative to the iconAnchor
+            // point from which the popup should open relative to the iconAnchor
+            popupAnchor: [iconAnchorX, iconAnchorY]
         });
         return marker;
     };
 
     this.parsePOI = function (floors) {
         var arrayPOI = DATA.node[0].poi;
-        for (i = 0; i < arrayPOI.length; i++) {
+        for (var i = 0; i < arrayPOI.length; i++) {
             var p = arrayPOI[i];
             var poi = new POI(p.id, p.x, p.y, p.floorID, p.title[lang].title, p.description[0].description, p.iBeacon, p.media.video, p.media.image, p.media.audio);
             floors[p.floorID - 1].POI[poi.id+""] = poi;
@@ -184,7 +187,7 @@ function Map() {
 
     this.parsePOT = function (floors) {
         var arrayPOT = DATA.node[0].pot;
-        for (i = 0; i < arrayPOT.length; i++) {
+        for (var i = 0; i < arrayPOT.length; i++) {
             var p = arrayPOT[i];
             var pot = new POT(p.id, p.x, p.y, p.floorID, p.label.label);
             floors[p.floorID - 1].POT[pot.id + ""] = pot;
@@ -247,7 +250,6 @@ function StorylineMap() {
         }
         return storyline;
     };
-    
     this.parseNodePath = function (storyline) {
         var nodePath = storyline.nodePath;
         for (i = 0; i < nodePath.length; i++) {
@@ -258,8 +260,7 @@ function StorylineMap() {
                 node = ListPOT[nodePath[i]];
             } else if (nodePath[i].charAt(0) == "0") {
                 node = ListPOI[nodePath[i]];
-            }
-            
+            }       
             storyline.nodes[node.id] = node;
         }
 
@@ -351,7 +352,7 @@ function Dijkstra(listPOI, listPOT) {
                 continue;
             }
             for (i = 0; i < this.vertices[smallest].length; i++) {
-                edge = this.vertices[smallest][i];
+                var edge = this.vertices[smallest][i];
                 if (edge.startNode != smallest) {
                     neighbor = edge.startNode;
                 } else {
