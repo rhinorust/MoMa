@@ -121,6 +121,7 @@ function startStoryline() {
     $("#nextBtn").show();
     $("#scanBtn").show();
     $("#endBtn").show();
+
     focusOnStart();
 }
 
@@ -143,6 +144,7 @@ function focusOnStart() {
 function currentPOI(storyline) {
     var node;
     var floorIDInt;
+
     for (i = 0; i < storyline.nodePath.length; i++) {
         //if isPOI
         node = storyline.nodes[storyline.nodePath[i]+""];

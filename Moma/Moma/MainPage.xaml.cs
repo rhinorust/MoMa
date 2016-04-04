@@ -63,18 +63,18 @@ namespace Moma
 
         // Used for popping of finished videos off the stack if there are items in the playQueue
         public void videoEnded(string videoName)
-        {
-            // Don't do anything if there aren't any more videos to play
+        {            
+            Page currentPage = Detail.Navigation.NavigationStack.Last<Page>();
+            if (currentPage is AndroidVideoPlayer)
+            {
+                if (((AndroidVideoPlayer)currentPage).getVideoName().Equals(videoName))
+                {
+                    Detail.Navigation.PopAsync(); // Get rid of it
+                }
+            }
+
             if (playQueue.Count != 0)
             {
-                Page currentPage = Detail.Navigation.NavigationStack.Last<Page>();
-                if (currentPage is AndroidVideoPlayer)
-                {
-                    if (((AndroidVideoPlayer)currentPage).getVideoName().Equals(videoName))
-                    {
-                        Detail.Navigation.PopAsync(); // Get rid of it
-                    }
-                }
                 // Play the next video on the queue
                 playVideo(playQueue.First<string[]>()[0], playQueue.First<string[]>()[1], true);
                 // Remove it from the playqueue

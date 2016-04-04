@@ -31,7 +31,7 @@ function addToMessages(poi) {
     // What jsFunction will be fired when the link is clicked
     var jsFunction = "";
     if (poi.type === "iBeacon")
-        jsFunction = "showIBeacon(" + poi.minor + "," + poi.major + ");";
+        jsFunction = "showIBeacon('" + poi.minor + "','" + poi.major + "');";
     if (poi.type === "QRCode")
         jsFunction = "showQRCode('" + poi.title + "','" + poi.data + "');";
 

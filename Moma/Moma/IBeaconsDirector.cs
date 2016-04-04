@@ -92,7 +92,7 @@ namespace Moma
                     // -> ibeacon.Proximity.ToString() returns: "Unknown", "Far", "Near" or "Immediate",
                     // -> ibeacon.Uuid
                     
-                    map.CallJs("iBeaconDiscovered(" + iBeacon.Minor + "," + iBeacon.Major + ");");
+                    map.CallJs("iBeaconDiscovered('" + iBeacon.Minor + "','" + iBeacon.Major + "');");
                 }
             });
         }
