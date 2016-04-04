@@ -238,3 +238,34 @@ function simulateBeacon() {
         //iBeaconDiscovered(9377, 54177);
     }
 }
+
+
+var ids = [{ minor: "56840", major: "59520" }, { minor: "7229", major: "11163" }, { minor: "47495", major: "32561" }];
+var nextidsIndex = 0;
+function advanceStoryLine() {
+    if (nextidsIndex == ids.length)
+        goBack();
+    else {
+        currentPOI(ids[nextidsIndex].minor, ids[nextidsIndex].major);
+        nextidsIndex++;
+    }
+}
+
+function goBack() {
+    storyline = navigationPath;
+    nextPOI(); // Start navigation back
+    //if (localStorage.getItem("lastVisitedNodeID") == storyline.nodePath[0] + "") {
+    navigationPath.isNotAtStart = false;
+    localStorage.removeItem("lastVisitedNodeID");
+    //Readd all markers
+    floors = StorylineMapObj.createPolyline(floors, storyline);
+
+    for (i = 0; i < floors.length; i++) {
+        for (j = 0; j < floors[i].markers.length; j++) {
+            floors[i].groupLayer.addLayer(floors[i].markers[j]);
+        }
+    }
+    floors = StorylineMapObj.addPolylines(floors);
+    focusOnStart();
+    //}
+}
