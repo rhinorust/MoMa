@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Estimotes;
 using Xamarin.Forms;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace Moma
 {
@@ -32,7 +33,13 @@ namespace Moma
         const int IBEACON_TIMER_START_DELAY = 30;
         Timer iBeaconsCheckTimer;
 
-        const string PROXIMITY_RESTRICTION = "Near";
+        const string PROXIMITY_RESTRICTION = "Immediate";
+
+        // For synchronizing javascript and C# threads of accessing the iBeacons dictionary
+        Semaphore semaphore;
+
+        // For knowing whether the IBeaconsDirector has started scanning for iBeacons
+        bool scanInitialised;
 
         public IBeaconsDirector()
         {
@@ -41,14 +48,24 @@ namespace Moma
             map = DependencyService.Get<IJavascriptInterface>();
             iBeacons = new Dictionary<IBeacon, string[]>();
 
-            // Only fails if BlueTooth is disabled or the device doesn't support it
-            tryStartingIBeaconsService(null);
+            semaphore = new Semaphore(1, 1);
+
+            scanInitialised = false;
+        }
+
+        // Called by javascript's storyline when ready to find iBeacons
+        // Will be executed if not already scanning
+        public void startScanningForIBeacons()
+        {
+            if (!scanInitialised)
+                tryStartingIBeaconsService(null);
         }
 
         // Used to initialize the iBeacons' service. If it fails,
         // it will try again every CHECK_FOR_BLUETOOTH_INTERVAL seconds.
         // It fails if: * BlueTooth is disabled while running app, or
         //              * BlueTooth is unsupported on the device running the app
+        // If it fails, it will retry until it succeeds.
         private void tryStartingIBeaconsService(object args)
         {
             Device.BeginInvokeOnMainThread(async () => {
@@ -75,6 +92,8 @@ namespace Moma
                     iBeaconsCheckTimer = new Timer(iBeaconIntervalCheck, null,
                                                    IBEACON_TIMER_START_DELAY,
                                                    CHECK_FOR_NEW_IBEACONS_INTERVAL*1000);
+
+                    scanInitialised = true;
                 }
             });
         }
@@ -105,6 +124,9 @@ namespace Moma
         // As of now, it will allow many to be playing at once.
         private void manageBackgroundAudio()
         {
+            // Request access to the iBeacons' dictionary
+            semaphore.WaitOne();
+
             foreach (IBeacon key in iBeacons.Keys)
             {
                 // If it is an audio iBeacon
@@ -121,6 +143,9 @@ namespace Moma
                         DependencyService.Get<IAudio>().StopAudioFile(iBeacons[key][1]);
                 }
             }
+
+            // Release semaphore
+            semaphore.Release();
         }
 
         // Returns true if proximity is less than or equal to PROXIMITY_RESTRICTION
@@ -153,6 +178,8 @@ namespace Moma
             return iBeaconJS;
         }
 
+        // Looks for iBeacons, adds new ones to the iBeacons' dictionary
+        // and returns a list of new ones + the unconfirmed in-range ones
         async Task<IEnumerable<IBeacon>> fetchNewIBeacons() {
             IEnumerable<IBeacon> foundIBeacons = await EstimoteManager.Instance.FetchNearbyBeacons(beaconRegion, new TimeSpan(0, 0, 1));
             List<IBeacon> newIBeacons = new List<IBeacon>();
@@ -160,21 +187,37 @@ namespace Moma
             foreach (IBeacon foundIBeacon in foundIBeacons) {
                 string prox = foundIBeacon.Proximity.ToString();
                 if (satisfiesProximity(prox)) {
-                    if (!iBeacons.ContainsKey(foundIBeacon)) {
-                        iBeacons.Add(foundIBeacon, new string[] { "false", "false", "" });
-                        System.Diagnostics.Debug.WriteLine("=\n= newBeacon =\n="); // Debugging
-                        newIBeacons.Add(foundIBeacon); // Add to the return list
-                    }
-                    else // If the iBeaon is in the dictionary
+                    // Request access to the iBeacons' dictionary
+                    semaphore.WaitOne();
+
+                    // See if the foundBeacon is already in the iBeacons dictionary
+                    bool alreadyInDict = false;
+                    foreach (IBeacon previousIBeacon in iBeacons.Keys)
                     {
-                        string[] value = null;
-                        iBeacons.TryGetValue(foundIBeacon, out value);
-                        if (value[0].Equals("false"))
+                        // If the found beacon is in the dictionary
+                        if (foundIBeacon.Minor == previousIBeacon.Minor
+                            && foundIBeacon.Major == previousIBeacon.Major)
                         {
-                            newIBeacons.Add(foundIBeacon); // Add to the return list
-                            System.Diagnostics.Debug.WriteLine("=\n= newBeacon =\n="); // Debugging
+                            alreadyInDict = true;
+                            string[] value;
+                            iBeacons.TryGetValue(previousIBeacon, out value);
+                            if (value[0].Equals("false")) // If this iBeacon hasn't been confirmed by javascript
+                            {
+                                newIBeacons.Add(foundIBeacon); // Add to the return list
+                                System.Diagnostics.Debug.WriteLine("=\n= newBeacon <waiting to be used> =\n="); // Debugging
+                                break;
+                            }
                         }
                     }
+                    if (!alreadyInDict) // If not already in the dictionary, add it
+                    {
+                        iBeacons.Add(foundIBeacon, new string[] { "false", "false", "" });
+                        System.Diagnostics.Debug.WriteLine("=\n= newBeacon added to Dictionary =\n="); // Debugging
+                        newIBeacons.Add(foundIBeacon); // Add to the return list
+                    }
+
+                    // Release semaphore
+                    semaphore.Release();
                 }
             }
             return newIBeacons;
@@ -183,21 +226,39 @@ namespace Moma
         // Javascript calls this to tell C# to stop reporting the beacon found
         public void confirmIBeacon(string minor, string major)
         {
+            // Request access to the iBeacons' dictionary
+            semaphore.WaitOne();
+
             foreach (IBeacon iBeacon in iBeacons.Keys)
             {
                 if (Convert.ToInt32(iBeacon.Minor).ToString().Equals(minor)
                     && Convert.ToInt32(iBeacon.Major).ToString().Equals(major)) {
-                    string[] value = null;
-                    iBeacons.TryGetValue(iBeacon, out value);
-                    value[0] = "true";
-                    iBeacons[iBeacon] = value;
+                    string[] newValue = new string[3];
+
+                    //string[] oldValue;
+                    //iBeacons.TryGetValue(iBeacon, out oldValue);
+
+                    // Currently overwrites audio ibeacons
+                    //newValue[0] = "true";
+                    //newValue[1] = "false";//oldValue[1];
+                    //newValue[2] = "";// oldValue[2];
+
+                    // Throwing a java file not found error
+                    //iBeacons[iBeacon] = newValue;
+                    break;
                 }
             }
+
+            // Release the semaphore
+            semaphore.Release();
         }
 
         // Set the iBeacon with the given minor and major values as a background audio
         // iBeacon. Furthermore, stores the audioFileName to play for that audio iBeacon
         public void setIBeaconAsAudioIBeacon(int minor, int major, string audioFileName) {
+            // Request access to the iBeacons' dictionary
+            semaphore.WaitOne();
+
             foreach (IBeacon key in iBeacons.Keys)
             {
                 // Finding the corresponding iBeacon in the dictionary
@@ -212,6 +273,9 @@ namespace Moma
                     break;
                 }
             }
+
+            // Release the semaphore
+            semaphore.Release();
         }
     }
 }

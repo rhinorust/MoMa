@@ -93,8 +93,8 @@
                 "floorID": "3",
                 "ibeacon": {
                     "uuid": "B9407F30-F5F8-466E-AFF9-25556B57FE6D",
-                    "major": "9377",
-                    "minor": "54177"
+                    "major": "11163",
+                    "minor": "7229"
                 },
                 "media": {
                     "image": [

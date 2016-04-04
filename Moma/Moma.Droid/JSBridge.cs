@@ -175,6 +175,13 @@ namespace Moma.Droid
         // ========
         [JavascriptInterface]
         [Export]
+        public void startScanningForIBeacons()
+        {
+            App.Current.IBeaconsDirector().startScanningForIBeacons();
+        }
+
+        [JavascriptInterface]
+        [Export]
         public void confirmIBeacon(string minor, string major)
         {
             App.Current.IBeaconsDirector().confirmIBeacon(minor, major);

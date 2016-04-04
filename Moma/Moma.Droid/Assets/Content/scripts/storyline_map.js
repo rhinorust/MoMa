@@ -123,6 +123,8 @@ function startStoryline() {
     $("#endBtn").show();
 
     focusOnStart();
+
+    jsBridge.startScanningForIBeacons();
 }
 
 function focusOnStart() {
@@ -153,7 +155,6 @@ function currentPOI(minor, major) {
     } else { // Check if the given minor,major match the next poi in the storyline
         var nextNodeID = parseInt(lastVisitedNodeID) + 1;
         if (nextNodeID < storyline.nodes.length) {
-            console.log(storyline.nodes);
             var nextBeacon = storyline.nodes[nextNodeID].iBeacon;
             if (nextBeacon.minor === minor && nextBeacon.major === major) {
                 nextPOI();
