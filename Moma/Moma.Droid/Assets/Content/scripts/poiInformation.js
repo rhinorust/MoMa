@@ -13,7 +13,7 @@ $('document').ready(function () {
     });
 
     // Debugging: For opening the POI information box without an iBeacon
-    //iBeaconDiscovered(54177, 9377);
+    //iBeaconDiscovered('54177', '9377');
 });
 
 // Tries to find the iBeacon with matching minor and major

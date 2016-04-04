@@ -148,7 +148,7 @@ namespace Moma.Droid
         public void messageWasAdded(string messageTitle) {
             // Tells the MapPage there was one message added which will
             // update the messagesIcon to the new number of unread messages
-            MapPage.Current.messageWasAdded(messageTitle);
+            MainPage.Current.messageWasAdded(messageTitle);
         }
 
         [JavascriptInterface]
@@ -156,7 +156,7 @@ namespace Moma.Droid
         public void messageWasRead(string messageTitle) {
             // Tells the MapPage there was one message read which will
             // update the messagesIcon to the new number of unread messages
-            MapPage.Current.messageWasRead(messageTitle);
+            MainPage.Current.messageWasRead(messageTitle);
         }
 
 
@@ -168,6 +168,16 @@ namespace Moma.Droid
         public void print(string text)
         {
             System.Diagnostics.Debug.WriteLine("\n=\n=\n=\n="+text+ "\n=\n=\n=\n=");
+        }
+
+        // ========
+        // iBeacons
+        // ========
+        [JavascriptInterface]
+        [Export]
+        public void confirmIBeacon(string minor, string major)
+        {
+            App.Current.IBeaconsDirector().confirmIBeacon(minor, major);
         }
     }
 }

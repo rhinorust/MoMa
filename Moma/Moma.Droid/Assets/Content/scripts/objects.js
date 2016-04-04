@@ -208,7 +208,7 @@ function Map() {
             var trueX = (Math.round((imageWidth / floors[floorIDInt - floorDiff].imageWidth) * p.x));
             var trueY = (Math.round((imageHeight / floors[floorIDInt - floorDiff].imageHeight) * p.y));
 
-            var poi = new POI(p.id, trueX, trueY, p.floorID, p.title[lang].title, p.description[0].description, p.iBeacon, p.media.video, p.media.image, p.media.audio);
+            var poi = new POI(p.id, trueX, trueY, p.floorID, p.title[lang].title, p.description[0].description, p.ibeacon, p.media.video, p.media.image, p.media.audio);
             floors[floorIDInt - floorDiff].POI[poi.id + ""] = poi;
             floors[floorIDInt - floorDiff].markersById[poi.id + ""] = L.marker([poi.y, poi.x], { icon: markerIconPOIBlue }).bindPopup(poi.description);
             floors[floorIDInt - floorDiff].markers.push(floors[floorIDInt - floorDiff].markersById[poi.id + ""]);

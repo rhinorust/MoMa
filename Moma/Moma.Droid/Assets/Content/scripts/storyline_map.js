@@ -85,7 +85,7 @@ function displayStoryline() {
     map.on("load", function () {
             map.addLayer(floors[parseInt(startNode.floorID) - floorDiff].groupLayer);
 
-        if (localStorage.getItem("startIsSelected") == "true") {
+            if (localStorage.getItem("startIsSelected") == "true") {
             startStoryline();
         }
         
@@ -141,22 +141,46 @@ function focusOnStart() {
 //When beacon in proximity function is fired, should call this method
 //Check whether beacon uuid == next Node.iBeacon.uuid
 //if true -> fire popup
-function currentPOI(storyline) {
+function currentPOI(minor, major) {
+
+    // Check if the given minor,major match the first poi in the storyline
+    if (lastVisitedNodeID === null) {
+        if ((""+storyline.nodes[0].iBeacon.minor) === minor && (""+storyline.nodes[0].iBeacon.major) === major) {
+            nextPOI();
+            jsBridge.confirmIBeacon(minor, major);
+            iBeaconDiscovered(minor, major);
+        }
+    } else { // Check if the given minor,major match the next poi in the storyline
+        var nextNodeID = parseInt(lastVisitedNodeID) + 1;
+        if (nextNodeID < storyline.nodes.length) {
+            console.log(storyline.nodes);
+            var nextBeacon = storyline.nodes[nextNodeID].iBeacon;
+            if (nextBeacon.minor === minor && nextBeacon.major === major) {
+                nextPOI();
+                jsBridge.confirmIBeacon(minor, major);
+                iBeaconDiscovered(minor, major);
+            }
+        }   
+    }
+}
+
+function nextPOI() {
     var node;
     var floorIDInt;
 
     for (i = 0; i < storyline.nodePath.length; i++) {
         //if isPOI
-        node = storyline.nodes[storyline.nodePath[i]+""];
+        node = storyline.nodes[storyline.nodePath[i] + ""];
         floorIDInt = parseInt(node.floorID);
-        if (ListPOI[storyline.nodePath[i]+""] != null && localStorage.getItem("lastVisitedNodeID") != storyline.nodePath[i]+"") {
+        if (ListPOI[storyline.nodePath[i] + ""] != null && localStorage.getItem("lastVisitedNodeID") != storyline.nodePath[i] + "") {
             focusOnNode(node, 3);
-            localStorage.setItem("lastVisitedNodeID", storyline.nodePath[i]+"");
+            localStorage.setItem("lastVisitedNodeID", storyline.nodePath[i] + "");
+            lastVisitedNodeID = storyline.nodePath[i];
             storyline.nodePath.splice(0, i);
             break;
         } else {
-            
-            var marker = floors[floorIDInt - floorDiff].markersById[node.id+""];
+
+            var marker = floors[floorIDInt - floorDiff].markersById[node.id + ""];
             floors[floorIDInt - floorDiff].groupLayer.removeLayer(marker);
             map.removeLayer(marker);
             //remove marker from floor.groupLayer too

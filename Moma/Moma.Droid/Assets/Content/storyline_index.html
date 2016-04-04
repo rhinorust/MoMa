@@ -13,15 +13,15 @@
     <script src="data/data_local.js"></script>
     <script src="data/DemoJSON.js"></script>
     <script src="scripts/objects.js"></script>
-    <script src="scripts/storyline_map.js"></script>
     <script src="scripts/messages.js"></script>
     <script src="scripts/poiInformation.js"></script>
+    <script src="scripts/storyline_map.js"></script>
     <script src="scripts/qrCodeScanning.js"></script>
     <script src="scripts/translation.js"></script>
     <script src="scripts/localization.js"></script>
 
     <script>
-    var currentLanguage = jsBridge.getLanguage();
+        var currentLanguage = "EN";//jsBridge.getLanguage();
     </script>
 </head>
 <body onload="displayStoryline()">
@@ -35,7 +35,7 @@
     </div>
     <div style="text-align:center;">
         <button id="starBtn" onclick="startStoryline()">Start</button>
-        <button id="nextBtn" onclick="simulateBeacon()" style="margin-left:115px">Sim. Beacon</button>
+        <button id="nextBtn" onclick="currentPOI('56840', '59520')" style="margin-left:115px">Sim. Beacon</button>
     </div>
     <div class="informationBox" id="POI_Information">
         <div id="body">

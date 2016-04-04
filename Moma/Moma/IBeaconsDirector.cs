@@ -13,7 +13,11 @@ namespace Moma
         Dictionary<IBeacon, string[]> iBeacons; // and will be stored here when found during scanning,
         IJavascriptInterface map;           // notifying the indoor map when desired.
 
-        // The dictionary's string[] = {"true", audioFileName} if it's an audio iBeacon, false otherwise
+        // Example:
+        // The dictionary's string[] = {"false", "true", audioFileName}
+        // First value is whether the iBeacon has been confirmed by javascript or not
+        // second value is if it's an audio iBeacon or not
+        // and if so, the audioFileName
 
         // These two variables are used when BlueTooth is disabled on the device.
         // In case BlueTooth wasn't enabled on app launch, the IBeaconDirector
@@ -28,7 +32,7 @@ namespace Moma
         const int IBEACON_TIMER_START_DELAY = 30;
         Timer iBeaconsCheckTimer;
 
-        const string PROXIMITY_RESTRICTION = "Immediate";
+        const string PROXIMITY_RESTRICTION = "Near";
 
         public IBeaconsDirector()
         {
@@ -76,8 +80,6 @@ namespace Moma
         }
 
         public void iBeaconIntervalCheck(object args) {
-            //MainPage.Current.playVideo("intro");
-
             Device.BeginInvokeOnMainThread(async () => {
                 IEnumerable<IBeacon> newIBeacons = await fetchNewIBeacons();
 
@@ -92,7 +94,8 @@ namespace Moma
                     // -> ibeacon.Proximity.ToString() returns: "Unknown", "Far", "Near" or "Immediate",
                     // -> ibeacon.Uuid
                     
-                    map.CallJs("iBeaconDiscovered('" + iBeacon.Minor + "','" + iBeacon.Major + "');");
+                    // For the storyline to update locations
+                    map.CallJs("currentPOI('" + iBeacon.Minor + "','" + iBeacon.Major + "');");
                 }
             });
         }
@@ -158,13 +161,38 @@ namespace Moma
                 string prox = foundIBeacon.Proximity.ToString();
                 if (satisfiesProximity(prox)) {
                     if (!iBeacons.ContainsKey(foundIBeacon)) {
+                        iBeacons.Add(foundIBeacon, new string[] { "false", "false", "" });
                         System.Diagnostics.Debug.WriteLine("=\n= newBeacon =\n="); // Debugging
                         newIBeacons.Add(foundIBeacon); // Add to the return list
-                        iBeacons.Add(foundIBeacon, new string[] { "false", "" }); // Add to dictionary
+                    }
+                    else // If the iBeaon is in the dictionary
+                    {
+                        string[] value = null;
+                        iBeacons.TryGetValue(foundIBeacon, out value);
+                        if (value[0].Equals("false"))
+                        {
+                            newIBeacons.Add(foundIBeacon); // Add to the return list
+                            System.Diagnostics.Debug.WriteLine("=\n= newBeacon =\n="); // Debugging
+                        }
                     }
                 }
             }
             return newIBeacons;
+        }
+
+        // Javascript calls this to tell C# to stop reporting the beacon found
+        public void confirmIBeacon(string minor, string major)
+        {
+            foreach (IBeacon iBeacon in iBeacons.Keys)
+            {
+                if (Convert.ToInt32(iBeacon.Minor).ToString().Equals(minor)
+                    && Convert.ToInt32(iBeacon.Major).ToString().Equals(major)) {
+                    string[] value = null;
+                    iBeacons.TryGetValue(iBeacon, out value);
+                    value[0] = "true";
+                    iBeacons[iBeacon] = value;
+                }
+            }
         }
 
         // Set the iBeacon with the given minor and major values as a background audio
@@ -177,7 +205,10 @@ namespace Moma
                 {
                     // Storing the fact that it's an audio iBeacon along with
                     // the audiofile to play for it
-                    iBeacons[key] = new string[] { "true", audioFileName };
+                    string[] value = iBeacons[key];
+                    value[1] = "true";
+                    value[2] = audioFileName;
+                    iBeacons[key] = value;
                     break;
                 }
             }
