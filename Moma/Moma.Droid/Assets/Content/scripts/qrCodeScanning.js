@@ -1,23 +1,23 @@
 ﻿function qrCodeScanBtn() {
     jsBridge.ScanQRCode();
 }
-/**
+
 function showQRText(text) {
     if (text != "") {
-        var title = poiIB.find('#title h1');
-        var content = poiIB.find('#content');
 
         var boxTitle = "QR CODE";
         var boxContent = text;
 
-        title.text(boxTitle);
-        content.empty();
-        content.append(boxContent);
+        poiIBoxTitle.text(boxTitle);
+        poiIBoxContent.empty();
+        poiIBoxContent.append(boxContent);
+
         poiIB.css('visibility', 'visible');
+        messageBox.css('visibility', 'hidden');
     }
 }
-**/
 
+/**
 function showQRText(text) {
     if (text != "") {
         var title = poiIB.find('#title h1');
@@ -33,6 +33,7 @@ function showQRText(text) {
         poiIB.css('visibility', 'visible');
     }
 }
+**/
 function showFoundQRCodes() {
    
    var num = jsBridge.getQRNumber();
