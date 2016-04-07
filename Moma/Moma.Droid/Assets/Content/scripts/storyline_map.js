@@ -144,12 +144,38 @@ function focusOnStart() {
 //Check whether beacon uuid == next Node.iBeacon.uuid
 //if true -> fire popup
 function currentPOI(minor, major) {
+    // a global variable
+    var modeSelected; // Either 'storyline' or 'free'
+    // a global variable, last known position
+    var lastKnownIBeacon; // {minor: ..., major: ...}
+
+    if (modeSelected == 'storyline') {
+        // storyline global variable
+        var currentStorylineIndex; // Initialised as -1 when "Start" is clicked for a storyline
+
+        // Iterate through the storyline path and check
+        // if the given minor,major pair matches the next point in the storyline
+        // That is, if (LinkPOI[storyline.nodePath[currentStorylineIndex+1]].iBeacon.minor === minor && ...
+
+        // If so, do:
+        iBeaconDiscovered(minor, major); // Display this iBeacon's content
+        advanceStoryLine(); // Create this function (check out commented out code below for next())
+        currentStorylineIndex++;
+        // And focus on currentPOI in the storylin
+    }
+    if (modeSelected == 'free') {
+
+    }
+
+    
+
+    
 
     // Check if the given minor,major match the first poi in the storyline
-    if (lastVisitedNodeID === null) {
+    /*if (lastVisitedNodeID === null) {
         if ((""+storyline.nodes[0].iBeacon.minor) === minor && (""+storyline.nodes[0].iBeacon.major) === major) {
             nextPOI();
-            jsBridge.confirmIBeacon(minor, major);
+            //jsBridge.confirmIBeacon(minor, major);
             iBeaconDiscovered(minor, major);
         }
     } else { // Check if the given minor,major match the next poi in the storyline
@@ -162,10 +188,10 @@ function currentPOI(minor, major) {
                 iBeaconDiscovered(minor, major);
             }
         }   
-    }
+    }*/
 }
 
-function nextPOI() {
+/*function nextPOI() {
     var node;
     var floorIDInt;
 
@@ -196,7 +222,7 @@ function nextPOI() {
         floors[i].addPolylineLayer();
     }
     map.addLayer(floors[floorIDInt - floorDiff].polyline);
-}
+}*/
 
 function focusOnNode(node, zoom) {
         var floors = $('input[name=leaflet-base-layers]:radio');
@@ -240,7 +266,7 @@ function simulateBeacon() {
 }
 
 
-var ids = [{ minor: "56840", major: "59520" }, { minor: "7229", major: "11163" }, { minor: "47495", major: "32561" }];
+/*var ids = [{ minor: "56840", major: "59520" }, { minor: "7229", major: "11163" }, { minor: "47495", major: "32561" }];
 var nextidsIndex = 0;
 function advanceStoryLine() {
     if (nextidsIndex == ids.length)
@@ -249,9 +275,9 @@ function advanceStoryLine() {
         currentPOI(ids[nextidsIndex].minor, ids[nextidsIndex].major);
         nextidsIndex++;
     }
-}
+}*/
 
-function goBack() {
+/*function goBack() {
     storyline = navigationPath;
     nextPOI(); // Start navigation back
     //if (localStorage.getItem("lastVisitedNodeID") == storyline.nodePath[0] + "") {
@@ -268,4 +294,4 @@ function goBack() {
     floors = StorylineMapObj.addPolylines(floors);
     focusOnStart();
     //}
-}
+}*/
