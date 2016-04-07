@@ -5,6 +5,45 @@
              x:Class="Moma.ContactPage"
              BackgroundColor="White">
     <ContentPage.Content>
-      <moma:Accordion  Padding="10,25,10,0" x:Name="Contact"/>
+      <Grid x:Name="Contact">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackLayout  x:Name="StackLayoutDirections" Padding="20,30,0,0"> 
+          <Grid>
+            <Label x:Name="PhoneTitle" FontSize="16" FontAttributes="Bold" TextColor="#001570"/>
+          </Grid>
+          <Grid >
+            <Label x:Name="Phone" FontSize="15"  TextColor="Gray"  />
+          </Grid>
+          <Grid Padding="0,10,0,0">
+            <Label x:Name="WebsiteTitle" FontSize="16" FontAttributes="Bold" TextColor="#001570"/>
+          </Grid>
+          <Grid >
+            <Label x:Name="Website" FontSize="15"  TextColor="Gray" />
+          </Grid>
+          <Grid Padding="0,10,0,0">
+            <Label x:Name="OHTitle" FontSize="16" FontAttributes="Bold" TextColor="#001570"/>
+          </Grid>
+          <Grid >
+            <Label x:Name="OpeningHours" FontSize="15" TextColor="Gray" />
+          </Grid>
+          <Grid Padding="0,10,0,0">
+            <Label x:Name="PricingTitle" FontSize="16" FontAttributes="Bold" TextColor="#001570"/>
+          </Grid>
+          <Grid >
+            <Label x:Name="Pricing" FontSize="15"  TextColor="Gray" />
+          </Grid>
+          <Grid Padding="0,10,0,0">
+            <Label x:Name="AddressTitle" FontSize="16" FontAttributes="Bold" TextColor="#001570"/>
+          </Grid>
+          <Grid>
+            <Label x:Name="Address" FontSize="15" TextColor="Gray"/>
+          </Grid>
+        </StackLayout>
+      </Grid>
     </ContentPage.Content>
  </ContentPage>
