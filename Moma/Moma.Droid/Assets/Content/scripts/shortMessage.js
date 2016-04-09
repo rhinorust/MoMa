@@ -28,7 +28,8 @@ $('document').ready(function () {
 // Also, clicking yes or not automatically closes the box
 function showShortMessageBox(title, shortMessage, yesClickFunction, noClickFunction) {
     shortMsgTitle.text(title);
-    shortMsgContent.text("<p>" + shortMessage + "</p>");
+    shortMsgContent.empty();
+    shortMsgContent.append("<p>" + shortMessage + "</p>");
 
     yesClickFunctionLast = yesClickFunction;
     noClickFunctionLast = noClickFunction;

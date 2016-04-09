@@ -15,13 +15,14 @@
     <script src="scripts/objects.js"></script>
     <script src="scripts/messages.js"></script>
     <script src="scripts/poiInformation.js"></script>
+    <script src="scripts/shortMessage.js"></script>
     <script src="scripts/storyline_map.js"></script>
     <script src="scripts/qrCodeScanning.js"></script>
     <script src="scripts/translation.js"></script>
     <script src="scripts/localization.js"></script>
 
     <script>
-        var currentLanguage = "EN";//jsBridge.getLanguage();
+        var currentLanguage = jsBridge.getLanguage();
     </script>
 </head>
 <body onload="displayStoryline()">
@@ -31,7 +32,7 @@
     <div style="text-align:center;">
         <button id="scanBtn" onclick="qrCodeScanBtn()">Scan</button>
         <button id="backBtn" onclick="endPreview()"><</button>
-        <button id="endBtn" onclick="endStoryline()">End</button>
+        <button id="endBtn" onclick="end()">End</button>
     </div>
     <div style="text-align:center;">
         <button id="starBtn" onclick="startStoryline()">Start</button>
