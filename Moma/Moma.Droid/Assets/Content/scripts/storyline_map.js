@@ -112,15 +112,14 @@ function startStoryline() {
     $("#scanBtn").show();
     $("#endBtn").show();
 
-    if ((lastVisitedNodeID != null && lastVisitedNodeID != storyline.nodePath[0] + "") || true) {
+    alert(lastVisitedNodeID);
+    alert(storyline.nodePath[0]);
+    if ((lastVisitedNodeID != null && lastVisitedNodeID != storyline.nodePath[0] + "")) {
         //popup asking "Would you like to be directed to the start of the storyline?"
-        if (confirm("Would you like to be directed to the start of the storyline?") == true) {
-            pathToStart();
-            focusOnStart();
-        }
-        else {
-            focusOnStart();
-        }
+        showShortMessageBox("Alert",
+            "Would you like to be directed to the start of the storyline?",
+            function () { pathToStart(); focusOnStart();},
+            function () { focusOnStart() });
     } else {
         focusOnStart();
     }
