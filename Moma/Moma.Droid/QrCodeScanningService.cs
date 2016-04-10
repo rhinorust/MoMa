@@ -27,6 +27,7 @@ namespace Moma.Droid
 
         public async Task<string> ScanAsync()
         {
+          try { 
             var scanner = new MobileBarcodeScanner();
             var options = new ZXing.Mobile.MobileBarcodeScanningOptions();
             options.PossibleFormats = new List<ZXing.BarcodeFormat>() {
@@ -35,12 +36,18 @@ namespace Moma.Droid
             var scanResults = await scanner.Scan(options);
 
             //js.CallJs("showQRText(" + scanResults.Text + ");");
-            if (scanResults != null) {
+            if (scanResults != null)
+            {
                 addQRCode(scanResults.Text);
-               // js.CallJs("addToMessages({type: 'QRCode', title: 'QrCode', data: '" + scanResults.Text + "'})");
+                // js.CallJs("addToMessages({type: 'QRCode', title: 'QrCode', data: '" + scanResults.Text + "'})");
                 return scanResults.Text;
             }
             else
+            {
+                return "";
+            }
+        }
+            catch (NullReferenceException e)
             {
                 return "";
             }
