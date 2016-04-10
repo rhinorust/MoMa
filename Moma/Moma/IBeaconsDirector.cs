@@ -106,6 +106,8 @@ namespace Moma
                                                    CHECK_FOR_NEW_IBEACONS_INTERVAL*1000);
 
                     scanInitialised = true;
+
+                    scanning = true;
                 }
             });
         }
