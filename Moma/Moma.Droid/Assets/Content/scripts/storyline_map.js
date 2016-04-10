@@ -21,15 +21,13 @@ var navigationPath = new Navigation([], false);
 var startNode;
 
 function displayStoryline() {
-    //#testing
-    //jsBridge.startScanningForIBeacons();
-
+    console.log("map js running =======================================================================================");
     //Test - next POI button
     $("#nextBtn").hide();
     $("#scanBtn").hide();
     $("#endBtn").hide();
     //#testing
-    //$("#scanText").html(tools.getLocalization(translation, ['map', 'scan']));
+    $("#scanText").html(tools.getLocalization(translation, ['map', 'scan']));
     
     $('#currentStoryline').text("Current storyline: " + localStorage.getItem("currentStoryline"));
     $('#previewStoryline').text("Previewing storyline: " + localStorage.getItem("currentStoryline"));
@@ -78,7 +76,8 @@ function displayStoryline() {
             //localStorage.removeItem("startIsSelected");
             startStoryline();
         }
-        
+        //#testing
+        jsBridge.startScanningForIBeacons();
     });
     map.setView([0, 0], mapMaxZoom);
     //map bounds
@@ -112,8 +111,6 @@ function startStoryline() {
     $("#scanBtn").show();
     $("#endBtn").show();
 
-    alert(lastVisitedNodeID);
-    alert(storyline.nodePath[0]);
     if ((lastVisitedNodeID != null && lastVisitedNodeID != storyline.nodePath[0] + "")) {
         //popup asking "Would you like to be directed to the start of the storyline?"
         showShortMessageBox("Alert",
@@ -155,29 +152,52 @@ function focusOnStart() {
 //Check whether beacon uuid == next Node.iBeacon.uuid
 //if true -> fire popup
 function currentPOI(minor, major) {
-
-        // Iterate through the storyline path and check
-        // if the given minor,major pair matches the next point in the storyline
-        // That is, if (LinkPOI[storyline.nodePath[currentStorylineIndex+1]].iBeacon.minor === minor && ...
-
-        // If so, do:
-        iBeaconDiscovered(minor, major); // Display this iBeacon's content
-        advanceStoryLine(); // Create this function (check out commented out code below for next())
-        currentStorylineIndex++;
-        // And focus on currentPOI in the storylin
-
-
-    var nextPOIInPath;
+    console.log("currentPOI fired");
+    var nextPOIInPath = null;
     //if navigation to start path
     if (navigationPath.isNotAtStart) {
-        //check if last visisted node == node(minor,major)
-        //if true
-            //check if minor and major match beacon in next poi in list (iterate through)
-            //set lastnodeVisisted to this node
+        console.log("dijkstra");
+        for (i = 0; i < navigationPath.nodePath.length; i++) {
+            if (ListPOI[navigationPath.nodePath[i] + ""] != null) {
+                console.log("found poi");
+                nextPOIInPath = ListPOI[navigationPath.nodePath[i]];
+                break;
+            }
+        }
+        if (nextPOIInPath != null && nextPOIInPath.ibeacon.minor == minor && nextPOIInPath.ibeacon.major == major) {
+            console.log("call popup");
+            iBeaconDiscovered(minor, major);
+            updatePOI(navigationPath);
+            if (localStorage.getItem("lastVisitedNodeID") == storyline.nodePath[0] + "") {
+                navigationPath.isNotAtStart = false;
+                localStorage.removeItem("lastVisitedNodeID");
+                //Readd all markers
+                floors = StorylineMapObj.createPolyline(floors, storyline);
 
+                for (i = 0; i < floors.length; i++) {
+                    for (j = 0; j < floors[i].markers.length; j++) {
+                        floors[i].groupLayer.addLayer(floors[i].markers[j]);
+                    }
+                }
+                floors = StorylineMapObj.addPolylines(floors);
+                focusOnStart();
+            }
+        }
     } else {
-        //storyline path
-
+        console.log("storyline");
+        for (i = 0; i < storyline.nodePath.length; i++) {
+            if (ListPOI[storyline.nodePath[i] + ""] != null) {
+                console.log("found poi");
+                nextPOIInPath = ListPOI[storyline.nodePath[i]];
+                break;
+            }
+        }
+        if (nextPOIInPath != null && nextPOIInPath.ibeacon.minor == minor && nextPOIInPath.ibeacon.major == major) {
+            console.log("call popup");
+            iBeaconDiscovered(minor, major);
+            updatePOI(storyline);
+        }
+        console.log("done ibeacon");
     }
     
 
@@ -203,7 +223,7 @@ function currentPOI(minor, major) {
     }*/
 }
 
-function nextPOI(storyline) {
+function updatePOI(storyline) {
     var node;
     var floorIDInt;
     for (i = 0; i < storyline.nodePath.length; i++) {
@@ -254,7 +274,7 @@ function focusOnNode(node, zoom) {
 //testing
 function simulateBeacon() {
     if (navigationPath.isNotAtStart) {
-        nextPOI(navigationPath);
+        updatePOI(navigationPath);
         if (localStorage.getItem("lastVisitedNodeID") == storyline.nodePath[0]+"") {
             navigationPath.isNotAtStart = false;
             localStorage.removeItem("lastVisitedNodeID");
@@ -270,7 +290,7 @@ function simulateBeacon() {
             focusOnStart();
         }
     } else {
-        nextPOI(storyline);
+        updatePOI(storyline);
         //iBeaconDiscovered(9377, 54177);
     }
 }
