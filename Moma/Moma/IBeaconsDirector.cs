@@ -33,7 +33,7 @@ namespace Moma
         const int IBEACON_TIMER_START_DELAY = 30;
         Timer iBeaconsCheckTimer;
 
-        const string PROXIMITY_RESTRICTION = "Near";
+        const string PROXIMITY_RESTRICTION = "Near";//#testing
 
         // For synchronizing javascript and C# threads of accessing the iBeacons dictionary
         Semaphore semaphore;
@@ -46,6 +46,8 @@ namespace Moma
 
         public IBeaconsDirector()
         {
+            System.Diagnostics.Debug.WriteLine("Ibeacon director running***********************************************************");
+
             UUID = "b9407f30-f5f8-466e-aff9-25556b57fe6d";
             beaconRegion = new BeaconRegion("Musee Des Ondes", UUID);
             map = DependencyService.Get<IJavascriptInterface>();
@@ -132,6 +134,7 @@ namespace Moma
 
                         // For the storyline to update locations
                         map.CallJs("currentPOI('" + iBeacon.Minor + "','" + iBeacon.Major + "');");
+                        System.Diagnostics.Debug.WriteLine("call currentPOI from c#***********************************************************");
                     }
                 });
             }

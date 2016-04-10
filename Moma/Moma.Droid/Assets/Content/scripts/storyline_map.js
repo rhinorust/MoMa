@@ -21,10 +21,12 @@ var navigationPath = new Navigation([], false);
 var startNode;
 
 function displayStoryline() {
+    console.log("map js running =======================================================================================");
     //Test - next POI button
     $("#nextBtn").hide();
     $("#scanBtn").hide();
     $("#endBtn").hide();
+    //#testing
     $("#scanText").html(tools.getLocalization(translation, ['map', 'scan']));
     
     $('#currentStoryline').text("Current storyline: " + localStorage.getItem("currentStoryline"));
@@ -42,26 +44,11 @@ function displayStoryline() {
     storyline = StorylineMapObj.parseStoryline(storylineSelectedID);
     storyline = StorylineMapObj.parseNodePath(storyline);
 
+    floors = StorylineMapObj.createPolyline(floors, storyline);
+    floors = MapObj.groupLayers(floors);
+    floors = StorylineMapObj.addPolylines(floors);
+    startNode = ListPOI[storyline.nodePath[0] + ""];
 
-    if (lastVisitedNodeID != null && lastVisitedNodeID != storyline.nodePath[0]+"") {
-        var dijkstras = new Dijkstra(ListPOI, ListPOT);
-        start = lastVisitedNodeID;
-        finish = storyline.nodePath[0]+"";
-        var shortestPathID = dijkstras.shortestPath(start, finish);
-        navigationPath = new Navigation(shortestPathID, true);
-        navigationPath = StorylineMapObj.parseNodePath(navigationPath);
-        floors = StorylineMapObj.createPolyline(floors, navigationPath);
-        floors = MapObj.groupLayers(floors);
-        floors = StorylineMapObj.addPolylines(floors);
-
-        startNode = ListPOI[navigationPath.nodePath[0]+""];
-        //$('#currentStoryline').text("Navigate to the start");
-    } else {
-        floors = StorylineMapObj.createPolyline(floors, storyline);
-        floors = MapObj.groupLayers(floors);
-        floors = StorylineMapObj.addPolylines(floors);
-        startNode = ListPOI[storyline.nodePath[0]+""];
-    }
 
     //floor radio buttons
     for (i = 0; i < floors.length; i++) {
@@ -83,12 +70,14 @@ function displayStoryline() {
         minZoom: mapMinZoom,
         crs: L.CRS.Simple    });
     map.on("load", function () {
-            map.addLayer(floors[parseInt(startNode.floorID) - floorDiff].groupLayer);
+        map.addLayer(floors[parseInt(startNode.floorID) - floorDiff].groupLayer);
 
-            if (localStorage.getItem("startIsSelected") == "true") {
+        if (localStorage.getItem("startIsSelected") == "true") {
+            //localStorage.removeItem("startIsSelected");
             startStoryline();
         }
-        
+        //#testing
+        jsBridge.startScanningForIBeacons();
     });
     map.setView([0, 0], mapMaxZoom);
     //map bounds
@@ -122,9 +111,28 @@ function startStoryline() {
     $("#scanBtn").show();
     $("#endBtn").show();
 
-    focusOnStart();
+    if ((lastVisitedNodeID != null && lastVisitedNodeID != storyline.nodePath[0] + "")) {
+        //popup asking "Would you like to be directed to the start of the storyline?"
+        showShortMessageBox("Alert",
+            "Would you like to be directed to the start of the storyline?",
+            function () { pathToStart(); focusOnStart();},
+            function () { focusOnStart() });
+    } else {
+        focusOnStart();
+    }
+}
 
-    jsBridge.startScanningForIBeacons();
+function pathToStart() {
+    var dijkstras = new Dijkstra(ListPOI, ListPOT);
+    start = lastVisitedNodeID;
+    finish = storyline.nodePath[0] + "";
+    var shortestPathID = dijkstras.shortestPath(start, finish);
+    navigationPath = new Navigation(shortestPathID, true);
+    navigationPath = StorylineMapObj.parseNodePath(navigationPath);
+    floors = StorylineMapObj.createPolyline(floors, navigationPath);
+    floors = MapObj.groupLayers(floors);
+    floors = StorylineMapObj.addPolylines(floors);
+    startNode = ListPOI[navigationPath.nodePath[0] + ""];
 }
 
 function focusOnStart() {
@@ -144,29 +152,53 @@ function focusOnStart() {
 //Check whether beacon uuid == next Node.iBeacon.uuid
 //if true -> fire popup
 function currentPOI(minor, major) {
-    // a global variable
-    var modeSelected; // Either 'storyline' or 'free'
-    // a global variable, last known position
-    var lastKnownIBeacon; // {minor: ..., major: ...}
+    console.log("currentPOI fired");
+    var nextPOIInPath = null;
+    //if navigation to start path
+    if (navigationPath.isNotAtStart) {
+        console.log("dijkstra");
+        for (i = 0; i < navigationPath.nodePath.length; i++) {
+            if (ListPOI[navigationPath.nodePath[i] + ""] != null) {
+                console.log("found poi");
+                nextPOIInPath = ListPOI[navigationPath.nodePath[i]];
+                break;
+            }
+        }
+        if (nextPOIInPath != null && nextPOIInPath.ibeacon.minor == minor && nextPOIInPath.ibeacon.major == major) {
+            console.log("call popup");
+            iBeaconDiscovered(minor, major);
+            updatePOI(navigationPath);
+            if (localStorage.getItem("lastVisitedNodeID") == storyline.nodePath[0] + "") {
+                navigationPath.isNotAtStart = false;
+                localStorage.removeItem("lastVisitedNodeID");
+                //Readd all markers
+                floors = StorylineMapObj.createPolyline(floors, storyline);
 
-    if (modeSelected == 'storyline') {
-        // storyline global variable
-        var currentStorylineIndex; // Initialised as -1 when "Start" is clicked for a storyline
-
-        // Iterate through the storyline path and check
-        // if the given minor,major pair matches the next point in the storyline
-        // That is, if (LinkPOI[storyline.nodePath[currentStorylineIndex+1]].iBeacon.minor === minor && ...
-
-        // If so, do:
-        iBeaconDiscovered(minor, major); // Display this iBeacon's content
-        advanceStoryLine(); // Create this function (check out commented out code below for next())
-        currentStorylineIndex++;
-        // And focus on currentPOI in the storylin
+                for (i = 0; i < floors.length; i++) {
+                    for (j = 0; j < floors[i].markers.length; j++) {
+                        floors[i].groupLayer.addLayer(floors[i].markers[j]);
+                    }
+                }
+                floors = StorylineMapObj.addPolylines(floors);
+                focusOnStart();
+            }
+        }
+    } else {
+        console.log("storyline");
+        for (i = 0; i < storyline.nodePath.length; i++) {
+            if (ListPOI[storyline.nodePath[i] + ""] != null) {
+                console.log("found poi");
+                nextPOIInPath = ListPOI[storyline.nodePath[i]];
+                break;
+            }
+        }
+        if (nextPOIInPath != null && nextPOIInPath.ibeacon.minor == minor && nextPOIInPath.ibeacon.major == major) {
+            console.log("call popup");
+            iBeaconDiscovered(minor, major);
+            updatePOI(storyline);
+        }
+        console.log("done ibeacon");
     }
-    if (modeSelected == 'free') {
-
-    }
-
     
 
     
@@ -191,10 +223,9 @@ function currentPOI(minor, major) {
     }*/
 }
 
-/*function nextPOI() {
+function updatePOI(storyline) {
     var node;
     var floorIDInt;
-
     for (i = 0; i < storyline.nodePath.length; i++) {
         //if isPOI
         node = storyline.nodes[storyline.nodePath[i] + ""];
@@ -202,7 +233,6 @@ function currentPOI(minor, major) {
         if (ListPOI[storyline.nodePath[i] + ""] != null && localStorage.getItem("lastVisitedNodeID") != storyline.nodePath[i] + "") {
             focusOnNode(node, 3);
             localStorage.setItem("lastVisitedNodeID", storyline.nodePath[i] + "");
-            lastVisitedNodeID = storyline.nodePath[i];
             storyline.nodePath.splice(0, i);
             break;
         } else {
@@ -222,7 +252,7 @@ function currentPOI(minor, major) {
         floors[i].addPolylineLayer();
     }
     map.addLayer(floors[floorIDInt - floorDiff].polyline);
-}*/
+}
 
 function focusOnNode(node, zoom) {
         var floors = $('input[name=leaflet-base-layers]:radio');
@@ -244,7 +274,7 @@ function focusOnNode(node, zoom) {
 //testing
 function simulateBeacon() {
     if (navigationPath.isNotAtStart) {
-        currentPOI(navigationPath);
+        updatePOI(navigationPath);
         if (localStorage.getItem("lastVisitedNodeID") == storyline.nodePath[0]+"") {
             navigationPath.isNotAtStart = false;
             localStorage.removeItem("lastVisitedNodeID");
@@ -260,7 +290,7 @@ function simulateBeacon() {
             focusOnStart();
         }
     } else {
-        currentPOI(storyline);
+        updatePOI(storyline);
         //iBeaconDiscovered(9377, 54177);
     }
 }
