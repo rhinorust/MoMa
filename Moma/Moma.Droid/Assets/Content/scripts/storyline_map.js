@@ -167,7 +167,7 @@ function currentPOI(minor, major) {
         lastVisitedNodeID = nextPOIInPath.id;
 
         if (nextPOIInPath != null && lastVisitedNodeID != repeatNode && nextPOIInPath.iBeacon.minor == minor && nextPOIInPath.iBeacon.major == major) {
-            console.log("call popup");
+            console.log("call update poi");
             repeatNode = lastVisitedNodeID;
             updatePOI(navigationPath);
             if (localStorage.getItem("lastVisitedNodeID") == storyline.nodePath[0] + "") {

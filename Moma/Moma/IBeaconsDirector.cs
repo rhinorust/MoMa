@@ -46,8 +46,6 @@ namespace Moma
 
         public IBeaconsDirector()
         {
-            System.Diagnostics.Debug.WriteLine("Ibeacon director running***********************************************************");
-
             UUID = "b9407f30-f5f8-466e-aff9-25556b57fe6d";
             beaconRegion = new BeaconRegion("Musee Des Ondes", UUID);
             map = DependencyService.Get<IJavascriptInterface>();
@@ -134,7 +132,6 @@ namespace Moma
 
                         // For the storyline to update locations
                         map.CallJs("currentPOI('" + iBeacon.Minor + "','" + iBeacon.Major + "');");
-                        System.Diagnostics.Debug.WriteLine("call currentPOI from c#***********************************************************");
                     }
                 });
             }
