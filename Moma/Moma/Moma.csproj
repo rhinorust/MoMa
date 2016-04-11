@@ -61,6 +61,7 @@
     <Compile Include="IAudio.cs" />
     <Compile Include="IBeaconsDirector.cs" />
     <Compile Include="ICurrentCulture.cs" />
+    <Compile Include="IDialer.cs" />
     <Compile Include="IJavascriptInterface.cs" />
     <Compile Include="INetworkConnection.cs" />
     <Compile Include="IQrCodeScanningService.cs" />

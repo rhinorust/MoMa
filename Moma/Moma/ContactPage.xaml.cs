@@ -28,7 +28,24 @@ namespace Moma
 
         }
 
-        
+
+
+        public async void OnPhoneTapped(object sender, EventArgs e)
+        {
+            if (await this.DisplayAlert(
+                             "Dial a Number",
+                             "Call 514 - 932 - 9663 ?",
+                             "Yes",
+                             "No"))
+            {
+                var dialer = DependencyService.Get<IDialer>();
+                if (dialer != null)
+                {
+                    dialer.Dial("514 - 932 - 9663");
+                }
+            }
+        }
+
     }
 
 
