@@ -77,14 +77,15 @@ function showIBeacon(minor, major) {
         }
         // if there are images or text we will show the poi information box
         //else {
-            if (images.length > 0) {
-                for (var j = 0; j < images.length; j++)
-                    content += imagef(images[j].path);
-            }
+        if (images.length > 0) {
+            for (var j = 0; j < images.length; j++)
+                content += imagef(images[j].path);
+        }
 
-            content += textf(poiDescription);
-            var title = poiTitle;
+        content += textf(poiDescription);
+        var title = poiTitle;
 
+        if (images.length > 0 || poiDescription.length() > 0) {
             poiIBoxTitle.text(title);
             poiIBoxContent.empty();
             poiIBoxContent.append(content);
@@ -93,7 +94,7 @@ function showIBeacon(minor, major) {
             messageBox.css('visibility', 'hidden');
 
             poiIB.css('visibility', 'visible');
-        //}
+        }
 
         // Updating the messageIcon in the C# toolbar
         jsBridge.messageWasRead(poiTitle);
