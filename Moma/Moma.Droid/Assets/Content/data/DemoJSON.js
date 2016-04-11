@@ -9,7 +9,7 @@
               "left": 0,
               "top": 51.23175416133162,
               "width": 395,
-              "height": 397.53649167733676
+              "height": 397.5364916773367
           }
       }
     ],
@@ -36,8 +36,8 @@
                 "floorID": "3",
                 "ibeacon": {
                     "uuid": "B9407F30-F5F8-466E-AFF9-25556B57FE6D",
-                    "major": "59520",
-                    "minor": "56840"
+                    "major": "9377",
+                    "minor": "54177"
                 },
                 "media": {
                     "image": [],
@@ -92,9 +92,9 @@
                 ],
                 "floorID": "3",
                 "ibeacon": {
-                    "uuid": "B9407F30-F5F8-466E-AFF9-25556B57FE6D",
-                    "major": "11163",
-                    "minor": "7229"
+                    "uuid": "8492E75F-4FD6-469D-B132-043FE94921D8",
+                    "major": "5719",
+                    "minor": "8855"
                 },
                 "media": {
                     "image": [

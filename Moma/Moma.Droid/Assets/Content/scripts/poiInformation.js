@@ -23,16 +23,16 @@ function iBeaconDiscovered(minor, major) {
 
     if (poi !== -1) { // If it was found
         // If it's not a background audio iBeacon
-        if (poi.media.audio.length == 0) {
+        //if (poi.media.audio.length == 0) {
             var poiTitle = poi.title[0].title;
             addToMessages({ type: "iBeacon", title: poiTitle, minor: minor, major: major });
             showIBeacon(minor, major); // Show the IBeacon's information
-        }
+        //}
         // If it is an audio iBeacon, let the C#'s iBeaconsDirector know and it will take
         // care of playing/looping/stopping the audio based on dynamic proximity to it's iBeacon
-        if (poi.media.audio.length != 0) {
-            jsBridge.setIBeaconAsAudioIBeacon(minor, major, poi.media.audio[0].path);
-        }
+        //if (poi.media.audio.length != 0) {
+        //    jsBridge.setIBeaconAsAudioIBeacon(minor, major, poi.media.audio[0].path);
+        //}
     }
 }
 
@@ -75,19 +75,20 @@ function showIBeacon(minor, major) {
                 jsBridge.playVideo(videos[i].path, videos[i].caption, false);
             }
         }
-        // Else, if there are images or text we will show the poi information box
-        else {
-            if (images.length > 0) {
-                for (var j = 0; j < images.length; j++)
-                    content += imagef(images[j].path);
-            }
+        // if there are images or text we will show the poi information box
+        //else {
+        if (images.length > 0) {
+            for (var j = 0; j < images.length; j++)
+                content += imagef(images[j].path);
+        }
 
-            content += textf(poiDescription);
-            var title = poiTitle;
+        content += textf(poiDescription);
+        var title = poiTitle;
 
+        if (images.length > 0 || poiDescription.length() > 0) {
             poiIBoxTitle.text(title);
             poiIBoxContent.empty();
-            poiIBoxContent.append(content);
+            poiIBoxContent.append(content); 
 
             // Close the message box
             messageBox.css('visibility', 'hidden');

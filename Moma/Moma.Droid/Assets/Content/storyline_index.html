@@ -15,13 +15,14 @@
     <script src="scripts/objects.js"></script>
     <script src="scripts/messages.js"></script>
     <script src="scripts/poiInformation.js"></script>
+    <script src="scripts/shortMessage.js"></script>
     <script src="scripts/storyline_map.js"></script>
     <script src="scripts/qrCodeScanning.js"></script>
     <script src="scripts/translation.js"></script>
     <script src="scripts/localization.js"></script>
 
     <script>
-        var currentLanguage = "EN";//jsBridge.getLanguage();
+        var currentLanguage = jsBridge.getLanguage();
     </script>
 </head>
 <body onload="displayStoryline()">
@@ -31,7 +32,7 @@
     <div style="text-align:center;">
         <button id="scanBtn" onclick="qrCodeScanBtn()">Scan</button>
         <button id="backBtn" onclick="endPreview()"><</button>
-        <button id="endBtn" onclick="endStoryline()">End</button>
+        <button id="endBtn" onclick="end()">End</button>
     </div>
     <div style="text-align:center;">
         <button id="starBtn" onclick="startStoryline()">Start</button>
@@ -63,6 +64,25 @@
             <section id="content">
                 <div id="iBeacons"><ul></ul></div>
                 <div id="QRCodes"><ul><p>No QRCodes have been scanned yet.</p></ul></div>
+            </section>
+        </div>
+    </div>
+    <div class="informationBox" id="shortMessageBox">
+        <div id="body">
+            <header>
+                <div id="title">
+                    <h1>Short message</h1>
+                </div>
+                <div id="closeButton">
+                    <img id="close" src="images/boxCloseButton.png">
+                </div>
+            </header>
+            <section id="content">
+                <div id="text"></div>
+                <div id="buttons">
+                    <button id="yesButton" onclick="yesButtonClick()">Yes</button>
+                    <button id="noButton"  onclick="noButtonClick()">No</button>
+                </div>
             </section>
         </div>
     </div>
