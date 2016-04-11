@@ -88,7 +88,7 @@ function showIBeacon(minor, major) {
         if (images.length > 0 || poiDescription.length() > 0) {
             poiIBoxTitle.text(title);
             poiIBoxContent.empty();
-            poiIBoxContent.append(content);
+            poiIBoxContent.append(content); 
 
             // Close the message box
             messageBox.css('visibility', 'hidden');
