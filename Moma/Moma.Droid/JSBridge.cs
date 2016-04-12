@@ -92,7 +92,7 @@ namespace Moma.Droid
             if (result != "")
             {
                 js.CallJs("showQRText('" + result.Replace("\n", " ") + "');");
-            }           
+            }
         }
 
         public void redirect()
@@ -185,34 +185,42 @@ namespace Moma.Droid
         // ========
         [JavascriptInterface]
         [Export]
-        public async void confirmPopup(int storylineID)
+        public async void confirmPopup(string storylineID)
         {
             StorylinePage storylineContext = new StorylinePage();
             var answer = await storylineContext.confirmPopup();
 
             if (answer == true)
             {
-                js.CallJs("localStorage.removeItem('startIsSelected');" +
-                                      "localStorage.removeItem('currentStoryline');" +
+                js.CallJs("localStorage.removeItem('currentStoryline');" +
                                       "localStorage.removeItem('lastVisitedNodeID');" +
-                                      "localStorage.setItem('currentStoryline'," + storylineID + ");" +
-                                      "localStorage.setItem('startIsSelected', 'true');");
-                js.CallJs("window.location.replace('storyline_index.html');");
+                                      "localStorage.setItem('currentStoryline'," + storylineID + ");" + 
+                                      "window.location.replace('storyline_index.html');");
             }
 
             if (answer == false)
             {
                 js.CallJs("window.location.replace('storyline_index.html');");
             }
-
         }
 
-            
+        [JavascriptInterface]
+        [Export]
+        public async void confirmPreviewPopup(string storylineID)
+        {
+            StorylinePage storylineContext = new StorylinePage();
+            var answer = await storylineContext.confirmPopup();
 
+            if (answer == true)
+            {
+                js.CallJs("localStorage.removeItem('previewStoryline');" +
+                                      "localStorage.removeItem('currentStoryline');" +
+                                      "localStorage.removeItem('lastVisitedNodeID');" +
+                                      "localStorage.setItem('currentStoryline'," + storylineID + ");" +
+                                      "window.location.replace('storyline_index.html');");
+            }
         }
 
 
-
-
-
+    }
 }

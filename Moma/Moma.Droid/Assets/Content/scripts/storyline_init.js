@@ -23,20 +23,22 @@ function init() {
 }
 
 function previewStoryline(storylineID) {
-    localStorage.setItem("currentStoryline", storylineID);
+    localStorage.setItem("previewStoryline", storylineID);
     location.replace("storyline_index.html");
 }
 
 function startStoryline(storylineID) {
-    if (localStorage.getItem("currentStoryline") != storylineID && localStorage.getItem("currentStoryline") != null)
+    localStorage.removeItem("previewStoryline");
+    if (localStorage.getItem("currentStoryline") != storylineID && localStorage.getItem("currentStoryline") != null) {
         jsBridge.confirmPopup(storylineID);
+    }
     else {
         localStorage.setItem("currentStoryline", storylineID);
-        localStorage.setItem("startIsSelected", "true");
         window.location.replace("storyline_index.html");
     }
 }
 
 function resumeStoryline(storylineID) {
+    localStorage.removeItem("previewStoryline");
     window.location.replace("storyline_index.html");
 }
