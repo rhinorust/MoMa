@@ -2,12 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Moma.ScavengerPage"
-             xmlns:local="clr-namespace:Moma;assembly=Moma"
+             Title="Scavenger Hunt"
              BackgroundColor="White">
-  <ContentPage.Content>
-    <local:HybridWebView x:Name="hybridWebView"
-                          AbsoluteLayout.LayoutBounds="1,1,1,1"
-                          AbsoluteLayout.LayoutFlags="All"
-                          Uri="scavengerHunt.html"/>
-  </ContentPage.Content>
+  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
 </ContentPage>

@@ -1,5 +1,0 @@
-projectKey=Android:moma
-serverUrl=http://localhost:9000
-dashboardUrl=http://localhost:9000/dashboard/index/Android:moma
-ceTaskId=AVOXeLyV_EMiLz_byBbu
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AVOXeLyV_EMiLz_byBbu

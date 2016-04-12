@@ -1,84 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:moma="clr-namespace:Moma;assembly=Moma"
              x:Class="Moma.SettingsPage"
+             Title="Settings"
              BackgroundColor="White">
-  <ContentPage.Content>
-    <ScrollView>
-      <ScrollView.Content>
-        <StackLayout x:Name="StackLayoutSettings">
-          <StackLayout.Children>
-            <Grid x:Name="GridSettings" Padding="15, 30, 15, 30">
-              <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-              </Grid.RowDefinitions>
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-              </Grid.ColumnDefinitions>
-              <Grid.HorizontalOptions>
-                <LayoutOptions>FillAndExpand</LayoutOptions>
-              </Grid.HorizontalOptions>
-              <Grid.ColumnSpacing>15</Grid.ColumnSpacing>
-              <Grid.RowSpacing>15</Grid.RowSpacing>
-              <Grid.Children>
-                <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-                  <StackLayout.Children>
-                    <Label x:Name="LanguageLabel" FontSize="17" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black"/>
-                    <Label x:Name="LanguageDefLabel" FontSize="12" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Gray"/>
-                  </StackLayout.Children>
-                </StackLayout>
-                <moma:CustomPicker x:Name="LanguagePicker" Grid.Row="0" Grid.Column="2" HorizontalOptions="End"></moma:CustomPicker>
-                <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-                  <StackLayout.Children>
-                    <Label x:Name="VibrationLabel" FontSize="17" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black"/>
-                    <Label x:Name="VibrationDefLabel" FontSize="12" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Gray"/>
-                  </StackLayout.Children>
-                </StackLayout>
-                <Switch IsEnabled="True" IsVisible="True" x:Name="VibrationSwitch" Grid.Row="1" Grid.Column="2" HorizontalOptions="End"/>
-                <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-                  <StackLayout.Children>
-                    <Label x:Name="PopupLabel" FontSize="15" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black"/>
-                    <Label x:Name="PopupDefLabel" FontSize="12" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Gray"/>
-                  </StackLayout.Children>
-                </StackLayout>
-                <Switch IsEnabled="True" IsVisible="True" x:Name="PopupSwitch" Grid.Row="2" Grid.Column="2" HorizontalOptions="End"/>
-                <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
-                  <StackLayout.Children>
-                    <Label x:Name="SoundLabel" FontSize="17" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black"/>
-                    <Label x:Name="SoundDefLabel" FontSize="12" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Gray"/>
-                  </StackLayout.Children>
-                </StackLayout>
-                <Switch IsEnabled="True" IsVisible="True" x:Name="SoundSwitch" Grid.Row="3" Grid.Column="2" HorizontalOptions="End"/>
-              </Grid.Children>
-            </Grid>
-            <Grid>
-              <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-              </Grid.RowDefinitions>
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-              </Grid.ColumnDefinitions>
-              <Grid.HorizontalOptions>
-                <LayoutOptions>FillAndExpand</LayoutOptions>
-              </Grid.HorizontalOptions>
-              <Grid.Children>
-                <Button x:Name="ResetButton" BackgroundColor="White" HorizontalOptions="Center" BorderColor="Gray" TextColor="Gray" BorderWidth="2" Grid.Row="0" Grid.Column="0" Clicked="ResetButtonOnClicked"/>
-                <Button x:Name="SaveButton" BackgroundColor="#0066ff" HorizontalOptions="Center" BorderColor="Blue" TextColor="White" BorderWidth="2"  Clicked="SaveButtonOnClicked" Grid.Row="0" Grid.Column="1"/>
-                <!--<Button x:Name="ResetAppButton" BackgroundColor="#FF0000" WidthRequest="300" HorizontalOptions="Center" BorderColor="#FF0000" BorderWidth="2" TextColor="White" Clicked="ResetAppButton_OnClicked" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></Button>-->
-              </Grid.Children>
-            </Grid>
-          </StackLayout.Children>
-        </StackLayout>
-      </ScrollView.Content>
-    </ScrollView>
-  </ContentPage.Content>
-
+  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
 </ContentPage>

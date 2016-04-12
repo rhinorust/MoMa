@@ -12,9 +12,6 @@ namespace Moma
     {
         public ListView ListView { get { return listView; } }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public MasterPage()
         {
             InitializeComponent();
@@ -22,44 +19,44 @@ namespace Moma
             var masterPageItems = new List<MasterPageItem>();
             masterPageItems.Add(new MasterPageItem
             {
-                Title = AppLanguageResource.Map,
-                IconSource = "ic_action_navigate.png",
+                Title = "Map",
+                IconSource = "map_icon.png",
                 TargetType = typeof(MapPage)
             });
             masterPageItems.Add(new MasterPageItem
             {
-                Title = AppLanguageResource.Storyline,
-                IconSource = "ic_action_map.png",
+                Title = "Storyline",
+                IconSource = "storyline_icon.png",
                 TargetType = typeof(StorylinePage)
-            });
-           masterPageItems.Add(new MasterPageItem
-           {
-              Title = AppLanguageResource.Scavenger,
-              IconSource = "ic_action_search.png",
-              TargetType = typeof(ScavengerPage)
             });
             masterPageItems.Add(new MasterPageItem
             {
-                Title = AppLanguageResource.Directions,
-                IconSource = "ic_action_compass.png",
+                Title = "Scavenger Hunt",
+                IconSource = "scavenger_icon.png",
+                TargetType = typeof(ScavengerPage)
+            });
+            masterPageItems.Add(new MasterPageItem
+            {
+                Title = "Museum  Directions",
+                IconSource = "directions_icon.png",
                 TargetType = typeof(DirectionsPage)
             });
             masterPageItems.Add(new MasterPageItem
-           {
-                Title = AppLanguageResource.Contact,
-                IconSource = "ic_action_phone.png",
+            {
+                Title = "Contact",
+                IconSource = "contact_icon.png",
                 TargetType = typeof(ContactPage)
             });
             masterPageItems.Add(new MasterPageItem
             {
-                Title = AppLanguageResource.Help,
-                IconSource = "ic_action_help.png",
+                Title = "Help",
+                IconSource = "help_icon.png",
                 TargetType = typeof(HelpPage)
             });
             masterPageItems.Add(new MasterPageItem
             {
-                Title = AppLanguageResource.Settings,
-                IconSource = "ic_action_settings.png",
+                Title = "Settings",
+                IconSource = "settings_icon.png",
                 TargetType = typeof(SettingsPage)
             });
 

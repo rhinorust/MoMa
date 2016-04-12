@@ -13,12 +13,6 @@ namespace Moma
         public StorylinePage()
         {
             InitializeComponent();
-            Title = AppLanguageResource.Storyline;
-        }
-
-        public async Task<bool> confirmPopup()
-        {
-            return await DisplayAlert(AppLanguageResource.ActiveStoryline, AppLanguageResource.ActiveQuestion, AppLanguageResource.Yes, AppLanguageResource.No);
         }
     }
 }

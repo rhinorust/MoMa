@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="Moma.Droid" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 	<uses-sdk android:minSdkVersion="15" />
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-	<application android:label="Moma" android:icon="@drawable/moma_appIcon"></application>
+	<application android:label="@string/application_name"></application>
 </manifest>
