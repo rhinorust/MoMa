@@ -6,19 +6,19 @@ var floorDiff = 1;
 var baseMaps = {};
 var map;
 var lastVisitedNodeID = null;
-var mapInitBool;
+var lastMinor;
+var lastMajor;
 
 var markerIconPOIBlue = MapObj.createMarker('images/marker-icon-blue.png', 64, 64, 30, 64, 1, 1);
 var markerIconPOIGreen = MapObj.createMarker('images/marker-icon-green.png', 64, 64, 30, 64, 1, 1);
 var markerIconPOIRed = MapObj.createMarker('images/marker-icon-red.png', 64, 64, 30, 64, 1, 1);
 var markerIconNode = MapObj.createMarker('images/none-marker-icon.png');
-var mapMinZoom = 1;
+var mapMinZoom = 2;
 var mapMaxZoom = 5;
 var floors = [];
 
 function init() {
 
-    mapInitBool = true;
 //create map
     map = L.map('map', {
         maxZoom: mapMaxZoom,
@@ -68,16 +68,15 @@ function init() {
 
 function currentPOI(minor, major) {
     console.log(minor + " " + major + "*******************************************");
-    poi = findPOIWithIBeacon(minor, major);
-    if (poi != -1) {
-        console.log("poi not valid");
-        lastVisitedNodeID = poi.id;
-    }
-
-    if (lastVisitedNodeID != localStorage.getItem("lastVisitedNodeID") || mapInitBool) {
+    if (lastMinor != minor && lastMajor != major) {
         console.log("popup call");
-        localStorage.setItem("lastVisitedNodeID", lastVisitedNodeID);
         iBeaconDiscovered(minor, major);
-        mapInitBool = false;
+
+        lastVisitedNodeID = findPOIWithIBeacon(minor, major);
+        if (lastVisitedNodeID != -1) {
+            localStorage.setItem("lastVisitedNodeID", lastVisitedNodeID);
+        }
+        lastMinor = minor;
+        lastMajor = major;
     }
 }

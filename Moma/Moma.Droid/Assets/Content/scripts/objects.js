@@ -163,9 +163,6 @@ function Navigation(nodePath, isNotAtStart) {
 
 //Map Object
 function Map() {
-    //***remove once new map images are implemented
-    var trueImageWidth = 146;
-    var trueImageHeight = 147;
 
     this.createMarker = function (iconURL, iconWidth, iconHeight, iconAnchorWidth, iconAnchorHeight, iconAnchorX, iconAnchorY) {
         var marker = L.icon({
@@ -199,14 +196,23 @@ function Map() {
             var floorIDInt = parseInt(p.floorID);
             var imageWidth = floors[floorIDInt - floorDiff].imageWidth;
             var imageHeight = floors[floorIDInt - floorDiff].imageHeight;
-            while ( imageWidth >= 256 && imageHeight >= 256) {
+            while ( imageWidth >= 256 || imageHeight >= 256) {
                 imageWidth = imageWidth/2;
                 imageHeight = imageHeight/2;
             }
+            //Convert lanscape to portrait coordinates
+            
+            var temp = imageHeight;
+            imageHeight = imageWidth;
+            imageWidth = temp;
+            var x = floors[floorIDInt - floorDiff].imageHeight - p.y;
+            var y = p.x;
+
+            //Convert image coordinates to tile coordinates
             imageHeight = imageHeight * (-1);
 
-            var trueX = (Math.round((imageWidth / floors[floorIDInt - floorDiff].imageWidth) * p.x));
-            var trueY = (Math.round((imageHeight / floors[floorIDInt - floorDiff].imageHeight) * p.y));
+            var trueX = (Math.round((imageWidth / floors[floorIDInt - floorDiff].imageHeight) * x));
+            var trueY = (Math.round((imageHeight / floors[floorIDInt - floorDiff].imageWidth) * y));
 
             var poi = new POI(p.id, trueX, trueY, p.floorID, p.title[lang].title, p.description[0].description, p.ibeacon, p.media.video, p.media.image, p.media.audio);
             floors[floorIDInt - floorDiff].POI[poi.id + ""] = poi;
@@ -222,8 +228,25 @@ function Map() {
         for (i = 0; i < arrayPOT.length; i++) {
             var p = arrayPOT[i];
             var floorIDInt = parseInt(p.floorID);
-            var trueX = (Math.round((trueImageWidth / floors[floorIDInt - floorDiff].imageWidth) * p.x));
-            var trueY = (-1 * Math.round((trueImageHeight / floors[floorIDInt - floorDiff].imageHeight) * p.y));
+            var imageWidth = floors[floorIDInt - floorDiff].imageWidth;
+            var imageHeight = floors[floorIDInt - floorDiff].imageHeight;
+            while (imageWidth >= 256 || imageHeight >= 256) {
+                imageWidth = imageWidth / 2;
+                imageHeight = imageHeight / 2;
+            }
+            //Convert lanscape to portrait coordinates
+
+            var temp = imageHeight;
+            imageHeight = imageWidth;
+            imageWidth = temp;
+            var x = floors[floorIDInt - floorDiff].imageHeight - p.y;
+            var y = p.x;
+
+            //Convert image coordinates to tile coordinates
+            imageHeight = imageHeight * (-1);
+
+            var trueX = (Math.round((imageWidth / floors[floorIDInt - floorDiff].imageHeight) * x));
+            var trueY = (Math.round((imageHeight / floors[floorIDInt - floorDiff].imageWidth) * y));
 
             var pot = new POT(p.id, trueX, trueY, p.floorID, p.label.label);
             floors[floorIDInt - floorDiff].POT[pot.id + ""] = pot;

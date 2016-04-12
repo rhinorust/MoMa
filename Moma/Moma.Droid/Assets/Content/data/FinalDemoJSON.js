@@ -54,12 +54,17 @@
               "floorID": 2,
               "ibeacon": {
                   "uuid": "B9407F30-F5F8-466E-AFF9-25556B57FE6D",
-                  "major": "26515",
-                  "minor": "372"
+                  "major": "9377",//26515
+                  "minor": "54177"//372
               },
               "media": {
                   "image": [],
-                  "video": [],
+                  "video": [
+                      {
+                          "path": "point4",
+                          "language": "EN",
+                          "caption": "MOEB Point 4"
+                      }],
                   "audio": []
               },
               "storyPoint": [
@@ -647,177 +652,191 @@
           }
         ]
     },
-    "edge": [
-      {
-          "startNode": 0,
-          "endNode": 1,
-          "distance": 479.12628815376013
-      },
-      {
-          "startNode": 1,
-          "endNode": 2,
-          "distance": 151.00993344810135
-      },
-      {
-          "startNode": 2,
-          "endNode": 3,
-          "distance": 50.91168824543142
-      },
-      {
-          "startNode": 3,
-          "endNode": 4,
-          "distance": 447.7019097569274
-      },
-      {
-          "startNode": 3,
-          "endNode": 5,
-          "distance": 61.26989472816156
-      },
-      {
-          "startNode": 5,
-          "endNode": 6,
-          "distance": 70.25667228100119
-      },
-      {
-          "startNode": 6,
-          "endNode": 7,
-          "distance": 201.80436070610565
-      },
-      {
-          "startNode": 7,
-          "endNode": 8,
-          "distance": 111.16204388189342
-      },
-      {
-          "startNode": 9,
-          "endNode": 7,
-          "distance": 104.01922899156675
-      },
-      {
-          "startNode": 14,
-          "endNode": 15,
-          "distance": 90.69729874698585
-      },
-      {
-          "startNode": 15,
-          "endNode": 16,
-          "distance": 1386.290734297824
-      },
-      {
-          "startNode": 16,
-          "endNode": 17,
-          "distance": 724.2775711010248
-      },
-      {
-          "startNode": 14,
-          "endNode": 18,
-          "distance": 107.07940978544848
-      },
-      {
-          "startNode": 14,
-          "endNode": 19,
-          "distance": 100.7670581092849
-      },
-      {
-          "startNode": 8,
-          "endNode": 23,
-          "distance": 32.449961479175904
-      },
-      {
-          "startNode": 23,
-          "endNode": 22,
-          "distance": 4.123105625617661
-      },
-      {
-          "startNode": 22,
-          "endNode": 18,
-          "distance": 2.23606797749979
-      },
-      {
-          "startNode": 19,
-          "endNode": 25,
-          "distance": 4.242640687119285
-      },
-      {
-          "startNode": 25,
-          "endNode": 24,
-          "distance": 4
-      },
-      {
-          "startNode": 24,
-          "endNode": 9,
-          "distance": 5.656854249492381
-      }
-    ],
-    "storyline": [
-      {
-          "id": 0,
-          "title": [
-            {
-                "language": "EN",
-                "title": "A stroll with Nipper"
-            },
-            {
-                "language": "FR",
-                "title": "Marcher avec Nipper"
-            }
-          ],
-          "description": [
-            {
-                "language": "EN",
-                "description": "The presidents dog Nipper searches his Master"
-            },
-            {
-                "language": "FR",
-                "description": "Le chien du Presidente cherche son Maitre"
-            }
-          ],
-          "path": [
-            0,
-            2,
-            4
-          ],
-          "thumbnail": "",
-          "walkingTimeInMinutes": "",
-          "floorsCovered": [
-            2
-          ]
-      },
-      {
-          "id": 4,
-          "title": [
-            {
-                "language": "FR",
-                "title": "Une tour avec Jean"
-            },
-            {
-                "language": "EN",
-                "title": "A tour with Jean"
-            }
-          ],
-          "description": [
-            {
-                "language": "FR",
-                "description": "Decouvrez l'histoire du Edifice RCA"
-            },
-            {
-                "language": "EN",
-                "description": "Discover the history of the Edifice RCA"
-            }
-          ],
-          "path": [
-            0,
-            4,
-            7,
-            14,
-            17
-          ],
-          "thumbnail": "",
-          "walkingTimeInMinutes": "",
-          "floorsCovered": [
-            2,
-            5
-          ]
-      }
-    ]
+  "edge": [
+    {
+        "startNode": 0,
+        "endNode": 1,
+        "distance": 479.12628815376013
+    },
+    {
+        "startNode": 1,
+        "endNode": 2,
+        "distance": 151.00993344810135
+    },
+    {
+        "startNode": 2,
+        "endNode": 3,
+        "distance": 50.91168824543142
+    },
+    {
+        "startNode": 3,
+        "endNode": 4,
+        "distance": 447.7019097569274
+    },
+    {
+        "startNode": 3,
+        "endNode": 5,
+        "distance": 61.26989472816156
+    },
+    {
+        "startNode": 5,
+        "endNode": 6,
+        "distance": 70.25667228100119
+    },
+    {
+        "startNode": 6,
+        "endNode": 7,
+        "distance": 201.80436070610565
+    },
+    {
+        "startNode": 7,
+        "endNode": 8,
+        "distance": 111.16204388189342
+    },
+    {
+        "startNode": 9,
+        "endNode": 7,
+        "distance": 104.01922899156675
+    },
+    {
+        "startNode": 14,
+        "endNode": 15,
+        "distance": 90.69729874698585
+    },
+    {
+        "startNode": 15,
+        "endNode": 16,
+        "distance": 1386.290734297824
+    },
+    {
+        "startNode": 16,
+        "endNode": 17,
+        "distance": 724.2775711010248
+    },
+    {
+        "startNode": 14,
+        "endNode": 18,
+        "distance": 107.07940978544848
+    },
+    {
+        "startNode": 14,
+        "endNode": 19,
+        "distance": 100.7670581092849
+    },
+    {
+        "startNode": 8,
+        "endNode": 23,
+        "distance": 32.449961479175904
+    },
+    {
+        "startNode": 23,
+        "endNode": 22,
+        "distance": 4.123105625617661
+    },
+    {
+        "startNode": 22,
+        "endNode": 18,
+        "distance": 2.23606797749979
+    },
+    {
+        "startNode": 19,
+        "endNode": 25,
+        "distance": 4.242640687119285
+    },
+    {
+        "startNode": 25,
+        "endNode": 24,
+        "distance": 4
+    },
+    {
+        "startNode": 24,
+        "endNode": 9,
+        "distance": 5.656854249492381
+    }
+  ],
+  "storyline": [
+    {
+        "id": 0,
+        "title": [
+          {
+              "language": "EN",
+              "title": "A stroll with Nipper"
+          },
+          {
+              "language": "FR",
+              "title": "Marcher avec Nipper"
+          }
+        ],
+        "description": [
+          {
+              "language": "EN",
+              "description": "The presidents dog Nipper searches his Master"
+          },
+          {
+              "language": "FR",
+              "description": "Le chien du Presidente cherche son Maitre"
+          }
+        ],
+        "path": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "thumbnail": "",
+        "walkingTimeInMinutes": "",
+        "floorsCovered": [
+          2
+        ]
+    },
+    {
+        "id": 4,
+        "title": [
+          {
+              "language": "FR",
+              "title": "Une tour avec Jean"
+          },
+          {
+              "language": "EN",
+              "title": "A tour with Jean"
+          }
+        ],
+        "description": [
+          {
+              "language": "FR",
+              "description": "Decouvrez l'histoire du Edifice RCA"
+          },
+          {
+              "language": "EN",
+              "description": "Discover the history of the Edifice RCA"
+          }
+        ],
+        "path": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          3,
+          5,
+          6,
+          7,
+          9,
+          24,
+          25,
+          19,
+          14,
+          15,
+          16,
+          17
+        ],
+        "thumbnail": "",
+        "walkingTimeInMinutes": "",
+        "floorsCovered": [
+          2,
+          5
+        ]
+    }
+  ]
 };

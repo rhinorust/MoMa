@@ -39,13 +39,13 @@ function iBeaconDiscovered(minor, major) {
 // returns the poi instance that holds the iBeacon that
 // has the given minor and major values
 function findPOIWithIBeacon(minor, major) {
-    var pois = DATA.node[0].poi;
+    var pois = DATA.node.poi;
     // Find the POI with the given minor and major and
     // return the iBeacon object if found
     for (var i = 0; i < pois.length; i++) {
         var poi = pois[i];
         var iBeacon = poi.ibeacon;
-        if (iBeacon.minor === minor && iBeacon.major === major) {
+        if (iBeacon.minor == minor && iBeacon.major == major) {
             return poi;
         }
     }
@@ -64,7 +64,7 @@ function showIBeacon(minor, major) {
         var videos = poi.media.video;
 
         var content = "";
-
+        console.log("+++++++++++++++++++++++++++++++++++++++++++");
         // If there are videos, we ask C# to show them all
         if (videos.length > 0) {
             // Interrupt and play the first video
@@ -72,6 +72,7 @@ function showIBeacon(minor, major) {
 
             // Add the rest to the C#'s video playQueue
             for (var i = 1; i < videos.length; i++) {
+                
                 jsBridge.playVideo(videos[i].path, videos[i].caption, false);
             }
         }
