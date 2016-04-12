@@ -65,6 +65,7 @@
     <Compile Include="ICurrentCulture.cs" />
     <Compile Include="IJavascriptInterface.cs" />
     <Compile Include="INetworkConnection.cs" />
+    <Compile Include="IPathFinder.cs" />
     <Compile Include="IQrCodeScanningService.cs" />
     <Compile Include="IUserSettings.cs" />
     <Compile Include="Library\VideoData.cs" />

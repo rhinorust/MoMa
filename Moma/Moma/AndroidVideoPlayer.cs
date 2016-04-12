@@ -22,6 +22,8 @@ namespace Moma
         public AndroidVideoPlayer(string videoName, string poiTitle)
         {
             Title = poiTitle;
+            var personalPath = DependencyService.Get<IPathFinder>();
+            videoName = personalPath.GetFilePathInPersonalFolder(videoName);
             this.videoName = videoName;
 
             player = new VideoPlayerView();

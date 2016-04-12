@@ -171,11 +171,11 @@ namespace Moma.Droid
             _fileName = filePath;
             var url = new Uri(System.IO.Path.Combine(BaseUrl, _fileName));
 
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            string fileName = System.IO.Path.Combine(path, filePath);
-            if (File.Exists(fileName))
+            var personalPath = new PersonalPath();
+            filePath = personalPath.GetFilePathInPersonalFolder(filePath);
+            if (File.Exists(filePath))
             {
-                DateTime lastModifiedLocal = File.GetLastWriteTime(fileName);
+                DateTime lastModifiedLocal = File.GetLastWriteTime(filePath);
                 var request = WebRequest.Create(url);
                 request.Method = "HEAD";
                 using (var response = request.GetResponse() as HttpWebResponse)
@@ -235,12 +235,7 @@ namespace Moma.Droid
             foreach (var path in mediaList)
             {
                 _numberFilesCurrentAndLoaded++;
-                int index = path.IndexOf("/", StringComparison.InvariantCulture);
-                string cleanPath = (index < 0)
-                    ? path
-                    : path.Substring(index + 1);
-
-                await LoadFile(cleanPath);
+                await LoadFile(path);
             }
         }
     }

@@ -196,7 +196,7 @@ namespace Moma.Droid
         public string getJsonString()
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            string fileName = Path.Combine(path, "data_server.json");
+            string fileName = Path.Combine(path, "mapData.json");
             string content = string.Empty;
             using (var streamReader = new StreamReader(fileName))
             {
