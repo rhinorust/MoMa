@@ -20,23 +20,24 @@ namespace Moma.Droid
     [Activity(Theme = "@style/Splash", MainLauncher = true, NoHistory = true)]
     public class SplashActivity : Activity
     {
-        private TextView textView;
+        private TextView _textView;
         private WebClient _webClient;
         //private const string BaseUrl = "http://192.168.0.106/mapItems";
         private const string BaseUrl = "http://192.168.0.103/FinalDemo";
         private string _fileName;
         private int _numberFilesCurrentAndLoaded;
         private float _fileRatio;
+        private readonly PersonalPath _personalPath = new PersonalPath();
 
         protected override void OnResume()
         {
             base.OnResume();
             ProgressBar bar = new ProgressBar(this);
 
-            textView = new TextView(this) { Text = "0%" };
-            textView.SetTextColor(Color.Black);
-            textView.TextAlignment = TextAlignment.Center;
-            textView.SetTextSize(ComplexUnitType.Pt, 10);
+            _textView = new TextView(this) { Text = "0%" };
+            _textView.SetTextColor(Color.Black);
+            _textView.TextAlignment = TextAlignment.Center;
+            _textView.SetTextSize(ComplexUnitType.Pt, 10);
 
             //Layouts of the items
             LinearLayout layout = new LinearLayout(this) { Orientation = Orientation.Vertical };
@@ -50,7 +51,7 @@ namespace Moma.Droid
 
             //Add the views to the layout
             layout.AddView(bar, viewLayout);
-            layout.AddView(textView, boxLayout);
+            layout.AddView(_textView, boxLayout);
             AddContentView(layout, layoutParams);
 
             //Setup the WebClient
@@ -94,20 +95,16 @@ namespace Moma.Droid
 
             _webClient.DownloadStringCompleted += (s, e) =>
             {
-                string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-                string localFileName = _fileName;
-                string localPath = System.IO.Path.Combine(documentsPath, localFileName);
-                CreateDirectory(localPath);
+                string localPath = _personalPath.GetFilePathInPersonalFolder(_fileName);
+                _personalPath.CreateDirectory(localPath);
                 File.WriteAllText(localPath, e.Result);
             };
 
             _webClient.DownloadDataCompleted += (s, e) =>
             {
                 var bytes = e.Result; // get the downloaded data
-                string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-                string localFilename = _fileName;
-                string localPath = System.IO.Path.Combine(documentsPath, localFilename);
-                CreateDirectory(localPath);
+                string localPath = _personalPath.GetFilePathInPersonalFolder(_fileName);
+                _personalPath.CreateDirectory(localPath);
                 File.WriteAllBytes(localPath, bytes);
             };
         }
@@ -135,18 +132,8 @@ namespace Moma.Droid
             var completedRatio = (double)downloadPercentage / 100 * _fileRatio;
             var completedPercent = completedFiles + completedRatio;
             RunOnUiThread(() =>
-                textView.Text = Convert.ToInt32(Math.Round(completedPercent, 0)) + "%"
+                _textView.Text = Convert.ToInt32(Math.Round(completedPercent, 0)) + "%"
                 );
-        }
-
-        /// <summary>
-        /// Creates a directory to save the media file to avoid null pointers
-        /// </summary>
-        /// <param name="filePath"></param>
-        private void CreateDirectory(string filePath)
-        {
-            var directory = System.IO.Path.GetDirectoryName(filePath);
-            if (directory != null) Directory.CreateDirectory(directory);
         }
 
         /// <summary>
@@ -156,7 +143,7 @@ namespace Moma.Droid
         private async Task LoadJson()
         {
             _fileName = "mapData.json";
-            var url = new Uri(System.IO.Path.Combine(BaseUrl, _fileName));
+            var url = _personalPath.CombinePaths(BaseUrl, _fileName);
             var jsonString = await _webClient.DownloadStringTaskAsync(url);
             await DeserializeJson(jsonString);
         }
@@ -169,13 +156,12 @@ namespace Moma.Droid
         private async Task<byte[]> LoadFile(string filePath)
         {
             _fileName = filePath;
-            var url = new Uri(System.IO.Path.Combine(BaseUrl, _fileName));
+            var url = _personalPath.CombinePaths(BaseUrl, filePath);
+            var pathInPersonal = _personalPath.GetFilePathInPersonalFolder(filePath);
 
-            var personalPath = new PersonalPath();
-            filePath = personalPath.GetFilePathInPersonalFolder(filePath);
-            if (File.Exists(filePath))
+            if (File.Exists(pathInPersonal))
             {
-                DateTime lastModifiedLocal = File.GetLastWriteTime(filePath);
+                DateTime lastModifiedLocal = File.GetLastWriteTime(pathInPersonal);
                 var request = WebRequest.Create(url);
                 request.Method = "HEAD";
                 using (var response = request.GetResponse() as HttpWebResponse)
@@ -221,6 +207,7 @@ namespace Moma.Droid
                 {
                     if (sp.media != null)
                     {
+                        //Get all medias in the storypoint media obj
                         mediaList.AddRange(sp.media.audio.Union(sp.media.image.Union(sp.media.video))
                             .Where(r => !string.IsNullOrEmpty(r.path) && !r.path.Contains("<URL>"))
                             .Select(m => m.path)
