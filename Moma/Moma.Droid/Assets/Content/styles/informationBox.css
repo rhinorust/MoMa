@@ -16,6 +16,11 @@
     z-index: 11000;
 }
 
+/* And the short message box on top of the messages */
+#shortMessageBox {
+    z-index: 12000;
+}
+
 .informationBox #body {
 	margin: 0;
 	padding: 0 10px 10px 10px;
@@ -107,4 +112,26 @@ video {
     color: dodgerblue;
     display: inline;
     margin-right: 10px;
+}
+
+
+
+
+#shortMessageBox #body #content #text {
+    float: left;
+    width: 100%;
+    height: calc(100% - 68px);
+}
+
+#shortMessageBox #body #content #buttons {
+    float: left;
+    width: 100%;
+    height: 58px;
+    text-align: center;
+}
+
+#shortMessageBox #body #content #buttons button {
+    font-size: 20px;
+    background-color: #039ed4;
+    border-radius: 8px;
 }

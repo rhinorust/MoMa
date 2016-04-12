@@ -5,17 +5,19 @@ var ListPOT = [];
 var floorDiff = 1;
 var baseMaps = {};
 var map;
+var lastVisitedNodeID = null;
+var lastMinor = "";
+var lastMajor = "";
 
 var markerIconPOIBlue = MapObj.createMarker('images/marker-icon-blue.png', 64, 64, 30, 64, 1, 1);
 var markerIconPOIGreen = MapObj.createMarker('images/marker-icon-green.png', 64, 64, 30, 64, 1, 1);
 var markerIconPOIRed = MapObj.createMarker('images/marker-icon-red.png', 64, 64, 30, 64, 1, 1);
 var markerIconNode = MapObj.createMarker('images/none-marker-icon.png');
-var mapMinZoom = 1;
+var mapMinZoom = 2;
 var mapMaxZoom = 5;
 var floors = [];
 
 function init() {
-
 
 //create map
     map = L.map('map', {
@@ -53,12 +55,28 @@ function init() {
     map.invalidateSize();
 
     $("#scanText").html(tools.getLocalization(translation, ['map', 'scan']));
-    
+    jsBridge.startScanningForIBeacons();
     //map.removeLayer(floor1LayerGroup);
     //control.removeLayer(floor1Array);
    //L.rectangle(mapBounds, { color: "#ff7800", weight: 1 }).addTo(map);
 
     // zoom the map to the polyline
     //map.fitBounds(polyline.getBounds());
+
  
+}
+
+function currentPOI(minor, major) {
+    console.log(minor + " " + major + "*******************************************");
+    if (lastMinor != minor && lastMajor != major) {
+        lastMinor = minor;
+        lastMajor = major;
+        console.log("popup call");
+        iBeaconDiscovered(minor, major);
+
+        lastVisitedNodeID = findPOIWithIBeacon(minor, major);
+        if (lastVisitedNodeID != -1) {
+            localStorage.setItem("lastVisitedNodeID", lastVisitedNodeID);
+        }
+    }
 }

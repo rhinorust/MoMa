@@ -11,10 +11,11 @@
     <link rel="stylesheet" href="styles/storylines.css" />
     <link rel="stylesheet" type="text/css" href="styles/informationBox.css">
     <script src="data/data_local.js"></script>
-    <script src="data/DemoJSON.js"></script>
+    <script src="data/FinalDemoJSON.js"></script>
     <script src="scripts/objects.js"></script>
     <script src="scripts/messages.js"></script>
     <script src="scripts/poiInformation.js"></script>
+    <script src="scripts/shortMessage.js"></script>
     <script src="scripts/storyline_map.js"></script>
     <script src="scripts/qrCodeScanning.js"></script>
     <script src="scripts/translation.js"></script>
@@ -32,7 +33,7 @@
     <div style="text-align:center;">
         <button id="scanBtn" onclick="qrCodeScanBtn()">Scan</button>
         <button id="backBtn" onclick="endPreview()"><</button>
-        <button id="endBtn" onclick="endStoryline()">End</button>
+        <button id="endBtn" onclick="end()">End</button>
     </div>
     <div style="text-align:center;">
         <button id="starBtn" onclick="startStoryline()">Start</button>
@@ -64,6 +65,25 @@
             <section id="content">
                 <div id="iBeacons"><ul></ul></div>
                 <div id="QRCodes"><ul><p>No QRCodes have been scanned yet.</p></ul></div>
+            </section>
+        </div>
+    </div>
+    <div class="informationBox" id="shortMessageBox">
+        <div id="body">
+            <header>
+                <div id="title">
+                    <h1>Short message</h1>
+                </div>
+                <div id="closeButton">
+                    <img id="close" src="images/boxCloseButton.png">
+                </div>
+            </header>
+            <section id="content">
+                <div id="text"></div>
+                <div id="buttons">
+                    <button id="yesButton" onclick="yesButtonClick()">Yes</button>
+                    <button id="noButton"  onclick="noButtonClick()">No</button>
+                </div>
             </section>
         </div>
     </div>

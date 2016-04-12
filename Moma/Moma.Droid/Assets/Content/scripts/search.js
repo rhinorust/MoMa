@@ -9,7 +9,7 @@
 function createListView() {
     var language = getLanguage();
     var ul = $('#listViewUl');
-    var poi = DATA.node[0].poi;
+    var poi = DATA.node.poi;
     for (var i = 0; i < poi.length; i++) {
         var li = document.createElement('li');
         var aTag = document.createElement('a');

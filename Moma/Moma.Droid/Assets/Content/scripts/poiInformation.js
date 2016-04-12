@@ -23,29 +23,29 @@ function iBeaconDiscovered(minor, major) {
 
     if (poi !== -1) { // If it was found
         // If it's not a background audio iBeacon
-        if (poi.media.audio.length == 0) {
+        //if (poi.media.audio.length == 0) {
             var poiTitle = poi.title[0].title;
             addToMessages({ type: "iBeacon", title: poiTitle, minor: minor, major: major });
             showIBeacon(minor, major); // Show the IBeacon's information
-        }
+        //}
         // If it is an audio iBeacon, let the C#'s iBeaconsDirector know and it will take
         // care of playing/looping/stopping the audio based on dynamic proximity to it's iBeacon
-        if (poi.media.audio.length != 0) {
-            jsBridge.setIBeaconAsAudioIBeacon(minor, major, poi.media.audio[0].path);
-        }
+        //if (poi.media.audio.length != 0) {
+        //    jsBridge.setIBeaconAsAudioIBeacon(minor, major, poi.media.audio[0].path);
+        //}
     }
 }
 
 // returns the poi instance that holds the iBeacon that
 // has the given minor and major values
 function findPOIWithIBeacon(minor, major) {
-    var pois = DATA.node[0].poi;
+    var pois = DATA.node.poi;
     // Find the POI with the given minor and major and
     // return the iBeacon object if found
     for (var i = 0; i < pois.length; i++) {
         var poi = pois[i];
         var iBeacon = poi.ibeacon;
-        if (iBeacon.minor === minor && iBeacon.major === major) {
+        if (iBeacon.minor == minor && iBeacon.major == major) {
             return poi;
         }
     }
@@ -64,7 +64,6 @@ function showIBeacon(minor, major) {
         var videos = poi.media.video;
 
         var content = "";
-
         // If there are videos, we ask C# to show them all
         if (videos.length > 0) {
             // Interrupt and play the first video
@@ -72,22 +71,24 @@ function showIBeacon(minor, major) {
 
             // Add the rest to the C#'s video playQueue
             for (var i = 1; i < videos.length; i++) {
+                
                 jsBridge.playVideo(videos[i].path, videos[i].caption, false);
             }
         }
-        // Else, if there are images or text we will show the poi information box
-        else {
-            if (images.length > 0) {
-                for (var j = 0; j < images.length; j++)
-                    content += imagef(images[j].path);
-            }
+        // if there are images or text we will show the poi information box
+        //else {
+        if (images.length > 0) {
+            for (var j = 0; j < images.length; j++)
+                content += imagef(images[j].path);
+        }
 
-            content += textf(poiDescription);
-            var title = poiTitle;
+        content += textf(poiDescription);
+        var title = poiTitle;
 
+        if (images.length > 0 || poiDescription.length() > 0) {
             poiIBoxTitle.text(title);
             poiIBoxContent.empty();
-            poiIBoxContent.append(content);
+            poiIBoxContent.append(content); 
 
             // Close the message box
             messageBox.css('visibility', 'hidden');

@@ -185,9 +185,9 @@ namespace Moma.Droid
 
         [JavascriptInterface]
         [Export]
-        public void confirmIBeacon(string minor, string major)
+        public void stopScanningForIBeacons()
         {
-            App.Current.IBeaconsDirector().confirmIBeacon(minor, major);
+            App.Current.IBeaconsDirector().stopScanningForIBeacons();
         }
 
 
