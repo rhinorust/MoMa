@@ -80,10 +80,11 @@ namespace Moma
                             "https://www.google.ca/maps/place/1001+Rue+Lenoir,+Montr%C3%A9al,+QC+H4C+2Z6/@45.4766472,-73.5924109,17z/data=!4m2!3m1!1s0x4cc9109f3e1c689d:0xfe5e29cc968bfa44");
                     Device.OpenUri(uri);
                 }
-                else
+                if (answer == false)
                 {
                     await Navigation.PushAsync(new DirectionsPage());
                 }
+
             }
             else
             {
