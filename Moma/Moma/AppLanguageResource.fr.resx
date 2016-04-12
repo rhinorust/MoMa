@@ -228,4 +228,10 @@
   <data name="Destination" xml:space="preserve">
     <value>➥ Arrivée au 1001 Rue Lenoir sur le droit</value>
   </data>
+  <data name="Server" xml:space="preserve">
+    <value>Lien de mise à jour</value>
+  </data>
+  <data name="ServerDef" xml:space="preserve">
+    <value>Lien utilisé afin d'effectuer la mise à jour des médias utilisés dans l'application.</value>
+  </data>
 </root>

@@ -234,4 +234,10 @@
 
 ➥ Ankunft in 1001 Rue Lenoir auf der rechten</value>
   </data>
+  <data name="Server" xml:space="preserve">
+    <value>Aktualisierung Url</value>
+  </data>
+  <data name="ServerDef" xml:space="preserve">
+    <value>Link verwendet, um die Anwendung Medien zu aktualisieren</value>
+  </data>
 </root>

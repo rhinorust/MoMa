@@ -265,4 +265,10 @@ Groups (5+) : 3 $ each</value>
   <data name="WebsiteTitle" xml:space="preserve">
     <value>Website</value>
   </data>
+  <data name="Server" xml:space="preserve">
+    <value>Update Url</value>
+  </data>
+  <data name="ServerDef" xml:space="preserve">
+    <value>Url from which all medias are being loaded from</value>
+  </data>
 </root>

@@ -347,6 +347,24 @@ namespace Moma {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update Url.
+        /// </summary>
+        internal static string Server {
+            get {
+                return ResourceManager.GetString("Server", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Url from which all medias are being loaded from.
+        /// </summary>
+        internal static string ServerDef {
+            get {
+                return ResourceManager.GetString("ServerDef", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         internal static string Settings {

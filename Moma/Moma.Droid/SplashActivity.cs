@@ -23,7 +23,7 @@ namespace Moma.Droid
         private TextView _textView;
         private WebClient _webClient;
         //private const string BaseUrl = "http://192.168.0.106/mapItems";
-        private const string BaseUrl = "http://192.168.0.103/FinalDemo";
+        private string _baseUrl;
         private string _fileName;
         private int _numberFilesCurrentAndLoaded;
         private float _fileRatio;
@@ -143,9 +143,59 @@ namespace Moma.Droid
         private async Task LoadJson()
         {
             _fileName = "mapData.json";
-            var url = _personalPath.CombinePaths(BaseUrl, _fileName);
+            var userSettings = new AndroidUserSettings();
+            _baseUrl = userSettings.GetUserSetting("serverUrl");
+            if (!ValidateUrl(null))
+            {
+                //Set default server url for first load of application
+                _baseUrl = "http://192.168.0.103/FinalDemo";
+                userSettings.SetUserSetting("serverUrl", _baseUrl);
+            }
+            var url = _personalPath.CombinePaths(_baseUrl, _fileName);
             var jsonString = await _webClient.DownloadStringTaskAsync(url);
             await DeserializeJson(jsonString);
+        }
+
+        /// <summary>
+        /// Validates if the _fileName is existing on the server
+        /// If datetime is null, only verifies that files exists
+        /// If datetime is not null, verifies if the last modified date of the file is greater than local write time
+        /// </summary>
+        /// <returns></returns>
+        private bool ValidateUrl(DateTime? localFileDate)
+        {
+            bool isValid = true;
+            if (string.IsNullOrEmpty(_baseUrl)) return false;
+            var url = _personalPath.CombinePaths(_baseUrl, _fileName);
+            try
+            {
+                var request = WebRequest.Create(url);
+                request.Method = "HEAD";
+                using (var response = request.GetResponse() as HttpWebResponse)
+                {
+                    if (response != null && response.StatusCode == HttpStatusCode.OK)
+                    {
+                        if (localFileDate != null)
+                        {
+                            var lastModifiedServer = response.LastModified;
+                            if (localFileDate >= lastModifiedServer)
+                            {
+                                UpdatePercentLabel(100);
+                                isValid = false;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        isValid = false;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                isValid = false;
+            }
+            return isValid;
         }
 
         /// <summary>
@@ -156,26 +206,13 @@ namespace Moma.Droid
         private async Task<byte[]> LoadFile(string filePath)
         {
             _fileName = filePath;
-            var url = _personalPath.CombinePaths(BaseUrl, filePath);
+            var url = _personalPath.CombinePaths(_baseUrl, filePath);
             var pathInPersonal = _personalPath.GetFilePathInPersonalFolder(filePath);
 
             if (File.Exists(pathInPersonal))
             {
                 DateTime lastModifiedLocal = File.GetLastWriteTime(pathInPersonal);
-                var request = WebRequest.Create(url);
-                request.Method = "HEAD";
-                using (var response = request.GetResponse() as HttpWebResponse)
-                {
-                    if (response != null)
-                    {
-                        var lastModifiedServer = response.LastModified;
-                        if (lastModifiedLocal >= lastModifiedServer)
-                        {
-                            UpdatePercentLabel(100);
-                            return null;
-                        }
-                    }
-                }
+                if (!ValidateUrl(lastModifiedLocal)) return null;
             }
             return await _webClient.DownloadDataTaskAsync(url);
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,16 +29,18 @@ namespace Moma
             LanguageDefLabel.Text = AppLanguageResource.LanguageDef;
             VibrationLabel.Text = AppLanguageResource.Vibration;
             VibrationDefLabel.Text = AppLanguageResource.VibrationDef;
-            PopupLabel.Text = AppLanguageResource.Popup;
-            PopupDefLabel.Text = AppLanguageResource.PopupDef;
+            /*PopupLabel.Text = AppLanguageResource.Popup;
+            PopupDefLabel.Text = AppLanguageResource.PopupDef;*/
             SaveButton.Text = AppLanguageResource.Save;
             ResetButton.Text = AppLanguageResource.Default;
             SoundLabel.Text = AppLanguageResource.Sound;
             SoundDefLabel.Text = AppLanguageResource.SoundDef;
+            ServerDefLabel.Text = AppLanguageResource.ServerDef;
 
             var settingsDependency = DependencyService.Get<IUserSettings>();
             FillLanguagePicker(settingsDependency);
             SetSwitches(settingsDependency);
+            ServerEntry.Text = settingsDependency.GetUserSetting("serverUrl");
         }
 
         public async void ResetApp()
@@ -55,18 +58,21 @@ namespace Moma
         private void SetSwitches(IUserSettings settingsDependency)
         {
             VibrationSwitch.IsToggled = settingsDependency.GetUserSetting("vibration").Equals("1");
-            PopupSwitch.IsToggled = settingsDependency.GetUserSetting("popup").Equals("1");
+            //PopupSwitch.IsToggled = settingsDependency.GetUserSetting("popup").Equals("1");
             SoundSwitch.IsToggled = settingsDependency.GetUserSetting("sound").Equals("1");
         }
 
         private void SaveButtonOnClicked(object sender, EventArgs eventArgs)
         {
+            var url = ServerEntry.Text;
+            if (string.IsNullOrEmpty(url)) return;
             var settingsDict = new Dictionary<string, string>
             {
                 {"language", LanguagePicker.Items[LanguagePicker.SelectedIndex]},
                 {"vibration", VibrationSwitch.IsToggled ? "1" : "0"},
-                {"popup", PopupSwitch.IsToggled ? "1" : "0"},
-                {"sound", SoundSwitch.IsToggled ? "1" : "0"}
+                //{"popup", PopupSwitch.IsToggled ? "1" : "0"},
+                {"sound", SoundSwitch.IsToggled ? "1" : "0"},
+                {"serverUrl", url }
             };
             SaveUserSettings(settingsDict, false);
         }
@@ -78,17 +84,20 @@ namespace Moma
 
         private void ResetDefaultSettings(string language)
         {
+            var url = "http://192.168.0.103/FinalDemo";
             var settingsDict = new Dictionary<string, string>
             {
                 {"language", language},
                 {"vibration", "1"},
                 {"popup", "1"},
-                {"sound", "1" }
+                {"sound", "1" },
+                { "serverUrl", url}
             };
             LanguagePicker.SelectedIndex = 0;
             VibrationSwitch.IsToggled = true;
-            PopupSwitch.IsToggled = true;
+            //PopupSwitch.IsToggled = true;
             SoundSwitch.IsToggled = true;
+            ServerEntry.Text = url;
             SaveUserSettings(settingsDict, string.IsNullOrEmpty(language));
         }
 
