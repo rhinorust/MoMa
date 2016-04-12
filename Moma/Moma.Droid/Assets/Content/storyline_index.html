@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="styles/storylines.css" />
     <link rel="stylesheet" type="text/css" href="styles/informationBox.css">
     <script src="data/data_local.js"></script>
-    <script src="data/DemoJSON.js"></script>
+    <script src="data/FinalDemoJSON.js"></script>
     <script src="scripts/objects.js"></script>
     <script src="scripts/messages.js"></script>
     <script src="scripts/poiInformation.js"></script>
@@ -22,20 +22,22 @@
     <script src="scripts/localization.js"></script>
 
     <script>
+        //var currentLanguage = "fr";
         var currentLanguage = jsBridge.getLanguage();
-    </script>
+        </script>
 </head>
 <body onload="displayStoryline()">
     <p id="previewStoryline"></p>
+    <p id="currentStoryline"></p>
     <div id="map">
     </div>
     <div style="text-align:center;">
-        <button id="scanBtn" onclick="qrCodeScanBtn()">Scan</button>
+        <button id="scanBtn" onclick="qrCodeScanBtn()"></button>
         <button id="backBtn" onclick="endPreview()"><</button>
-        <button id="endBtn" onclick="end()">End</button>
+        <button id="endBtn" onclick="endStoryline()"></button>
     </div>
     <div style="text-align:center;">
-        <button id="starBtn" onclick="startStoryline()">Start</button>
+        <button id="starBtn" onclick="startStoryline()"></button>
         <!--<button id="nextBtn" onclick="advanceStoryLine()" style="margin-left:115px">Sim. Beacon</button>-->
     </div>
     <div class="informationBox" id="POI_Information">
@@ -80,8 +82,8 @@
             <section id="content">
                 <div id="text"></div>
                 <div id="buttons">
-                    <button id="yesButton" onclick="yesButtonClick()">Yes</button>
-                    <button id="noButton"  onclick="noButtonClick()">No</button>
+                    <button id="yesButton" onclick="yesButtonClick()"></button>
+                    <button id="noButton"  onclick="noButtonClick()"></button>
                 </div>
             </section>
         </div>

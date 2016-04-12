@@ -11,14 +11,20 @@
     <script src="scripts/lib/jquery.mobile-init.js"></script> 
     <script src="scripts/lib/jquery.mobile-1.4.5.min.js"></script>
     <script src="data/data_local.js"></script>
-    <script src="data/DemoJSON.js"></script>
-    <script src="data/finaledata.js"></script>
+    <script src="data/FinalDemoJSON.js"></script>
     <script src="scripts/objects.js"></script>
     <script src="scripts/storyline_init.js"></script>
     <link rel="stylesheet" href="styles/storylines.css"/>
+    <script src="scripts/translation.js"></script>
+    <script src="scripts/localization.js"></script>
+
+    <script>
+       //var currentLanguage = "fr";
+       var currentLanguage = jsBridge.getLanguage();
+    </script>
 </head>
 <body onload="init()">
-    <h2> Select a storyline: </h2>
+    <h2 id="storylineSelect"></h2>
     <div id="storylines" data-role="collapsible-set" data-theme="b" data-content-theme="b" data-corners="false"></div>
 </body>
 </html>

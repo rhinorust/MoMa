@@ -62,6 +62,24 @@ namespace Moma {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There is currently an active storyline, are you sure you want to start a new one?.
+        /// </summary>
+        internal static string ActiveQuestion {
+            get {
+                return ResourceManager.GetString("ActiveQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Active Storyline.
+        /// </summary>
+        internal static string ActiveStoryline {
+            get {
+                return ResourceManager.GetString("ActiveStoryline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 1001, Lenoir St., local E-206. Montreal,Quebec, H4C 2Z6.
         /// </summary>
         internal static string Address {

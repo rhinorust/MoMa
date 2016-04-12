@@ -7,6 +7,7 @@ using Android.Content;
 using Xamarin.Forms;
 using System.Threading;
 using App1.Droid;
+using Android.App;
 
 namespace Moma.Droid
 {
@@ -91,18 +92,7 @@ namespace Moma.Droid
             if (result != "")
             {
                 js.CallJs("showQRText('" + result.Replace("\n", " ") + "');");
-            }            //jllJs("showQRText('fuck you bitch');");
-            //
-            // js.CallJs("showQRText('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh\nbyeeeeeeehttps://www.the-qrcode-generator.com/sd.knfhsk;dfnkdslfn,sd cds\nsflkcndsl,c dlk ckdsnfdksnmckdsncsancks.\ncz xmc,ashkclsanc.aldsajf;sancms,c zxkcsc\n c c cc c c  c c c c c c c c c c c\nbakakdcbsnc nxz\ncz xmcbskcbaskdbn,snchsaikcbkc\nzxc jxkchalsicsalclasx\nzc ,jxbshcbz,cbnas,kfhcbxcjzxbc mzx\nz c,sbccbsjbcjsbcjsbc\nzacnxmx cmxzncshdskancmx,cnzxc,\n,mcxz ccksnc\naskj\nalskncl.knsklsanck');");
-
-        }
-
-        [JavascriptInterface]
-        [Export]
-        public void showQRCodeText()
-        {
-            var sample = "Emile Berliner\nBorn in Germany May 20, 1851, he first worked as a printer, then as a clerk in a\nfabric store. It was here that his talent as an inventor first surfaced.He invented a\nnew loom for weaving cloth. Emile Berliner immigrated to the United States in 1870, following the example of a friend.He spent much of his time at the library\nof the Cooper Institute where he took a keen interest in electricity and sound.";
-            js.CallJs("showQRText('" + sample.Replace("\n", " ") + "');");
+            }
         }
 
         public void redirect()
@@ -145,7 +135,8 @@ namespace Moma.Droid
         // ==========================
         [JavascriptInterface]
         [Export]
-        public void messageWasAdded(string messageTitle) {
+        public void messageWasAdded(string messageTitle)
+        {
             // Tells the MapPage there was one message added which will
             // update the messagesIcon to the new number of unread messages
             MainPage.Current.messageWasAdded(messageTitle);
@@ -153,7 +144,8 @@ namespace Moma.Droid
 
         [JavascriptInterface]
         [Export]
-        public void messageWasRead(string messageTitle) {
+        public void messageWasRead(string messageTitle)
+        {
             // Tells the MapPage there was one message read which will
             // update the messagesIcon to the new number of unread messages
             MainPage.Current.messageWasRead(messageTitle);
@@ -167,7 +159,7 @@ namespace Moma.Droid
         [Export]
         public void print(string text)
         {
-            System.Diagnostics.Debug.WriteLine("\n=\n=\n=\n="+text+ "\n=\n=\n=\n=");
+            System.Diagnostics.Debug.WriteLine("\n=\n=\n=\n=" + text + "\n=\n=\n=\n=");
         }
 
         // ========
@@ -186,6 +178,49 @@ namespace Moma.Droid
         {
             App.Current.IBeaconsDirector().stopScanningForIBeacons();
         }
+
+
+        // ========
+        // native popup
+        // ========
+        [JavascriptInterface]
+        [Export]
+        public async void confirmPopup(string storylineID)
+        {
+            StorylinePage storylineContext = new StorylinePage();
+            var answer = await storylineContext.confirmPopup();
+
+            if (answer == true)
+            {
+                js.CallJs("localStorage.removeItem('currentStoryline');" +
+                                      "localStorage.removeItem('lastVisitedNodeID');" +
+                                      "localStorage.setItem('currentStoryline'," + storylineID + ");" + 
+                                      "window.location.replace('storyline_index.html');");
+            }
+
+            if (answer == false)
+            {
+                js.CallJs("window.location.replace('storyline_index.html');");
+            }
+        }
+
+        [JavascriptInterface]
+        [Export]
+        public async void confirmPreviewPopup(string storylineID)
+        {
+            StorylinePage storylineContext = new StorylinePage();
+            var answer = await storylineContext.confirmPopup();
+
+            if (answer == true)
+            {
+                js.CallJs("localStorage.removeItem('previewStoryline');" +
+                                      "localStorage.removeItem('currentStoryline');" +
+                                      "localStorage.removeItem('lastVisitedNodeID');" +
+                                      "localStorage.setItem('currentStoryline'," + storylineID + ");" +
+                                      "window.location.replace('storyline_index.html');");
+            }
+        }
+
+
     }
 }
-
