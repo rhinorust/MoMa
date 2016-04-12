@@ -14,9 +14,9 @@ function previewStoryline(storylineID) {
 function startStoryline(storylineID) {
     if (localStorage.getItem("currentStoryline") != storylineID)
         jsBridge.confirmPopup(storylineID);
-    localStorage.setItem("currentStoryline", storylineID);
-    localStorage.setItem("startIsSelected", "true");
-    window.location.replace("storyline_index.html");
+   // localStorage.setItem("currentStoryline", storylineID);
+    //localStorage.setItem("startIsSelected", "true");
+   // window.location.replace("storyline_index.html");
 }
 
 function resumeStoryline(storylineID) {

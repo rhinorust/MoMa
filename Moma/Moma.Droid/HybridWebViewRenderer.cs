@@ -61,8 +61,9 @@ namespace Moma.Droid
             webView.Settings.JavaScriptEnabled = true;
             webView.Settings.DomStorageEnabled = true;
 
-           // webView.SetLayerType(Android.Views.LayerType.None, null);
+            // webView.SetLayerType(Android.Views.LayerType.None, null);
             webView.SetWebChromeClient(new WebChromeClient());
+            webView.SetWebViewClient(new App1.Droid.CustomWebViewClient()); 
         }
 
         public void CallJs(string jsFunction)

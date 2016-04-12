@@ -196,27 +196,34 @@ namespace Moma.Droid
         // ========
         [JavascriptInterface]
         [Export]
-        public void confirmPopup(int storylineID)
+        public async void confirmPopup(int storylineID)
         {
             StorylinePage storylineContext = new StorylinePage();
-            var answer = storylineContext.confirmPopup();
+            var answer = await storylineContext.confirmPopup();
 
-            if (answer.Equals(true))
+            if (answer == true)
             {
                 js.CallJs("localStorage.removeItem('startIsSelected');" +
                                       "localStorage.removeItem('currentStoryline');" +
                                       "localStorage.removeItem('lastVisitedNodeID');" +
-                                      "window.location.replace('storyline_index.html');" +
                                       "localStorage.setItem('currentStoryline'," + storylineID + ");" +
-                                      "localStorage.setItem('startIsSelected', 'true');" +
-                                      "window.location.replace('storyline_index.html');");
+                                      "localStorage.setItem('startIsSelected', 'true');");
+                js.CallJs("window.location.replace('storyline_index.html');");
             }
-            else
+
+            if (answer == false)
             {
                 js.CallJs("window.location.replace('storyline_index.html');");
             }
+
         }
 
-    }
-}
+            
 
+        }
+
+
+
+
+
+}
