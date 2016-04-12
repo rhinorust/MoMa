@@ -2549,7 +2549,9 @@
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\floor4\4\4\8.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\data\FinalDemoJSON.js" />
+  </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\floor5\5\0\0.png" />
   </ItemGroup>

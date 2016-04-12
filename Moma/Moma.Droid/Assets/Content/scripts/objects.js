@@ -193,7 +193,7 @@ function Map() {
     }
 
     this.parsePOI = function (floors) {
-        var arrayPOI = DATA.node[0].poi;
+        var arrayPOI = DATA.node.poi;
         for (i = 0; i < arrayPOI.length; i++) {
             var p = arrayPOI[i];
             var floorIDInt = parseInt(p.floorID);
@@ -218,7 +218,7 @@ function Map() {
     };
 
     this.parsePOT = function (floors) {
-        var arrayPOT = DATA.node[0].pot;
+        var arrayPOT = DATA.node.pot;
         for (i = 0; i < arrayPOT.length; i++) {
             var p = arrayPOT[i];
             var floorIDInt = parseInt(p.floorID);
