@@ -7,6 +7,7 @@ using Android.Content;
 using Xamarin.Forms;
 using System.Threading;
 using App1.Droid;
+using Android.App;
 
 namespace Moma.Droid
 {
@@ -145,7 +146,8 @@ namespace Moma.Droid
         // ==========================
         [JavascriptInterface]
         [Export]
-        public void messageWasAdded(string messageTitle) {
+        public void messageWasAdded(string messageTitle)
+        {
             // Tells the MapPage there was one message added which will
             // update the messagesIcon to the new number of unread messages
             MainPage.Current.messageWasAdded(messageTitle);
@@ -153,7 +155,8 @@ namespace Moma.Droid
 
         [JavascriptInterface]
         [Export]
-        public void messageWasRead(string messageTitle) {
+        public void messageWasRead(string messageTitle)
+        {
             // Tells the MapPage there was one message read which will
             // update the messagesIcon to the new number of unread messages
             MainPage.Current.messageWasRead(messageTitle);
@@ -167,7 +170,7 @@ namespace Moma.Droid
         [Export]
         public void print(string text)
         {
-            System.Diagnostics.Debug.WriteLine("\n=\n=\n=\n="+text+ "\n=\n=\n=\n=");
+            System.Diagnostics.Debug.WriteLine("\n=\n=\n=\n=" + text + "\n=\n=\n=\n=");
         }
 
         // ========
@@ -186,6 +189,34 @@ namespace Moma.Droid
         {
             App.Current.IBeaconsDirector().confirmIBeacon(minor, major);
         }
+
+
+        // ========
+        // native popup
+        // ========
+        [JavascriptInterface]
+        [Export]
+        public void confirmPopup(int storylineID)
+        {
+            StorylinePage storylineContext = new StorylinePage();
+            var answer = storylineContext.confirmPopup();
+
+            if (answer.Equals(true))
+            {
+                js.CallJs("localStorage.removeItem('startIsSelected');" +
+                                      "localStorage.removeItem('currentStoryline');" +
+                                      "localStorage.removeItem('lastVisitedNodeID');" +
+                                      "window.location.replace('storyline_index.html');" +
+                                      "localStorage.setItem('currentStoryline'," + storylineID + ");" +
+                                      "localStorage.setItem('startIsSelected', 'true');" +
+                                      "window.location.replace('storyline_index.html');");
+            }
+            else
+            {
+                js.CallJs("window.location.replace('storyline_index.html');");
+            }
+        }
+
     }
 }
 

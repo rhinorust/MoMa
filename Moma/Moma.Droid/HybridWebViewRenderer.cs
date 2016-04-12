@@ -27,6 +27,14 @@ namespace Moma.Droid
 				webView = new Android.Webkit.WebView (Forms.Context);
 				webView.Settings.JavaScriptEnabled = true;
                 webView.Settings.DomStorageEnabled = true;
+    //            webView.SetWebViewClient(new WebViewClient()
+    //            {
+    //                                public override bool ShouldOverrideUrlLoading(Android.Webkit.WebView view, string url)
+    //    {
+    //        return false;
+
+    //    }
+    //});
 				SetNativeControl (webView);
 			}
 			if (e.OldElement != null) {

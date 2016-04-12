@@ -15,5 +15,10 @@ namespace Moma
             InitializeComponent();
             Title = AppLanguageResource.Storyline;
         }
+
+        public async Task<bool> confirmPopup()
+        {
+            return await DisplayAlert("Active Storyline", "There is currently an active storyline, are you sure you want to start a new one?", "Yes", "No");
+        }
     }
 }

@@ -29,6 +29,10 @@ function displayStoryline() {
     
     $('#currentStoryline').text("Current storyline: " + localStorage.getItem("currentStoryline"));
     $('#previewStoryline').text("Previewing storyline: " + localStorage.getItem("currentStoryline"));
+    if (localStorage.getItem("startIsSelected") == null)
+        $('#currentStoryline').hide();
+    else
+        $('#previewStoryline').hide();
     storylineSelectedID = localStorage.getItem("currentStoryline");
     //browser testing (default storyline)
     if (storylineSelectedID == null) {
@@ -117,7 +121,6 @@ function startStoryline() {
     localStorage.setItem("startIsSelected", "true");
     $("#starBtn").hide();
     $("#backBtn").hide();
-    $("#previewStoryline").hide();
     $("#nextBtn").show();
     $("#scanBtn").show();
     $("#endBtn").show();

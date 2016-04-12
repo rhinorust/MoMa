@@ -21,11 +21,12 @@
     <script src="scripts/localization.js"></script>
 
     <script>
-        var currentLanguage = "EN";//jsBridge.getLanguage();
+        var currentLanguage = jsBridge.getLanguage();
     </script>
 </head>
 <body onload="displayStoryline()">
     <p id="previewStoryline"></p>
+    <p id="currentStoryline"></p>
     <div id="map">
     </div>
     <div style="text-align:center;">
