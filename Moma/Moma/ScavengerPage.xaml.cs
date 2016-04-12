@@ -13,6 +13,7 @@ namespace Moma
         public ScavengerPage()
         {
             InitializeComponent();
+            Title = AppLanguageResource.Scavenger;
         }
     }
 }
