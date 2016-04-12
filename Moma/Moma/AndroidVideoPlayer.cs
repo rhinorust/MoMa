@@ -99,7 +99,7 @@ namespace Moma
             player.VideoPlayer.AddVideoController = false;
 
 
-            // location in Assets folder.  file marked as Asset, NOT Resource
+            // location in raw folder
             player.VideoPlayer.FileSource = videoName;
 
             // autoplay video

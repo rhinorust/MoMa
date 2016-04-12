@@ -9,8 +9,7 @@ namespace Moma
 {
     public class IBeaconsDirector
     {
-        BeaconRegion beaconRegion1;          // We'll be directing iBeacons within this beaconRegion.
-        BeaconRegion beaconRegion2;         // For justin's debug
+        BeaconRegion beaconRegion;          // We'll be directing iBeacons within this beaconRegion.
         String UUID;                        // The iBeacons use this UUID
         Dictionary<IBeacon, string[]> iBeacons; // and will be stored here when found during scanning,
         IJavascriptInterface map;           // notifying the indoor map when desired.
@@ -48,8 +47,7 @@ namespace Moma
         public IBeaconsDirector()
         {
             UUID = "b9407f30-f5f8-466e-aff9-25556b57fe6d";
-            beaconRegion1 = new BeaconRegion("Musee Des Ondes", UUID);
-            beaconRegion2 = new BeaconRegion("Justin", "8492E75F-4FD6-469D-B132-043FE94921D8");
+            beaconRegion = new BeaconRegion("Musee Des Ondes", UUID);
             map = DependencyService.Get<IJavascriptInterface>();
             iBeacons = new Dictionary<IBeacon, string[]>();
 
@@ -101,9 +99,7 @@ namespace Moma
                     EstimoteManager.Instance.Ranged += (sender, beacons) => { };
                     EstimoteManager.Instance.RegionStatusChanged += (sender, region) => { };
 
-                    EstimoteManager.Instance.StartRanging(beaconRegion1);
-                    // For justin's debug
-                    EstimoteManager.Instance.StartRanging(beaconRegion2);
+                    EstimoteManager.Instance.StartRanging(beaconRegion);
 
                     iBeaconsCheckTimer = new Timer(iBeaconIntervalCheck, null,
                                                    IBEACON_TIMER_START_DELAY,
@@ -202,18 +198,10 @@ namespace Moma
 
         // Always returns the iBeacons that satisfy the proximity check
         async Task<IEnumerable<IBeacon>> fetchNewIBeacons() {
-            IEnumerable<IBeacon> foundIBeacons1 = await EstimoteManager.Instance.FetchNearbyBeacons(beaconRegion1, new TimeSpan(0, 0, 1));
-            // For justin
-            IEnumerable<IBeacon> foundIBeacons2 = await EstimoteManager.Instance.FetchNearbyBeacons(beaconRegion2, new TimeSpan(0, 0, 1));
+            IEnumerable<IBeacon> foundIBeacons1 = await EstimoteManager.Instance.FetchNearbyBeacons(beaconRegion, new TimeSpan(0, 0, 1));
             List<IBeacon> newIBeacons = new List<IBeacon>();
 
             foreach (IBeacon foundIBeacon in foundIBeacons1)
-            {
-                newIBeacons.Add(foundIBeacon);
-            }
-
-            // For justin
-            foreach (IBeacon foundIBeacon in foundIBeacons2)
             {
                 newIBeacons.Add(foundIBeacon);
             }

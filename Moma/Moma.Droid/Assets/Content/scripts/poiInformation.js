@@ -21,72 +21,114 @@ $('document').ready(function () {
 function iBeaconDiscovered(minor, major) {
     var poi = findPOIWithIBeacon(minor, major);
 
-    if (poi !== -1) { // If it was found
-        // If it's not a background audio iBeacon
-        //if (poi.media.audio.length == 0) {
-            var poiTitle = poi.title[0].title;
-            addToMessages({ type: "iBeacon", title: poiTitle, minor: minor, major: major });
-            showIBeacon(minor, major); // Show the IBeacon's information
-        //}
-        // If it is an audio iBeacon, let the C#'s iBeaconsDirector know and it will take
-        // care of playing/looping/stopping the audio based on dynamic proximity to it's iBeacon
-        //if (poi.media.audio.length != 0) {
-        //    jsBridge.setIBeaconAsAudioIBeacon(minor, major, poi.media.audio[0].path);
-        //}
+    // If the poi was found
+    if (poi !== -1) {
+        // What is the current language?
+        var curLanguage = jsBridge.getLanguage();
+
+        // Find the right language title
+        var poiTitle = "";
+        for (var i = 0; i < poi.title.length; i++) {
+            if (poi.title.language.toLowerCase() === curLanguage)
+                poiTitle = poi.title[i];
+        }
+        addToMessages({ type: "iBeacon", title: poiTitle, minor: minor, major: major });
+        showIBeacon(minor, major); // Show the IBeacon's information
     }
 }
 
-// returns the poi instance that holds the iBeacon that
-// has the given minor and major values
+// returns the storylinePoint poi instance corresponding
+// to the given minor,major,storylineID
 function findPOIWithIBeacon(minor, major) {
-    var pois = DATA.node[0].poi;
+    var storylineID = storylineSelectedID; // Justin's variable
+    if (storylineID == null) return -1;
+
+    var pois = DATA.node.poi;
     // Find the POI with the given minor and major and
     // return the iBeacon object if found
     for (var i = 0; i < pois.length; i++) {
         var poi = pois[i];
         var iBeacon = poi.ibeacon;
         if (iBeacon.minor === minor && iBeacon.major === major) {
-            return poi;
+            // Now we have to find the right storypoint for that iBeacon
+            for (var j = 0; j < poi.storyPoint.length; j++) {
+                if (poi.storyPoint[j].storylineID === storylineID)
+                    return poi.storyPoint[j];
+            }
         }
     }
     return -1; // If none was found 
 }
 
-// Displays the POI information box populated with this iBeacon's information
+// Displays the POI information box populated with this
+// iBeacon's storyline information
 function showIBeacon(minor, major) {
     var poi = findPOIWithIBeacon(minor, major);
 
-    if (poi !== -1) { // If we got a hit
-        var poiDescription = poi.description[0].description;
-        var poiTitle = poi.title[0].title;
-        // Add the media elements to the POI information box
+    // If we got a hit
+    if (poi !== -1) {
+        // What is the current language?
+        var curLanguage = jsBridge.getLanguage();
+
+        // Find the right language title
+        var poiTitle = "";
+        for (var i = 0; i < poi.title.length; i++) {
+            if (poi.title.language.toLowerCase() === curLanguage)
+                poiTitle = poi.title[i];
+        }
+
+        // Find the right language description
+        var poiDescription = "";
+        for (var i = 0; i < poi.description.length; i++) {
+            if (poi.description.language.toLowerCase() === curLanguage)
+                poiDescription = poi.description[i];
+        }
+
+        // The media elements
         var images = poi.media.image;
         var videos = poi.media.video;
+        var audio  = poi.media.audio;
 
-        var content = "";
-
-        // If there are videos, we ask C# to show them all
-        if (videos.length > 0) {
-            // Interrupt and play the first video
-            jsBridge.playVideo(videos[0].path, videos[0].caption, true);
-
-            // Add the rest to the C#'s video playQueue
-            for (var i = 1; i < videos.length; i++) {
-                jsBridge.playVideo(videos[i].path, videos[i].caption, false);
+        // If there is any audio, we ask C# to play it
+        if (audio.length > 0) {
+            for (var i = 0; i < audio.length; i++) {
+                if (audio[i].language.toLowerCase() === curLanguage) {
+                    // Only play one. Doesn't make sense to play any more at the same time
+                    jsBridge.playAudioFile(audio[i].path);
+                    break;
+                }
             }
         }
-        // if there are images or text we will show the poi information box
-        //else {
-        if (images.length > 0) {
-            for (var j = 0; j < images.length; j++)
-                content += imagef(images[j].path);
+
+        // If there are videos, we ask C# to show them all, one after another
+        if (videos.length > 0) {
+            var firstVideoStarted = false;
+
+            for (var i = 0; i < videos.length; i++) {
+                if (videos[i].language.toLowerCase() === curLanguage) {
+                    if (firstVideoStarted === false) {
+                        jsBridge.playVideo(videos[i].path, videos[i].caption, true);
+                        firstVideoStarted = true;
+                    }
+                    else
+                        jsBridge.playVideo(videos[i].path, videos[i].caption, false);
+                }
+            }
         }
 
-        content += textf(poiDescription);
-        var title = poiTitle;
-
         if (images.length > 0 || poiDescription.length() > 0) {
-            poiIBoxTitle.text(title);
+            var content = "";
+
+            // if there are images or text we will show the poi information box
+            if (images.length > 0) {
+                for (var j = 0; j < images.length; j++)
+                    content += imagef(images[j].path);
+            }
+
+            content += poiDescription;
+
+            poiIBoxTitle.empty()
+            poiIBoxTitle.append(poiTitle);
             poiIBoxContent.empty();
             poiIBoxContent.append(content); 
 

@@ -16,7 +16,7 @@ $('document').ready(function () {
     });
 
     // Debugging
-    //addToMessages({ type: 'iBeacon', title: 'Point of Interest 5', minor: 54177, major: 9377 });
+    //addToMessages({ type: "iBeacon", title: poiTitle, minor: minor, major: major, storylineID: storylineID });
     //addToMessages({ type: 'QRCode', title: 'QRCode title', data: 'QRCode data' });
     //showHideMessages();
 });
