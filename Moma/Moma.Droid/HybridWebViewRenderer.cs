@@ -27,15 +27,8 @@ namespace Moma.Droid
 				webView = new Android.Webkit.WebView (Forms.Context);
 				webView.Settings.JavaScriptEnabled = true;
                 webView.Settings.DomStorageEnabled = true;
-    //            webView.SetWebViewClient(new WebViewClient()
-    //            {
-    //                                public override bool ShouldOverrideUrlLoading(Android.Webkit.WebView view, string url)
-    //    {
-    //        return false;
-
-    //    }
-    //});
-				SetNativeControl (webView);
+                webView.SetWebViewClient(new App1.Droid.CustomWebViewClient());
+                SetNativeControl (webView);
 			}
 			if (e.OldElement != null) {
 				Control.RemoveJavascriptInterface ("jsBridge");
@@ -63,7 +56,6 @@ namespace Moma.Droid
 
             // webView.SetLayerType(Android.Views.LayerType.None, null);
             webView.SetWebChromeClient(new WebChromeClient());
-            webView.SetWebViewClient(new App1.Droid.CustomWebViewClient()); 
         }
 
         public void CallJs(string jsFunction)
