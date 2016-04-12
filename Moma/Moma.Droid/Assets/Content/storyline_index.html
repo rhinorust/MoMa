@@ -22,8 +22,9 @@
     <script src="scripts/localization.js"></script>
 
     <script>
-        var currentLanguage = jsBridge.getLanguage();
-    </script>
+        var currentLanguage = "fr";
+        //var currentLanguage = jsBridge.getLanguage();
+        </script>
 </head>
 <body onload="displayStoryline()">
     <p id="previewStoryline"></p>
@@ -31,12 +32,12 @@
     <div id="map">
     </div>
     <div style="text-align:center;">
-        <button id="scanBtn" onclick="qrCodeScanBtn()">Scan</button>
+        <button id="scanBtn" onclick="qrCodeScanBtn()"></button>
         <button id="backBtn" onclick="endPreview()"><</button>
-        <button id="endBtn" onclick="endStoryline()">End</button>
+        <button id="endBtn" onclick="endStoryline()"></button>
     </div>
     <div style="text-align:center;">
-        <button id="starBtn" onclick="startStoryline()">Start</button>
+        <button id="starBtn" onclick="startStoryline()"></button>
         <!--<button id="nextBtn" onclick="advanceStoryLine()" style="margin-left:115px">Sim. Beacon</button>-->
     </div>
     <div class="informationBox" id="POI_Information">
@@ -81,8 +82,8 @@
             <section id="content">
                 <div id="text"></div>
                 <div id="buttons">
-                    <button id="yesButton" onclick="yesButtonClick()">Yes</button>
-                    <button id="noButton"  onclick="noButtonClick()">No</button>
+                    <button id="yesButton" onclick="yesButtonClick()"></button>
+                    <button id="noButton"  onclick="noButtonClick()"></button>
                 </div>
             </section>
         </div>

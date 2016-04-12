@@ -228,4 +228,10 @@
   <data name="Destination" xml:space="preserve">
     <value>➥ Arrivée au 1001 Rue Lenoir sur le droit</value>
   </data>
+  <data name="ActiveQuestion" xml:space="preserve">
+    <value>Il est actuellement un itinéraire actif, êtes -vous sûr que vous voulez commencer une nouvelle?</value>
+  </data>
+  <data name="ActiveStoryline" xml:space="preserve">
+    <value>Itinéraire Actif</value>
+  </data>
 </root>

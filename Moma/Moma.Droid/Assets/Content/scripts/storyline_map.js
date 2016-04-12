@@ -28,9 +28,15 @@ function displayStoryline() {
     $("#endBtn").hide();
     //#testing
     $("#scanText").html(tools.getLocalization(translation, ['map', 'scan']));
+    $("#endBtn").html(tools.getLocalization(translation, ['map', 'end']));
+    $("#starBtn").html(tools.getLocalization(translation, ['map', 'start']));
+
+    $("#yesButton").html(tools.getLocalization(translation, ['map', 'Yes']));
+    $("#noButton").html(tools.getLocalization(translation, ['map', 'No']));
+
     
-    $('#currentStoryline').text("Current storyline: " + localStorage.getItem("currentStoryline"));
-    $('#previewStoryline').text("Previewing storyline: " + localStorage.getItem("currentStoryline"));
+    $('#currentStoryline').text(tools.getLocalization(translation, ['storyline', 'CurrentStoryline']) + localStorage.getItem("currentStoryline"));
+    $('#previewStoryline').text(tools.getLocalization(translation, ['storyline', 'PreviewStoryline']) + localStorage.getItem("currentStoryline"));
     if (localStorage.getItem("startIsSelected") == null)
         $('#currentStoryline').hide();
     else
@@ -115,7 +121,7 @@ function startStoryline() {
     if ((lastVisitedNodeID != null && lastVisitedNodeID != storyline.nodePath[0] + "")) {
         //popup asking "Would you like to be directed to the start of the storyline?"
         showShortMessageBox("Alert",
-            "Would you like to be directed to the start of the storyline?",
+                tools.getLocalization(translation, ['storyline', 'reDirectBegin']),
             function () { pathToStart(); focusOnStart();},
             function () { focusOnStart() });
     } else {
