@@ -54,17 +54,17 @@
               "floorID": 2,
               "ibeacon": {
                   "uuid": "B9407F30-F5F8-466E-AFF9-25556B57FE6D",
-                  "major": "9377",//26515
-                  "minor": "54177"//372
+                  "major": "26515",//9377 #testing
+                  "minor": "372"//54177 #testing
               },
               "media": {
                   "image": [],
-                  "video": [
-                      {
+                  "video": [//#testing
+                      /*{
                           "path": "point4",
                           "language": "EN",
                           "caption": "MOEB Point 4"
-                      }],
+                      }*/],
                   "audio": []
               },
               "storyPoint": [

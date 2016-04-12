@@ -6,8 +6,8 @@ var floorDiff = 1;
 var baseMaps = {};
 var map;
 var lastVisitedNodeID = null;
-var lastMinor;
-var lastMajor;
+var lastMinor = "";
+var lastMajor = "";
 
 var markerIconPOIBlue = MapObj.createMarker('images/marker-icon-blue.png', 64, 64, 30, 64, 1, 1);
 var markerIconPOIGreen = MapObj.createMarker('images/marker-icon-green.png', 64, 64, 30, 64, 1, 1);
@@ -69,6 +69,8 @@ function init() {
 function currentPOI(minor, major) {
     console.log(minor + " " + major + "*******************************************");
     if (lastMinor != minor && lastMajor != major) {
+        lastMinor = minor;
+        lastMajor = major;
         console.log("popup call");
         iBeaconDiscovered(minor, major);
 
@@ -76,7 +78,5 @@ function currentPOI(minor, major) {
         if (lastVisitedNodeID != -1) {
             localStorage.setItem("lastVisitedNodeID", lastVisitedNodeID);
         }
-        lastMinor = minor;
-        lastMajor = major;
     }
 }

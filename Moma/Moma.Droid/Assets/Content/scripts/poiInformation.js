@@ -64,7 +64,6 @@ function showIBeacon(minor, major) {
         var videos = poi.media.video;
 
         var content = "";
-        console.log("+++++++++++++++++++++++++++++++++++++++++++");
         // If there are videos, we ask C# to show them all
         if (videos.length > 0) {
             // Interrupt and play the first video
