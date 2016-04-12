@@ -1,7 +1,7 @@
 ﻿//language variable
 //english = 0
 var lang = 0;
-
+var selectedLanguage = jsBridge.getLanguage();
 //Class Diagram Objects
 
 function POI(id, x, y, floorID, title, description, iBeacon, video, image, audio) {
@@ -18,7 +18,7 @@ function POI(id, x, y, floorID, title, description, iBeacon, video, image, audio
     this.edges = [];
 
     this.getQRInfo = function (QRID) {
-        return"string";
+        return "string";
     };
     this.getPOIPosition = function () {
         return "string";
@@ -113,7 +113,7 @@ function Audio(audioID, path, caption) {
     }
 }
 
-function Floor(floorID,imagePath,imageWidth,imageHeight) {
+function Floor(floorID, imagePath, imageWidth, imageHeight) {
     this.floorID = floorID;
     this.imagePath = imagePath;
     this.imageWidth = imageWidth;
@@ -127,9 +127,9 @@ function Floor(floorID,imagePath,imageWidth,imageHeight) {
 
     this.polyline;
     this.polylineLatLng = [];
-    
+
     this.createTileLayer = function (minZoom, maxZoom) {
-        this.tileLayer = L.tileLayer('floor'+floorID+'/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, attribution: '', noWrap: true, tms: false});
+        this.tileLayer = L.tileLayer('floor' + floorID + '/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, attribution: '', noWrap: true, tms: false });
     };
 
     this.groupLayers = function () {
@@ -196,12 +196,12 @@ function Map() {
             var floorIDInt = parseInt(p.floorID);
             var imageWidth = floors[floorIDInt - floorDiff].imageWidth;
             var imageHeight = floors[floorIDInt - floorDiff].imageHeight;
-            while ( imageWidth >= 256 || imageHeight >= 256) {
-                imageWidth = imageWidth/2;
-                imageHeight = imageHeight/2;
+            while (imageWidth >= 256 || imageHeight >= 256) {
+                imageWidth = imageWidth / 2;
+                imageHeight = imageHeight / 2;
             }
             //Convert lanscape to portrait coordinates
-            
+
             var temp = imageHeight;
             imageHeight = imageWidth;
             imageWidth = temp;
@@ -213,6 +213,13 @@ function Map() {
 
             var trueX = (Math.round((imageWidth / floors[floorIDInt - floorDiff].imageHeight) * x));
             var trueY = (Math.round((imageHeight / floors[floorIDInt - floorDiff].imageWidth) * y));
+
+            //get the right language for poi 
+
+            for (var k = 0; k < p.title.length; k++) {
+                if (p.title[k].language.toUpperCase() == selectedLanguage.toUpperCase())
+                    lang = k;
+            }
 
             var poi = new POI(p.id, trueX, trueY, p.floorID, p.title[lang].title, p.description[lang].description, p.ibeacon, p.media.video, p.media.image, p.media.audio);
             floors[floorIDInt - floorDiff].POI[poi.id + ""] = poi;
@@ -252,7 +259,7 @@ function Map() {
             floors[floorIDInt - floorDiff].POT[pot.id + ""] = pot;
             floors[floorIDInt - floorDiff].markersById[pot.id + ""] = L.marker([pot.y, pot.x], { icon: markerIconNode });
             floors[floorIDInt - floorDiff].markers.push(floors[floorIDInt - floorDiff].markersById[pot.id + ""]);
-            ListPOT[pot.id+""] = pot;
+            ListPOT[pot.id + ""] = pot;
         }
         return floors;
     };
@@ -277,7 +284,7 @@ function Map() {
 
     this.createFloorTileLayers = function (floors, minZoom, maxZoom) {
         for (i = 0; i < floors.length; i++) {
-            floors[i].createTileLayer(minZoom,maxZoom);
+            floors[i].createTileLayer(minZoom, maxZoom);
         }
         return floors;
     }
@@ -304,25 +311,30 @@ function StorylineMap() {
         for (i = 0; i < arrayStoryline.length; i++) {
             var s = arrayStoryline[i];
 
+            for (var r = 0; r < arrayStoryline.length; r++) {
+                if (s.title[r].language.toUpperCase() == selectedLanguage.toUpperCase())
+                    lang = r;
+            }
+
             if (storylineSelectedID == s.id + "") {
                 storyline = new Storyline(s.id, s.title[lang].title, s.description[lang].description, s.path, s.thumbnail, s.walkingTimeInMinutes, s.floorsCovered);
             }
         }
         return storyline;
     };
-    
+
     this.parseNodePath = function (storyline) {
         var nodePath = storyline.nodePath;
         for (i = 0; i < nodePath.length; i++) {
             var node;
             //if node == 1---(pot) else if node == 0---(poi)
-            if (ListPOT[nodePath[i]+""] != null) {
-                node = ListPOT[nodePath[i]+""];
-            } else if (ListPOI[nodePath[i]+""] != null) {
-                node = ListPOI[nodePath[i]+""];
+            if (ListPOT[nodePath[i] + ""] != null) {
+                node = ListPOT[nodePath[i] + ""];
+            } else if (ListPOI[nodePath[i] + ""] != null) {
+                node = ListPOI[nodePath[i] + ""];
             }
-            
-            storyline.nodes[node.id+""] = node;
+
+            storyline.nodes[node.id + ""] = node;
         }
 
         return storyline;
@@ -337,7 +349,7 @@ function StorylineMap() {
         //loop though nodePath array
         var nodePath = storyline.nodePath;
         for (i = 0; i < nodePath.length; i++) {
-            var node = storyline.nodes[nodePath[i]+""];
+            var node = storyline.nodes[nodePath[i] + ""];
 
             //get marker from floors[floorsID-1].markersById[POT.id] and add marker to floors[floorsID-1].markers
             var floorIDInt = parseInt(node.floorID);
@@ -415,10 +427,10 @@ function Dijkstra(listPOI, listPOT) {
             }
             for (i = 0; i < this.vertices[smallest].length; i++) {
                 edge = this.vertices[smallest][i];
-                if (edge.startNode+"" != smallest) {
-                    neighbor = edge.startNode+"";
+                if (edge.startNode + "" != smallest) {
+                    neighbor = edge.startNode + "";
                 } else {
-                    neighbor = edge.endNode+"";
+                    neighbor = edge.endNode + "";
                 }
 
                 newDistance = distances[smallest] + edge.distance;
@@ -434,12 +446,12 @@ function Dijkstra(listPOI, listPOT) {
         }
         return path.concat([start]).reverse();
     }
-    
+
     var PriorityQueue = function () {
         this._nodes = [];
 
         this.enqueue = function (priority, key) {
-            this._nodes.push({key: key, priority: priority });
+            this._nodes.push({ key: key, priority: priority });
             this.sort();
         }
         this.dequeue = function () {
