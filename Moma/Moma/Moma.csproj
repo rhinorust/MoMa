@@ -46,6 +46,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppLanguageResource.fr.resx</DependentUpon>
     </Compile>
+    <Compile Include="IWebPageOpener.cs" />
     <Compile Include="ContactPage.xaml.cs">
       <DependentUpon>ContactPage.xaml</DependentUpon>
     </Compile>

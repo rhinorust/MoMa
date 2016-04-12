@@ -161,6 +161,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="WebPageOpener.cs" />
     <Compile Include="AndroidAppHandler.cs" />
     <Compile Include="AndroidUserSettings.cs" />
     <Compile Include="AudioService.cs" />
