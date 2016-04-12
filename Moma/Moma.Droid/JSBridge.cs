@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Android.Webkit;
 using Moma.Droid;
 using Java.Interop;
@@ -185,6 +186,24 @@ namespace Moma.Droid
         public void stopScanningForIBeacons()
         {
             App.Current.IBeaconsDirector().stopScanningForIBeacons();
+        }
+
+        // ==========
+        // JSON File
+        // ==========
+        [JavascriptInterface]
+        [Export]
+        public string getJsonString()
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            string fileName = Path.Combine(path, "data_server.json");
+            string content = string.Empty;
+            using (var streamReader = new StreamReader(fileName))
+            {
+                content = streamReader.ReadToEnd();
+            }
+            return content;
+
         }
     }
 }

@@ -170,6 +170,7 @@
     <Compile Include="FileIO.cs" />
     <Compile Include="HybridWebViewRenderer.cs" />
     <Compile Include="JSBridge.cs" />
+    <Compile Include="JsonFileSerializer.cs" />
     <Compile Include="LanguageInitializer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="CustomPickerRenderer.cs" />
