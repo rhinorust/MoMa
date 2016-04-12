@@ -214,7 +214,7 @@ function Map() {
             var trueX = (Math.round((imageWidth / floors[floorIDInt - floorDiff].imageHeight) * x));
             var trueY = (Math.round((imageHeight / floors[floorIDInt - floorDiff].imageWidth) * y));
 
-            var poi = new POI(p.id, trueX, trueY, p.floorID, p.title[lang].title, p.description[0].description, p.ibeacon, p.media.video, p.media.image, p.media.audio);
+            var poi = new POI(p.id, trueX, trueY, p.floorID, p.title[lang].title, p.description[lang].description, p.ibeacon, p.media.video, p.media.image, p.media.audio);
             floors[floorIDInt - floorDiff].POI[poi.id + ""] = poi;
             floors[floorIDInt - floorDiff].markersById[poi.id + ""] = L.marker([poi.y, poi.x], { icon: markerIconPOIBlue }).bindPopup(poi.description);
             floors[floorIDInt - floorDiff].markers.push(floors[floorIDInt - floorDiff].markersById[poi.id + ""]);
@@ -305,7 +305,7 @@ function StorylineMap() {
             var s = arrayStoryline[i];
 
             if (storylineSelectedID == s.id + "") {
-                storyline = new Storyline(s.id, s.title, s.description, s.path, s.thumbnail, s.walkingTimeInMinutes, s.floorsCovered);
+                storyline = new Storyline(s.id, s.title[lang].title, s.description[lang].description, s.path, s.thumbnail, s.walkingTimeInMinutes, s.floorsCovered);
             }
         }
         return storyline;
