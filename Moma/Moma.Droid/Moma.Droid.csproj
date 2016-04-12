@@ -167,6 +167,7 @@
     <Compile Include="Controls\MyVideoView.cs" />
     <Compile Include="CultureHandler.cs" />
     <Compile Include="CustomNavigationRenderer.cs" />
+    <Compile Include="CustomWebViewClient.cs" />
     <Compile Include="FileIO.cs" />
     <Compile Include="HybridWebViewRenderer.cs" />
     <Compile Include="JSBridge.cs" />

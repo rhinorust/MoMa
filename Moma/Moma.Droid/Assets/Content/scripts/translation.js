@@ -7,7 +7,7 @@ var translation = {
             need: "You need <b>",
             reach: "</b> more to reach",
             congrats: "Congrats! You have reached the",
-            level:"Level !",
+            level: "Level !",
             bronze: "Bronze",
             silver: "Silver",
             gold: "Gold",
@@ -17,7 +17,20 @@ var translation = {
             numRank: "Number of QR Codes"
         },
         map: {
-            scan:"Scan"
+            scan: "Scan",
+            end: "End",
+            start: "Start",
+            Yes: "Yes",
+            No: "No"
+        },
+        storyline: {
+            selectStoryline: "Select A Storyline :",
+            startButton: "Start",
+            previewButton: "Preview",
+            resumeButton: "Resume",
+            reDirectBegin: "Would you like to be directed to the start of the storyline?",
+            CurrentStoryline: "Current storyline: ",
+            PreviewStoryline: "Previewing storyline: "
         }
     },
     fr: {
@@ -37,7 +50,20 @@ var translation = {
             numRank: "Nombre de codes QR"
         },
         map: {
-            scan: "Scan"
+            scan: "Scan",
+            end: "Terminer",
+            start: "Commencer",
+            Yes: "Oui",
+            No: "Non"
+        },
+        storyline: {
+            selectStoryline: "Choisissez Un Itinéraire :",
+            startButton: "Commencer",
+            previewButton: "Aperçu",
+            resumeButton: "Reprendre",
+            reDirectBegin: "Voulez-vous être dirigé vers le début du parcours?",
+            CurrentStoryline: "Iterinaire Actuelle: ",
+            PreviewStoryline: "Apercu d'iterinaire: "
         }
     },
     de: {
@@ -57,7 +83,20 @@ var translation = {
             numRank: "Anzahl der QR-Codes"
         },
         map: {
-            scan: "Scan"
+            scan: "Scan",
+            end: "End",
+            start: "Start",
+            Yes: "Ja",
+            No: "Nee"
+        },
+        storyline: {
+            selectStoryline: "Selecteer A Storyline :",
+            startButton: "Begin",
+            previewButton: "Voorbeschouwing",
+            resumeButton: "Herkrijgen",
+            reDirectBegin: "Wilt u worden gericht aan het begin van het verhaal",
+            CurrentStoryline: "Current storyline: ",
+            PreviewStoryline: "Previewing storyline: "
         }
     }
 

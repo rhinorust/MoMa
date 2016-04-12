@@ -794,22 +794,22 @@
         "id": 4,
         "title": [
           {
-              "language": "FR",
-              "title": "Une tour avec Jean"
+            "language": "EN",
+            "title": "A tour with Jean"
           },
           {
-              "language": "EN",
-              "title": "A tour with Jean"
+              "language": "FR",
+              "title": "Une tour avec Jean"
           }
         ],
         "description": [
           {
-              "language": "FR",
-              "description": "Decouvrez l'histoire du Edifice RCA"
-          },
-          {
               "language": "EN",
               "description": "Discover the history of the Edifice RCA"
+          },
+          {
+              "language": "FR",
+              "description": "Decouvrez l'histoire du Edifice RCA"
           }
         ],
         "path": [

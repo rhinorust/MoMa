@@ -234,4 +234,10 @@
 
 ➥ Ankunft in 1001 Rue Lenoir auf der rechten</value>
   </data>
+  <data name="ActiveQuestion" xml:space="preserve">
+    <value>Er is momenteel een actieve verhaallijn , bent u zeker dat u een nieuwe op te starten ?</value>
+  </data>
+  <data name="ActiveStoryline" xml:space="preserve">
+    <value>Active Verhaallijn</value>
+  </data>
 </root>
