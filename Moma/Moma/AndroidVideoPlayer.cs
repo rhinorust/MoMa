@@ -26,16 +26,16 @@ namespace Moma
 
             player = new VideoPlayerView();
 
-            this.ToolbarItems.Add(new ToolbarItem
+            /*this.ToolbarItems.Add(new ToolbarItem
             {
                 Order = ToolbarItemOrder.Secondary,
                 Text = "Controller",
                 Command = new Command(() => {
                     this.player.VideoPlayer.AddVideoController = !this.player.VideoPlayer.AddVideoController;
                 })
-            });
+            });*/
 
-            this.ToolbarItems.Add(new ToolbarItem
+            /*this.ToolbarItems.Add(new ToolbarItem
             {
                 Order = ToolbarItemOrder.Secondary,
                 Text = "Full Screen",
@@ -56,9 +56,9 @@ namespace Moma
                         player.VideoPlayer.FullScreen = false;
                     }
                 })
-            });
+            });*/
 
-            this.ToolbarItems.Add(new ToolbarItem
+            /*this.ToolbarItems.Add(new ToolbarItem
             {
                 Order = ToolbarItemOrder.Secondary,
                 Text = "Play",
@@ -92,12 +92,11 @@ namespace Moma
                 Command = new Command(() => {
                     this.player.VideoPlayer.PlayerAction = Library.VideoState.RESTART;
                 })
-            });
+            });*/
 
             // heightRequest must be set if not full screen
-            player.HeightRequest = 200;
-            player.VideoPlayer.AddVideoController = false;
-
+            //player.HeightRequest = 200;
+            player.VideoPlayer.AddVideoController = true;
 
             // location in raw folder
             player.VideoPlayer.FileSource = videoName;
@@ -113,6 +112,11 @@ namespace Moma
                     player
                 }
             };
+
+            // Go fullscreen
+            this.player.HeightRequest = -1;
+            this.Content.VerticalOptions = LayoutOptions.FillAndExpand;
+            player.VideoPlayer.FullScreen = true;
         }
 
         protected override void OnDisappearing()
@@ -120,6 +124,7 @@ namespace Moma
             Library.VideoState videoState = this.player.VideoPlayer.State;
             if (videoState != Library.VideoState.ENDED)
                 MainPage.Current.videoEnded(videoName);
+            MainPage.Current.showMessageToolbarIcon(true);
         }
 
         protected override void OnAppearing()
@@ -153,6 +158,7 @@ namespace Moma
                     System.Diagnostics.Debug.WriteLine("Info:\r\n" + this.player.VideoPlayer.Info);
                 }
             };
+            MainPage.Current.showMessageToolbarIcon(false);
         }
 
         protected override void OnSizeAllocated(double width, double height)

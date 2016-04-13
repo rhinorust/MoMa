@@ -245,7 +245,7 @@ Groups by appointment at anytime.</value>
     <value>Opening Hours</value>
   </data>
   <data name="Phone" xml:space="preserve">
-    <value>Phone : (514) 932-9663</value>
+    <value>(514) 932-9663</value>
   </data>
   <data name="PhoneTitle" xml:space="preserve">
     <value>Phone</value>
