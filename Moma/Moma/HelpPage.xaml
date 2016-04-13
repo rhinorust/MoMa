@@ -4,7 +4,4 @@
              xmlns:moma="clr-namespace:Moma;assembly=Moma"
              x:Class="Moma.HelpPage"
              BackgroundColor="White">
- <ContentPage.Content >
-      <moma:Accordion  Padding="10,10,10,0" x:Name="Help"/>
-  </ContentPage.Content>
 </ContentPage>
