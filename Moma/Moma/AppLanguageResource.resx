@@ -271,4 +271,10 @@ Groups (5+) : 3 $ each</value>
   <data name="ServerDef" xml:space="preserve">
     <value>Url from which all medias are being loaded from</value>
   </data>
+  <data name="ActiveQuestion" xml:space="preserve">
+    <value>There is currently an active storyline, are you sure you want to start a new one?</value>
+  </data>
+  <data name="ActiveStoryline" xml:space="preserve">
+    <value>Active Storyline</value>
+  </data>
 </root>

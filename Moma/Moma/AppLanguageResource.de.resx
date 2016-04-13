@@ -240,4 +240,10 @@
   <data name="ServerDef" xml:space="preserve">
     <value>Link verwendet, um die Anwendung Medien zu aktualisieren</value>
   </data>
+  <data name="ActiveQuestion" xml:space="preserve">
+    <value>Er is momenteel een actieve verhaallijn , bent u zeker dat u een nieuwe op te starten ?</value>
+  </data>
+  <data name="ActiveStoryline" xml:space="preserve">
+    <value>Active Verhaallijn</value>
+  </data>
 </root>

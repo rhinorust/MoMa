@@ -28,10 +28,23 @@ function displayStoryline() {
     $("#endBtn").hide();
     //#testing
     $("#scanText").html(tools.getLocalization(translation, ['map', 'scan']));
+    $("#endBtn").html(tools.getLocalization(translation, ['map', 'end']));
+    $("#starBtn").html(tools.getLocalization(translation, ['map', 'start']));
+
+    $("#yesButton").html(tools.getLocalization(translation, ['map', 'Yes']));
+    $("#noButton").html(tools.getLocalization(translation, ['map', 'No']));
+
     
-    $('#currentStoryline').text("Current storyline: " + localStorage.getItem("currentStoryline"));
-    $('#previewStoryline').text("Previewing storyline: " + localStorage.getItem("currentStoryline"));
-    storylineSelectedID = localStorage.getItem("currentStoryline");
+    $('#currentStoryline').text(tools.getLocalization(translation, ['storyline', 'CurrentStoryline']) + localStorage.getItem("currentStoryline"));
+    $('#previewStoryline').text(tools.getLocalization(translation, ['storyline', 'PreviewStoryline']) + localStorage.getItem("previewStoryline"));
+    if (localStorage.getItem("previewStoryline") != null) {
+        $('#currentStoryline').hide();
+        storylineSelectedID = localStorage.getItem("previewStoryline");
+    }
+    else {
+        $('#previewStoryline').hide();
+        storylineSelectedID = localStorage.getItem("currentStoryline");
+    }
     //browser testing (default storyline)
     if (storylineSelectedID == null) {
         storylineSelectedID= "0";
@@ -72,8 +85,7 @@ function displayStoryline() {
     map.on("load", function () {
         map.addLayer(floors[parseInt(startNode.floorID) - floorDiff].groupLayer);
 
-        if (localStorage.getItem("startIsSelected") == "true") {
-            localStorage.removeItem("startIsSelected");
+        if (localStorage.getItem("previewStoryline") == null) {
             startStoryline();
         }
     });
@@ -90,33 +102,38 @@ function displayStoryline() {
 }
 
 function endPreview() {
-    localStorage.removeItem("currentStoryline");
+    localStorage.removeItem("previewStoryline");
     window.location.replace("storylines.html");
 }
 
 function endStoryline() {
     localStorage.removeItem("currentStoryline");
-    localStorage.removeItem("startIsSelected");
     window.location.replace("storylines.html");
 }
 
 function startStoryline() {
-    //localStorage.setItem("startIsSelected", "true");
     $("#starBtn").hide();
     $("#backBtn").hide();
-    $("#previewStoryline").hide();
     $("#nextBtn").show();
     $("#scanBtn").show();
     $("#endBtn").show();
+    if (localStorage.getItem("previewStoryline") != null) {
+        jsBridge.confirmPreviewPopup(localStorage.getItem("previewStoryline"));
+    }
+    else {
+        $('#currentStoryline').show();
+        $('#previewStoryline').hide();
 
-    if ((lastVisitedNodeID != null && lastVisitedNodeID != storyline.nodePath[0] + "")) {
-        //popup asking "Would you like to be directed to the start of the storyline?"
-        showShortMessageBox("Alert",
-            "Would you like to be directed to the start of the storyline?",
-            function () { pathToStart(); focusOnStart();},
-            function () { focusOnStart() });
-    } else {
-        focusOnStart();
+
+        if ((lastVisitedNodeID != null && lastVisitedNodeID != storyline.nodePath[0] + "")) {
+            //popup asking "Would you like to be directed to the start of the storyline?"
+            showShortMessageBox("Alert",
+                    tools.getLocalization(translation, ['storyline', 'reDirectBegin']),
+                function () { pathToStart(); focusOnStart(); },
+                function () { focusOnStart() });
+        } else {
+            focusOnStart();
+        }
     }
 }
 

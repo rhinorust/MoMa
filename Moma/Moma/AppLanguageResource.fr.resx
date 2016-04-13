@@ -234,4 +234,10 @@
   <data name="ServerDef" xml:space="preserve">
     <value>Lien utilisé afin d'effectuer la mise à jour des médias utilisés dans l'application.</value>
   </data>
+  <data name="ActiveQuestion" xml:space="preserve">
+    <value>Il est actuellement un itinéraire actif, êtes -vous sûr que vous voulez commencer une nouvelle?</value>
+  </data>
+  <data name="ActiveStoryline" xml:space="preserve">
+    <value>Itinéraire Actif</value>
+  </data>
 </root>
