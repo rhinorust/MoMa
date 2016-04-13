@@ -10,10 +10,22 @@ namespace Moma
 {
     public partial class HelpPage : ContentPage
     {
+        Boolean alreadyPlayed;
         public HelpPage()
         {
             InitializeComponent();
             Title = AppLanguageResource.Help;
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            if (!alreadyPlayed)
+            {
+                MainPage.Current.playVideo("helpvideo", "Moma instructions", true);
+            }
+            alreadyPlayed = true;
+        }
+    
     }
 }
