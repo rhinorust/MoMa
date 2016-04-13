@@ -18,6 +18,7 @@ var storyline;
 var storylineSelectedID;
 var lastVisitedNodeID = localStorage.getItem("lastVisitedNodeID");
 var repeatNode = null;
+var repeatNodeDik = null;
 var navigationPath = new Navigation([], false);
 var startNode;
 
@@ -129,7 +130,11 @@ function startStoryline() {
             //popup asking "Would you like to be directed to the start of the storyline?"
             showShortMessageBox("Alert",
                     tools.getLocalization(translation, ['storyline', 'reDirectBegin']),
-                function () { pathToStart(); focusOnStart(); },
+                function () {
+                    pathToStart();
+
+                    focusOnStart();
+                },
                 function () { focusOnStart() });
         } else {
             focusOnStart();
@@ -139,8 +144,10 @@ function startStoryline() {
 
 function pathToStart() {
     var dijkstras = new Dijkstra(ListPOI, ListPOT);
-    start = lastVisitedNodeID;
+    start = localStorage.getItem('lastVisitedNodeID');
+    console.log('start: '+start);
     finish = storyline.nodePath[0] + "";
+    console.log('finish: ' + finish);
     var shortestPathID = dijkstras.shortestPath(start, finish);
     navigationPath = new Navigation(shortestPathID, true);
     navigationPath = StorylineMapObj.parseNodePath(navigationPath);
@@ -148,6 +155,7 @@ function pathToStart() {
     floors = MapObj.groupLayers(floors);
     floors = StorylineMapObj.addPolylines(floors);
     startNode = ListPOI[navigationPath.nodePath[0] + ""];
+    console.log(navigationPath.nodePath+'$$$');
 }
 
 function focusOnStart() {
@@ -181,15 +189,19 @@ function currentPOI(minor, major) {
                 break;
             }
         }
+        
         lastVisitedNodeID = nextPOIInPath.id;
 
-        if (nextPOIInPath != null && lastVisitedNodeID != repeatNode && nextPOIInPath.iBeacon.minor == minor && nextPOIInPath.iBeacon.major == major) {
+        if (nextPOIInPath != null && lastVisitedNodeID != repeatNodeDik && nextPOIInPath.iBeacon.minor == minor && nextPOIInPath.iBeacon.major == major) {
             console.log("call update poi");
-            repeatNode = lastVisitedNodeID;
+            console.log('array: '+navigationPath.nodePath);
+            repeatNodeDik = lastVisitedNodeID;
+            
             updatePOI(navigationPath);
+            repeatNode = null;
             if (localStorage.getItem("lastVisitedNodeID") == storyline.nodePath[0] + "") {
                 navigationPath.isNotAtStart = false;
-                repeatNode = null;
+                repeatNodeDik = null;
                 localStorage.removeItem("lastVisitedNodeID");
                 //Readd all markers
                 floors = StorylineMapObj.createPolyline(floors, storyline);
@@ -213,12 +225,13 @@ function currentPOI(minor, major) {
             }
         }
         lastVisitedNodeID = nextPOIInPath.id;
+
         if (nextPOIInPath != null && lastVisitedNodeID != repeatNode && nextPOIInPath.iBeacon.minor == minor && nextPOIInPath.iBeacon.major == major) {
             console.log("call popup");
             repeatNode = lastVisitedNodeID;
             updatePOI(storyline);
             iBeaconDiscovered(minor, major);
-            
+            repeatNodeDik = null;
         }
         console.log("done ibeacon");
     }
@@ -255,6 +268,7 @@ function updatePOI(storyline) {
         floorIDInt = parseInt(node.floorID);
 
         if (ListPOI[storyline.nodePath[i] + ""] != null && lastVisitedNodeID == storyline.nodePath[i] + "") {
+            console.log(storyline.nodePath[i]);
             focusOnNode(node, 3);
             localStorage.setItem("lastVisitedNodeID", storyline.nodePath[i] + "");
             storyline.nodePath.splice(0, i);
@@ -267,7 +281,7 @@ function updatePOI(storyline) {
                 floors[j].addPolylineLayer();
             }
             map.addLayer(floors[floorIDInt - floorDiff].polyline);
-            
+            storyline.nodePath.splice(0, 1);
             break;
         } else {
             var marker = floors[floorIDInt - floorDiff].markersById[node.id + ""];

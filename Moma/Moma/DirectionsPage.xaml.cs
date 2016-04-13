@@ -31,14 +31,14 @@ namespace Moma
             var Result = new List<AccordionSource>();
 
             #region 
-            var CarLayout = new StackLayout()  
+            var CarLayout = new StackLayout()
             {
                 Padding = new Thickness(20, 0, 0, 0),
                 Children = {
                     new Label
                     {
                         Text = AppLanguageResource.CarDirections,
-                        TextColor = Color.Black,        
+                        TextColor = Color.Black,
                     },
                     new Label
                     {
@@ -59,8 +59,8 @@ namespace Moma
                     new Label
                     {
                         Text = AppLanguageResource.STMDirections,
-                        TextColor = Color.Black,     
-                                           
+                        TextColor = Color.Black,
+
                     },
                     new Label
                     {
@@ -92,162 +92,167 @@ namespace Moma
             return Result;
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            MainPage.Current.showMessageToolbarIcon(false);
+        }
     }
 
     public class ListDataViewCell : ViewCell
+    {
+        public ListDataViewCell()
         {
-            public ListDataViewCell()
+            var label = new Label()
             {
-                var label = new Label()
-                {
-                    Font = Font.SystemFontOfSize(NamedSize.Default),
-                    TextColor = Color.Black
-                };
-                label.SetBinding(Label.TextProperty, new Binding("TextValue"));
-                label.SetBinding(Label.ClassIdProperty, new Binding("DataValue"));
-                View = new StackLayout()
-                {
-                    Orientation = StackOrientation.Vertical,
-                    VerticalOptions = LayoutOptions.StartAndExpand,
-                    Padding = new Thickness(5,0,0,0),
-                    Children = { label }
-                };
-            }
+                Font = Font.SystemFontOfSize(NamedSize.Default),
+                TextColor = Color.Black
+            };
+            label.SetBinding(Label.TextProperty, new Binding("TextValue"));
+            label.SetBinding(Label.ClassIdProperty, new Binding("DataValue"));
+            View = new StackLayout()
+            {
+                Orientation = StackOrientation.Vertical,
+                VerticalOptions = LayoutOptions.StartAndExpand,
+                Padding = new Thickness(5, 0, 0, 0),
+                Children = { label }
+            };
         }
+    }
 
-        public class SimpleObject
-        {
-            public string TextValue { get; set; }
-            public string DataValue { get; set; }
-        }
+    public class SimpleObject
+    {
+        public string TextValue { get; set; }
+        public string DataValue { get; set; }
+    }
 
-        public class AccordionSource
-        {
+    public class AccordionSource
+    {
         public string HeaderText { get; set; }
         public Color HeaderTextColor { get; set; }
         public Color HeaderBackGroundColor { get; set; }
         public View ContentItems { get; set; }
         public Thickness Padding { get; set; }
         public String FontFamily { get; }
-        public TextAlignment HeaderTextAlignment {get; set;}
+        public TextAlignment HeaderTextAlignment { get; set; }
 
     }
 
-        public class AccordionButton : Button
+    public class AccordionButton : Button
+    {
+        #region Private Variables
+        bool mExpand = false;
+        #endregion
+        public AccordionButton()
         {
-            #region Private Variables
-            bool mExpand = false;
-            #endregion
-            public AccordionButton()
-            {
-                HorizontalOptions = LayoutOptions.FillAndExpand;
-                BorderColor = Color.Black;
-                BorderRadius = 5;
-                BorderWidth = 0;
-                
-            }
-            #region Properties
-            public bool Expand
-            {
-                get { return mExpand; }
-                set { mExpand = value; }
-            }
-            public ContentView AssosiatedContent
-            { get; set; }
+            HorizontalOptions = LayoutOptions.FillAndExpand;
+            BorderColor = Color.Black;
+            BorderRadius = 5;
+            BorderWidth = 0;
+
+        }
+        #region Properties
+        public bool Expand
+        {
+            get { return mExpand; }
+            set { mExpand = value; }
+        }
+        public ContentView AssosiatedContent
+        { get; set; }
         #endregion
     }
 
-        public class Accordion : ContentView
+    public class Accordion : ContentView
+    {
+        #region Private Variables
+        List<AccordionSource> mDataSource;
+        bool mFirstExpaned = false;
+        StackLayout mMainLayout;
+        #endregion
+
+        public Accordion()
         {
-            #region Private Variables
-            List<AccordionSource> mDataSource;
-            bool mFirstExpaned = false;
-            StackLayout mMainLayout;
-            #endregion
-
-            public Accordion()
-            {
-                var mMainLayout = new StackLayout();
-                Content = mMainLayout;
+            var mMainLayout = new StackLayout();
+            Content = mMainLayout;
         }
-            public Accordion(List<AccordionSource> aSource)
-            {
-                mDataSource = aSource;
-                DataBind();
-            }
-            #region Properties
-            public List<AccordionSource> DataSource
-            {
-                get { return mDataSource; }
-                set { mDataSource = value; }
-            }
-            public bool FirstExpaned
-            {
-                get { return mFirstExpaned; }
-                set { mFirstExpaned = value; }
-            }
-            #endregion
+        public Accordion(List<AccordionSource> aSource)
+        {
+            mDataSource = aSource;
+            DataBind();
+        }
+        #region Properties
+        public List<AccordionSource> DataSource
+        {
+            get { return mDataSource; }
+            set { mDataSource = value; }
+        }
+        public bool FirstExpaned
+        {
+            get { return mFirstExpaned; }
+            set { mFirstExpaned = value; }
+        }
+        #endregion
 
-            public void DataBind()
+        public void DataBind()
+        {
+            var vMainLayout = new StackLayout();
+            var vFirst = true;
+            if (mDataSource != null)
             {
-                var vMainLayout = new StackLayout();
-                var vFirst = true;
-                if (mDataSource != null)
+                foreach (var vSingleItem in mDataSource)
                 {
-                    foreach (var vSingleItem in mDataSource)
+
+                    var vHeaderButton = new AccordionButton()
                     {
+                        Text = vSingleItem.HeaderText,
+                        TextColor = vSingleItem.HeaderTextColor,
+                        BackgroundColor = vSingleItem.HeaderBackGroundColor,
 
-                        var vHeaderButton = new AccordionButton()
-                        {
-                            Text = vSingleItem.HeaderText,
-                            TextColor = vSingleItem.HeaderTextColor,
-                            BackgroundColor = vSingleItem.HeaderBackGroundColor,
+                    };
 
-                        };
-
-                        var vAccordionContent = new ContentView()
-                        {
-                            Content = vSingleItem.ContentItems,
-                            IsVisible = false
-                        };
-                        if (vFirst)
-                        {
-                            vHeaderButton.Expand = mFirstExpaned;
-                            vAccordionContent.IsVisible = mFirstExpaned;
-                            vFirst = false;
-                        }
-                        vHeaderButton.AssosiatedContent = vAccordionContent; 
-                        vHeaderButton.Clicked += OnAccordionButtonClicked;
-                        vMainLayout.Children.Add(vHeaderButton);
-                        vMainLayout.Children.Add(vAccordionContent);
+                    var vAccordionContent = new ContentView()
+                    {
+                        Content = vSingleItem.ContentItems,
+                        IsVisible = false
+                    };
+                    if (vFirst)
+                    {
+                        vHeaderButton.Expand = mFirstExpaned;
+                        vAccordionContent.IsVisible = mFirstExpaned;
+                        vFirst = false;
                     }
+                    vHeaderButton.AssosiatedContent = vAccordionContent;
+                    vHeaderButton.Clicked += OnAccordionButtonClicked;
+                    vMainLayout.Children.Add(vHeaderButton);
+                    vMainLayout.Children.Add(vAccordionContent);
                 }
-                mMainLayout = vMainLayout;
-                Content = mMainLayout;
             }
+            mMainLayout = vMainLayout;
+            Content = mMainLayout;
+        }
 
 
         void OnAccordionButtonClicked(object sender, EventArgs args)
+        {
+            foreach (var vChildItem in mMainLayout.Children)
             {
-                foreach (var vChildItem in mMainLayout.Children)
+                if (vChildItem.GetType() == typeof(ContentView))
+                    vChildItem.IsVisible = false;
+                if (vChildItem.GetType() == typeof(AccordionButton))
                 {
-                    if (vChildItem.GetType() == typeof(ContentView))
-                        vChildItem.IsVisible = false;
-                    if (vChildItem.GetType() == typeof(AccordionButton))
-                    {
-                        var vButton = (AccordionButton)vChildItem;
-                        vButton.Expand = false;
-                    }
+                    var vButton = (AccordionButton)vChildItem;
+                    vButton.Expand = false;
                 }
-                var vSenderButton = (AccordionButton)sender;
-
-                if (vSenderButton.Expand)
-                {
-                    vSenderButton.Expand = false;
-                }
-                else vSenderButton.Expand = true;
-                vSenderButton.AssosiatedContent.IsVisible = vSenderButton.Expand;
             }
+            var vSenderButton = (AccordionButton)sender;
+
+            if (vSenderButton.Expand)
+            {
+                vSenderButton.Expand = false;
+            }
+            else vSenderButton.Expand = true;
+            vSenderButton.AssosiatedContent.IsVisible = vSenderButton.Expand;
         }
     }
+}
 
