@@ -205,6 +205,15 @@ namespace Moma.Droid
             return content;
 
         }
+
+        [JavascriptInterface]
+        [Export]
+        public string getBaseUrl()
+        {
+            var userSettings = new AndroidUserSettings();
+            return userSettings.GetUserSetting("serverUrl");
+
+        }
     }
 }
 

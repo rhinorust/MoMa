@@ -137,7 +137,8 @@ function removeNEWTagFor(title, container) {
 }
 
 function imagef(fileName) {
-    return '<img src="'+fileName+'">';
+    var baseUrl = jsBridge.getBaseUrl();
+    return '<img src="'+baseUrl + fileName+'">';
 }
 
 function textf(fileName) {
