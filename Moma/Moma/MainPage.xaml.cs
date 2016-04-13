@@ -144,7 +144,12 @@ namespace Moma
 
             if (item != null)
             {
-                if (item.Title.Equals(AppLanguageResource.Directions) && networkStatus)
+                if (item.Title.Equals(AppLanguageResource.Help)){
+                    masterPage.ListView.SelectedItem = null;
+                    IsPresented = false;
+                    MainPage.Current.playVideo("helpvideo", "Moma instructions", true);
+                }
+                else if (item.Title.Equals(AppLanguageResource.Directions) && networkStatus)
                 {
                     var answer = await DisplayAlert("Exit", "Do you wan't to exit the App?", "Yes", "No");
                     if (answer == true)
