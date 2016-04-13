@@ -29,8 +29,8 @@ function iBeaconDiscovered(minor, major) {
         // Find the right language title
         var poiTitle = "";
         for (var i = 0; i < poi.title.length; i++) {
-            if (poi.title[i].language.toLowerCase() === curLanguage)
-                poiTitle = poi.title[i].title;
+            if (poi.title.language.toLowerCase() === curLanguage)
+                poiTitle = poi.title[i];
         }
         addToMessages({ type: "iBeacon", title: poiTitle, minor: minor, major: major });
         showIBeacon(minor, major); // Show the IBeacon's information
@@ -40,7 +40,8 @@ function iBeaconDiscovered(minor, major) {
 // returns the storylinePoint poi instance corresponding
 // to the given minor,major,storylineID
 function findPOIWithIBeacon(minor, major) {
-    if (storylineSelectedID == null) return -1; // Justin's variable
+    var storylineID = storylineSelectedID; // Justin's variable
+    if (storylineID == null) return -1;
 
     var pois = DATA.node.poi;
     // Find the POI with the given minor and major and
@@ -51,7 +52,7 @@ function findPOIWithIBeacon(minor, major) {
         if (iBeacon.minor === minor && iBeacon.major === major) {
             // Now we have to find the right storypoint for that iBeacon
             for (var j = 0; j < poi.storyPoint.length; j++) {
-                if ((poi.storyPoint[j].storylineID + "") === storylineSelectedID)
+                if (poi.storyPoint[j].storylineID === storylineID)
                     return poi.storyPoint[j];
             }
         }
@@ -72,15 +73,15 @@ function showIBeacon(minor, major) {
         // Find the right language title
         var poiTitle = "";
         for (var i = 0; i < poi.title.length; i++) {
-            if (poi.title[i].language.toLowerCase() === curLanguage)
-                poiTitle = poi.title[i].title;
+            if (poi.title.language.toLowerCase() === curLanguage)
+                poiTitle = poi.title[i];
         }
 
         // Find the right language description
         var poiDescription = "";
         for (var i = 0; i < poi.description.length; i++) {
-            if (poi.description[i].language.toLowerCase() === curLanguage)
-                poiDescription = poi.description[i].description;
+            if (poi.description.language.toLowerCase() === curLanguage)
+                poiDescription = poi.description[i];
         }
 
         // The media elements
@@ -93,8 +94,7 @@ function showIBeacon(minor, major) {
             for (var i = 0; i < audio.length; i++) {
                 if (audio[i].language.toLowerCase() === curLanguage) {
                     // Only play one. Doesn't make sense to play any more at the same time
-                    var newPath = contentAudioPath(audio[i].path);
-                    jsBridge.playAudioFile(newPath);
+                    jsBridge.playAudioFile(audio[i].path);
                     break;
                 }
             }
@@ -106,18 +106,17 @@ function showIBeacon(minor, major) {
 
             for (var i = 0; i < videos.length; i++) {
                 if (videos[i].language.toLowerCase() === curLanguage) {
-                    var newPath = rawVideoPath(videos[i].path);
                     if (firstVideoStarted === false) {
-                        jsBridge.playVideo(newPath, videos[i].caption, true);
+                        jsBridge.playVideo(videos[i].path, videos[i].caption, true);
                         firstVideoStarted = true;
                     }
                     else
-                        jsBridge.playVideo(newPath, videos[i].caption, false);
+                        jsBridge.playVideo(videos[i].path, videos[i].caption, false);
                 }
             }
         }
 
-        if (images.length > 0 || poiDescription.length > 0) {
+        if (images.length > 0 || poiDescription.length() > 0) {
             var content = "";
 
             // if there are images or text we will show the poi information box
@@ -145,16 +144,6 @@ function showIBeacon(minor, major) {
         // Remove it's new tag from the iBeacons' list if it exists
         removeNEWTagFor(poiTitle, '#iBeacons');
     }
-}
-
-// Converts f.x. '/media_files/N1E.mp4' to 'n1e'
-function rawVideoPath(jsonVideoPath) {
-    return jsonVideoPath.substring(13, jsonVideoPath.length - 4).toLowerCase();
-}
-
-// Converts f.x. '/media_files/N2E.m4a' to 'N2E.m4a'
-function contentAudioPath(jsonAudioPath) {
-    return "audio/" + jsonAudioPath.substring(13, jsonAudioPath.length);
 }
 
 function showQRCode(title, data) {

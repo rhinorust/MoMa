@@ -234,37 +234,6 @@
 
 ➥ Ankunft in 1001 Rue Lenoir auf der rechten</value>
   </data>
-  <data name="Address" xml:space="preserve">
-    <value>1001, Lenoir St., local E-206. Montreal,Quebec, H4C 2Z6</value>
-  </data>
-  <data name="AddressTitle" xml:space="preserve">
-    <value>Adres</value>
-  </data>
-  <data name="OpeningHours" xml:space="preserve">
-    <value>Vrijdag 14 pm tot 17 pm
-Zaterdag 14 pm tot 17 pm
-Zondag 14 pm tot 17 pm
-Woensdag ( alleen op afspraak)
-Groepen op afspraak op elk moment</value>
-  </data>
-  <data name="OpeningHoursTitle" xml:space="preserve">
-    <value>Kantooruren</value>
-  </data>
-  <data name="PhoneTitle" xml:space="preserve">
-    <value>Telefoon</value>
-  </data>
-  <data name="Pricing" xml:space="preserve">
-    <value>Volwassene: $ 5
-Senioren en studenten : $ 3
-Familie : $ 10
-Groepen ( 5+ ) : $ 3 per persoon</value>
-  </data>
-  <data name="PricingTitle" xml:space="preserve">
-    <value>Prijsstelling</value>
-  </data>
-  <data name="WebsiteTitle" xml:space="preserve">
-    <value>Website</value>
-  </data>
   <data name="ActiveQuestion" xml:space="preserve">
     <value>Er is momenteel een actieve verhaallijn , bent u zeker dat u een nieuwe op te starten ?</value>
   </data>

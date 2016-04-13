@@ -1,12 +1,10 @@
-﻿var qrCodeNum = 1;
-
-function qrCodeScanBtn() {
+﻿function qrCodeScanBtn() {
     jsBridge.ScanQRCode();
 }
 function showQRText(text) {
     if (text != "") {
 
-        var boxTitle = "QR CODE " +qrCodeNum;
+        var boxTitle = "QR CODE";
         var boxContent = text;
 
         poiIBoxTitle.text(boxTitle);
@@ -14,11 +12,8 @@ function showQRText(text) {
         poiIBoxContent.append(boxContent);
 
         addToMessages({ type: 'QRCode', title: boxTitle, data: boxContent });
-        jsBridge.messageWasRead(boxTitle);
         poiIB.css('visibility', 'visible');
         messageBox.css('visibility', 'hidden');
-
-        qrCodeNum++;
     }
 }
 
