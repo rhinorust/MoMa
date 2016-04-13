@@ -11,6 +11,7 @@ namespace Moma
     public partial class HelpPage : ContentPage
     {
         Boolean alreadyPlayed;
+
         public HelpPage()
         {
             InitializeComponent();
@@ -20,12 +21,13 @@ namespace Moma
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            MainPage.Current.showMessageToolbarIcon(false);
+
             if (!alreadyPlayed)
             {
-                MainPage.Current.playVideo("helpvideo", "Moma instructions", true);
+                MainPage.Current.playVideo("helpvideo", "Moma Instructions", true);
             }
             alreadyPlayed = true;
         }
-    
     }
 }

@@ -132,6 +132,7 @@ namespace Moma
 
                         // For the storyline to update locations
                         map.CallJs("currentPOI('" + iBeacon.Minor + "','" + iBeacon.Major + "');");
+                        System.Diagnostics.Debug.WriteLine("currentPOI(" + iBeacon.Minor + "," + iBeacon.Major + ")");
                     }
                 });
             }

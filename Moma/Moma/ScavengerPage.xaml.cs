@@ -15,5 +15,11 @@ namespace Moma
             InitializeComponent();
             Title = AppLanguageResource.Scavenger;
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            MainPage.Current.showMessageToolbarIcon(false);
+        }
     }
 }

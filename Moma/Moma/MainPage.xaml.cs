@@ -17,6 +17,7 @@ namespace Moma
 
         // The toolbar item that represents the messages
         private ToolbarItem messagesToolbarItem;
+        private bool messagesToolbarItemVisible = false;
 
         // How many messages are unread
         private Dictionary<string, bool> unreadMessages;
@@ -32,7 +33,6 @@ namespace Moma
 
             // Messages toolbar item
             messagesToolbarItem = new ToolbarItem("Messages", "messages_none.png", showHideMessages);
-            ToolbarItems.Add(messagesToolbarItem);
             unreadMessages = new Dictionary<string, bool>();
 
             if (tourType == "guided")
@@ -52,6 +52,26 @@ namespace Moma
         {
             var jsInterface = DependencyService.Get<IJavascriptInterface>();
             jsInterface.CallJs("showHideMessages();");
+        }
+
+        // Show/Hide messageToolbarIcon
+        public void showMessageToolbarIcon(bool visible)
+        {
+            if (visible && !this.messagesToolbarItemVisible)
+            {
+                ToolbarItems.Add(messagesToolbarItem);
+                this.messagesToolbarItemVisible = true;
+            }
+            else
+            {
+                if (this.messagesToolbarItemVisible)
+                {
+                    ToolbarItems.Remove(messagesToolbarItem);
+                    this.messagesToolbarItemVisible = false;
+                }
+
+            }
+
         }
 
         // Changing the icon of the messages' toolbar icon
@@ -112,7 +132,7 @@ namespace Moma
 
         // Used for popping of finished videos off the stack if there are items in the playQueue
         public void videoEnded(string videoName)
-        {            
+        {
             Page currentPage = Detail.Navigation.NavigationStack.Last<Page>();
             if (currentPage is AndroidVideoPlayer)
             {

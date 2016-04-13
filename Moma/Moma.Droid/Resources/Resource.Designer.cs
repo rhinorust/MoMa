@@ -5594,7 +5594,7 @@ namespace App1.Droid
 		{
 			
 			// aapt resource value: 0x7f050000
-			public const int intro = 2131034112;
+			public const int helpvideo = 2131034112;
 			
 			// aapt resource value: 0x7f050001
 			public const int j1e = 2131034113;
@@ -5613,18 +5613,6 @@ namespace App1.Droid
 			
 			// aapt resource value: 0x7f050006
 			public const int n3e = 2131034118;
-			
-			// aapt resource value: 0x7f050007
-			public const int point1 = 2131034119;
-			
-			// aapt resource value: 0x7f050008
-			public const int point2 = 2131034120;
-			
-			// aapt resource value: 0x7f050009
-			public const int point3 = 2131034121;
-			
-			// aapt resource value: 0x7f05000a
-			public const int point4 = 2131034122;
 			
 			static Raw()
 			{
