@@ -3229,13 +3229,13 @@
     <AndroidAsset Include="Assets\Content\floor5\4\4\8.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\audio\j3e.m4a" />
+    <AndroidAsset Include="Assets\Content\audio\J3E.m4a" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\audio\j3f.m4a" />
+    <AndroidAsset Include="Assets\Content\audio\J3F.m4a" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\audio\n2e.m4a" />
+    <AndroidAsset Include="Assets\Content\audio\N2E.m4a" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\raw\j1e.mp4" />

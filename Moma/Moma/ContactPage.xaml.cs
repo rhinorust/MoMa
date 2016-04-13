@@ -156,7 +156,11 @@ namespace Moma
             return Result;
 
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            MainPage.Current.showMessageToolbarIcon(false);
+        }
     }
-
-
 }
