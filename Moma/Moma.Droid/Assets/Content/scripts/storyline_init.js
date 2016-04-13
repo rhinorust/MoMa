@@ -25,6 +25,7 @@ function init() {
 function previewStoryline(storylineID) {
     localStorage.setItem("previewStoryline", storylineID);
     location.replace("storyline_index.html");
+    jsBridge.showMessageToolbarIcon(true);
 }
 
 function startStoryline(storylineID) {
@@ -35,10 +36,12 @@ function startStoryline(storylineID) {
     else {
         localStorage.setItem("currentStoryline", storylineID);
         window.location.replace("storyline_index.html");
+        jsBridge.showMessageToolbarIcon(true);
     }
 }
 
 function resumeStoryline(storylineID) {
     localStorage.removeItem("previewStoryline");
     window.location.replace("storyline_index.html");
+    jsBridge.showMessageToolbarIcon(true);
 }
