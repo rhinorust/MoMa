@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,88 +15,148 @@ namespace Moma
         {
             InitializeComponent();
             Title = AppLanguageResource.Contact;
-            Address.Text = AppLanguageResource.Address;
-            Pricing.Text = AppLanguageResource.Pricing;
-            OpeningHours.Text = AppLanguageResource.OpeningHours;
-            AddressTitle.Text = AppLanguageResource.AddressTitle;
-            PricingTitle.Text = AppLanguageResource.PricingTitle;
-            OHTitle.Text = AppLanguageResource.OpeningHoursTitle;
-            Phone.Text = AppLanguageResource.Phone;
-            PhoneTitle.Text = AppLanguageResource.PhoneTitle;
-            WebsiteTitle.Text = AppLanguageResource.WebsiteTitle;
-            Website.Text = AppLanguageResource.Website;
-
+            Contact.DataSource = GetSampleData();
+            Contact.DataBind();
         }
 
-
-
-        public async void OnPhoneTapped(object sender, EventArgs e)
+        public List<AccordionSource> GetSampleData()
         {
-            if (await this.DisplayAlert(
-                "Exit",
-                "Are you sure you want to leave the application to call?",
-                "Yes",
-                "No"))
+            var Result = new List<AccordionSource>();
+
+            #region
+
+            var OpeningHoursLayout = new StackLayout()
             {
-                var dialer = DependencyService.Get<IDialer>();
-                if (dialer != null)
+                Padding = new Thickness(0, 0, 0, 0),
+                Children =
                 {
-                    dialer.Dial("514-932-9663");
+                    new Label
+                    {
+                        Text = AppLanguageResource.OpeningHours,
+                        TextColor = Color.FromHex("#001533"),
+                        FontSize = 14,
+                        HorizontalTextAlignment = TextAlignment.Center
+                    },
                 }
-            }
+            };
+
+            #endregion
+
+            #region
+
+            var PricingLayout = new StackLayout()
+            {
+                Padding = new Thickness(0, 0, 0, 0),
+                Children =
+                {
+                    new Label
+                    {
+                        Text = AppLanguageResource.Pricing,
+                        TextColor = Color.FromHex("#001533"),
+                        FontSize = 14,
+                        HorizontalTextAlignment = TextAlignment.Center
+                    }
+                }
+            };
+
+            var AddressLayout = new StackLayout()
+            {
+                Padding = new Thickness(0, 0, 0, 0),
+                Children =
+                {
+                    new Label
+                    {
+                        Text = AppLanguageResource.Address,
+                        TextColor = Color.FromHex("#001533"),
+                        FontSize = 14,
+                        HorizontalTextAlignment = TextAlignment.Center
+                    },
+                }
+            };
+
+            #endregion
+
+            #region
+
+            var PhoneLayout = new StackLayout()
+            {
+                Padding = new Thickness(0, 0, 0, 0),
+                Children =
+                {
+                    new Label
+                    {
+                        Text = AppLanguageResource.Phone,
+                        TextColor = Color.FromHex("#001533"),
+                        FontSize = 14,
+                        HorizontalTextAlignment = TextAlignment.Center
+                    }
         }
+            };
 
-        public async void OnWebsiteTapped(object sender, EventArgs e)
-        {
-            if (await this.DisplayAlert(
-                "Exit",
-                "Are you sure you want to leave the application to open the website?",
-                "Yes",
-                "No"))
+            var WebsiteLayout = new StackLayout()
             {
-                var url = DependencyService.Get<IWebPageOpener>();
-                if (url != null)
+                Padding = new Thickness(0, 0, 0, 0),
+                Children =
                 {
-                    url.OpenBrowser("http://moeb.ca/en");
+                    new Label
+                    {
+                        Text = AppLanguageResource.Website,
+                        TextColor = Color.FromHex("#001533"),
+                        FontSize = 14,
+                        HorizontalTextAlignment = TextAlignment.Center
+                    },
                 }
-            }
-        }
+            };
 
-        public async void DirectionTapped(object sender, EventArgs e)
-        {
-            var networkConnection = DependencyService.Get<INetworkConnection>();
-            networkConnection.CheckNetworkConnection();
-            var networkStatus = networkConnection.IsConnected;
+            #endregion
 
 
-            if (networkStatus)
+            var PhoneInfo = new AccordionSource()
             {
-                var answer = await DisplayAlert("Exit", "Are you sure you want to leave the application?", "Yes", "No");
-                if (answer == true)
-                {
-                    Uri uri =
-                        new Uri(
-                            "https://www.google.ca/maps/place/1001+Rue+Lenoir,+Montr%C3%A9al,+QC+H4C+2Z6/@45.4766472,-73.5924109,17z/data=!4m2!3m1!1s0x4cc9109f3e1c689d:0xfe5e29cc968bfa44");
-                    Device.OpenUri(uri);
-                }
-                if (answer == false)
-                {
-                    await Navigation.PushAsync(new DirectionsPage());
-                }
-
-            }
-            else
+                HeaderText = AppLanguageResource.PhoneTitle,
+                HeaderTextColor = Color.White,
+                HeaderBackGroundColor = Color.FromHex("#001533"),
+                ContentItems = PhoneLayout,
+                HeaderTextAlignment = TextAlignment.Start,
+            };
+            Result.Add(PhoneInfo);
+            var WebsiteInfo = new AccordionSource()
             {
-                await Navigation.PushAsync(new DirectionsPage());
-            }
+                HeaderText = AppLanguageResource.WebsiteTitle,
+                HeaderTextColor = Color.White,
+                HeaderBackGroundColor = Color.FromHex("#001533"),
+                ContentItems = WebsiteLayout
+            };
+            Result.Add(WebsiteInfo);
+            var OpeningInfo = new AccordionSource()
+            {
+                HeaderText = AppLanguageResource.OpeningHoursTitle,
+                HeaderTextColor = Color.White,
+                HeaderBackGroundColor = Color.FromHex("#001533"),
+                ContentItems = OpeningHoursLayout,
+                HeaderTextAlignment = TextAlignment.Start,
+            };
+            Result.Add(OpeningInfo);
+            var PricingInfo = new AccordionSource()
+            {
+                HeaderText = AppLanguageResource.PricingTitle,
+                HeaderTextColor = Color.White,
+                HeaderBackGroundColor = Color.FromHex("#001533"),
+                ContentItems = PricingLayout
+            };
+            Result.Add(PricingInfo);
+            var AddressInfo = new AccordionSource()
+            {
+                HeaderText = AppLanguageResource.AddressTitle,
+                HeaderTextColor = Color.White,
+                HeaderBackGroundColor = Color.FromHex("#001533"),
+                ContentItems = AddressLayout
+            };
+            Result.Add(AddressInfo);
+            return Result;
 
-        }
-        
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            MainPage.Current.showMessageToolbarIcon(false);
         }
     }
-}
 
+
+}
