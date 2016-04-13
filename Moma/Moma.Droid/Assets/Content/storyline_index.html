@@ -9,37 +9,87 @@
     <script src="scripts/lib/jquery-1.12.0.min.js"></script>
     
     <link rel="stylesheet" href="styles/storylines.css" />
-    <link rel="stylesheet" type="text/css" href="styles/poiInformationBox.css">
+    <link rel="stylesheet" type="text/css" href="styles/informationBox.css">
     <script src="data/data_local.js"></script>
+    <script src="data/FinalDemoJSON.js"></script>
     <script src="scripts/objects.js"></script>
+    <script src="scripts/messages.js"></script>
+    <script src="scripts/poiInformation.js"></script>
+    <script src="scripts/shortMessage.js"></script>
     <script src="scripts/storyline_map.js"></script>
-    <script src="scripts/poiInformationBox.js"></script>
     <script src="scripts/qrCodeScanning.js"></script>
+    <script src="scripts/translation.js"></script>
+    <script src="scripts/localization.js"></script>
 
+    <script>
+        //var currentLanguage = "fr";
+        var currentLanguage = jsBridge.getLanguage();
+        </script>
 </head>
 <body onload="displayStoryline()">
     <p id="previewStoryline"></p>
+    <p id="currentStoryline"></p>
     <div id="map">
     </div>
     <div style="text-align:center;">
-        <button id="scanBtn" onclick="qrCodeScanBtn()">Scan</button>
+        <button id="scanBtn" onclick="qrCodeScanBtn()"></button>
         <button id="backBtn" onclick="endPreview()"><</button>
+        <button id="endBtn" onclick="endStoryline()"></button>
     </div>
     <div style="text-align:center;">
-        <button id="starBtn" onclick="startStoryline()">Start</button>
-        <button id="nextBtn" onclick="simulateBeacon()" style="margin-left:115px">Simulate Beacon</button>
+        <button id="starBtn" onclick="startStoryline()"></button>
+        <!--<button id="nextBtn" onclick="advanceStoryLine()" style="margin-left:115px">Sim. Beacon</button>-->
     </div>
-    <div id="POI_InformationBox">
+    <div class="informationBox" id="POI_Information">
         <div id="body">
             <header>
                 <div id="title">
                     <h1>Title</h1>
                 </div>
                 <div id="closeButton">
-                    <img id="close" src="images/closePOIIB.png">
+                    <img id="close" src="images/boxCloseButton.png">
                 </div>
             </header>
             <section id="content"></section>
+        </div>
+    </div>
+    <!--<div onclick="iBeaconDiscovered('57400', '26793');" style="position:absolute;bottom:50px;left:50px;width:100px;height:100px;background-color:black;z-index:100000;"></div>
+    <div onclick="iBeaconDiscovered('372', '26515');" style="position:absolute;bottom:50px;right:50px;width:100px;height:100px;background-color:blue;z-index:100000;"></div>-->
+    <div class="informationBox" id="messages">
+        <div id="body">
+            <header>
+                <div id="title">
+                    <h1>Title</h1>
+                </div>
+                <div id="closeButton">
+                    <img id="close" src="images/boxCloseButton.png">
+                </div>
+            </header>
+            <section id="content">
+                <h3 style="padding-bottom:0;margin-bottom:0;">Points of interest</h3>
+                <div id="iBeacons"><ul><p>No points of interest have been discovered yet.</p></ul></div>
+                <h3 style="padding-bottom:0;margin-bottom:0;">QRCodes</h3>
+                <div id="QRCodes"><ul><p>No QRCodes have been scanned yet.</p></ul></div>
+            </section>
+        </div>
+    </div>
+    <div class="informationBox" id="shortMessageBox">
+        <div id="body">
+            <header>
+                <div id="title">
+                    <h1>Short message</h1>
+                </div>
+                <div id="closeButton">
+                    <img id="close" src="images/boxCloseButton.png">
+                </div>
+            </header>
+            <section id="content">
+                <div id="text"></div>
+                <div id="buttons">
+                    <button id="yesButton" onclick="yesButtonClick()"></button>
+                    <button id="noButton"  onclick="noButtonClick()"></button>
+                </div>
+            </section>
         </div>
     </div>
 </body>

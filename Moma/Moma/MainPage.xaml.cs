@@ -10,14 +10,33 @@ namespace Moma
 {
     public partial class MainPage : MasterDetailPage
     {
+        public static MainPage Current { get; set; }
+
+        // For queueing videos to be played
+        List<string[]> playQueue;
+
+        // The toolbar item that represents the messages
+        private ToolbarItem messagesToolbarItem;
+        private bool messagesToolbarItemVisible = false;
+
+        // How many messages are unread
+        private Dictionary<string, bool> unreadMessages;
+
         public MainPage()
         {
             var settingsDependency = DependencyService.Get<IUserSettings>();
             string tourType = settingsDependency.GetUserSetting("tourType");
 
+            playQueue = new List<string[]>();
+
             InitializeComponent();
 
-            if (tourType == "guided"){
+            // Messages toolbar item
+            messagesToolbarItem = new ToolbarItem("Messages", "messages_none.png", showHideMessages);
+            unreadMessages = new Dictionary<string, bool>();
+
+            if (tourType == "guided")
+            {
                 Detail = new NavigationPage(new StorylinePage()) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
             }
             else {
@@ -26,6 +45,110 @@ namespace Moma
 
             masterPage.ListView.ItemSelected += OnItemSelected;
 
+            Current = this;
+        }
+
+        public void showHideMessages()
+        {
+            var jsInterface = DependencyService.Get<IJavascriptInterface>();
+            jsInterface.CallJs("showHideMessages();");
+        }
+
+        // Show/Hide messageToolbarIcon
+        public void showMessageToolbarIcon(bool visible)
+        {
+            if (visible && !this.messagesToolbarItemVisible)
+            {
+                ToolbarItems.Add(messagesToolbarItem);
+                this.messagesToolbarItemVisible = true;
+            }
+            else
+            {
+                if (this.messagesToolbarItemVisible)
+                {
+                    ToolbarItems.Remove(messagesToolbarItem);
+                    this.messagesToolbarItemVisible = false;
+                }
+
+            }
+
+        }
+
+        // Changing the icon of the messages' toolbar icon
+        private void setIconForMessages(string picture)
+        {
+            messagesToolbarItem.Icon = new FileImageSource { File = "drawable/" + picture };
+        }
+
+        // Add the message which has the message title messageTitle
+        // to the list of unread messages
+        public void messageWasAdded(string messageTitle)
+        {
+            if (!unreadMessages.ContainsKey(messageTitle))
+                unreadMessages.Add(messageTitle, false);
+            updateMessageIcon();
+        }
+
+        // Remove the message which has the message title messageTitle
+        // from the list of unread messages if it exists there
+        public void messageWasRead(string messageTitle)
+        {
+            if (unreadMessages.ContainsKey(messageTitle))
+                unreadMessages.Remove(messageTitle);
+            updateMessageIcon();
+        }
+
+        private void updateMessageIcon()
+        {
+            if (unreadMessages.Count == 0) setIconForMessages("messages_none.png");
+            if (unreadMessages.Count == 1) setIconForMessages("messages_one.png");
+            if (unreadMessages.Count == 2) setIconForMessages("messages_two.png");
+            if (unreadMessages.Count >= 3) setIconForMessages("messages_plus.png");
+        }
+
+        // Called by javascript when a video iBeacon is discovered
+        // videoName is filename inside Resources/raw, poiTitle the poi's title to show on scren
+        // and if interrupt = true the video plays right away, otherwise it waits for currently
+        // playing video to finish playing
+        public void playVideo(string videoName, string poiTitle, bool interrupt)
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                if (interrupt)
+                {
+                    // If there's already a video page showing, pop it off the stack before pushing the new one
+                    if (Detail.Navigation.NavigationStack.Last<Page>() is AndroidVideoPlayer)
+                        Detail.Navigation.PopAsync();
+                    // Push the new one
+                    Detail.Navigation.PushAsync(new AndroidVideoPlayer(videoName, poiTitle));
+                }
+                else
+                {
+                    // Add the video to the playqueue
+                    playQueue.Add(new string[] { videoName, poiTitle });
+                }
+            });
+        }
+
+        // Used for popping of finished videos off the stack if there are items in the playQueue
+        public void videoEnded(string videoName)
+        {
+            Page currentPage = Detail.Navigation.NavigationStack.Last<Page>();
+            if (currentPage is AndroidVideoPlayer)
+            {
+                if (((AndroidVideoPlayer)currentPage).getVideoName().Equals(videoName))
+                {
+                    Detail.Navigation.PopAsync(); // Get rid of it
+                }
+            }
+
+            if (playQueue.Count != 0)
+            {
+                // Play the next video on the queue
+                playVideo(playQueue.First<string[]>()[0], playQueue.First<string[]>()[1], true);
+                // Remove it from the playqueue
+                playQueue.RemoveAt(0);
+            }
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)

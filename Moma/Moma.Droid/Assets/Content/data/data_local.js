@@ -2,7 +2,8 @@
 //POT ids: 1---
 //Edges: floor transition: floor:0, distance:0
 
-var DATA = {
+var DATA;
+    bla = {
     "floorPlan": [
       {
           "floorID": 1,
@@ -787,13 +788,11 @@ var DATA = {
                 },
                 "media": {
                     "image": [],
-                    "video": [
-                      {
-                          "path": "videos/MOEB_POINT_1_-_Small.mov",
-                          "language": "EN",
-                          "caption": "None"
-                      }
-                    ],
+                    "video": [{
+                        "path": "point1",
+                        "language": "EN",
+                        "caption": "None"
+                    }],
                     "audio": []
                 },
                 "storyPoint": [
@@ -826,13 +825,11 @@ var DATA = {
                 },
                 "media": {
                     "image": [],
-                    "video": [
-                      {
-                          "path": "videos/MOEB_POINT_2_-_Small.mov",
-                          "language": "EN",
-                          "caption": "None"
-                      }
-                    ],
+                    "video": [{
+                        "path": "point2",
+                        "language": "EN",
+                        "caption": "None"
+                    }],
                     "audio": []
                 },
                 "storyPoint": [
@@ -865,13 +862,11 @@ var DATA = {
                 },
                 "media": {
                     "image": [],
-                    "video": [
-                      {
-                          "path": "videos/MOEB_POINT_3_-_Small.mov",
-                          "language": "EN",
-                          "caption": "None"
-                      }
-                    ],
+                    "video": [{
+                        "path": "point3",
+                        "language": "EN",
+                        "caption": "None"
+                    }],
                     "audio": []
                 },
                 "storyPoint": [
@@ -904,20 +899,8 @@ var DATA = {
                 },
                 "media": {
                     "image": [],
-                    "video": [
-                      {
-                          "path": "videos/MOEB_POINT_1_-_Small.mov",
-                          "language": "EN",
-                          "caption": "None"
-                      }
-                    ],
-                    "audio": [
-                      {
-                          "path": "audio/MOEB_POINT_4_-_Small.mp3",
-                          "language": "EN",
-                          "caption": "None"
-                      }
-                    ]
+                    "video": [],
+                    "audio": []
                 },
                 "storyPoint": [
                   {

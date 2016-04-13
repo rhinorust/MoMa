@@ -183,7 +183,7 @@
     <value>Save</value>
   </data>
   <data name="Scavenger" xml:space="preserve">
-    <value>Free Scan</value>
+    <value>Scavenger Hunt</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
@@ -264,5 +264,11 @@ Groups (5+) : 3 $ each</value>
   </data>
   <data name="WebsiteTitle" xml:space="preserve">
     <value>Website</value>
+  </data>
+  <data name="ActiveQuestion" xml:space="preserve">
+    <value>There is currently an active storyline, are you sure you want to start a new one?</value>
+  </data>
+  <data name="ActiveStoryline" xml:space="preserve">
+    <value>Active Storyline</value>
   </data>
 </root>

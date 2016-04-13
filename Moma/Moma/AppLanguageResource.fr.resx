@@ -183,7 +183,7 @@
     <value>Enregistrer</value>
   </data>
   <data name="Scavenger" xml:space="preserve">
-    <value>Cherche et trouve</value>
+    <value>Chasse Au Trésor</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Paramètres</value>
@@ -261,5 +261,11 @@ Groupes (5+): 3 $ par personne.</value>
   </data>
   <data name="Website" xml:space="preserve">
     <value>http://moeb.ca/fr</value>
+  </data>
+  <data name="ActiveQuestion" xml:space="preserve">
+    <value>Il est actuellement un itinéraire actif, êtes -vous sûr que vous voulez commencer une nouvelle?</value>
+  </data>
+  <data name="ActiveStoryline" xml:space="preserve">
+    <value>Itinéraire Actif</value>
   </data>
 </root>

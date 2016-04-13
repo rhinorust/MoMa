@@ -183,7 +183,7 @@
     <value>Sparen</value>
   </data>
   <data name="Scavenger" xml:space="preserve">
-    <value>Aasfresser Jagd</value>
+    <value>Schnitzeljagd</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Einstellungen</value>
@@ -264,5 +264,11 @@ Groepen ( 5+ ) : $ 3 per persoon</value>
   </data>
   <data name="WebsiteTitle" xml:space="preserve">
     <value>Website</value>
+  </data>
+  <data name="ActiveQuestion" xml:space="preserve">
+    <value>Er is momenteel een actieve verhaallijn , bent u zeker dat u een nieuwe op te starten ?</value>
+  </data>
+  <data name="ActiveStoryline" xml:space="preserve">
+    <value>Active Verhaallijn</value>
   </data>
 </root>

@@ -92,7 +92,12 @@ namespace Moma
             }
 
         }
-
-
+        
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            MainPage.Current.showMessageToolbarIcon(false);
+        }
     }
 }
+
