@@ -17,7 +17,7 @@
             <Label x:Name="PhoneTitle" FontSize="17" TextColor="#001570"/>
           </Grid>
           <Grid Padding="15,0,0,0">
-            <Label x:Name="Phone" FontSize="15"  TextColor="Gray"  />
+            <Label x:Name="Phone" FontSize="15"  TextColor="#0066ff"  />
             <Label.GestureRecognizers>
               <TapGestureRecognizer
                  Tapped="OnPhoneTapped">
@@ -28,7 +28,7 @@
             <Label x:Name="WebsiteTitle" FontSize="17" TextColor="#001570"/>
           </Grid>
           <Grid Padding="15,0,0,0" >
-            <Label x:Name="Website" FontSize="15"  TextColor="Gray" />
+            <Label x:Name="Website" FontSize="15"  TextColor="#0066ff" />
               <Label.GestureRecognizers>
               <TapGestureRecognizer
                  Tapped="OnWebsiteTapped">
@@ -51,7 +51,7 @@
             <Label x:Name="AddressTitle" FontSize="17"  TextColor="#001570"/>
           </Grid>
           <Grid Padding="15,0,0,0">
-            <Label x:Name="Address" FontSize="15" TextColor="Gray"/>
+            <Label x:Name="Address" FontSize="15" TextColor="#0066ff"/>
               <Label.GestureRecognizers>
               <TapGestureRecognizer
                  Tapped="DirectionTapped">

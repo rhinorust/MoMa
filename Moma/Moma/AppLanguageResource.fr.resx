@@ -228,4 +228,38 @@
   <data name="Destination" xml:space="preserve">
     <value>➥ Arrivée au 1001 Rue Lenoir sur le droit</value>
   </data>
+  <data name="Address" xml:space="preserve">
+    <value>1001, Lenoir St., local E-206. Montreal,Quebec, H4C 2Z6</value>
+  </data>
+  <data name="AddressTitle" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="OpeningHours" xml:space="preserve">
+    <value>Vendredi 14 h à 17 h
+Samedi 14 h à 17 h
+Dimanche 14 h à 17 h
+Mercredi ( Par rendez-vous seulement)
+Groupes sur rendez-vous à tout moment</value>
+  </data>
+  <data name="OpeningHoursTitle" xml:space="preserve">
+    <value>Heures d'ouverture</value>
+  </data>
+  <data name="PhoneTitle" xml:space="preserve">
+    <value>Téléphone</value>
+  </data>
+  <data name="Pricing" xml:space="preserve">
+    <value>Adulte : 5 $
+Aîné et étudiant : 3 $
+Famille : 10 $
+Groupes (5+): 3 $ par personne.</value>
+  </data>
+  <data name="PricingTitle" xml:space="preserve">
+    <value>Tarification</value>
+  </data>
+  <data name="WebsiteTitle" xml:space="preserve">
+    <value>Site Internet</value>
+  </data>
+  <data name="Website" xml:space="preserve">
+    <value>http://moeb.ca/fr</value>
+  </data>
 </root>

@@ -236,7 +236,7 @@ namespace Moma {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Phone : (514) 932-9663.
+        ///   Looks up a localized string similar to (514) 932-9663.
         /// </summary>
         internal static string Phone {
             get {
