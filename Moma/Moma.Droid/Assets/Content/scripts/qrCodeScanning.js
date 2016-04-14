@@ -14,7 +14,7 @@ function showQRText(text) {
         poiIBoxContent.append(boxContent);
 
         addToMessages({ type: 'QRCode', title: boxTitle, data: boxContent });
-        jsBridge.messageWasRead(boxTitle);
+       // jsBridge.messageWasRead(boxTitle);
         poiIB.css('visibility', 'visible');
         messageBox.css('visibility', 'hidden');
 
