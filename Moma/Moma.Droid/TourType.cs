@@ -44,7 +44,7 @@ using Android.App;
              storylineButton.SetTextColor(Android.Graphics.Color.Black);
              storylineButton.SetBackgroundColor(Color.ParseColor("#001533"));
              storylineButton.SetTextColor(Android.Graphics.Color.White);
-             storylineButton.TextSize = 22;
+             storylineButton.TextSize = 20;
              storylineButton.SetBackgroundDrawable(drawable);
              storylineButton.SetPadding(55, 55, 55, 55);
 
@@ -57,16 +57,29 @@ using Android.App;
              freeTourButton.TextSize = 20;
              freeTourButton.SetBackgroundDrawable(drawable);
              freeTourButton.SetPadding(55, 55, 55, 55);
- 
- 
-             storylineButton.Click += (sender, e) =>
+
+            var helpButton = new Button(this);
+            helpButton.Text = TranslationManager.GetResourceValue("Help", cultureString);
+            helpButton.TextAlignment = TextAlignment.Center;
+            helpButton.SetBackgroundColor(Color.ParseColor("#001533"));
+            helpButton.SetTextColor(Android.Graphics.Color.White);
+            helpButton.TextSize = 20;
+            helpButton.SetBackgroundDrawable(drawable);
+            helpButton.SetPadding(55, 55, 55, 55);
+
+
+
+            storylineButton.Click += (sender, e) =>
              { onClickRedirect("guided");};
              freeTourButton.Click += (sender, e) =>
              { onClickRedirect("free"); };
-             //layout.AddView(aLabel);
-             layout.AddView(storylineButton);
+            helpButton.Click += (sender, e) =>
+            { onClickRedirect("help"); };
+            //layout.AddView(aLabel);
+            layout.AddView(storylineButton);
              layout.AddView(freeTourButton);
-             SetContentView(layout);
+            layout.AddView(helpButton);
+            SetContentView(layout);
          }
          public void onClickRedirect(string tourType)
          {

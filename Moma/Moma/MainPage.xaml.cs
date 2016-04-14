@@ -37,10 +37,25 @@ namespace Moma
 
             if (tourType == "guided")
             {
-                Detail = new NavigationPage(new StorylinePage()) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
+                Detail = new NavigationPage(new StorylinePage())
+                {
+                    BarBackgroundColor = Color.FromHex("0066ff"),
+                    BackgroundColor = Color.White
+                };
             }
-            else {
-                Detail = new NavigationPage(new MapPage()) { BarBackgroundColor = Color.FromHex("0066ff"), BackgroundColor = Color.White };
+
+            else if (tourType == "free")
+            {
+                Detail = new NavigationPage(new MapPage())
+                {
+                    BarBackgroundColor = Color.FromHex("0066ff"),
+                    BackgroundColor = Color.White
+                };
+            }
+            else
+            {
+                Detail = new NavigationPage(new AndroidVideoPlayer("helpvideo", "Moma Instructions"));
+
             }
 
             masterPage.ListView.ItemSelected += OnItemSelected;
