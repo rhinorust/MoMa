@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
+using Android.Net;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
@@ -21,6 +22,7 @@ namespace Moma.Droid
     public class SplashActivity : Activity
     {
         private TextView _textView;
+        private TextView _textViewError;
         private WebClient _webClient;
         //private const string BaseUrl = "http://192.168.0.106/mapItems";
         private string _baseUrl;
@@ -37,7 +39,12 @@ namespace Moma.Droid
             _textView = new TextView(this) { Text = "0%" };
             _textView.SetTextColor(Color.Black);
             _textView.TextAlignment = TextAlignment.Center;
-            _textView.SetTextSize(ComplexUnitType.Pt, 10);
+            _textView.SetTextSize(ComplexUnitType.Pt, 8);
+
+            _textViewError = new TextView(this) { Text = "Verify network connection!" };
+            _textViewError.SetTextColor(Color.White);
+            _textViewError.TextAlignment = TextAlignment.Center;
+            _textViewError.SetTextSize(ComplexUnitType.Pt, 10);
 
             //Layouts of the items
             LinearLayout layout = new LinearLayout(this) { Orientation = Orientation.Vertical };
@@ -48,24 +55,31 @@ namespace Moma.Droid
             viewLayout.SetMargins(screenSize.WidthPixels / 2 - 100, screenSize.HeightPixels * 2 / 3, 0, 0);
             LinearLayout.LayoutParams boxLayout = new LinearLayout.LayoutParams(200, 200);
             boxLayout.SetMargins(screenSize.WidthPixels / 2 - 45, 15, 0, 0);
+            LinearLayout.LayoutParams errorLayout = new LinearLayout.LayoutParams(screenSize.WidthPixels -100, 200);
+            errorLayout.SetMargins(200, 0, 0, 0);
+
 
             //Add the views to the layout
             layout.AddView(bar, viewLayout);
             layout.AddView(_textView, boxLayout);
+            layout.AddView(_textViewError, errorLayout);
             AddContentView(layout, layoutParams);
 
-            //Setup the WebClient
-            _webClient = new WebClient { Encoding = Encoding.UTF8 };
-            SetupDownloadActions();
             //Download the files
             var task = Task.Factory.StartNew(async () =>
             {
+                //Setup the WebClient
+                _webClient = new WebClient { Encoding = Encoding.UTF8 };
+                SetupDownloadActions();
                 await LoadJson();
                 ValidateSettings();
             });
             task.Wait();
         }
 
+        /// <summary>
+        /// Validates the user settings and set defaults values if not set
+        /// </summary>
         private void ValidateSettings()
         {
             var userSettings = new AndroidUserSettings();
@@ -142,6 +156,8 @@ namespace Moma.Droid
         /// <returns></returns>
         private async Task LoadJson()
         {
+            await WaitForNetwork();
+            _textViewError.SetTextColor(Color.White);
             _fileName = "mapData.json";
             var userSettings = new AndroidUserSettings();
             _baseUrl = userSettings.GetUserSetting("serverUrl");
@@ -154,6 +170,21 @@ namespace Moma.Droid
             var url = _personalPath.CombinePaths(_baseUrl, _fileName);
             var jsonString = await _webClient.DownloadStringTaskAsync(url);
             await DeserializeJson(jsonString);
+        }
+
+        /// <summary>
+        /// Async method to wait for a network connection
+        /// </summary>
+        /// <returns></returns>
+        private async Task WaitForNetwork()
+        {
+            bool isConnected = IsNetworkEnabled();
+            while (!isConnected)
+            {
+                _textViewError.SetTextColor(Color.Red);
+                await Task.Delay(2000);
+                isConnected = IsNetworkEnabled();
+            }
         }
 
         /// <summary>
@@ -199,12 +230,25 @@ namespace Moma.Droid
         }
 
         /// <summary>
+        /// Verify if device is connected to any network
+        /// </summary>
+        /// <returns>bool if device is connected to any network</returns>
+        private bool IsNetworkEnabled()
+        {
+            ConnectivityManager connectivityManager = (ConnectivityManager)GetSystemService(ConnectivityService);
+            //Verify if user is connected to any network.
+            NetworkInfo activeConnection = connectivityManager.ActiveNetworkInfo;
+            return (activeConnection != null) && activeConnection.IsConnected;
+        }
+
+        /// <summary>
         /// Loads a media file asynchronously
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
         private async Task<byte[]> LoadFile(string filePath)
         {
+            await WaitForNetwork();
             _fileName = filePath;
             var url = _personalPath.CombinePaths(_baseUrl, filePath);
             var pathInPersonal = _personalPath.GetFilePathInPersonalFolder(filePath);
