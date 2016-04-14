@@ -17,7 +17,6 @@ namespace Moma
 
         // The toolbar item that represents the messages
         private ToolbarItem messagesToolbarItem;
-        private bool messagesToolbarItemVisible = false;
 
         // How many messages are unread
         private Dictionary<string, bool> unreadMessages;
@@ -72,21 +71,16 @@ namespace Moma
         // Show/Hide messageToolbarIcon
         public void showMessageToolbarIcon(bool visible)
         {
-            if (visible && !this.messagesToolbarItemVisible)
+            if (visible)
             {
-                ToolbarItems.Add(messagesToolbarItem);
-                this.messagesToolbarItemVisible = true;
+                if (!ToolbarItems.Contains(messagesToolbarItem))
+                    ToolbarItems.Add(messagesToolbarItem);                
             }
             else
             {
-                if (this.messagesToolbarItemVisible)
-                {
+                if (ToolbarItems.Contains(messagesToolbarItem))
                     ToolbarItems.Remove(messagesToolbarItem);
-                    this.messagesToolbarItemVisible = false;
-                }
-
             }
-
         }
 
         // Changing the icon of the messages' toolbar icon

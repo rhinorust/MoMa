@@ -9,14 +9,8 @@ function showQRText(text) {
         var boxTitle = "QR CODE " +qrCodeNum;
         var boxContent = text;
 
-        poiIBoxTitle.text(boxTitle);
-        poiIBoxContent.empty();
-        poiIBoxContent.append(boxContent);
-
         addToMessages({ type: 'QRCode', title: boxTitle, data: boxContent });
-       // jsBridge.messageWasRead(boxTitle);
-        poiIB.css('visibility', 'visible');
-        messageBox.css('visibility', 'hidden');
+        showQRCode(boxTitle, boxContent);
 
         qrCodeNum++;
     }

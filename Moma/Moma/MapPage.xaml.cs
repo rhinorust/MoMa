@@ -28,5 +28,11 @@ namespace Moma
             var jsInterface = DependencyService.Get<IJavascriptInterface>();
             jsInterface.ShowHideSearchBar();
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            MainPage.Current.showMessageToolbarIcon(true);
+        }
     }
 }

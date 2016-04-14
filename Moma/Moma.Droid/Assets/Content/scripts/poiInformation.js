@@ -16,6 +16,130 @@ $('document').ready(function () {
     //iBeaconDiscovered('54177', '9377');
 });
 
+// Called by map.js during free tour when a new iBeacon is discovered
+function freeBeaconDiscovered(minor, major) {
+    var poi = findFreePOIWithIBeacon(minor, major);
+
+    // If we found a free iBeacon
+    if (poi !== -1) {
+        // What is the current language?
+        var curLanguage = jsBridge.getLanguage();
+
+        // Find the right language title
+        var poiTitle = "";
+        for (var i = 0; i < poi.title.length; i++) {
+            if (poi.title[i].language.toLowerCase() === curLanguage)
+                poiTitle = poi.title[i].title;
+        }
+
+        addToMessages({ type: "iBeacon", title: poiTitle, minor: minor, major: major, free: true });
+        showFreeIBeacon(minor, major);
+    }
+}
+
+function showFreeIBeacon(minor, major) {
+    var poi = findFreePOIWithIBeacon(minor, major);
+
+    // If we found a free iBeacon
+    if (poi !== -1) {
+        // What is the current language?
+        var curLanguage = jsBridge.getLanguage();
+
+        // Find the right language title
+        var poiTitle = "";
+        for (var i = 0; i < poi.title.length; i++) {
+            if (poi.title[i].language.toLowerCase() === curLanguage)
+                poiTitle = poi.title[i].title;
+        }
+
+        // Find the right language description
+        var poiDescription = "";
+        for (var i = 0; i < poi.description.length; i++) {
+            if (poi.description[i].language.toLowerCase() === curLanguage)
+                poiDescription = poi.description[i].description;
+        }
+
+        // The media elements
+        var images = poi.media.image;
+        var videos = poi.media.video;
+        var audio  = poi.media.audio;
+
+        // If there is any audio, we ask C# to play it
+        if (audio.length > 0) {
+            for (var i = 0; i < audio.length; i++) {
+                if (audio[i].language.toLowerCase() === curLanguage) {
+                    // Only play one. Doesn't make sense to play any more at the same time
+                    var newPath = contentAudioPath(audio[i].path);
+                    jsBridge.playAudioFile(newPath);
+                    break;
+                }
+            }
+        }
+
+        // If there are videos, we ask C# to show them all, one after another
+        if (videos.length > 0) {
+            var firstVideoStarted = false;
+
+            for (var i = 0; i < videos.length; i++) {
+                if (videos[i].language.toLowerCase() === curLanguage) {
+                    var newPath = rawVideoPath(videos[i].path);
+                    if (firstVideoStarted === false) {
+                        jsBridge.playVideo(newPath, videos[i].caption, true);
+                        firstVideoStarted = true;
+                    }
+                    else
+                        jsBridge.playVideo(newPath, videos[i].caption, false);
+                }
+            }
+        }
+
+        if (images.length > 0 || poiDescription.length > 0) {
+            var content = "";
+
+            // if there are images or text we will show the poi information box
+            if (images.length > 0) {
+                for (var j = 0; j < images.length; j++)
+                    content += imagef(images[j].path);
+            }
+
+            content += poiDescription;
+
+            poiIBoxTitle.empty()
+            poiIBoxTitle.append(poiTitle);
+            poiIBoxContent.empty();
+            poiIBoxContent.append(content); 
+
+            // Close the message box
+            messageBox.css('visibility', 'hidden');
+
+            poiIB.css('visibility', 'visible');
+        }
+
+        // Updating the messageIcon in the C# toolbar
+        jsBridge.messageWasRead(poiTitle);
+
+        // Remove it's new tag from the iBeacons' list if it exists
+        removeNEWTagFor(poiTitle, '#iBeacons');
+    }
+}
+
+// Used for free tour
+function findFreePOIWithIBeacon(minor, major) {
+    var pois = DATA.node.poi;
+    // Find the POI with the given minor and major and
+    // return the iBeacon object if found
+    for (var i = 0; i < pois.length; i++) {
+        var poi = pois[i];
+        var iBeacon = poi.ibeacon;
+        if (iBeacon.minor === minor && iBeacon.major === major) {
+            return poi;
+        }
+    }
+
+    // If none was found
+    return -1;
+}
+
 // Tries to find the iBeacon with matching minor and major
 // and if it does, adds to the messages and displays the iBeacon's information
 function iBeaconDiscovered(minor, major) {
@@ -32,7 +156,7 @@ function iBeaconDiscovered(minor, major) {
             if (poi.title[i].language.toLowerCase() === curLanguage)
                 poiTitle = poi.title[i].title;
         }
-        addToMessages({ type: "iBeacon", title: poiTitle, minor: minor, major: major });
+        addToMessages({ type: "iBeacon", title: poiTitle, minor: minor, major: major, free: false });
         showIBeacon(minor, major); // Show the IBeacon's information
     }
 }

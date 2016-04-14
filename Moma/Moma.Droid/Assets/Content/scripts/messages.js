@@ -16,7 +16,7 @@ $('document').ready(function () {
     });
 
     // Debugging
-    //addToMessages({ type: "iBeacon", title: poiTitle, minor: minor, major: major, storylineID: storylineID });
+    //addToMessages({ type: "iBeacon", title: poiTitle, minor: minor, major: major, free: false });
     //addToMessages({ type: 'QRCode', title: 'QRCode title', data: 'QRCode data' });
     //showHideMessages();
 });
@@ -24,14 +24,19 @@ $('document').ready(function () {
 // Examples for poi:
 // poi = {type: "QRCode", title: "POI title", data: "Data included in QRCode"}
 // or
-// poi = {type: "iBeacon", title: "POI title", minor: minor, major: major} 
+// poi = {type: "iBeacon", title: "POI title", minor: minor, major: major, free: false} 
 // 
 // post: The given poi is appended as a link to the messages list
 function addToMessages(poi) {
     // What jsFunction will be fired when the link is clicked
     var jsFunction = "";
-    if (poi.type === "iBeacon")
-        jsFunction = "showIBeacon('" + poi.minor + "','" + poi.major + "');";
+    if (poi.type === "iBeacon") {
+        if (poi.free === false)
+            jsFunction = "showIBeacon('" + poi.minor + "','" + poi.major + "');";
+        else
+            jsFunction = "showFreeIBeacon('" + poi.minor + "','" + poi.major + "');";
+    }
+        
     if (poi.type === "QRCode")
         jsFunction = "showQRCode('" + poi.title + "','" + poi.data + "');";
 
