@@ -22,7 +22,7 @@
     <script src="scripts/localization.js"></script>
     <script>
         //var currentLanguage = "fr";
-        var currentLanguage = jsBridge.getLanguage();
+       var currentLanguage = jsBridge.getLanguage();
         DATA = JSON.parse(jsBridge.getJsonString());
         </script>
 </head>
@@ -35,6 +35,9 @@
         <!--<button id="scanBtn" onclick="qrCodeScanBtn()"></button>-->
         <button id="backBtn" onclick="endPreview()"><</button>
         <button id="endBtn" onclick="endStoryline()"></button>
+        <button style="float:left" onclick="currentPOI('372','26515')">0</button>
+        <button style="float:left" onclick="currentPOI('57400','26793')">2</button>
+        <button style="float:left" onclick="currentPOI('3099','60352')">4</button>
     </div>
     <div style="text-align:center;">
         <button id="starBtn" onclick="startStoryline()"></button>

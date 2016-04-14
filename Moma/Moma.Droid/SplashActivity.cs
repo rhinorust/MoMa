@@ -156,7 +156,7 @@ namespace Moma.Droid
         /// <returns></returns>
         private async Task LoadJson()
         {
-            await WaitForNetwork();
+            //await WaitForNetwork();
             _textViewError.SetTextColor(Color.White);
             _fileName = "mapData.json";
             var userSettings = new AndroidUserSettings();
@@ -248,7 +248,7 @@ namespace Moma.Droid
         /// <returns></returns>
         private async Task<byte[]> LoadFile(string filePath)
         {
-            await WaitForNetwork();
+            //await WaitForNetwork();
             _fileName = filePath;
             var url = _personalPath.CombinePaths(_baseUrl, filePath);
             var pathInPersonal = _personalPath.GetFilePathInPersonalFolder(filePath);
