@@ -5594,22 +5594,25 @@ namespace App1.Droid
 		{
 			
 			// aapt resource value: 0x7f050000
-			public const int j1e = 2131034112;
+			public const int helpvideo = 2131034112;
 			
 			// aapt resource value: 0x7f050001
-			public const int j2e = 2131034113;
+			public const int j1e = 2131034113;
 			
 			// aapt resource value: 0x7f050002
-			public const int j4e = 2131034114;
+			public const int j2e = 2131034114;
 			
 			// aapt resource value: 0x7f050003
-			public const int n1e = 2131034115;
+			public const int j4e = 2131034115;
 			
 			// aapt resource value: 0x7f050004
-			public const int n1f = 2131034116;
+			public const int n1e = 2131034116;
 			
 			// aapt resource value: 0x7f050005
-			public const int n3e = 2131034117;
+			public const int n1f = 2131034117;
+			
+			// aapt resource value: 0x7f050006
+			public const int n3e = 2131034118;
 			
 			static Raw()
 			{
