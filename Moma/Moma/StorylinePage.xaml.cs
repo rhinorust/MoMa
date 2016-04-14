@@ -20,5 +20,11 @@ namespace Moma
         {
             return await DisplayAlert(AppLanguageResource.ActiveStoryline, AppLanguageResource.ActiveQuestion, AppLanguageResource.Yes, AppLanguageResource.No);
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            MainPage.Current.showMessageToolbarIcon(true);
+        }
     }
 }

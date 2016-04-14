@@ -17,6 +17,9 @@ var mapMinZoom = 2;
 var mapMaxZoom = 5;
 var floors = [];
 
+// For showing the content of iBeacons during free tour
+var iBeaconsFoundDuringFreeTour =  [];
+
 function init() {
 
 //create map
@@ -63,7 +66,7 @@ function init() {
     // zoom the map to the polyline
     //map.fitBounds(polyline.getBounds());
 
- 
+    var iBeaconsFoundDuringFreeTour = [];
 }
 
 function currentPOI(minor, major) {
@@ -72,11 +75,16 @@ function currentPOI(minor, major) {
         lastMinor = minor;
         lastMajor = major;
         console.log("popup call");
-        iBeaconDiscovered(minor, major);
+        //iBeaconDiscovered(minor, major);
 
         lastVisitedNodeID = findPOIWithIBeacon(minor, major);
         if (lastVisitedNodeID != -1) {
             localStorage.setItem("lastVisitedNodeID", lastVisitedNodeID);
         }
+    }
+
+    if (iBeaconsFoundDuringFreeTour[minor + "," + major] == null) {
+        iBeaconsFoundDuringFreeTour[minor + "," + major] = "shown";
+        freeBeaconDiscovered(minor, major);
     }
 }

@@ -284,9 +284,6 @@ function currentPOI(minor, major) {
         }
         console.log("done ibeacon");
     }
-    
-
-    
 
     // Check if the given minor,major match the first poi in the storyline
     /*if (lastVisitedNodeID === null) {
