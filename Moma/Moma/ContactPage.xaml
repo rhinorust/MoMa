@@ -5,6 +5,60 @@
              x:Class="Moma.ContactPage"
              BackgroundColor="White">
     <ContentPage.Content>
-      <moma:Accordion  Padding="10,25,10,0" x:Name="Contact"/>
+      <Grid x:Name="Contact">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackLayout  x:Name="StackLayoutDirections" Padding="20,40,0,0"> 
+          <Grid>
+            <Label x:Name="PhoneTitle" FontSize="17" TextColor="#001570"/>
+          </Grid>
+          <Grid Padding="15,0,0,0">
+            <Label x:Name="Phone" FontSize="15"  TextColor="#0066ff"  />
+            <Label.GestureRecognizers>
+              <TapGestureRecognizer
+                 Tapped="OnPhoneTapped">
+              </TapGestureRecognizer>
+            </Label.GestureRecognizers>
+          </Grid>
+          <Grid Padding="0,15,0,0">
+            <Label x:Name="WebsiteTitle" FontSize="17" TextColor="#001570"/>
+          </Grid>
+          <Grid Padding="15,0,0,0" >
+            <Label x:Name="Website" FontSize="15"  TextColor="#0066ff" />
+              <Label.GestureRecognizers>
+              <TapGestureRecognizer
+                 Tapped="OnWebsiteTapped">
+              </TapGestureRecognizer>
+            </Label.GestureRecognizers>
+          </Grid>
+          <Grid Padding="0,15,0,0">
+            <Label x:Name="OHTitle" FontSize="17"  TextColor="#001570"/>
+          </Grid>
+          <Grid Padding="15,0,0,0">
+            <Label x:Name="OpeningHours" FontSize="15" TextColor="Gray" />
+          </Grid>
+          <Grid Padding="0,15,0,0">
+            <Label x:Name="PricingTitle" FontSize="17"  TextColor="#001570"/>
+          </Grid>
+          <Grid Padding="15,0,0,0">
+            <Label x:Name="Pricing" FontSize="15"  TextColor="Gray" />
+          </Grid>
+          <Grid Padding="0,15,0,0">
+            <Label x:Name="AddressTitle" FontSize="17"  TextColor="#001570"/>
+          </Grid>
+          <Grid Padding="15,0,0,0">
+            <Label x:Name="Address" FontSize="15" TextColor="#0066ff"/>
+              <Label.GestureRecognizers>
+              <TapGestureRecognizer
+                 Tapped="DirectionTapped">
+              </TapGestureRecognizer>
+            </Label.GestureRecognizers>
+          </Grid>
+        </StackLayout>
+      </Grid>
     </ContentPage.Content>
  </ContentPage>

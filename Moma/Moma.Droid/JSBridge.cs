@@ -152,6 +152,11 @@ namespace Moma.Droid
             MainPage.Current.messageWasRead(messageTitle);
         }
 
+        [JavascriptInterface]
+        [Export]
+        public void showMessageToolbarIcon(bool visible) {
+            MainPage.Current.showMessageToolbarIcon(visible);
+        }
 
         // ==========
         // Debugging

@@ -163,7 +163,7 @@ function Navigation(nodePath, isNotAtStart) {
 
 //Map Object
 function Map() {
-
+    5
     this.createMarker = function (iconURL, iconWidth, iconHeight, iconAnchorWidth, iconAnchorHeight, iconAnchorX, iconAnchorY) {
         var marker = L.icon({
             iconUrl: iconURL,
