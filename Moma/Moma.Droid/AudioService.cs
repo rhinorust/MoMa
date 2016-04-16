@@ -4,12 +4,15 @@ using Moma.Droid;
 using Android.Media;
 using Android.Content.Res;
 using System.Collections.Generic;
+using System.IO;
+using App1.Droid;
 
 [assembly: Dependency(typeof(AudioService))]
 namespace Moma.Droid
 {
     public class AudioService : IAudio
     {
+
         Dictionary<string, MediaPlayer> mediaPlayers;
         IJavascriptInterface js;
 
@@ -18,12 +21,16 @@ namespace Moma.Droid
             js = DependencyService.Get<IJavascriptInterface>();
         }
 
-        // Plays the given fileName. Example:
+        // Plays the given fileName if it's not already playing. Example:
         // playAudioFile("MOEB POINT 4 - Small.mp3") will play Droid/Assets/Content/audio/MOEB POINT 4 - Small.mp3
+        // if it's not already playing
         public void PlayAudioFile(string fileName) {
             MediaPlayer player = getPlayer(fileName);
             if (player != null) {
-                player.Prepare(); // Replays it
+                if (!player.IsPlaying) {
+                    player.Stop();
+                    player.Prepare(); // Replays it
+                }
             }
             else createPlayerAndPlay(fileName);
         }
@@ -69,11 +76,17 @@ namespace Moma.Droid
         // fileName, plays it and stores in the dictionary
         private void createPlayerAndPlay(string fileName) {
             MediaPlayer player = new MediaPlayer();
-            var fd = global::Android.App.Application.Context.Assets.OpenFd("Content/" + fileName);
+            
+            //var fd = global::Android.App.Application.Context.Assets.OpenFd("Content/" + fileName);
+            var personalPath = new PersonalPath();
+            fileName = personalPath.GetFilePathInPersonalFolder(fileName);
+
             player.Prepared += (s, e) => {
                 player.Start();
             };
-            player.SetDataSource(fd.FileDescriptor, fd.StartOffset, fd.Length);
+
+            //player.SetDataSource(fd.FileDescriptor, fd.StartOffset, fd.Length);
+            player.SetDataSource(fileName);
             player.Prepare();
             mediaPlayers.Add(fileName, player);
         }

@@ -118,20 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CarDirections" xml:space="preserve">
-    <value>Holen Sie sich auf Autoroute 40 in Richtung der Autobahn 15
+    <value>➥ Holen Sie sich auf Autoroute 40 in Richtung der Autobahn 15
 
-Nehmen Sie die Autoroute 15 S
+➥ Nehmen Sie die Autoroute 15 S
 
-Nehmen Sie die Autoroute 720 E
+➥ Nehmen Sie die Autoroute 720 E
 
-Fahren Sie an der Rue Saint Antoine O
+➥ Fahren Sie an der Rue Saint Antoine O
 
-Biegen Sie rechts in die Rue Lacasse
-
-Ankunft in 1001 Rue Lenoir auf der rechten</value>
+➥ Biegen Sie rechts in die Rue Lacasse</value>
   </data>
   <data name="CarDirectionsTitle" xml:space="preserve">
-    <value>Allgemeine Anfahrt mit dem Auto:</value>
+    <value>Allgemeine Anfahrt mit dem Auto</value>
   </data>
   <data name="Contact" xml:space="preserve">
     <value>Kontakt</value>
@@ -185,7 +183,7 @@ Ankunft in 1001 Rue Lenoir auf der rechten</value>
     <value>Sparen</value>
   </data>
   <data name="Scavenger" xml:space="preserve">
-    <value>Aasfresser Jagd</value>
+    <value>Schnitzeljagd</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Einstellungen</value>
@@ -203,16 +201,14 @@ Ankunft in 1001 Rue Lenoir auf der rechten</value>
     <value>Klingen auf den mitteilungen</value>
   </data>
   <data name="STMDirections" xml:space="preserve">
-    <value>Fahren Sie an der Place Saint-Henri U-Bahn-Station
+    <value>➥ Fahren Sie an der Place Saint-Henri U-Bahn-Station
 
-Biegen Sie links in die Rue Saint-Jacques
+➥ Biegen Sie links in die Rue Saint-Jacques
 
-Biegen Sie rechts in die Rue Lenoir
-
-Ankunft in 1001 Rue Lenoir auf der rechten</value>
+➥ Biegen Sie rechts in die Rue Lenoir</value>
   </data>
   <data name="STMDirectionsTitle" xml:space="preserve">
-    <value>Allgemeine Anfahrt mit dem STM:</value>
+    <value>Allgemeine Anfahrt mit dem STM</value>
   </data>
   <data name="Storyline" xml:space="preserve">
     <value>Geschichten</value>
@@ -228,5 +224,63 @@ Ankunft in 1001 Rue Lenoir auf der rechten</value>
   </data>
   <data name="Default" xml:space="preserve">
     <value>Fehler</value>
+  </data>
+  <data name="Destination" xml:space="preserve">
+    <value>➥ Fahren Sie an der Place Saint-Henri U-Bahn-Station
+
+➥ Biegen Sie links in die Rue Saint-Jacques
+
+➥ Biegen Sie rechts in die Rue Lenoir
+
+➥ Ankunft in 1001 Rue Lenoir auf der rechten</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>1001, Lenoir St., local E-206. Montreal,Quebec, H4C 2Z6</value>
+  </data>
+  <data name="AddressTitle" xml:space="preserve">
+    <value>Adres</value>
+  </data>
+  <data name="OpeningHours" xml:space="preserve">
+    <value>Vrijdag 14 pm tot 17 pm
+Zaterdag 14 pm tot 17 pm
+Zondag 14 pm tot 17 pm
+Woensdag ( alleen op afspraak)
+Groepen op afspraak op elk moment</value>
+  </data>
+  <data name="OpeningHoursTitle" xml:space="preserve">
+    <value>Kantooruren</value>
+  </data>
+  <data name="PhoneTitle" xml:space="preserve">
+    <value>Telefoon</value>
+  </data>
+  <data name="Pricing" xml:space="preserve">
+    <value>Volwassene: $ 5
+Senioren en studenten : $ 3
+Familie : $ 10
+Groepen ( 5+ ) : $ 3 per persoon</value>
+  </data>
+  <data name="PricingTitle" xml:space="preserve">
+    <value>Prijsstelling</value>
+  </data>
+  <data name="WebsiteTitle" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>Aktualisierung Url</value>
+  </data>
+  <data name="ServerDef" xml:space="preserve">
+    <value>Link verwendet, um die Anwendung Medien zu aktualisieren</value>
+  </data>
+  <data name="ActiveQuestion" xml:space="preserve">
+    <value>Er is momenteel een actieve verhaallijn , bent u zeker dat u een nieuwe op te starten ?</value>
+  </data>
+  <data name="ActiveStoryline" xml:space="preserve">
+    <value>Active Verhaallijn</value>
+  </data>
+  <data name="RetryUpdate" xml:space="preserve">
+    <value>Ungültige URL. Wiederholen!</value>
+  </data>
+  <data name="StartUpdate" xml:space="preserve">
+    <value>Starten Sie Updates!</value>
   </data>
 </root>

@@ -7,16 +7,16 @@
 
 //creates the list view of POI dynamically based on the js file
 function createListView() {
-    var language = getLanguage();
+    var language = currentLanguage;
     var ul = $('#listViewUl');
-    var poi = DATA.node[0].poi;
+    var poi = DATA.node.poi;
     for (var i = 0; i < poi.length; i++) {
         var li = document.createElement('li');
         var aTag = document.createElement('a');
         aTag.href = "#";
         var foundTitle = false;
         for (var j = 0; j < poi[i].title.length; j++) {
-            if (poi[i].title[j].language == language) {
+            if (poi[i].title[j].language.toLowerCase() === language.toLowerCase()) {
                 aTag.innerHTML = poi[i].title[j].title;
                 aTag.id = poi[i].id;
                 aTag.addEventListener("click", focusOnNode, false);
@@ -46,37 +46,27 @@ function focusOnNode(node) {
     node.preventDefault();
     $('#listViewUl li').attr("class", "ui-screen-hidden");
     var id = node.target.id;
-    var poi = DATA.node[0].poi;
-    var coordinates = {};
-    var floorId;
-    //var markerId;
-    for (var i = 0; i < poi.length; i++) {
-        if (poi[i].id == id) {
-            coordinates.x = poi[i].x;
-            coordinates.y = poi[i].y;
-            floorId = poi[i].floorID;
-            //markerId = poi[i].id; 
-        }
-    }
-
-    if (typeof floorId != 'undefined' && floorId != null) {
+    var poi = ListPOI[id];
+    if (poi != null) {
+        if (typeof poi.floorID != 'undefined' && poi.floorID != null) {
         var floors = $('input[name="leaflet-base-layers"][type="radio"]');
         jQuery.each(floors, function (index, radio) {
-            if ($(radio).next()[0].innerHTML.trim() === floorId.toString().trim()) {
+                if ($(radio).next()[0].innerHTML.trim() === poi.floorID.toString().trim()) {
                 map.invalidateSize();
                 if (radio.checked) {
-                    map.setView([coordinates.y, coordinates.x], 4, { animate: true });
+                        map.setView([poi.y, poi.x], 4, { animate: true });
                 } else {
                     $(radio).prop("checked", true).trigger("click");
-                    map.panTo([coordinates.y, coordinates.x]);
+                        map.panTo([poi.y, poi.x]);
                     map.setZoom(4);
                 }
                 return false;
             }
         });
     }
+    }
     $('#listViewUl').hide();
-    $("input[data-type='search']").val(node.target.innerHTML);
+    $("input[data-type='search']").val("");
     map.invalidateSize();
 }
 

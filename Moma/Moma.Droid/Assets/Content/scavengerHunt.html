@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="styles/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="styles/custom-theme.css" />
+    <link rel="stylesheet" href="styles/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="styles/jquery.mobile.structure-1.4.5.min.css" />
+    <link rel="stylesheet" href="styles/scanvenger.css" />
+    <script src="scripts/lib/jquery-1.12.0.min.js"></script>
+    <script src="scripts/lib/jquery.mobile-init.js"></script>
+    <script src="scripts/lib/jquery.mobile-1.4.5.min.js"></script>
+    <script src="scripts/qrCodeScanning.js"></script>
+    <script src="scripts/translation.js"></script>
+    <script src="scripts/localization.js"></script>
+
+<style>
+</style>
+<script> 
+    var currentLanguage = jsBridge.getLanguage();
+</script>
+</head>
+
+<body style="background-color:white;" onload="showFoundQRCodes()">
+    <br /><br />
+    <div class="RankTable">
+        <div class="ribbon both_ribbon">
+            <span id="rank"></span>
+        </div>
+        <table id="rankingTable">
+            <tr>
+                <th width="50%"><span id="numRank"></span></th>
+                <th><span id="tableRank"></span></th>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td><span id="bronze"></span></td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td><span id="silver"></span></td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td><span id="gold"></span></td>
+            </tr>
+            <tr>
+                <td>20</td>
+                <td><span id="platinum"></span></td>
+            </tr>
+ <!--
+            <tr>
+                <td>25</td>
+                <td>Platinum</td>
+            </tr>
+            <tr>
+                <td>30</td>
+                <td>Diamond</td>
+            </tr>
+-->
+        </table>
+    </div>
+    <br />
+
+    <div class="QRText">
+        <span id="qrcodes"></span>
+        <br />
+        <p id="currentRanking"></p>
+        <br/>
+        <img style="visibility:hidden;" id="medalRep" />
+    </div>
+</body>
+
+</html>

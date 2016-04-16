@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AndroidVideoPlayer.cs" />
     <Compile Include="App.cs" />
     <Compile Include="AppLanguageResource.de.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -46,9 +47,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppLanguageResource.fr.resx</DependentUpon>
     </Compile>
+    <Compile Include="IWebPageOpener.cs" />
     <Compile Include="ContactPage.xaml.cs">
       <DependentUpon>ContactPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MyVideoPlayer.cs" />
     <Compile Include="CustomPicker.cs" />
     <Compile Include="DirectionsPage.xaml.cs">
       <DependentUpon>DirectionsPage.xaml</DependentUpon>
@@ -61,10 +64,14 @@
     <Compile Include="IAudio.cs" />
     <Compile Include="IBeaconsDirector.cs" />
     <Compile Include="ICurrentCulture.cs" />
+    <Compile Include="IDialer.cs" />
     <Compile Include="IJavascriptInterface.cs" />
     <Compile Include="INetworkConnection.cs" />
+    <Compile Include="IPathFinder.cs" />
     <Compile Include="IQrCodeScanningService.cs" />
     <Compile Include="IUserSettings.cs" />
+    <Compile Include="Library\VideoData.cs" />
+    <Compile Include="Library\VideoState.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -92,6 +99,7 @@
     </Compile>
     <Compile Include="Timer.cs" />
     <Compile Include="TranslationManager.cs" />
+    <Compile Include="Views\VideoPlayerView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />

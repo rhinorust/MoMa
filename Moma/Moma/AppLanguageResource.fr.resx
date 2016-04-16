@@ -118,20 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CarDirections" xml:space="preserve">
-    <value>Obtenez sur l'autoroute 40 en direction de l'autoroute 15
+    <value>➥ Obtenez sur l'autoroute 40 en direction de l'autoroute 15
 
-Prendre l'autoroute 15 S
+➥ Prendre l'autoroute 15 S
 
-Prendre l'autoroute 720 E
+➥ Prendre l'autoroute 720 E
 
-Sortir à la rue Saint Antoine O
+➥ Sortir à la rue Saint Antoine O
 
-Tournez à droite sur la rue Lacasse
-
-Arrivée au 1001 Rue Lenoir sur le droit</value>
+➥ Tournez à droite sur la rue Lacasse</value>
   </data>
   <data name="CarDirectionsTitle" xml:space="preserve">
-    <value>Indications générales par voiture:</value>
+    <value>Indications générales par voiture</value>
   </data>
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
@@ -185,7 +183,7 @@ Arrivée au 1001 Rue Lenoir sur le droit</value>
     <value>Enregistrer</value>
   </data>
   <data name="Scavenger" xml:space="preserve">
-    <value>Cherche et trouve</value>
+    <value>Chasse Au Trésor</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Paramètres</value>
@@ -203,16 +201,14 @@ Arrivée au 1001 Rue Lenoir sur le droit</value>
     <value>Sons lors de notifications</value>
   </data>
   <data name="STMDirections" xml:space="preserve">
-    <value>Sortir à la station de métro Place Saint-Henri
+    <value>➥ Sortir à la station de métro Place Saint-Henri
 
-Tournez à gauche sur la rue Saint-Jacques
+➥ Tournez à gauche sur la rue Saint-Jacques
 
-Tournez à droite sur la rue Lenoir
-
-Arrivée au 1001 Rue Lenoir sur le droit</value>
+➥ Tournez à droite sur la rue Lenoir</value>
   </data>
   <data name="STMDirectionsTitle" xml:space="preserve">
-    <value>Indications générales par STM:</value>
+    <value>Indications générales par STM</value>
   </data>
   <data name="Storyline" xml:space="preserve">
     <value>Itinéraire</value>
@@ -228,5 +224,60 @@ Arrivée au 1001 Rue Lenoir sur le droit</value>
   </data>
   <data name="Default" xml:space="preserve">
     <value>Défaut</value>
+  </data>
+  <data name="Destination" xml:space="preserve">
+    <value>➥ Arrivée au 1001 Rue Lenoir sur le droit</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>1001, Lenoir St., local E-206. Montreal,Quebec, H4C 2Z6</value>
+  </data>
+  <data name="AddressTitle" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="OpeningHours" xml:space="preserve">
+    <value>Vendredi 14 h à 17 h
+Samedi 14 h à 17 h
+Dimanche 14 h à 17 h
+Mercredi ( Par rendez-vous seulement)
+Groupes sur rendez-vous à tout moment</value>
+  </data>
+  <data name="OpeningHoursTitle" xml:space="preserve">
+    <value>Heures d'ouverture</value>
+  </data>
+  <data name="PhoneTitle" xml:space="preserve">
+    <value>Téléphone</value>
+  </data>
+  <data name="Pricing" xml:space="preserve">
+    <value>Adulte : 5 $
+Aîné et étudiant : 3 $
+Famille : 10 $
+Groupes (5+): 3 $ par personne.</value>
+  </data>
+  <data name="PricingTitle" xml:space="preserve">
+    <value>Tarification</value>
+  </data>
+  <data name="WebsiteTitle" xml:space="preserve">
+    <value>Site Internet</value>
+  </data>
+  <data name="Website" xml:space="preserve">
+    <value>http://moeb.ca/fr</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>Lien de mise à jour</value>
+  </data>
+  <data name="ServerDef" xml:space="preserve">
+    <value>Lien utilisé afin d'effectuer la mise à jour des médias utilisés dans l'application.</value>
+  </data>
+  <data name="ActiveQuestion" xml:space="preserve">
+    <value>Il est actuellement un itinéraire actif, êtes -vous sûr que vous voulez commencer une nouvelle?</value>
+  </data>
+  <data name="ActiveStoryline" xml:space="preserve">
+    <value>Itinéraire Actif</value>
+  </data>
+  <data name="RetryUpdate" xml:space="preserve">
+    <value>Url invalide. Réessayer</value>
+  </data>
+  <data name="StartUpdate" xml:space="preserve">
+    <value>Mettre à jour</value>
   </data>
 </root>
