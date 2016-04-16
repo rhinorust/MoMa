@@ -274,4 +274,10 @@ Groupes (5+): 3 $ par personne.</value>
   <data name="ActiveStoryline" xml:space="preserve">
     <value>Itinéraire Actif</value>
   </data>
+  <data name="RetryUpdate" xml:space="preserve">
+    <value>Url invalide. Réessayer</value>
+  </data>
+  <data name="StartUpdate" xml:space="preserve">
+    <value>Mettre à jour</value>
+  </data>
 </root>

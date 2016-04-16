@@ -277,4 +277,10 @@ Groups (5+) : 3 $ each</value>
   <data name="ActiveStoryline" xml:space="preserve">
     <value>Active Storyline</value>
   </data>
+  <data name="RetryUpdate" xml:space="preserve">
+    <value>Invalid Url. Retry!</value>
+  </data>
+  <data name="StartUpdate" xml:space="preserve">
+    <value>Start Updates!</value>
+  </data>
 </root>

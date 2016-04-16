@@ -277,4 +277,10 @@ Groepen ( 5+ ) : $ 3 per persoon</value>
   <data name="ActiveStoryline" xml:space="preserve">
     <value>Active Verhaallijn</value>
   </data>
+  <data name="RetryUpdate" xml:space="preserve">
+    <value>Ungültige URL. Wiederholen!</value>
+  </data>
+  <data name="StartUpdate" xml:space="preserve">
+    <value>Starten Sie Updates!</value>
+  </data>
 </root>

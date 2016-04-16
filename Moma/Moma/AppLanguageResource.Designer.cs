@@ -347,6 +347,15 @@ namespace Moma {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Url. Retry!.
+        /// </summary>
+        internal static string RetryUpdate {
+            get {
+                return ResourceManager.GetString("RetryUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         internal static string Save {
@@ -424,6 +433,15 @@ namespace Moma {
         internal static string SoundDef {
             get {
                 return ResourceManager.GetString("SoundDef", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Updates!.
+        /// </summary>
+        internal static string StartUpdate {
+            get {
+                return ResourceManager.GetString("StartUpdate", resourceCulture);
             }
         }
         
