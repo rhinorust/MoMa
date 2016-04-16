@@ -265,10 +265,22 @@ Groepen ( 5+ ) : $ 3 per persoon</value>
   <data name="WebsiteTitle" xml:space="preserve">
     <value>Website</value>
   </data>
+  <data name="Server" xml:space="preserve">
+    <value>Aktualisierung Url</value>
+  </data>
+  <data name="ServerDef" xml:space="preserve">
+    <value>Link verwendet, um die Anwendung Medien zu aktualisieren</value>
+  </data>
   <data name="ActiveQuestion" xml:space="preserve">
     <value>Er is momenteel een actieve verhaallijn , bent u zeker dat u een nieuwe op te starten ?</value>
   </data>
   <data name="ActiveStoryline" xml:space="preserve">
     <value>Active Verhaallijn</value>
+  </data>
+  <data name="RetryUpdate" xml:space="preserve">
+    <value>Ungültige URL. Wiederholen!</value>
+  </data>
+  <data name="StartUpdate" xml:space="preserve">
+    <value>Starten Sie Updates!</value>
   </data>
 </root>

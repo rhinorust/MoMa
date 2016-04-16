@@ -347,6 +347,15 @@ namespace Moma {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Url. Retry!.
+        /// </summary>
+        internal static string RetryUpdate {
+            get {
+                return ResourceManager.GetString("RetryUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         internal static string Save {
@@ -361,6 +370,24 @@ namespace Moma {
         internal static string Scavenger {
             get {
                 return ResourceManager.GetString("Scavenger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Url.
+        /// </summary>
+        internal static string Server {
+            get {
+                return ResourceManager.GetString("Server", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Url from which all medias are being loaded from.
+        /// </summary>
+        internal static string ServerDef {
+            get {
+                return ResourceManager.GetString("ServerDef", resourceCulture);
             }
         }
         
@@ -406,6 +433,15 @@ namespace Moma {
         internal static string SoundDef {
             get {
                 return ResourceManager.GetString("SoundDef", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Updates!.
+        /// </summary>
+        internal static string StartUpdate {
+            get {
+                return ResourceManager.GetString("StartUpdate", resourceCulture);
             }
         }
         

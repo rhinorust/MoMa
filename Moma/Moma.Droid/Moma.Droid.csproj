@@ -172,12 +172,14 @@
     <Compile Include="FileIO.cs" />
     <Compile Include="HybridWebViewRenderer.cs" />
     <Compile Include="JSBridge.cs" />
+    <Compile Include="JsonFileSerializer.cs" />
     <Compile Include="LanguageInitializer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="CustomPickerRenderer.cs" />
     <Compile Include="MyVideoPlayerRenderer.cs" />
     <Compile Include="NetworkConnection.cs" />
     <Compile Include="PhoneDialer.cs" />
+    <Compile Include="PersonalPath.cs" />
     <Compile Include="QrCodeScanningService.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -3260,6 +3262,7 @@
   <ItemGroup>
     <AndroidResource Include="Resources\raw\helpvideo.mp4" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.0.1.6505\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.0.1.6505\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

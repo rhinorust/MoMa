@@ -4,6 +4,8 @@ using Moma.Droid;
 using Android.Media;
 using Android.Content.Res;
 using System.Collections.Generic;
+using System.IO;
+using App1.Droid;
 
 [assembly: Dependency(typeof(AudioService))]
 namespace Moma.Droid
@@ -74,11 +76,17 @@ namespace Moma.Droid
         // fileName, plays it and stores in the dictionary
         private void createPlayerAndPlay(string fileName) {
             MediaPlayer player = new MediaPlayer();
-            var fd = global::Android.App.Application.Context.Assets.OpenFd("Content/" + fileName);
+            
+            //var fd = global::Android.App.Application.Context.Assets.OpenFd("Content/" + fileName);
+            var personalPath = new PersonalPath();
+            fileName = personalPath.GetFilePathInPersonalFolder(fileName);
+
             player.Prepared += (s, e) => {
                 player.Start();
             };
-            player.SetDataSource(fd.FileDescriptor, fd.StartOffset, fd.Length);
+
+            //player.SetDataSource(fd.FileDescriptor, fd.StartOffset, fd.Length);
+            player.SetDataSource(fileName);
             player.Prepare();
             mediaPlayers.Add(fileName, player);
         }

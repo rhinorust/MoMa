@@ -262,10 +262,22 @@ Groupes (5+): 3 $ par personne.</value>
   <data name="Website" xml:space="preserve">
     <value>http://moeb.ca/fr</value>
   </data>
+  <data name="Server" xml:space="preserve">
+    <value>Lien de mise à jour</value>
+  </data>
+  <data name="ServerDef" xml:space="preserve">
+    <value>Lien utilisé afin d'effectuer la mise à jour des médias utilisés dans l'application.</value>
+  </data>
   <data name="ActiveQuestion" xml:space="preserve">
     <value>Il est actuellement un itinéraire actif, êtes -vous sûr que vous voulez commencer une nouvelle?</value>
   </data>
   <data name="ActiveStoryline" xml:space="preserve">
     <value>Itinéraire Actif</value>
+  </data>
+  <data name="RetryUpdate" xml:space="preserve">
+    <value>Url invalide. Réessayer</value>
+  </data>
+  <data name="StartUpdate" xml:space="preserve">
+    <value>Mettre à jour</value>
   </data>
 </root>

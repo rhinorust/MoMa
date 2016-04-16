@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Android.Webkit;
 using Moma.Droid;
 using Java.Interop;
@@ -92,7 +93,7 @@ namespace Moma.Droid
             if (result != "")
             {
                 js.CallJs("showQRText('" + result.Replace("\n", " ") + "');");
-            }
+        }
         }
 
         public void redirect()
@@ -184,29 +185,31 @@ namespace Moma.Droid
             App.Current.IBeaconsDirector().stopScanningForIBeacons();
         }
 
-
-        // ========
-        // native popup
-        // ========
+        // ==========
+        // JSON File
+        // ==========
         [JavascriptInterface]
         [Export]
-        public async void confirmPopup(string storylineID)
+        public string getJsonString()
         {
-            StorylinePage storylineContext = new StorylinePage();
-            var answer = await storylineContext.confirmPopup();
-
-            if (answer == true)
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            string fileName = Path.Combine(path, "mapData.json");
+            string content = string.Empty;
+            using (var streamReader = new StreamReader(fileName))
             {
-                js.CallJs("localStorage.removeItem('currentStoryline');" +
-                                      "localStorage.removeItem('lastVisitedNodeID');" +
-                                      "localStorage.setItem('currentStoryline'," + storylineID + ");" + 
-                                      "window.location.replace('storyline_index.html');");
+                content = streamReader.ReadToEnd();
             }
+            return content;
 
-            if (answer == false)
-            {
-                js.CallJs("window.location.replace('storyline_index.html');");
-            }
+        }
+
+        [JavascriptInterface]
+        [Export]
+        public string getBaseUrl()
+        {
+            var userSettings = new AndroidUserSettings();
+            return userSettings.GetUserSetting("serverUrl");
+
         }
 
         [JavascriptInterface]
