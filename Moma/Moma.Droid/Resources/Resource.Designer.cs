@@ -5077,8 +5077,8 @@ namespace App1.Droid
 			// aapt resource value: 0x7f07001e
 			public const int collapseActionView = 2131165214;
 			
-			// aapt resource value: 0x7f070087
-			public const int contentFrame = 2131165319;
+			// aapt resource value: 0x7f070084
+			public const int contentFrame = 2131165316;
 			
 			// aapt resource value: 0x7f070047
 			public const int contentPanel = 2131165255;
@@ -5118,9 +5118,6 @@ namespace App1.Droid
 			
 			// aapt resource value: 0x7f070024
 			public const int enterAlwaysCollapsed = 2131165220;
-			
-			// aapt resource value: 0x7f070083
-			public const int entry = 2131165315;
 			
 			// aapt resource value: 0x7f070025
 			public const int exitUntilCollapsed = 2131165221;
@@ -5163,9 +5160,6 @@ namespace App1.Droid
 			
 			// aapt resource value: 0x7f070000
 			public const int item_touch_helper_previous_elevation = 2131165184;
-			
-			// aapt resource value: 0x7f070082
-			public const int label = 2131165314;
 			
 			// aapt resource value: 0x7f07002e
 			public const int left = 2131165230;
@@ -5214,9 +5208,6 @@ namespace App1.Droid
 			
 			// aapt resource value: 0x7f07000c
 			public const int normal = 2131165196;
-			
-			// aapt resource value: 0x7f070084
-			public const int ok = 2131165316;
 			
 			// aapt resource value: 0x7f070027
 			public const int parallax = 2131165223;
@@ -5362,8 +5353,8 @@ namespace App1.Droid
 			// aapt resource value: 0x7f070045
 			public const int title_template = 2131165253;
 			
-			// aapt resource value: 0x7f070085
-			public const int toolbar = 2131165317;
+			// aapt resource value: 0x7f070082
+			public const int toolbar = 2131165314;
 			
 			// aapt resource value: 0x7f070031
 			public const int top = 2131165233;
@@ -5377,8 +5368,8 @@ namespace App1.Droid
 			// aapt resource value: 0x7f070014
 			public const int useLogo = 2131165204;
 			
-			// aapt resource value: 0x7f070086
-			public const int videoView1 = 2131165318;
+			// aapt resource value: 0x7f070083
+			public const int videoView1 = 2131165315;
 			
 			// aapt resource value: 0x7f07000a
 			public const int view_offset_helper = 2131165194;
@@ -5575,22 +5566,19 @@ namespace App1.Droid
 			public const int select_dialog_singlechoice_material = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public const int splashLayout = 2130903087;
+			public const int support_simple_spinner_dropdown_item = 2130903087;
 			
 			// aapt resource value: 0x7f030030
-			public const int support_simple_spinner_dropdown_item = 2130903088;
+			public const int toolbar = 2130903088;
 			
 			// aapt resource value: 0x7f030031
-			public const int toolbar = 2130903089;
+			public const int VideoLayout = 2130903089;
 			
 			// aapt resource value: 0x7f030032
-			public const int VideoLayout = 2130903090;
+			public const int zxingscanneractivitylayout = 2130903090;
 			
 			// aapt resource value: 0x7f030033
-			public const int zxingscanneractivitylayout = 2130903091;
-			
-			// aapt resource value: 0x7f030034
-			public const int zxingscannerfragmentlayout = 2130903092;
+			public const int zxingscannerfragmentlayout = 2130903091;
 			
 			static Layout()
 			{
