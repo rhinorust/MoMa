@@ -1,5 +1,4 @@
-﻿
-var tools = {
+﻿var tools = {
     /**
      *  Check the current language en return the localization string
      *  @param {Object} oLocalizations - Localization strings object
@@ -29,9 +28,9 @@ var tools = {
     isset: function (object, props) {
         // we will use the dump variable to iterate in the object
         var dump,
-			propsLength = props.length - 1;
-        // loop in the properties 
-        for (x = 0; x < props.length; x++) {
+		propsLength = props.length - 1;
+        // loop in the properties
+        for (var x = 0; x < props.length; x++) {
             // first prop?
             if (x == 0) {
                 // add the object to dump (object.props1)
@@ -43,12 +42,13 @@ var tools = {
             if (typeof dump == "undefined" || typeof dump[props[x]] == "undefined") {
                 return false;
             } else {
-                // move in the object level 
+                // move in the object level
                 // object.props1.props2
                 // object.props1.props2.props3
                 dump = dump[props[x]];
                 // return true, of even return the object back
-                if (x == propsLength) return dump;
+                if (x == propsLength)
+                    return dump;
             }
         }
     }
