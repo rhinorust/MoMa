@@ -1,21 +1,18 @@
 ﻿using System;
+using System.Diagnostics;
 using Android.Webkit;
-using Moma.Droid;
-using Java.Interop;
-using Android.Widget;
-using Android.Content;
-using Xamarin.Forms;
-using System.Threading;
 using App1.Droid;
-using Android.App;
+using Java.Interop;
+using Xamarin.Forms;
+using Object = Java.Lang.Object;
 
 namespace Moma.Droid
 {
-    public class JSBridge : Java.Lang.Object
+    public class JSBridge : Object
     {
-        readonly WeakReference<HybridWebViewRenderer> hybridWebViewRenderer;
-        HybridWebViewRenderer hybridRenderer;
-        IJavascriptInterface js = DependencyService.Get<IJavascriptInterface>();
+        private readonly WeakReference<HybridWebViewRenderer> hybridWebViewRenderer;
+        private HybridWebViewRenderer hybridRenderer;
+        private readonly IJavascriptInterface js = DependencyService.Get<IJavascriptInterface>();
 
         public JSBridge(HybridWebViewRenderer hybridRenderer)
         {
@@ -26,7 +23,6 @@ namespace Moma.Droid
         [Export("invokeAction")]
         public void InvokeAction(string data)
         {
-
             if (hybridWebViewRenderer != null && hybridWebViewRenderer.TryGetTarget(out hybridRenderer))
             {
                 hybridRenderer.Element.InvokeAction(data);
@@ -38,14 +34,14 @@ namespace Moma.Droid
         // ==========================
         [JavascriptInterface]
         [Export]
-        public void playAudioFile(String fileName)
+        public void playAudioFile(string fileName)
         {
             DependencyService.Get<IAudio>().PlayAudioFile(fileName);
         }
 
         [JavascriptInterface]
         [Export]
-        public void stopAudioFile(String fileName)
+        public void stopAudioFile(string fileName)
         {
             DependencyService.Get<IAudio>().StopAudioFile(fileName);
         }
@@ -98,6 +94,7 @@ namespace Moma.Droid
         public void redirect()
         {
         }
+
         [JavascriptInterface]
         [Export]
         public int getQRNumber()
@@ -127,7 +124,6 @@ namespace Moma.Droid
                 return "de";
             }
             return "en";
-
         }
 
         // ==========================
@@ -153,7 +149,8 @@ namespace Moma.Droid
 
         [JavascriptInterface]
         [Export]
-        public void showMessageToolbarIcon(bool visible) {
+        public void showMessageToolbarIcon(bool visible)
+        {
             MainPage.Current.showMessageToolbarIcon(visible);
         }
 
@@ -164,7 +161,7 @@ namespace Moma.Droid
         [Export]
         public void print(string text)
         {
-            System.Diagnostics.Debug.WriteLine("\n=\n=\n=\n=" + text + "\n=\n=\n=\n=");
+            Debug.WriteLine("\n=\n=\n=\n=" + text + "\n=\n=\n=\n=");
         }
 
         // ========
@@ -192,15 +189,15 @@ namespace Moma.Droid
         [Export]
         public async void confirmPopup(string storylineID)
         {
-            StorylinePage storylineContext = new StorylinePage();
+            var storylineContext = new StorylinePage();
             var answer = await storylineContext.confirmPopup();
 
-            if (answer == true)
+            if (answer)
             {
                 js.CallJs("localStorage.removeItem('currentStoryline');" +
-                                      "localStorage.removeItem('lastVisitedNodeID');" +
-                                      "localStorage.setItem('currentStoryline'," + storylineID + ");" + 
-                                      "window.location.replace('storyline_index.html');");
+                          "localStorage.removeItem('lastVisitedNodeID');" +
+                          "localStorage.setItem('currentStoryline'," + storylineID + ");" +
+                          "window.location.replace('storyline_index.html');");
             }
 
             if (answer == false)
@@ -213,19 +210,17 @@ namespace Moma.Droid
         [Export]
         public async void confirmPreviewPopup(string storylineID)
         {
-            StorylinePage storylineContext = new StorylinePage();
+            var storylineContext = new StorylinePage();
             var answer = await storylineContext.confirmPopup();
 
-            if (answer == true)
+            if (answer)
             {
                 js.CallJs("localStorage.removeItem('previewStoryline');" +
-                                      "localStorage.removeItem('currentStoryline');" +
-                                      "localStorage.removeItem('lastVisitedNodeID');" +
-                                      "localStorage.setItem('currentStoryline'," + storylineID + ");" +
-                                      "window.location.replace('storyline_index.html');");
+                          "localStorage.removeItem('currentStoryline');" +
+                          "localStorage.removeItem('lastVisitedNodeID');" +
+                          "localStorage.setItem('currentStoryline'," + storylineID + ");" +
+                          "window.location.replace('storyline_index.html');");
             }
         }
-
-
     }
 }

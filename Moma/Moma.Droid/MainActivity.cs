@@ -2,26 +2,28 @@
 using Android.Content.PM;
 using Android.OS;
 using App1.Droid;
-using Moma;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 using ZXing.Mobile;
 
 namespace Moma.Droid
 {
-    [Activity(Label = "MoMa", Icon = "@drawable/moma_appIcon", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
+    [Activity(Label = "MoMa", Icon = "@drawable/moma_appIcon",
+        ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
+        ScreenOrientation = ScreenOrientation.Portrait)]
+    public class MainActivity : FormsApplicationActivity
     {
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
             var setting = new AndroidUserSettings();
-            string language = setting.GetUserSetting("language");
+            var language = setting.GetUserSetting("language");
             MobileBarcodeScanner.Initialize(Application);
             var cultureHandler = new CultureHandler();
             cultureHandler.SetCurrentCulture(language);
-            global::Xamarin.Forms.Forms.Init(this, bundle);
+            Forms.Init(this, bundle);
             LoadApplication(new App());
         }
     }
 }
-

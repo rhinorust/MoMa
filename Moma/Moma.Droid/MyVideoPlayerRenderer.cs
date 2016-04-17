@@ -1,49 +1,49 @@
-﻿using System;
-using Xamarin.Forms.Platform.Android;
+﻿using System.ComponentModel;
+using Android.App;
+using Android.Content;
+using Android.Graphics;
 using Android.Views;
-using Android.Media;
-using Android.Content.Res;
 using Android.Widget;
-using Xamarin.Forms;
+using App1.Droid;
 using Moma.Controls;
 using Moma.Library;
-using Android.Runtime;
-using Android.App;
-using Android.Util;
-using Android.Graphics;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
+using RelativeLayout = Android.Widget.RelativeLayout;
 
-[assembly: ExportRenderer(typeof(MyVideoPlayer), typeof(App1.Droid.MyVideoPlayerRenderer))]
+[assembly: ExportRenderer(typeof (MyVideoPlayer), typeof (MyVideoPlayerRenderer))]
+
 namespace App1.Droid
 {
-    public class MyVideoPlayerRenderer : ViewRenderer<MyVideoPlayer, Android.Widget.RelativeLayout>
+    public class MyVideoPlayerRenderer : ViewRenderer<MyVideoPlayer, RelativeLayout>
     {
+        private bool _AttachedController;
+        private RelativeLayout _MainLayout;
         private MediaController _MCController;
         private MyVideoView _MyVideoView;
-        private bool _AttachedController;
-        private Android.Widget.RelativeLayout _MainLayout;
 
         public MyVideoPlayerRenderer()
         {
-            this._AttachedController = false;
+            _AttachedController = false;
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (this._MCController != null && this._MyVideoView != null)
+            if (_MCController != null && _MyVideoView != null)
             {
-                this._MyVideoView.SetMediaController(null);
+                _MyVideoView.SetMediaController(null);
             }
-            if (this._MCController != null)
+            if (_MCController != null)
             {
-                this._MCController.Dispose();
-                this._MCController = null;
+                _MCController.Dispose();
+                _MCController = null;
             }
 
-            if (this._MyVideoView != null)
+            if (_MyVideoView != null)
             {
-                this._MyVideoView.StopPlayback();
-                this._MyVideoView.Dispose();
-                this._MyVideoView = null;
+                _MyVideoView.StopPlayback();
+                _MyVideoView.Dispose();
+                _MyVideoView = null;
             }
             base.Dispose(disposing);
         }
@@ -51,70 +51,71 @@ namespace App1.Droid
         protected override void OnElementChanged(ElementChangedEventArgs<MyVideoPlayer> e)
         {
             base.OnElementChanged(e);
-            if (this.Control == null)
+            if (Control == null)
             {
-                var layoutInflater = (LayoutInflater)Context.GetSystemService(global::Android.Content.Context.LayoutInflaterService);
-                this._MainLayout = (Android.Widget.RelativeLayout)layoutInflater.Inflate(Resource.Layout.VideoLayout, null);
-                SetNativeControl(this._MainLayout);
+                var layoutInflater = (LayoutInflater) Context.GetSystemService(Context.LayoutInflaterService);
+                _MainLayout = (RelativeLayout) layoutInflater.Inflate(Resource.Layout.VideoLayout, null);
+                SetNativeControl(_MainLayout);
             }
 
-            this._MyVideoView = this.Control.FindViewById<MyVideoView>(Resource.Id.videoView1);
+            _MyVideoView = Control.FindViewById<MyVideoView>(Resource.Id.videoView1);
 
 
             // full screen hack?  
             ResizeScreen(true); //this.Element.FullScreen);
 
             // must set reference to root element
-            this._MyVideoView.ParentElement = this.Element;
+            _MyVideoView.ParentElement = Element;
 
             // pick controller
-            this._MCController = new MediaController(this.Context);
-            this._MCController.SetMediaPlayer(this._MyVideoView);
+            _MCController = new MediaController(Context);
+            _MCController.SetMediaPlayer(_MyVideoView);
 
-            if (this.Element.AddVideoController)
+            if (Element.AddVideoController)
             {
-                this._AttachedController = true;
-                this._MyVideoView.SetMediaController(this._MCController);
+                _AttachedController = true;
+                _MyVideoView.SetMediaController(_MCController);
             }
-            else {
-                this._AttachedController = false;
+            else
+            {
+                _AttachedController = false;
             }
 
             // load file
-            this._MyVideoView.LoadFile(this.Element.FileSource);
+            _MyVideoView.LoadFile(Element.FileSource);
 
-            if (this.Element.AutoPlay)
+            if (Element.AutoPlay)
             {
                 // play if set to autoplay on load
-                this._MyVideoView.Play();
+                _MyVideoView.Play();
             }
         }
 
-        protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             base.OnElementPropertyChanged(sender, e);
-            var source = this.Element;
-            if (source != null && this._MyVideoView != null)
+            var source = Element;
+            if (source != null && _MyVideoView != null)
             {
                 if (e.PropertyName == MyVideoPlayer.SeekProperty.PropertyName)
                 {
-                    this._MyVideoView.SeekTo((int)this.Element.Seek);
+                    _MyVideoView.SeekTo((int) Element.Seek);
                 }
                 else if (e.PropertyName == MyVideoPlayer.FileSourceProperty.PropertyName)
                 {
-
                     // load the play file
-                    this._MyVideoView.LoadFile(this.Element.FileSource);
-                    this._MyVideoView.Play();
+                    _MyVideoView.LoadFile(Element.FileSource);
+                    _MyVideoView.Play();
                 }
                 else if (e.PropertyName == MyVideoPlayer.AddVideoControllerProperty.PropertyName)
                 {
-                    if (source.AddVideoController && this._AttachedController == false)
+                    if (source.AddVideoController && _AttachedController == false)
                     {
-                        this._MyVideoView.SetMediaController(this._MCController);
+                        _MyVideoView.SetMediaController(_MCController);
                     }
-                    else {
-                        this._MyVideoView.SetMediaController(null);
+                    else
+                    {
+                        _MyVideoView.SetMediaController(null);
                     }
                 }
                 else if (e.PropertyName == MyVideoPlayer.FullScreenProperty.PropertyName)
@@ -133,20 +134,20 @@ namespace App1.Droid
                 {
                     if (source.PlayerAction == VideoState.PAUSE)
                     {
-                        this._MyVideoView.Pause();
+                        _MyVideoView.Pause();
                     }
                     else if (source.PlayerAction == VideoState.PLAY)
                     {
-                        this._MyVideoView.Play();
+                        _MyVideoView.Play();
                     }
                     else if (source.PlayerAction == VideoState.RESTART)
                     {
-                        this._MyVideoView.SeekTo(0);
-                        this._MyVideoView.Play();
+                        _MyVideoView.SeekTo(0);
+                        _MyVideoView.Play();
                     }
                     else if (source.PlayerAction == VideoState.STOP)
                     {
-                        this._MyVideoView.StopPlayback();
+                        _MyVideoView.StopPlayback();
                     }
                 }
             }
@@ -154,27 +155,28 @@ namespace App1.Droid
 
         private void ResizeScreen(bool fullscreen)
         {
-            var a = this.Context as Activity;
-            if (this.Element.ActionBarHide)
+            var a = Context as Activity;
+            if (Element.ActionBarHide)
             {
                 a.ActionBar.Hide();
             }
-            else {
+            else
+            {
                 a.ActionBar.Show();
             }
             if (fullscreen)
             {
-                var p = this._MyVideoView.LayoutParameters as Android.Widget.RelativeLayout.LayoutParams;
-                p.Height = Android.Widget.RelativeLayout.LayoutParams.FillParent;
+                var p = _MyVideoView.LayoutParameters as RelativeLayout.LayoutParams;
+                p.Height = LayoutParams.FillParent;
 
                 // added works ok for rotation
                 var view = a.Window.DecorView;
-                Rect rect = new Rect();
+                var rect = new Rect();
                 view.GetWindowVisibleDisplayFrame(rect);
 
-                var width = (int)this.Element.ContentWidth;
-                var height = (this.Element.ActionBarHide) ? rect.Height() : (int)this.Element.ContentHeight;
-                var holder = this._MyVideoView.Holder;
+                var width = (int) Element.ContentWidth;
+                var height = Element.ActionBarHide ? rect.Height() : (int) Element.ContentHeight;
+                var holder = _MyVideoView.Holder;
 
                 p.Height = height;
                 p.Width = width;
@@ -183,25 +185,25 @@ namespace App1.Droid
                 // end
 
                 p.AlignWithParent = true;
-                this._MyVideoView.LayoutParameters = p;
-
+                _MyVideoView.LayoutParameters = p;
             }
-            else {
-                var p = this._MyVideoView.LayoutParameters as Android.Widget.RelativeLayout.LayoutParams;
-                if (this.Element.HeightRequest > 0 || this.Element.WidthRequest > 0)
+            else
+            {
+                var p = _MyVideoView.LayoutParameters as RelativeLayout.LayoutParams;
+                if (Element.HeightRequest > 0 || Element.WidthRequest > 0)
                 {
-                    if (this.Element.HeightRequest > 0)
+                    if (Element.HeightRequest > 0)
                     {
-                        p.Height = (int)this.Element.HeightRequest;
+                        p.Height = (int) Element.HeightRequest;
                     }
-                    if (this.Element.WidthRequest > 0)
+                    if (Element.WidthRequest > 0)
                     {
-                        p.Width = (int)this.Element.WidthRequest;
+                        p.Width = (int) Element.WidthRequest;
                     }
-                    this._MyVideoView.LayoutParameters = p;
+                    _MyVideoView.LayoutParameters = p;
                 }
                 p.AlignWithParent = false;
-                this._MyVideoView.LayoutParameters = p;
+                _MyVideoView.LayoutParameters = p;
             }
 
             InvalidLayout();
@@ -209,19 +211,16 @@ namespace App1.Droid
 
         private void InvalidLayout()
         {
-            if (this.Element.Orientation == MyVideoPlayer.ScreenOrientation.LANDSCAPE)
+            if (Element.Orientation == MyVideoPlayer.ScreenOrientation.LANDSCAPE)
             {
-
             }
-            Xamarin.Forms.Device.BeginInvokeOnMainThread(() => {
-
-                this._MyVideoView.ForceLayout();
-                this._MyVideoView.RequestLayout();
-                this._MyVideoView.Holder.SetSizeFromLayout();
-                this._MyVideoView.Invalidate();
-
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                _MyVideoView.ForceLayout();
+                _MyVideoView.RequestLayout();
+                _MyVideoView.Holder.SetSizeFromLayout();
+                _MyVideoView.Invalidate();
             });
         }
     }
 }
-

@@ -1,17 +1,18 @@
 using System.Globalization;
-using System.Runtime.Remoting.Activation;
 using System.Threading;
 using App1.Droid;
 using Moma;
+using Xamarin.Forms;
 
-[assembly: Xamarin.Forms.Dependency(typeof(CultureHandler))]
+[assembly: Dependency(typeof (CultureHandler))]
+
 namespace App1.Droid
 {
-    class CultureHandler : ICurrentCulture
+    internal class CultureHandler : ICurrentCulture
     {
         public void SetCurrentCulture(string language)
         {
-            string culture = GetCurrentCulture(language);
+            var culture = GetCurrentCulture(language);
             var userSelectedCulture = new CultureInfo(culture);
             Thread.CurrentThread.CurrentCulture = userSelectedCulture;
             Thread.CurrentThread.CurrentUICulture = userSelectedCulture;

@@ -276,17 +276,23 @@
     <File>F:\Documents\GitHubVisualStudio\MoMa\Moma\Moma.Droid\AndroidAppHandler.cs</File>
     <File>F:\Documents\GitHubVisualStudio\MoMa\Moma\Moma.Droid\AndroidUserSettings.cs</File>
     <File>F:\Documents\GitHubVisualStudio\MoMa\Moma\Moma.Droid\AudioService.cs</File>
+    <File>F:\Documents\GitHubVisualStudio\MoMa\Moma\Moma.Droid\Contact.cs</File>
+    <File>F:\Documents\GitHubVisualStudio\MoMa\Moma\Moma.Droid\Controls\MyVideoView.cs</File>
     <File>F:\Documents\GitHubVisualStudio\MoMa\Moma\Moma.Droid\CultureHandler.cs</File>
     <File>F:\Documents\GitHubVisualStudio\MoMa\Moma\Moma.Droid\CustomNavigationRenderer.cs</File>
     <File>F:\Documents\GitHubVisualStudio\MoMa\Moma\Moma.Droid\CustomPickerRenderer.cs</File>
+    <File>F:\Documents\GitHubVisualStudio\MoMa\Moma\Moma.Droid\CustomWebViewClient.cs</File>
     <File>F:\Documents\GitHubVisualStudio\MoMa\Moma\Moma.Droid\FileIO.cs</File>
     <File>F:\Documents\GitHubVisualStudio\MoMa\Moma\Moma.Droid\HybridWebViewRenderer.cs</File>
     <File>F:\Documents\GitHubVisualStudio\MoMa\Moma\Moma.Droid\JSBridge.cs</File>
     <File>F:\Documents\GitHubVisualStudio\MoMa\Moma\Moma.Droid\LanguageInitializer.cs</File>
     <File>F:\Documents\GitHubVisualStudio\MoMa\Moma\Moma.Droid\MainActivity.cs</File>
+    <File>F:\Documents\GitHubVisualStudio\MoMa\Moma\Moma.Droid\MyVideoPlayerRenderer.cs</File>
     <File>F:\Documents\GitHubVisualStudio\MoMa\Moma\Moma.Droid\NetworkConnection.cs</File>
+    <File>F:\Documents\GitHubVisualStudio\MoMa\Moma\Moma.Droid\PhoneDialer.cs</File>
     <File>F:\Documents\GitHubVisualStudio\MoMa\Moma\Moma.Droid\QrCodeScanningService.cs</File>
     <File>F:\Documents\GitHubVisualStudio\MoMa\Moma\Moma.Droid\SplashActivity.cs</File>
     <File>F:\Documents\GitHubVisualStudio\MoMa\Moma\Moma.Droid\TourType.cs</File>
+    <File>F:\Documents\GitHubVisualStudio\MoMa\Moma\Moma.Droid\WebPageOpener.cs</File>
   </Files>
 </AnalysisInput>

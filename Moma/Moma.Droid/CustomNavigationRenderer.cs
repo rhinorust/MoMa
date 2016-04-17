@@ -1,21 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.Graphics.Drawables;
-using Moma;
+using Moma.Droid;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-using Moma.Droid;
 
-[assembly: ExportRenderer(typeof(NavigationPage), typeof(CustomNavigationRenderer))]
+[assembly: ExportRenderer(typeof (NavigationPage), typeof (CustomNavigationRenderer))]
 
 namespace Moma.Droid
 {
@@ -28,10 +17,10 @@ namespace Moma.Droid
             RemoveAppIconFromActionBar();
         }
 
-        void RemoveAppIconFromActionBar()
+        private void RemoveAppIconFromActionBar()
         {
             // http://stackoverflow.com/questions/14606294/remove-icon-logo-from-action-bar-on-android
-            var actionBar = ((Activity)Context).ActionBar;
+            var actionBar = ((Activity) Context).ActionBar;
             actionBar.SetIcon(new ColorDrawable(Color.Transparent.ToAndroid()));
         }
     }

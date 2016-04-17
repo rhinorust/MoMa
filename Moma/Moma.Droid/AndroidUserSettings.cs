@@ -1,12 +1,14 @@
-using Android.App;
 using Android.Content;
 using App1.Droid;
 using Moma;
+using Xamarin.Forms;
+using Application = Android.App.Application;
 
-[assembly: Xamarin.Forms.Dependency(typeof(AndroidUserSettings))]
+[assembly: Dependency(typeof (AndroidUserSettings))]
+
 namespace App1.Droid
 {
-    class AndroidUserSettings : IUserSettings
+    internal class AndroidUserSettings : IUserSettings
     {
         public string GetUserSetting(string setting)
         {

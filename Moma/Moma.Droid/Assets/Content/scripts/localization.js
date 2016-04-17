@@ -4,7 +4,7 @@
      *  @param {Object} oLocalizations - Localization strings object
      *  @param {Array} aData - Array of properties to loop into
      */
-    getLocalization: function (oLocalizations, aData) {
+    getLocalization: function(oLocalizations, aData) {
         var currentLocale = currentLanguage;
         if (oLocalizations[currentLocale]) {
             var oTracduction = tools.isset(oLocalizations[currentLocale], aData);
@@ -25,10 +25,10 @@
      *  @param {Object} object - Objevt to look into
      *  @param {Array} props - Array of properties to loop into
      */
-    isset: function (object, props) {
+    isset: function(object, props) {
         // we will use the dump variable to iterate in the object
         var dump,
-		propsLength = props.length - 1;
+            propsLength = props.length - 1;
         // loop in the properties
         for (var x = 0; x < props.length; x++) {
             // first prop?

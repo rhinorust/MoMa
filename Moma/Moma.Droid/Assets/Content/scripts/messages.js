@@ -3,11 +3,11 @@ var messageBoxTitle;
 var messageBoxIBeacons;
 var messageBoxQRCodes;
 
-$('document').ready(function () {
-    messageBox         = $('#messages');
-    messageBoxTitle    = messageBox.find('#title h1');
-    messageBoxIBeacons = messageBox.find('#iBeacons ul');
-    messageBoxQRCodes  = messageBox.find('#QRCodes ul');
+$("document").ready(function() {
+    messageBox = $("#messages");
+    messageBoxTitle = messageBox.find("#title h1");
+    messageBoxIBeacons = messageBox.find("#iBeacons ul");
+    messageBoxQRCodes = messageBox.find("#QRCodes ul");
 
     // What is the current language?
     var curLanguage = jsBridge.getLanguage();
@@ -31,7 +31,7 @@ $('document').ready(function () {
     messageBoxIBeacons.append(noPointsFoundYet);
 
     // If we are currently in free mode
-    if (typeof storylineSelectedID === 'undefined') {
+    if (typeof storylineSelectedID === "undefined") {
         var qrCodesBla = "";
         if (curLanguage == "en") qrCodesBla = "QRCodes";
         if (curLanguage == "fr") qrCodesBla = "Code QR";
@@ -46,8 +46,8 @@ $('document').ready(function () {
         messageBoxQRCodes.append(noQRFoundYet);
     }
 
-    messageBox.find('#close').click(function () {
-        messageBox.css('visibility', 'hidden');
+    messageBox.find("#close").click(function() {
+        messageBox.css("visibility", "hidden");
     });
 
     // Debugging
@@ -71,7 +71,7 @@ function addToMessages(poi) {
         else
             jsFunction = "showFreeIBeacon('" + poi.minor + "','" + poi.major + "');";
     }
-        
+
     if (poi.type === "QRCode")
         jsFunction = "showQRCode('" + poi.title + "','" + poi.data + "');";
 
@@ -85,12 +85,12 @@ function addToMessages(poi) {
     // Add what happens when this link is clicked
     appendix += '<a onclick="' + jsFunction;
     // also, when clicked, close the messageBox
-    appendix += 'messageBox.css(\'visibility\', \'hidden\');';
+    appendix += "messageBox.css('visibility', 'hidden');";
     // Prevent link's default behaviour
     appendix += '" href="javascript:void(0);">';
     // Link's title
-    appendix += poi.title + '</a>';
-    appendix += '</li>';
+    appendix += poi.title + "</a>";
+    appendix += "</li>";
 
     // Updating the messageIcon in the C# toolbar
     jsBridge.messageWasAdded(poi.title);
@@ -102,8 +102,8 @@ function addToMessages(poi) {
 // Called by C# when user clicks the messages icon in the toolbar
 // Showing or hiding the messages
 function showHideMessages() {
-    if (messageBox.css('visibility') === 'hidden')
-        messageBox.css('visibility', 'visible');
+    if (messageBox.css("visibility") === "hidden")
+        messageBox.css("visibility", "visible");
     else
-        messageBox.css('visibility', 'hidden');
+        messageBox.css("visibility", "hidden");
 }

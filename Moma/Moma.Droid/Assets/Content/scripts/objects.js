@@ -2,6 +2,7 @@
 //english = 0
 var lang = 0;
 var selectedLanguage = jsBridge.getLanguage();
+
 //Class Diagram Objects
 
 function POI(id, x, y, floorID, title, description, iBeacon, video, image, audio) {
@@ -17,31 +18,30 @@ function POI(id, x, y, floorID, title, description, iBeacon, video, image, audio
     this.audio = audio;
     this.edges = [];
 
-    this.getQRInfo = function (QRID) {
+    this.getQRInfo = function(QRID) {
         return "string";
     };
-    this.getPOIPosition = function () {
+    this.getPOIPosition = function() {
         return "string";
     };
-    this.displayMorePOIInfo = function () {
+    this.displayMorePOIInfo = function() {
         return "string";
     };
-    this.getMorePOIInfo = function () {
+    this.getMorePOIInfo = function() {
         return "string";
     };
-    this.findQRPOI = function (QRID) {
+    this.findQRPOI = function(QRID) {
         return null;
     };
-    this.getPOIInfo = function () {
+    this.getPOIInfo = function() {
         return "string";
     };
-    this.displayLLPOILocation = function () {
+    this.displayLLPOILocation = function() {
 
     };
-    this.getPopularPOI = function () {
+    this.getPopularPOI = function() {
         ;
-    }
-
+    };
 }
 
 function POT(id, x, y, floorID, label) {
@@ -88,9 +88,9 @@ function Video(videoID, path, caption) {
     this.path = path;
     this.caption = caption;
 
-    this.showVideo = function () {
+    this.showVideo = function() {
         //show video
-    }
+    };
 }
 
 function Image(imageID, path, caption) {
@@ -98,9 +98,9 @@ function Image(imageID, path, caption) {
     this.path = path;
     this.caption = caption;
 
-    this.showImage = function () {
+    this.showImage = function() {
         //show image
-    }
+    };
 }
 
 function Audio(audioID, path, caption) {
@@ -108,9 +108,9 @@ function Audio(audioID, path, caption) {
     this.path = path;
     this.caption = caption;
 
-    this.playAudio = function () {
+    this.playAudio = function() {
         //play video
-    }
+    };
 }
 
 function Floor(floorID, imagePath, imageWidth, imageHeight) {
@@ -118,7 +118,7 @@ function Floor(floorID, imagePath, imageWidth, imageHeight) {
     this.imagePath = imagePath;
     this.imageWidth = imageWidth;
     this.imageHeight = imageHeight;
-    this.POI = [];//poi + pot on this layer
+    this.POI = []; //poi + pot on this layer
     this.POT = [];
     this.markersById = [];
     this.tileLayer;
@@ -128,16 +128,16 @@ function Floor(floorID, imagePath, imageWidth, imageHeight) {
     this.polyline;
     this.polylineLatLng = [];
 
-    this.createTileLayer = function (minZoom, maxZoom) {
-        this.tileLayer = L.tileLayer('floor' + floorID + '/{z}/{x}/{y}.png', { minZoom: mapMinZoom, maxZoom: mapMaxZoom, attribution: '', noWrap: true, tms: false });
+    this.createTileLayer = function(minZoom, maxZoom) {
+        this.tileLayer = L.tileLayer("floor" + floorID + "/{z}/{x}/{y}.png", { minZoom: mapMinZoom, maxZoom: mapMaxZoom, attribution: "", noWrap: true, tms: false });
     };
 
-    this.groupLayers = function () {
+    this.groupLayers = function() {
         this.groupLayer = L.layerGroup(this.markers).addLayer(this.tileLayer);
     };
 
-    this.addPolylineLayer = function () {
-        this.polyline = L.polyline(this.polylineLatLng, { color: '#0066ff', weight: 10, opacity: 0.7 });
+    this.addPolylineLayer = function() {
+        this.polyline = L.polyline(this.polylineLatLng, { color: "#0066ff", weight: 10, opacity: 0.7 });
         this.groupLayer.addLayer(this.polyline);
     };
 
@@ -150,7 +150,7 @@ function Storyline(id, title, description, nodePath, thumbnailPath, walkingTimeI
     this.nodePath = nodePath;
     this.thumbnailPath = thumbnailPath;
     this.walkingTimeInMinutes = walkingTimeInMinutes;
-    this.floorsCovered = floorsCovered
+    this.floorsCovered = floorsCovered;
     this.nodes = []; //associative array
 }
 
@@ -163,11 +163,11 @@ function Navigation(nodePath, isNotAtStart) {
 
 //Map Object
 function Map() {
-    
-    this.createMarker = function (iconURL, iconWidth, iconHeight, iconAnchorWidth, iconAnchorHeight, iconAnchorX, iconAnchorY) {
+
+    this.createMarker = function(iconURL, iconWidth, iconHeight, iconAnchorWidth, iconAnchorHeight, iconAnchorX, iconAnchorY) {
         var marker = L.icon({
             iconUrl: iconURL,
-            shadowUrl: '',
+            shadowUrl: "",
             iconSize: [iconWidth, iconHeight], // size of the icon
             //shadowSize: [50, 64], // size of the shadow
             iconAnchor: [iconAnchorWidth, iconAnchorHeight], // point of the icon which will correspond to marker's location
@@ -177,7 +177,7 @@ function Map() {
         return marker;
     };
 
-    this.parseFloors = function () {
+    this.parseFloors = function() {
         var floors = [];
         var arrayFloors = DATA.floorPlan;
         for (i = 0; i < arrayFloors.length; i++) {
@@ -187,9 +187,8 @@ function Map() {
             floors.push(floor);
         }
         return floors;
-    }
-
-    this.parsePOI = function (floors) {
+    };
+    this.parsePOI = function(floors) {
         var arrayPOI = DATA.node.poi;
         for (i = 0; i < arrayPOI.length; i++) {
             var p = arrayPOI[i];
@@ -230,7 +229,7 @@ function Map() {
         return floors;
     };
 
-    this.parsePOT = function (floors) {
+    this.parsePOT = function(floors) {
         var arrayPOT = DATA.node.pot;
         for (i = 0; i < arrayPOT.length; i++) {
             var p = arrayPOT[i];
@@ -264,7 +263,7 @@ function Map() {
         return floors;
     };
 
-    this.parseEdges = function () {
+    this.parseEdges = function() {
         var arrayEdges = DATA.edge;
         for (i = 0; i < arrayEdges.length; i++) {
             var e = arrayEdges[i];
@@ -280,22 +279,20 @@ function Map() {
                 ListPOI[edge.endNode + ""].edges.push(edge);
             }
         }
-    }
-
-    this.createFloorTileLayers = function (floors, minZoom, maxZoom) {
+    };
+    this.createFloorTileLayers = function(floors, minZoom, maxZoom) {
         for (i = 0; i < floors.length; i++) {
             floors[i].createTileLayer(minZoom, maxZoom);
         }
         return floors;
-    }
-
-    this.groupLayers = function (floors) {
+    };
+    this.groupLayers = function(floors) {
         for (i = 0; i < floors.length; i++) {
             floors[i].groupLayers();
         }
         return floors;
     };
-    this.addLayersToMap = function (floors, map) {
+    this.addLayersToMap = function(floors, map) {
         for (i = 0; i < floors.length; i++) {
             floors[i].groupLayer.addTo(map);
         }
@@ -305,7 +302,7 @@ function Map() {
 
 function StorylineMap() {
 
-    this.parseStoryline = function (storylineSelectedID) {
+    this.parseStoryline = function(storylineSelectedID) {
         var arrayStoryline = DATA.storyline;
         var storyline;
         for (i = 0; i < arrayStoryline.length; i++) {
@@ -323,7 +320,7 @@ function StorylineMap() {
         return storyline;
     };
 
-    this.parseNodePath = function (storyline) {
+    this.parseNodePath = function(storyline) {
         var nodePath = storyline.nodePath;
         for (i = 0; i < nodePath.length; i++) {
             var node;
@@ -339,7 +336,7 @@ function StorylineMap() {
 
         return storyline;
     };
-    this.createPolyline = function (floors, storyline) {
+    this.createPolyline = function(floors, storyline) {
 
         //empty markers array of all floors
         for (i = 0; i < floors.length; i++) {
@@ -367,7 +364,7 @@ function StorylineMap() {
         return floors;
     };
 
-    this.addPolylines = function (floors) {
+    this.addPolylines = function(floors) {
         for (i = 0; i < floors.length; i++) {
             floors[i].addPolylineLayer();
         }
@@ -379,7 +376,7 @@ function StorylineMap() {
 function Dijkstra(listPOI, listPOT) {
     this.vertices = [];
     var infinity = 1 / 0;
-    this.addVertices = function () {
+    this.addVertices = function() {
         //combine ids of pot & poi (for each)
         for (var key in listPOI) {
             this.vertices[key] = listPOI[key].edges;
@@ -387,15 +384,17 @@ function Dijkstra(listPOI, listPOT) {
         for (var key in listPOT) {
             this.vertices[key] = listPOT[key].edges;
         }
-    }
-
-    this.shortestPath = function (start, finish) {
+    };
+    this.shortestPath = function(start, finish) {
         this.addVertices();
         var nodes = new PriorityQueue(),
             distances = [],
             previous = [],
             path = [],
-            smallest, vertex, neighbor, newDistance;
+            smallest,
+            vertex,
+            neighbor,
+            newDistance;
 
         //initialize vertex distances
         for (vertex in this.vertices) {
@@ -445,26 +444,24 @@ function Dijkstra(listPOI, listPOT) {
             }
         }
         return path.concat([start]).reverse();
-    }
-
-    var PriorityQueue = function () {
+    };
+    var PriorityQueue = function() {
         this._nodes = [];
 
-        this.enqueue = function (priority, key) {
+        this.enqueue = function(priority, key) {
             this._nodes.push({ key: key, priority: priority });
             this.sort();
-        }
-        this.dequeue = function () {
+        };
+        this.dequeue = function() {
             return this._nodes.shift().key;
-        }
-        this.sort = function () {
-            this._nodes.sort(function (a, b) {
+        };
+        this.sort = function() {
+            this._nodes.sort(function(a, b) {
                 return a.priority - b.priority;
             });
-        }
-        this.isEmpty = function () {
+        };
+        this.isEmpty = function() {
             return !this._nodes.length;
-        }
-    }
+        };
+    };
 }
-

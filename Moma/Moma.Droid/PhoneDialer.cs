@@ -1,23 +1,15 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Moma;
+using Android.Net;
 using Android.Telephony;
-using Xamarin.Forms;
 using Moma.Droid;
+using Xamarin.Forms;
 
-[assembly: Dependency(typeof(PhoneDialer))]
+[assembly: Dependency(typeof (PhoneDialer))]
+
 namespace Moma.Droid
 {
-   public class PhoneDialer : IDialer
+    public class PhoneDialer : IDialer
     {
         public bool Dial(string number)
         {
@@ -25,7 +17,7 @@ namespace Moma.Droid
             if (context == null)
                 return false;
 
-            var uri = Android.Net.Uri.Parse("tel:" + number);
+            var uri = Uri.Parse("tel:" + number);
             var intent = new Intent(Intent.ActionDial, uri);
 
             if (IsIntentAvailable(context, intent))
@@ -39,7 +31,6 @@ namespace Moma.Droid
 
         public static bool IsIntentAvailable(Context context, Intent intent)
         {
-
             var packageManager = context.PackageManager;
 
             var list = packageManager.QueryIntentServices(intent, 0)
@@ -47,7 +38,7 @@ namespace Moma.Droid
             if (list.Any())
                 return true;
 
-            TelephonyManager mgr = TelephonyManager.FromContext(context);
+            var mgr = TelephonyManager.FromContext(context);
             return mgr.PhoneType != PhoneType.None;
         }
     }

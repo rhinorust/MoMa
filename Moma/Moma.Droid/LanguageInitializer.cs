@@ -1,21 +1,18 @@
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
-using Android.OS;
-using Android.Widget;
-using Moma.Droid;
-using Moma;
-using Application = Android.App.Application;
-using Button = Android.Widget.Button;
-using TextAlignment = Android.Views.TextAlignment;
-using GradientDrawable = Android.Graphics.Drawables.GradientDrawable;
-using Color = Android.Graphics.Color;
 using Android.Graphics;
+using Android.Graphics.Drawables;
+using Android.OS;
+using Android.Views;
+using Android.Widget;
+using Moma;
 
 namespace App1.Droid
 {
-    [Activity(Label = "Select a language", Icon = "@drawable/moma_appIcon", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    class LanguageInitializer : Activity
+    [Activity(Label = "Select a language", Icon = "@drawable/moma_appIcon",
+        ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    internal class LanguageInitializer : Activity
     {
         protected override void OnCreate(Bundle bundle)
         {
@@ -23,11 +20,11 @@ namespace App1.Droid
 
             var layout = new LinearLayout(this);
             layout.Orientation = Orientation.Vertical;
-            layout.SetBackgroundColor(Android.Graphics.Color.White);
+            layout.SetBackgroundColor(Color.White);
 
             //add border for button
-            GradientDrawable drawable = new GradientDrawable();
-            drawable.SetShape(Android.Graphics.Drawables.ShapeType.Rectangle);
+            var drawable = new GradientDrawable();
+            drawable.SetShape(ShapeType.Rectangle);
             drawable.SetStroke(15, Color.White);
             drawable.SetColor(Color.ParseColor("#001533"));
 
@@ -43,9 +40,9 @@ namespace App1.Droid
             var frenchButton = new Button(this);
             frenchButton.Text = "Français";
             frenchButton.TextAlignment = TextAlignment.Center;
-            frenchButton.SetTextColor(Android.Graphics.Color.Black);
+            frenchButton.SetTextColor(Color.Black);
             frenchButton.SetBackgroundColor(Color.ParseColor("#001533"));
-            frenchButton.SetTextColor(Android.Graphics.Color.White);
+            frenchButton.SetTextColor(Color.White);
             frenchButton.TextSize = 22;
             frenchButton.SetBackgroundDrawable(drawable);
             frenchButton.SetPadding(55, 55, 55, 55);
@@ -55,7 +52,7 @@ namespace App1.Droid
             englishButton.Text = "English";
             englishButton.TextAlignment = TextAlignment.Center;
             englishButton.SetBackgroundColor(Color.ParseColor("#001533"));
-            englishButton.SetTextColor(Android.Graphics.Color.White);
+            englishButton.SetTextColor(Color.White);
             englishButton.TextSize = 20;
             englishButton.SetBackgroundDrawable(drawable);
             englishButton.SetPadding(55, 55, 55, 55);
@@ -65,17 +62,14 @@ namespace App1.Droid
             deutscheButton.Text = "Deutsch";
             deutscheButton.TextAlignment = TextAlignment.Center;
             deutscheButton.SetBackgroundColor(Color.ParseColor("#001533"));
-            deutscheButton.SetTextColor(Android.Graphics.Color.White);
+            deutscheButton.SetTextColor(Color.White);
             deutscheButton.TextSize = 20;
             deutscheButton.SetBackgroundDrawable(drawable);
             deutscheButton.SetPadding(55, 55, 55, 55);
 
-            frenchButton.Click += (sender, e) =>
-            { SetLanguageSettings("french"); };
-            englishButton.Click += (sender, e) =>
-            { SetLanguageSettings("english"); };
-            deutscheButton.Click += (sender, e) =>
-            { SetLanguageSettings("deutsche"); };
+            frenchButton.Click += (sender, e) => { SetLanguageSettings("french"); };
+            englishButton.Click += (sender, e) => { SetLanguageSettings("english"); };
+            deutscheButton.Click += (sender, e) => { SetLanguageSettings("deutsche"); };
             //layout.AddView(aLabel);
             layout.AddView(deutscheButton);
             layout.AddView(englishButton);
@@ -91,16 +85,14 @@ namespace App1.Droid
             var cultureHandler = new CultureHandler();
             var cultureString = cultureHandler.GetCurrentCulture(language);
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            var builder = new AlertDialog.Builder(this);
             builder.SetTitle(TranslationManager.GetResourceValue("LanguageSelection", cultureString));
 
-            string defaultLang = TranslationManager.GetResourceValue("DefaultLanguage", cultureString);
+            var defaultLang = TranslationManager.GetResourceValue("DefaultLanguage", cultureString);
             builder.SetMessage(defaultLang);
             builder.SetCancelable(false);
-            builder.SetPositiveButton("OK", delegate
-            {
-                StartActivity(new Intent(Application.Context, typeof(TourType)));
-            });
+            builder.SetPositiveButton("OK",
+                delegate { StartActivity(new Intent(Application.Context, typeof (TourType))); });
             builder.Show();
         }
     }

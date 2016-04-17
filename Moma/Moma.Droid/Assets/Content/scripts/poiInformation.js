@@ -2,14 +2,14 @@ var poiIB;
 var poiIBoxTitle;
 var poiIBoxContent;
 
-$('document').ready(function () {
-    poiIB          = $('#POI_Information');
-    poiIBoxTitle   = poiIB.find('#title h1');
-    poiIBoxContent = poiIB.find('#content');
+$("document").ready(function() {
+    poiIB = $("#POI_Information");
+    poiIBoxTitle = poiIB.find("#title h1");
+    poiIBoxContent = poiIB.find("#content");
 
-    var closeButton = poiIB.find('#close');
-    closeButton.click(function () {
-        poiIB.css('visibility', 'hidden');
+    var closeButton = poiIB.find("#close");
+    closeButton.click(function() {
+        poiIB.css("visibility", "hidden");
     });
 
     // Debugging: For opening the POI information box without an iBeacon
@@ -62,7 +62,7 @@ function showFreeIBeacon(minor, major) {
         // The media elements
         var images = poi.media.image;
         var videos = poi.media.video;
-        var audio  = poi.media.audio;
+        var audio = poi.media.audio;
 
         // If there is any audio, we ask C# to play it
         if (audio.length > 0) {
@@ -86,8 +86,7 @@ function showFreeIBeacon(minor, major) {
                     if (firstVideoStarted === false) {
                         jsBridge.playVideo(newPath, videos[i].caption, true);
                         firstVideoStarted = true;
-                    }
-                    else
+                    } else
                         jsBridge.playVideo(newPath, videos[i].caption, false);
                 }
             }
@@ -104,22 +103,22 @@ function showFreeIBeacon(minor, major) {
 
             content += poiDescription;
 
-            poiIBoxTitle.empty()
+            poiIBoxTitle.empty();
             poiIBoxTitle.append(poiTitle);
             poiIBoxContent.empty();
-            poiIBoxContent.append(content); 
+            poiIBoxContent.append(content);
 
             // Close the message box
-            messageBox.css('visibility', 'hidden');
+            messageBox.css("visibility", "hidden");
 
-            poiIB.css('visibility', 'visible');
+            poiIB.css("visibility", "visible");
         }
 
         // Updating the messageIcon in the C# toolbar
         jsBridge.messageWasRead(poiTitle);
 
         // Remove it's new tag from the iBeacons' list if it exists
-        removeNEWTagFor(poiTitle, '#iBeacons');
+        removeNEWTagFor(poiTitle, "#iBeacons");
     }
 }
 
@@ -210,7 +209,7 @@ function showIBeacon(minor, major) {
         // The media elements
         var images = poi.media.image;
         var videos = poi.media.video;
-        var audio  = poi.media.audio;
+        var audio = poi.media.audio;
 
         // If there is any audio, we ask C# to play it
         if (audio.length > 0) {
@@ -234,8 +233,7 @@ function showIBeacon(minor, major) {
                     if (firstVideoStarted === false) {
                         jsBridge.playVideo(newPath, videos[i].caption, true);
                         firstVideoStarted = true;
-                    }
-                    else
+                    } else
                         jsBridge.playVideo(newPath, videos[i].caption, false);
                 }
             }
@@ -252,22 +250,22 @@ function showIBeacon(minor, major) {
 
             content += poiDescription;
 
-            poiIBoxTitle.empty()
+            poiIBoxTitle.empty();
             poiIBoxTitle.append(poiTitle);
             poiIBoxContent.empty();
-            poiIBoxContent.append(content); 
+            poiIBoxContent.append(content);
 
             // Close the message box
-            messageBox.css('visibility', 'hidden');
+            messageBox.css("visibility", "hidden");
 
-            poiIB.css('visibility', 'visible');
+            poiIB.css("visibility", "visible");
         }
 
         // Updating the messageIcon in the C# toolbar
         jsBridge.messageWasRead(poiTitle);
 
         // Remove it's new tag from the iBeacons' list if it exists
-        removeNEWTagFor(poiTitle, '#iBeacons');
+        removeNEWTagFor(poiTitle, "#iBeacons");
     }
 }
 
@@ -290,12 +288,12 @@ function showQRCode(title, data) {
     jsBridge.messageWasRead(title);
 
     // Remove it's new tag from the QRCodes' list if it exists
-    removeNEWTagFor(title, '#QRCodes');
+    removeNEWTagFor(title, "#QRCodes");
 
     // Close the message box
-    messageBox.css('visibility', 'hidden');
+    messageBox.css("visibility", "hidden");
 
-    poiIB.css('visibility', 'visible');
+    poiIB.css("visibility", "visible");
 }
 
 // title is the title of the QRCode/iBeacon in the messages
@@ -303,20 +301,20 @@ function showQRCode(title, data) {
 // container is either '#iBeacons' or '#QRCodes'
 function removeNEWTagFor(title, container) {
     // Find the corresponding iBeacon in the message list
-    $('#messages').find('#content '+container+' li').each(function () {
+    $("#messages").find("#content " + container + " li").each(function() {
         // Removing the NEW tag next to the message it if it is there
-        if ($(this).find('a').text() === title) {
-            $(this).find('p').removeClass('newMessage'); // Clear the new message class
-            $(this).find('p').addClass('oldMessage');
-            $(this).find('p').text(''); // Clear the "NEW" message
+        if ($(this).find("a").text() === title) {
+            $(this).find("p").removeClass("newMessage"); // Clear the new message class
+            $(this).find("p").addClass("oldMessage");
+            $(this).find("p").text(""); // Clear the "NEW" message
         }
     });
 }
 
 function imagef(fileName) {
-    return '<img src="'+fileName+'">';
+    return '<img src="' + fileName + '">';
 }
 
 function textf(fileName) {
-    return '<p>'+fileName+'</p>';
+    return "<p>" + fileName + "</p>";
 }

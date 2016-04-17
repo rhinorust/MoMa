@@ -1,22 +1,23 @@
 using Moma;
+using Moma.Droid;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-using Moma.Droid;
 using Color = Android.Graphics.Color;
 using TextAlignment = Android.Views.TextAlignment;
 
-[assembly: ExportRenderer(typeof(CustomPicker), typeof(CustomPickerRenderer))]
+[assembly: ExportRenderer(typeof (CustomPicker), typeof (CustomPickerRenderer))]
+
 namespace Moma.Droid
 {
-    class CustomPickerRenderer : PickerRenderer
+    internal class CustomPickerRenderer : PickerRenderer
     {
-        protected override void OnElementChanged(ElementChangedEventArgs<Xamarin.Forms.Picker> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<Picker> e)
         {
             base.OnElementChanged(e);
 
-            this.Control.TextAlignment = TextAlignment.Center;
+            Control.TextAlignment = TextAlignment.Center;
 
-            this.Control.SetTextColor(Color.Gray);
+            Control.SetTextColor(Color.Gray);
         }
     }
 }

@@ -7,16 +7,16 @@ var buttons;
 var yesClickFunctionLast;
 var noClickFunctionLast;
 
-$('document').ready(function () {
-    shortMsgIB = $('#shortMessageBox');
-    shortMsgTitle = shortMsgIB.find('#title h1');
-    shortMsgContent = shortMsgIB.find('#content #text');
+$("document").ready(function() {
+    shortMsgIB = $("#shortMessageBox");
+    shortMsgTitle = shortMsgIB.find("#title h1");
+    shortMsgContent = shortMsgIB.find("#content #text");
 
-    buttons = shortMsgIB.find('#content #buttons');
+    buttons = shortMsgIB.find("#content #buttons");
 
-    var closeButton = shortMsgIB.find('#close');
-    closeButton.click(function () {
-        shortMsgIB.css('visibility', 'hidden');
+    var closeButton = shortMsgIB.find("#close");
+    closeButton.click(function() {
+        shortMsgIB.css("visibility", "hidden");
     });
 
     // Debugging:
@@ -34,15 +34,15 @@ function showShortMessageBox(title, shortMessage, yesClickFunction, noClickFunct
     yesClickFunctionLast = yesClickFunction;
     noClickFunctionLast = noClickFunction;
 
-    shortMsgIB.css('visibility', 'visible');
+    shortMsgIB.css("visibility", "visible");
 }
 
 function yesButtonClick() {
-    shortMsgIB.css('visibility', 'hidden');
+    shortMsgIB.css("visibility", "hidden");
     yesClickFunctionLast();
 }
 
 function noButtonClick() {
-    shortMsgIB.css('visibility', 'hidden');
+    shortMsgIB.css("visibility", "hidden");
     noClickFunctionLast();
 }
