@@ -1,5 +1,4 @@
-﻿
-var translation = {
+﻿var translation = {
     en: {
         scanvengerHunt: {
             noneFound: "You have yet to find one QR Code!",
@@ -99,5 +98,4 @@ var translation = {
             PreviewStoryline: "Previewing storyline: "
         }
     }
-
 }

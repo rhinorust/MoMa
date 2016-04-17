@@ -156,14 +156,16 @@ function iBeaconDiscovered(minor, major) {
                 poiTitle = poi.title[i].title;
         }
         addToMessages({ type: "iBeacon", title: poiTitle, minor: minor, major: major, free: false });
-        showIBeacon(minor, major); // Show the IBeacon's information
+        // Show the IBeacon's information
+        showIBeacon(minor, major);
     }
 }
 
 // returns the storylinePoint poi instance corresponding
 // to the given minor,major,storylineID
 function findPOIWithIBeacon(minor, major) {
-    if (storylineSelectedID == null) return -1; // Justin's variable
+    if (storylineSelectedID == null)
+        return -1;
 
     var pois = DATA.node.poi;
     // Find the POI with the given minor and major and
@@ -179,7 +181,8 @@ function findPOIWithIBeacon(minor, major) {
             }
         }
     }
-    return -1; // If none was found 
+    // If none was found
+    return -1;
 }
 
 // Displays the POI information box populated with this
@@ -244,8 +247,8 @@ function showIBeacon(minor, major) {
 
             // if there are images or text we will show the poi information box
             if (images.length > 0) {
-                for (var j = 0; j < images.length; j++)
-                    content += imagef(images[j].path);
+                for (var i = 0; i < images.length; i++)
+                    content += imagef(images[i].path);
             }
 
             content += poiDescription;
@@ -304,9 +307,11 @@ function removeNEWTagFor(title, container) {
     $("#messages").find("#content " + container + " li").each(function() {
         // Removing the NEW tag next to the message it if it is there
         if ($(this).find("a").text() === title) {
-            $(this).find("p").removeClass("newMessage"); // Clear the new message class
+            // Clear the new message class
+            $(this).find("p").removeClass("newMessage");
             $(this).find("p").addClass("oldMessage");
-            $(this).find("p").text(""); // Clear the "NEW" message
+            // Clear the "NEW" message
+            $(this).find("p").text("");
         }
     });
 }

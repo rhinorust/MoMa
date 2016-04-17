@@ -57,24 +57,6 @@ function Edge(startNode, endNode, distance) {
     this.startNode = startNode;
     this.endNode = endNode;
     this.distance = distance;
-
-    //Not used anymore
-    /*
-    this.getDistance = function () {
-        if (endNodeFloorID == startNodeFloorID) {
-            var startNode = ListPOI[this.startNode + ""];
-            if (startNode == null) {
-                startNode = ListPOT[this.startNode + ""];
-            }
-            var endNode = ListPOI[this.endNode + ""];
-            if (endNode == null) {
-                endNode = ListPOT[this.endNode + ""];
-            }
-            this.distance = Math.sqrt(Math.pow((startNode.x - endNode.x), 2) + Math.pow((startNode.y - endNode.y),2));
-        } else {
-            this.distance = 0;
-        }
-    }*/
 }
 
 function IBeacon(uuid, major, minor) {
@@ -118,7 +100,8 @@ function Floor(floorID, imagePath, imageWidth, imageHeight) {
     this.imagePath = imagePath;
     this.imageWidth = imageWidth;
     this.imageHeight = imageHeight;
-    this.POI = []; //poi + pot on this layer
+    //poi + pot on this layer
+    this.POI = [];
     this.POT = [];
     this.markersById = [];
     this.tileLayer;
@@ -151,7 +134,8 @@ function Storyline(id, title, description, nodePath, thumbnailPath, walkingTimeI
     this.thumbnailPath = thumbnailPath;
     this.walkingTimeInMinutes = walkingTimeInMinutes;
     this.floorsCovered = floorsCovered;
-    this.nodes = []; //associative array
+    //associative array
+    this.nodes = [];
 }
 
 function Navigation(nodePath, isNotAtStart) {
@@ -168,11 +152,14 @@ function Map() {
         var marker = L.icon({
             iconUrl: iconURL,
             shadowUrl: "",
-            iconSize: [iconWidth, iconHeight], // size of the icon
+            // size of the icon
+            iconSize: [iconWidth, iconHeight],
             //shadowSize: [50, 64], // size of the shadow
+            // point of the icon which will correspond to marker's location
             iconAnchor: [iconAnchorWidth, iconAnchorHeight], // point of the icon which will correspond to marker's location
             //shadowAnchor: [4, 62],  // the same for the shadow
-            popupAnchor: [iconAnchorX, iconAnchorY] // point from which the popup should open relative to the iconAnchor
+            // point from which the popup should open relative to the iconAnchor
+            popupAnchor: [iconAnchorX, iconAnchorY]
         });
         return marker;
     };
@@ -180,9 +167,9 @@ function Map() {
     this.parseFloors = function() {
         var floors = [];
         var arrayFloors = DATA.floorPlan;
-        for (i = 0; i < arrayFloors.length; i++) {
+        for (var i = 0; i < arrayFloors.length; i++) {
             var f = arrayFloors[i];
-            floorDiff = parseInt(f.floorID) - i;
+            var floorDiff = parseInt(f.floorID) - i;
             var floor = new Floor(f.floorID, f.imagePath, f.imageWidth, f.imageHeight);
             floors.push(floor);
         }
@@ -190,7 +177,7 @@ function Map() {
     };
     this.parsePOI = function(floors) {
         var arrayPOI = DATA.node.poi;
-        for (i = 0; i < arrayPOI.length; i++) {
+        for (var i = 0; i < arrayPOI.length; i++) {
             var p = arrayPOI[i];
             var floorIDInt = parseInt(p.floorID);
             var imageWidth = floors[floorIDInt - floorDiff].imageWidth;
@@ -213,7 +200,7 @@ function Map() {
             var trueX = (Math.round((imageWidth / floors[floorIDInt - floorDiff].imageHeight) * x));
             var trueY = (Math.round((imageHeight / floors[floorIDInt - floorDiff].imageWidth) * y));
 
-            //get the right language for poi 
+            //get the right language for poi
 
             for (var k = 0; k < p.title.length; k++) {
                 if (p.title[k].language.toUpperCase() == selectedLanguage.toUpperCase())
@@ -231,7 +218,7 @@ function Map() {
 
     this.parsePOT = function(floors) {
         var arrayPOT = DATA.node.pot;
-        for (i = 0; i < arrayPOT.length; i++) {
+        for (var i = 0; i < arrayPOT.length; i++) {
             var p = arrayPOT[i];
             var floorIDInt = parseInt(p.floorID);
             var imageWidth = floors[floorIDInt - floorDiff].imageWidth;
@@ -385,7 +372,28 @@ function Dijkstra(listPOI, listPOT) {
             this.vertices[key] = listPOT[key].edges;
         }
     };
-    this.shortestPath = function(start, finish) {
+    this.shortestPath = function (start, finish) {
+
+        var PriorityQueue = function () {
+            this._nodes = [];
+
+            this.enqueue = function (priority, key) {
+                this._nodes.push({ key: key, priority: priority });
+                this.sort();
+            };
+            this.dequeue = function () {
+                return this._nodes.shift().key;
+            };
+            this.sort = function () {
+                this._nodes.sort(function (a, b) {
+                    return a.priority - b.priority;
+                });
+            };
+            this.isEmpty = function () {
+                return !this._nodes.length;
+            };
+        };
+
         this.addVertices();
         var nodes = new PriorityQueue(),
             distances = [],
@@ -425,7 +433,7 @@ function Dijkstra(listPOI, listPOT) {
                 continue;
             }
             for (i = 0; i < this.vertices[smallest].length; i++) {
-                edge = this.vertices[smallest][i];
+                var edge = this.vertices[smallest][i];
                 if (edge.startNode + "" != smallest) {
                     neighbor = edge.startNode + "";
                 } else {
@@ -444,24 +452,5 @@ function Dijkstra(listPOI, listPOT) {
             }
         }
         return path.concat([start]).reverse();
-    };
-    var PriorityQueue = function() {
-        this._nodes = [];
-
-        this.enqueue = function(priority, key) {
-            this._nodes.push({ key: key, priority: priority });
-            this.sort();
-        };
-        this.dequeue = function() {
-            return this._nodes.shift().key;
-        };
-        this.sort = function() {
-            this._nodes.sort(function(a, b) {
-                return a.priority - b.priority;
-            });
-        };
-        this.isEmpty = function() {
-            return !this._nodes.length;
-        };
     };
 }

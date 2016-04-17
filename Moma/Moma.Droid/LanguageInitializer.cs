@@ -28,15 +28,6 @@ namespace App1.Droid
             drawable.SetStroke(15, Color.White);
             drawable.SetColor(Color.ParseColor("#001533"));
 
-            /*var aLabel = new TextView(this);
-            aLabel.Text = "Select A Language:";
-            aLabel.TextSize = 25;
-            aLabel.SetTextColor(Android.Graphics.Color.Black);
-            aLabel.TextAlignment = TextAlignment.Center;
-            aLabel.SetPadding(20, 45, 20, 45);
-            layout.SetBackgroundColor(Android.Graphics.Color.AliceBlue);*/
-
-
             var frenchButton = new Button(this);
             frenchButton.Text = "Français";
             frenchButton.TextAlignment = TextAlignment.Center;
@@ -70,7 +61,6 @@ namespace App1.Droid
             frenchButton.Click += (sender, e) => { SetLanguageSettings("french"); };
             englishButton.Click += (sender, e) => { SetLanguageSettings("english"); };
             deutscheButton.Click += (sender, e) => { SetLanguageSettings("deutsche"); };
-            //layout.AddView(aLabel);
             layout.AddView(deutscheButton);
             layout.AddView(englishButton);
             layout.AddView(frenchButton);

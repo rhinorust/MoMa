@@ -26,15 +26,12 @@ namespace Moma.Droid
             };
             var scanResults = await scanner.Scan(options);
 
-            //js.CallJs("showQRText(" + scanResults.Text + ");");
             if (scanResults != null)
             {
                 addQRCode(scanResults.Text);
-                //js.CallJs("addToMessages({type: 'QRCode', title: 'QrCode', data: '" + scanResults.Text + "'");
                 return scanResults.Text;
             }
             return "";
-            // return scanResults.Text;
         }
 
         public int getNumberQRCodes()

@@ -41,9 +41,8 @@ function init() {
         map.unproject([3072, 0], map.getMaxZoom()));
     //add bounds to map
     map.fitBounds(mapBounds, { reset: true });
-    //map.setMaxBounds(map.getBounds());
 
-    for (i = 0; i < floors.length; i++) {
+    for (var i = 0; i < floors.length; i++) {
         var property = (i + floorDiff) + "";
         if (i == 0) {
             baseMaps[property] = floors[i].groupLayer.addTo(map);
@@ -59,23 +58,12 @@ function init() {
 
     $("#scanText").html(tools.getLocalization(translation, ["map", "scan"]));
     jsBridge.startScanningForIBeacons();
-    //map.removeLayer(floor1LayerGroup);
-    //control.removeLayer(floor1Array);
-    //L.rectangle(mapBounds, { color: "#ff7800", weight: 1 }).addTo(map);
-
-    // zoom the map to the polyline
-    //map.fitBounds(polyline.getBounds());
-
-    var iBeaconsFoundDuringFreeTour = [];
 }
 
 function currentPOI(minor, major) {
-    console.log(minor + " " + major + "*******************************************");
     if (lastMinor != minor && lastMajor != major) {
         lastMinor = minor;
         lastMajor = major;
-        console.log("popup call");
-        //iBeaconDiscovered(minor, major);
 
         lastVisitedNodeID = findPOIWithIBeacon(minor, major);
         if (lastVisitedNodeID != -1) {

@@ -35,7 +35,6 @@ function showQRText(text) {
 function showFoundQRCodes() {
 
     var num = jsBridge.getQRNumber();
-    // var num = 5;
     var src = "";
     var text;
 

@@ -1,5 +1,5 @@
 projectKey=Android:moma
 serverUrl=http://localhost:9000
 dashboardUrl=http://localhost:9000/dashboard/index/Android:moma
-ceTaskId=AVQkhq31kQ3S7TOgKu7H
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AVQkhq31kQ3S7TOgKu7H
+ceTaskId=AVQlB3tskQ3S7TOgKu77
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AVQlB3tskQ3S7TOgKu77

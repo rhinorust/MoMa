@@ -65,7 +65,7 @@ function focusOnNode(node) {
     map.invalidateSize();
 }
 
-//Open the marker popup based on its id. 
+//Open the marker popup based on its id.
 //They should be assigned when creating the markers
 function openMarkerPopup(markerId) {
     map.eachLayer(function(marker) {

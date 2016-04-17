@@ -62,7 +62,7 @@ namespace App1.Droid
 
 
             // full screen hack?  
-            ResizeScreen(true); //this.Element.FullScreen);
+            ResizeScreen(true); 
 
             // must set reference to root element
             _MyVideoView.ParentElement = Element;
@@ -118,15 +118,7 @@ namespace App1.Droid
                         _MyVideoView.SetMediaController(null);
                     }
                 }
-                else if (e.PropertyName == MyVideoPlayer.FullScreenProperty.PropertyName)
-                {
-                    ResizeScreen(source.FullScreen);
-                }
-                else if (e.PropertyName == "OrientationChanged")
-                {
-                    ResizeScreen(source.FullScreen);
-                }
-                else if (e.PropertyName == MyVideoPlayer.ActionBarHideProperty.PropertyName)
+                else if (e.PropertyName == MyVideoPlayer.FullScreenProperty.PropertyName || e.PropertyName == "OrientationChanged" || e.PropertyName == MyVideoPlayer.ActionBarHideProperty.PropertyName)
                 {
                     ResizeScreen(source.FullScreen);
                 }
@@ -212,8 +204,7 @@ namespace App1.Droid
         private void InvalidLayout()
         {
             if (Element.Orientation == MyVideoPlayer.ScreenOrientation.LANDSCAPE)
-            {
-            }
+            {}
             Device.BeginInvokeOnMainThread(() =>
             {
                 _MyVideoView.ForceLayout();

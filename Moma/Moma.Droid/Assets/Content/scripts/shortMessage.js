@@ -18,9 +18,6 @@ $("document").ready(function() {
     closeButton.click(function() {
         shortMsgIB.css("visibility", "hidden");
     });
-
-    // Debugging:
-    //showShortMessageBox('title', 'short message', function () { }, function () { });
 });
 
 // An example of opening a box like this:

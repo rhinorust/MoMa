@@ -68,7 +68,6 @@ namespace App1.Droid
             storylineButton.Click += (sender, e) => { onClickRedirect("guided"); };
             freeTourButton.Click += (sender, e) => { onClickRedirect("free"); };
             helpButton.Click += (sender, e) => { onClickRedirect("help"); };
-            //layout.AddView(aLabel);
             layout.AddView(storylineButton);
             layout.AddView(freeTourButton);
             layout.AddView(helpButton);
