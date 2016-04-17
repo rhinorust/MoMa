@@ -24,6 +24,17 @@ namespace UITest
         public void BeforeEachTest()
         {
             app = AppInitializer.StartApp(platform);
+            SetUpServer();
+        }
+
+        private void SetUpServer()
+        {
+            //Fix to set up the server for initialization.
+            //Currently using local server as a basis for testing
+            const string ServerUrl = "http://192.168.0.115/FinalDemo";
+            app.EnterText(c=>c.TextField().Index(0), ServerUrl);
+            app.Tap(c=>c.Button("Start Updates!"));
+            app.WaitForElement(c => c.Button("English"), "Server updates timed out", new TimeSpan(0, 0, 3, 0));
         }
 
         [Test]
