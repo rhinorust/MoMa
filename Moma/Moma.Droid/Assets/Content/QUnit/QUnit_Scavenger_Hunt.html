@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <script src="../scripts/lib/jquery-1.12.0.min.js"></script>
+    <script src="../scripts/lib/qunit-1.22.0.js"></script>
+    <script src="../scripts/lib/qunit-reporter-junit.js" type="text/javascript"></script>
+    <script src="../scripts/lib/blanket.min.js" type="text/javascript"></script>
+    <script src="scripts/tests/scavengerHuntTests.js"></script>
+    <script src="../scripts/lib/leaflet.js"></script>
+    <script src="../data/FinalDemoJSON.js"></script>
+    <script src="scripts/messages.js" data-cover></script>
+    <script src="scripts/qrCodeScanning.js" data-cover></script>
+    <script src="scripts/localization.js" data-cover></script>
+    <script src="scripts/translation.js" data-cover></script>
+    <script src="scripts/objects.js"></script>
+    <script src="scripts/map.js"></script>
+    <script src="../scripts/lib/jquery.mobile-init.js"></script>
+    <script src="../scripts/lib/jquery.mobile-1.4.5.min.js"></script>
+    <script src="scripts/search.js"></script>
+
+
+    <link rel="stylesheet" href="../styles/custom-theme.css" />
+    <link rel="stylesheet" href="../styles/scanvenger.css" />
+    <link rel="stylesheet" href="../styles/qunit-1.22.0.css" />
+    <link rel="stylesheet" href="../styles/leaflet.css" />
+    <link rel="stylesheet" href="../styles/jquery.mobile-1.4.5.min.css" />
+    <script>
+        var currentLanguage = "en";
+    </script>
+</head>
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture">
+        <div data-role="page" id="index">
+            <div class="RankTable">
+                <div class="ribbon both_ribbon">
+                    <span id="rank"></span>
+                </div>
+                <table id="rankingTable">
+                    <tr>
+                        <th width="50%"><span id="numRank"></span></th>
+                        <th><span id="tableRank"></span></th>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><span id="bronze"></span></td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td><span id="silver"></span></td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td><span id="gold"></span></td>
+                    </tr>
+                    <tr>
+                        <td>20</td>
+                        <td><span id="platinum"></span></td>
+                    </tr>
+                    <!--
+                                <tr>
+                                    <td>25</td>
+                                    <td>Platinum</td>
+                                </tr>
+                                <tr>
+                                    <td>30</td>
+                                    <td>Diamond</td>
+                                </tr>
+                    -->
+                </table>
+            </div>
+            <br />
+
+            <div class="QRText">
+                <span id="qrcodes"></span>
+                <br />
+                <p id="currentRanking"></p>
+                <br />
+                <img style="visibility:hidden;" id="medalRep" />
+            </div>
+        </div>
+    </div>
+</body>
+</html>
