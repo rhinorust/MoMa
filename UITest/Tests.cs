@@ -24,17 +24,54 @@ namespace UITest
         public void BeforeEachTest()
         {
             app = AppInitializer.StartApp(platform);
-            SetUpServer();
+            SetUpServer(true);
         }
 
-        private void SetUpServer()
+        private void SetUpServer(bool isAppInitialization)
         {
             //Fix to set up the server for initialization.
             //Currently using local server as a basis for testing
-            const string ServerUrl = "http://192.168.0.115/FinalDemo";
-            app.EnterText(c=>c.TextField().Index(0), ServerUrl);
-            app.Tap(c=>c.Button("Start Updates!"));
+            const string serverUrl = "http://192.168.0.115/FinalDemo";
+            if (isAppInitialization)
+            {
+                //Test when invalid url
+                app.Tap(c => c.Button("Start Updates!"));
+                app.EnterText(c => c.TextField().Index(0), serverUrl);
+            }
+            //Assert that button text has changed
+            app.Tap(c=>c.Button("Invalid Url. Retry!"));
             app.WaitForElement(c => c.Button("English"), "Server updates timed out", new TimeSpan(0, 0, 3, 0));
+        }
+
+        [Test]
+        public void TestDefaultScavengerHunt()
+        {
+            SetLanguageSetting();
+            app.Tap(c => c.Button("Free Tour"));
+            GetView("Scavenger Hunt");
+            var result = app.WaitForElement(c => c.Css("#qrcodes"))[0].TextContent;
+            Assert.AreEqual("You have yet to find one QR Code!", result);
+        }
+
+        [Test]
+        public void TestContactPage()
+        {
+            SetLanguageSetting();
+            app.Tap(c => c.Button("Free Tour"));
+            GetView("Contact");
+            //Phone
+            app.Tap(c=>c.Class("FormsTextView").Index(1));
+            app.Tap(c=>c.Marked("No"));
+
+            //Website
+            app.Tap(c => c.Class("FormsTextView").Index(3));
+            app.Tap(c => c.Marked("No"));
+
+            //Address
+            app.Tap(c => c.Class("FormsTextView").Index(9));
+            app.Tap(c => c.Marked("No"));
+            //Verify that we changed to static directions page
+            app.WaitForElement(c => c.Marked("Museum Directions"));
         }
 
         [Test]
@@ -73,9 +110,9 @@ namespace UITest
 
             GetView("Storylines");
             GetView("Free Tour");
+            GetView("Scavenger Hunt");
             GetView("Contact");
             GetView("Museum Directions");
-            GetView("Help");
             GetView("Settings");
         }
 
@@ -128,6 +165,7 @@ namespace UITest
             app.Tap(c => c.Text("Reset"));
             app.Tap(c => c.Marked("Yes"));
 
+            SetUpServer(false);
             //Assert language initializer page is shown
             app.WaitForElement(c => c.Button("English"));
         }
@@ -211,7 +249,7 @@ namespace UITest
             SetLanguageSetting();
             app.Tap(c => c.Button("Storylines"));
             app.Tap(c => c.WebView().Css("#storylines"));
-            app.Tap(c => c.WebView().Css("#start"));
+            app.Tap(c => c.WebView().Css("#startButton"));
         }
 
         [Test]
@@ -220,7 +258,7 @@ namespace UITest
             SetLanguageSetting();
             app.Tap(c => c.Button("Storylines"));
             app.Tap(c => c.WebView().Css("#storylines"));
-            app.Tap(c => c.WebView().Css("#preview"));
+            app.Tap(c => c.WebView().Css("#previewButton"));
         }
 
         [Test]
@@ -242,7 +280,7 @@ namespace UITest
         public void WalkThroughStoryline()
         {
             StartStoryline();
-            app.Tap(c => c.WebView().Css("#nextBtn"));
+            //app.Tap(c => c.WebView().Css("#nextBtn"));
         }
 
 
@@ -251,7 +289,7 @@ namespace UITest
         {
             SetLanguageSetting();
             app.Tap(c => c.Button("Free Tour"));
-            app.EnterText(c => c.WebView().Css("#SearchBarDiv"),"Artifact 1");
+            app.EnterText(c => c.WebView().Css("#SearchBarDiv"), "MOEB Start for all tours");
             app.Tap(c => c.WebView().Css("#listViewUl"));
         }
 
