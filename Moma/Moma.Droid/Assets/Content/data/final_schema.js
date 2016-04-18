@@ -41,7 +41,7 @@ var DATA = {
                 "id": "0000",
                 "title": [
                   {
-                      "language": "EN",
+                      "language": "English",
                       "title": "Artifact 0"
                   },
                   {
@@ -51,7 +51,7 @@ var DATA = {
                 ],
                 "description": [
                   {
-                      "language": "EN",
+                      "language": "English",
                       "description": "First artifact of the museum"
                   },
                   {
@@ -59,8 +59,8 @@ var DATA = {
                       "description": "Premier artéfact du musée"
                   }
                 ],
-                "x": "8",
-                "y": "-85",
+                "x": "115",
+                "y": "-84",
                 "floorID": 1,
                 "iBeacon": {
                     "uuid": "0000",
@@ -95,7 +95,7 @@ var DATA = {
                       "storylineID": "S1",
                       "title": [
                         {
-                            "language": "EN",
+                            "language": "English",
                             "title": "First Storyline POI"
                         },
                         {
@@ -105,7 +105,7 @@ var DATA = {
                       ],
                       "description": [
                         {
-                            "language": "EN",
+                            "language": "English",
                             "description": "First Storyline POI"
                         }
                       ],
@@ -139,7 +139,7 @@ var DATA = {
                 "id": "0001",
                 "title": [
                   {
-                      "language": "EN",
+                      "language": "English",
                       "title": "Artifact 1"
                   },
                   {
@@ -149,7 +149,7 @@ var DATA = {
                 ],
                 "description": [
                   {
-                      "language": "EN",
+                      "language": "English",
                       "description": "Second artifact of the museum"
                   },
                   {
@@ -157,8 +157,8 @@ var DATA = {
                       "description": "Second artéfact du musée"
                   }
                 ],
-                "x": "16",
-                "y": "-85",
+                "x": "115",
+                "y": "-71",
                 "floorID": 2,
                 "iBeacon": {
                     "uuid": "0001",
@@ -193,7 +193,7 @@ var DATA = {
                       "storylineID": "S1",
                       "title": [
                         {
-                            "language": "EN",
+                            "language": "English",
                             "title": "First Storyline POI"
                         },
                         {
@@ -203,7 +203,7 @@ var DATA = {
                       ],
                       "description": [
                         {
-                            "language": "EN",
+                            "language": "English",
                             "description": "First Storyline POI"
                         }
                       ],
@@ -237,7 +237,7 @@ var DATA = {
                 "id": "0002",
                 "title": [
                   {
-                      "language": "EN",
+                      "language": "English",
                       "title": "Artifact 2"
                   },
                   {
@@ -247,7 +247,7 @@ var DATA = {
                 ],
                 "description": [
                   {
-                      "language": "EN",
+                      "language": "English",
                       "description": "Third artifact of the museum"
                   },
                   {
@@ -255,8 +255,8 @@ var DATA = {
                       "description": "Troisième artéfact du musée"
                   }
                 ],
-                "x": "16",
-                "y": "-123",
+                "x": "166",
+                "y": "-71",
                 "floorID": 2,
                 "iBeacon": {
                     "uuid": "0002",
@@ -291,7 +291,7 @@ var DATA = {
                       "storylineID": "S1",
                       "title": [
                         {
-                            "language": "EN",
+                            "language": "English",
                             "title": "First Storyline POI"
                         },
                         {
@@ -301,7 +301,7 @@ var DATA = {
                       ],
                       "description": [
                         {
-                            "language": "EN",
+                            "language": "English",
                             "description": "First Storyline POI"
                         }
                       ],
@@ -335,7 +335,7 @@ var DATA = {
                 "id": "0003",
                 "title": [
                   {
-                      "language": "EN",
+                      "language": "English",
                       "title": "Artifact 3"
                   },
                   {
@@ -345,7 +345,7 @@ var DATA = {
                 ],
                 "description": [
                   {
-                      "language": "EN",
+                      "language": "English",
                       "description": "Fourth artifact of the museum"
                   },
                   {
@@ -353,8 +353,8 @@ var DATA = {
                       "description": "Quatrième artéfact du musée"
                   }
                 ],
-                "x": "47",
-                "y": "-123",
+                "x": "168",
+                "y": "-30",
                 "floorID": 2,
                 "iBeacon": {
                     "uuid": "0003",
@@ -389,7 +389,7 @@ var DATA = {
                       "storylineID": "S1",
                       "title": [
                         {
-                            "language": "EN",
+                            "language": "English",
                             "title": "First Storyline POI"
                         },
                         {
@@ -399,7 +399,7 @@ var DATA = {
                       ],
                       "description": [
                         {
-                            "language": "EN",
+                            "language": "English",
                             "description": "First Storyline POI"
                         }
                       ],
@@ -433,7 +433,7 @@ var DATA = {
                 "id": "0004",
                 "title": [
                   {
-                      "language": "EN",
+                      "language": "English",
                       "title": "Artifact 4"
                   },
                   {
@@ -443,7 +443,7 @@ var DATA = {
                 ],
                 "description": [
                   {
-                      "language": "EN",
+                      "language": "English",
                       "description": "Fifth artifact of the museum"
                   },
                   {
@@ -451,8 +451,8 @@ var DATA = {
                       "description": "Cinquième artéfact du musée"
                   }
                 ],
-                "x": "56",
-                "y": "-85",
+                "x": "113",
+                "y": "-17",
                 "floorID": 2,
                 "iBeacon": {
                     "uuid": "0004",
@@ -487,7 +487,7 @@ var DATA = {
                       "storylineID": "S1",
                       "title": [
                         {
-                            "language": "EN",
+                            "language": "English",
                             "title": "First Storyline POI"
                         },
                         {
@@ -497,7 +497,7 @@ var DATA = {
                       ],
                       "description": [
                         {
-                            "language": "EN",
+                            "language": "English",
                             "description": "First Storyline POI"
                         }
                       ],
@@ -531,7 +531,7 @@ var DATA = {
                 "id": "0005",
                 "title": [
                   {
-                      "language": "EN",
+                      "language": "English",
                       "title": "Artifact 5"
                   },
                   {
@@ -541,7 +541,7 @@ var DATA = {
                 ],
                 "description": [
                   {
-                      "language": "EN",
+                      "language": "English",
                       "description": "Sixth artifact of the museum"
                   },
                   {
@@ -549,8 +549,8 @@ var DATA = {
                       "description": "Sixième artéfact du musée"
                   }
                 ],
-                "x": "54",
-                "y": "-60",
+                "x": "80",
+                "y": "-20",
                 "floorID": 2,
                 "iBeacon": {
                     "uuid": "0005",
@@ -585,7 +585,7 @@ var DATA = {
                       "storylineID": "S1",
                       "title": [
                         {
-                            "language": "EN",
+                            "language": "English",
                             "title": "First Storyline POI"
                         },
                         {
@@ -595,7 +595,7 @@ var DATA = {
                       ],
                       "description": [
                         {
-                            "language": "EN",
+                            "language": "English",
                             "description": "First Storyline POI"
                         }
                       ],
@@ -629,7 +629,7 @@ var DATA = {
                 "id": "0006",
                 "title": [
                   {
-                      "language": "EN",
+                      "language": "English",
                       "title": "Artifact 6"
                   },
                   {
@@ -639,7 +639,7 @@ var DATA = {
                 ],
                 "description": [
                   {
-                      "language": "EN",
+                      "language": "English",
                       "description": "Seventh artifact of the museum"
                   },
                   {
@@ -647,8 +647,8 @@ var DATA = {
                       "description": "Septième artéfact du musée"
                   }
                 ],
-                "x": "63",
-                "y": "-20",
+                "x": "25",
+                "y": "-7",
                 "floorID": 2,
                 "iBeacon": {
                     "uuid": "0006",
@@ -683,7 +683,7 @@ var DATA = {
                       "storylineID": "S1",
                       "title": [
                         {
-                            "language": "EN",
+                            "language": "English",
                             "title": "First Storyline POI"
                         },
                         {
@@ -693,7 +693,7 @@ var DATA = {
                       ],
                       "description": [
                         {
-                            "language": "EN",
+                            "language": "English",
                             "description": "First Storyline POI"
                         }
                       ],
@@ -722,266 +722,107 @@ var DATA = {
                       }
                   }
                 ]
-            },
-            {
-                "id": "0007",
-                "title": [{
-                    "language": "EN",
-                    "title": "Point of Interest 1"
-                }],
-                "description": [{
-                    "language": "EN",
-                    "description": "This is the description for Point of Interest 1"
-                }],
-                "x": 100,
-                "y": 100,
-                "floorID": "1",
-                "iBeacon": {
-                    "uuid": "b9407f30-f5f8-466e-aff9-25556b57fe6d",
-                    "major": 0,
-                    "minor": 0
-                },
-                "media": {
-                    "image": [],
-                    "video": [{
-                        "path": "videos/MOEB_Introduction_-_Small.mov",
-                        "language": "EN",
-                        "caption": "None"
-                    }],
-                    "audio": []
-                },
-                "storyPoint": [{
-                    "storylineID": 0
-                }]
-            },
-            {
-                "id": "0008",
-                "title": [{
-                    "language": "EN",
-                    "title": "Point of Interest 2"
-                }],
-                "description": [{
-                    "language": "EN",
-                    "description": "This is the description for Point of Interest 2"
-                }],
-                "x": 200,
-                "y": 100,
-                "floorID": "1",
-                "iBeacon": {
-                    "uuid": "b9407f30-f5f8-466e-aff9-25556b57fe6d",
-                    "major": 1,
-                    "minor": 1
-                },
-                "media": {
-                    "image": [],
-                    "video": [{
-                        "path": "videos/MOEB_POINT_1_-_Small.mov",
-                        "language": "EN",
-                        "caption": "None"
-                    }],
-                    "audio": []
-                },
-                "storyPoint": [{
-                    "storylineID": 0
-                }]
-            },
-            {
-                "id": "0009",
-                "title": [{
-                    "language": "EN",
-                    "title": "Point of Interest 3"
-                }],
-                "description": [{
-                    "language": "EN",
-                    "description": "This is the description for Point of Interest 3"
-                }],
-                "x": 300,
-                "y": 100,
-                "floorID": "1",
-                "iBeacon": {
-                    "uuid": "b9407f30-f5f8-466e-aff9-25556b57fe6d",
-                    "major": 2,
-                    "minor": 2
-                },
-                "media": {
-                    "image": [],
-                    "video": [{
-                        "path": "videos/MOEB_POINT_2_-_Small.mov",
-                        "language": "EN",
-                        "caption": "None"
-                    }],
-                    "audio": []
-                },
-                "storyPoint": [{
-                    "storylineID": 0
-                }]
-            },
-            {
-                "id": "0010",
-                "title": [{
-                    "language": "EN",
-                    "title": "Point of Interest 4"
-                }],
-                "description": [{
-                    "language": "EN",
-                    "description": "This is the description for Point of Interest 4"
-                }],
-                "x": 400,
-                "y": 100,
-                "floorID": "1",
-                "iBeacon": {
-                    "uuid": "b9407f30-f5f8-466e-aff9-25556b57fe6d",
-                    "major": 3,
-                    "minor": 3
-                },
-                "media": {
-                    "image": [],
-                    "video": [{
-                        "path": "videos/MOEB_POINT_3_-_Small.mov",
-                        "language": "EN",
-                        "caption": "None"
-                    }],
-                    "audio": []
-                },
-                "storyPoint": [{
-                    "storylineID": 0
-                }]
-            },
-            {
-                "id": "0011",
-                "title": [{
-                    "language": "EN",
-                    "title": "Point of Interest 5"
-                }],
-                "description": [{
-                    "language": "EN",
-                    "description": "This is the description for Point of Interest 5"
-                }],
-                "x": 500,
-                "y": 100,
-                "floorID": "1",
-                "iBeacon": {
-                    "uuid": "b9407f30-f5f8-466e-aff9-25556b57fe6d",
-                    "major": 9377,
-                    "minor": 54177
-                },
-                "media": {
-                    "image": [],
-                    "video": [{
-                        "path": "videos/MOEB_POINT_1_-_Small.mov",
-                        "language": "EN",
-                        "caption": "None"
-                    }],
-                    "audio": [{
-                        "path": "audio/MOEB_POINT_4_-_Small.mp3",
-                        "language": "EN",
-                        "caption": "None"
-                    }]
-                },
-                "storyPoint": [{
-                    "storylineID": 0
-                }]
             }
           ],
           "pot": [
             {
                 "id": "1000",
                 "label": {
-                    "language": "EN",
+                    "language": "English",
                     "label": "corner"
                 },
-                "x": "11",
-                "y": "-85",
+                "x": "115",
+                "y": "-81",
                 "floorID": 1
             },
             {
                 "id": "1001",
                 "label": {
-                    "language": "EN",
+                    "language": "English",
                     "label": "corner"
                 },
-                "x": "11",
-                "y": "-84",
+                "x": "113",
+                "y": "-81",
                 "floorID": 1
             },
             {
                 "id": "1002",
                 "label": {
-                    "language": "EN",
+                    "language": "English",
                     "label": "corner"
                 },
-                "x": "11",
-                "y": "-84",
+                "x": "113",
+                "y": "-81",
                 "floorID": 2
             },
             {
                 "id": "1003",
                 "label": {
-                    "language": "EN",
+                    "language": "English",
                     "label": "corner"
                 },
-                "x": "50",
-                "y": "-85",
+                "x": "113",
+                "y": "-24",
                 "floorID": 2
             },
             {
                 "id": "1004",
                 "label": {
-                    "language": "EN",
+                    "language": "English",
                     "label": "corner"
                 },
-                "x": "57",
-                "y": "-77",
+                "x": "102",
+                "y": "-17",
                 "floorID": 2
             },
             {
                 "id": "1005",
                 "label": {
-                    "language": "EN",
+                    "language": "English",
                     "label": "corner"
                 },
-                "x": "54",
-                "y": "-76",
+                "x": "101",
+                "y": "-20",
                 "floorID": 2
             },
             {
                 "id": "1006",
                 "label": {
-                    "language": "EN",
+                    "language": "English",
                     "label": "corner"
                 },
-                "x": "55",
-                "y": "-62",
+                "x": "81",
+                "y": "-18",
                 "floorID": 2
             },
             {
                 "id": "1007",
                 "label": {
-                    "language": "EN",
+                    "language": "English",
                     "label": "corner"
                 },
-                "x": "57",
-                "y": "-28",
+                "x": "62",
+                "y": "-17",
                 "floorID": 2
             },
             {
                 "id": "1008",
                 "label": {
-                    "language": "EN",
+                    "language": "English",
                     "label": "corner"
                 },
-                "x": "62",
-                "y": "-28",
+                "x": "34",
+                "y": "-15",
                 "floorID": 2
             },
             {
                 "id": "1009",
                 "label": {
-                    "language": "EN",
+                    "language": "English",
                     "label": "corner"
                 },
-                "x": "62",
-                "y": "-28",
+                "x": "34",
+                "y": "-8",
                 "floorID": 2
             }
           ]
@@ -1000,13 +841,13 @@ var DATA = {
           "id": "S1",
           "title": [
             {
-                "language": "EN",
+                "language": "English",
                 "title": "Storyline 1"
             }
           ],
           "description": [
             {
-                "language": "EN",
+                "language": "English",
                 "description": "Storyline 1 description"
             }
           ],
@@ -1037,13 +878,13 @@ var DATA = {
           "id": "S2",
           "title": [
             {
-                "language": "EN",
+                "language": "English",
                 "title": "Storyline 2"
             }
           ],
           "description": [
             {
-                "language": "EN",
+                "language": "English",
                 "description": "Storyline 2 description"
             }
           ],
@@ -1058,3 +899,4 @@ var DATA = {
       }
     ]
 };
+

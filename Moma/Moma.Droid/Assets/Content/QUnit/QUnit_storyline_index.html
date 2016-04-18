@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="../styles/qunit-1.22.0.css" />
+    <script src="../scripts/lib/jquery-1.12.0.min.js"></script>
+    <script src="../scripts/lib/jquery.mobile-init.js"></script>
+    <script src="../scripts/lib/leaflet.js"></script>
+    <script src="../scripts/lib/qunit-1.22.0.js"></script>
+    <script src="../scripts/lib/qunit-reporter-junit.js" type="text/javascript"></script>
+    <script src="../scripts/lib/blanket.min.js" type="text/javascript"></script>
+    <script src="scripts/tests/storylineIndexTests.js"></script>
+    <script src="../data/FinalDemoJSON.js"></script>
+    <script src="scripts/localization.js"></script>
+    <script src="scripts/translation.js"></script>
+    <script src="scripts/objects.js" data-cover></script>
+    <script src="scripts/poiInformation.js" data-cover></script>
+    <script src="scripts/storyline_map.js" data-cover></script>
+    <script src="scripts/shortMessage.js" data-cover></script>
+    
+    <link rel="stylesheet" href="../styles/leaflet.css" />
+    <link rel="stylesheet" href="../styles/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="../styles/free-tour.css" />
+    <link rel="stylesheet" href="../styles/storylines.css" />
+    <script>
+        var currentLanguage = "en";
+    </script>
+</head>
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture">
+        <p id="previewStoryline"></p>
+        <p id="currentStoryline"></p>
+        <div id="map">
+        </div>
+        <div style="text-align:center;">
+            <!--<button id="scanBtn" onclick="qrCodeScanBtn()"></button>-->
+            <button id="backBtn" onclick="endPreview()"><</button>
+            <button id="endBtn" onclick="endStoryline()"></button>
+            <button style="float:left" onclick="currentPOI('372','26515')">0</button>
+            <button style="float:left" onclick="currentPOI('57400','26793')">2</button>
+            <button style="float:left" onclick="currentPOI('3099','60352')">4</button>
+        </div>
+        <div style="text-align:center;">
+            <button id="starBtn" onclick="startStoryline()"></button>
+            <!--<button id="nextBtn" onclick="advanceStoryLine()" style="margin-left:115px">Sim. Beacon</button>-->
+        </div>
+        <div class="informationBox" id="POI_Information">
+            <div id="body">
+                <header>
+                    <div id="title">
+                        <h1>Title</h1>
+                    </div>
+                    <div id="closeButton">
+                        <img id="close" src="../images/boxCloseButton.png">
+                    </div>
+                </header>
+                <section id="content"></section>
+            </div>
+        </div>
+        <!--<div onclick="iBeaconDiscovered('372', '26515');" style="position:absolute;bottom:50px;left:50px;width:100px;height:100px;background-color:black;z-index:100000;"></div>-->
+        <!--<div onclick="iBeaconDiscovered('372', '26515');" style="position:absolute;bottom:50px;right:50px;width:100px;height:100px;background-color:blue;z-index:100000;"></div>-->
+        <div class="informationBox" id="messages">
+            <div id="body">
+                <header>
+                    <div id="title">
+                        <h1>Title</h1>
+                    </div>
+                    <div id="closeButton">
+                        <img id="close" src="../images/boxCloseButton.png">
+                    </div>
+                </header>
+                <section id="content">
+                    <h3 id="iBeaconsBla" style="padding-bottom:0;margin-bottom:0;"></h3>
+                    <div id="iBeacons"><ul></ul></div>
+                </section>
+            </div>
+        </div>
+        <div class="informationBox" id="shortMessageBox">
+            <div id="body">
+                <header>
+                    <div id="title">
+                        <h1>Short message</h1>
+                    </div>
+                    <div id="closeButton">
+                        <img id="close" src="../images/boxCloseButton.png">
+                    </div>
+                </header>
+                <section id="content">
+                    <div id="text"></div>
+                    <div id="buttons">
+                        <button id="yesButton" onclick="yesButtonClick()"></button>
+                        <button id="noButton" onclick="noButtonClick()"></button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -84,7 +84,7 @@ namespace Moma
 
         private void ResetDefaultSettings(string language)
         {
-            var url = "http://192.168.0.103/FinalDemo";
+            var url = "http://192.168.0.115/FinalDemo";
             var settingsDict = new Dictionary<string, string>
             {
                 {"language", language},

@@ -30,7 +30,7 @@ function previewStoryline(storylineID) {
 function startStoryline(storylineID) {
     localStorage.removeItem("previewStoryline");
     if (localStorage.getItem("currentStoryline") != storylineID && localStorage.getItem("currentStoryline") != null) {
-        jsBridge.confirmPopup(storylineID);
+     //   jsBridge.confirmPopup(storylineID);
     }
     else {
     localStorage.setItem("currentStoryline", storylineID);
