@@ -228,6 +228,7 @@ function currentPOI(minor, major) {
         }
         lastVisitedNodeID = nextPOIInPath.id;
 
+        console.log(nextPOIInPath + "     " + lastVisitedNodeID + "     " + nextPOIInPath.iBeacon.minor + "      " + nextPOIInPath.iBeacon.major);
         if ((nextPOIInPath != null && lastVisitedNodeID != repeatNodeDik && nextPOIInPath.iBeacon.minor == minor && nextPOIInPath.iBeacon.major == major)
             || (isDone)) {
             console.log("call update poi");
